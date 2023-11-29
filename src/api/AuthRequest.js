@@ -12,6 +12,6 @@ export const loginRequest = async ({ body = {} }) => {
         });
         return response.data.list_data;
     } catch (error) {
-        return error?.response?.data ?? undefined;
+        return error?.response?.data ?? {};
     }
 }

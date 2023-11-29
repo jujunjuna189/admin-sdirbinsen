@@ -1,4 +1,4 @@
-import { Button, InputText } from "../../../components";
+import { Button, InputPassword, InputText } from "../../../components";
 import { UseLoginContext } from "../../../contexts/auth/LoginContext";
 
 const LoginPage = () => {
@@ -21,7 +21,7 @@ const LoginPage = () => {
                     <div className="border py-8 px-5 rounded-lg w-96 bg-white">
                         <div className="font-medium text-center text-lg">Masuk Aplikasi</div>
                         <div className="flex flex-col gap-3 mt-10">
-                            {errors.message && (
+                            {errors?.message && (
                                 <div className="bg-red-100 text-red-800 px-3 py-2 rounded-lg">
                                     <span className="font-semibold text-xs">{errors.message}</span>
                                 </div>
@@ -32,7 +32,7 @@ const LoginPage = () => {
                             </div>
                             <div>
                                 <small className="font-medium">Password</small>
-                                <InputText className="mt-1" value={controller.password} error={errors.password} onChange={(value) => onSetController('password', value)} placeholder="..." />
+                                <InputPassword className="mt-1" value={controller.password} error={errors.password} onChange={(value) => onSetController('password', value)} placeholder="..." />
                             </div>
                             <div className="mt-5">
                                 <Button className="bg-red-800 text-white justify-center" onClick={() => onLogin()}><span className="text-center">Masuk</span></Button>

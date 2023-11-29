@@ -1,4 +1,5 @@
 import { Button } from "../../../../components";
+import { getLocalUser } from "../../../../utils";
 
 const BiodataPersonilDetail = (props) => {
 
@@ -41,7 +42,9 @@ const BiodataPersonilDetail = (props) => {
                     </table>
                 </div>
                 <div className="grow flex items-center gap-2 mt-4">
-                    <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center" onClick={() => props.navigation(`/personil/update/${props?.personil?.id}`)}>Ubah Personil</Button>
+                    {getLocalUser()?.auth?.permission['personil.update'] && (
+                        <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center" onClick={() => props.navigation(`/personil/update/${props?.personil?.id}`)}>Ubah Personil</Button>
+                    )}
                     <Button className="border border-green-700 bg-green-50 text-green-700 flex justify-center">Download Portofolio</Button>
                 </div>
             </div>

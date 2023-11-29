@@ -48,11 +48,22 @@ const UserCreatePage = () => {
                     {errors.permission_id && (<small className="text-red-800">{errors.permission_id}</small>)}
                 </div>
                 <div className="flex flex-col gap-2 mt-3">
-                    {permission?.data?.map((item, index) => {
+                    {Object.keys(permission)?.map((item, index) => {
                         return (
-                            <div key={index} className="border rounded-lg py-2 px-3 flex items-center gap-2">
-                                <InputChecked checked={controller.permission?.[item.id] ?? false} onChange={(value) => onCheckedPermission(index, value)} />
-                                <span>{item.display}</span>
+                            <div key={index}>
+                                <div className="mb-1">
+                                    <span className="font-semibold">{item}</span>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    {permission[item].map((itemChild, indexChild) => {
+                                        return (
+                                            <div key={indexChild} className="border rounded-lg py-2 px-3 flex items-center gap-2">
+                                                <InputChecked checked={controller.permission?.[itemChild.original_data.id] ?? false} onChange={(value) => onCheckedPermission(item, indexChild, value)} />
+                                                <span>{itemChild.original_data.display}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         );
                     })}

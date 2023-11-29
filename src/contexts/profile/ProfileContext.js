@@ -16,12 +16,13 @@ export const ProfileContextProvider = ({ children }) => {
 
     const getUser = async ({ user_id = null }) => {
         await getUserDetailRequest({ id: user_id }).then((res) => {
+            console.log(res);
             setUser(res);
         });
     }
 
     const getPermission = async () => {
-        await getUserPermissionRequest({ user_id: param.id }).then((res) => {
+        await getUserPermissionRequest({ user_id: param.user.id }).then((res) => {
             setPermissions(res);
         });
     }
@@ -31,7 +32,7 @@ export const ProfileContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        getUser({ user_id: param.id });
+        getUser({ user_id: param.user.id });
         getPermission();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

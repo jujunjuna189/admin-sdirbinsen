@@ -18,9 +18,9 @@ const Navbar = (props) => {
 
     return (
         <nav className="bg-white py-3 px-7 shadow-md z-10 flex justify-between items-center">
-            <div className="text-lg font-semibold cursor-pointer" onClick={() => navigation('/dashboard')}>Sdirbinsen</div>
+            <div className="text-lg font-semibold cursor-pointer" onClick={() => navigation('/dashboard')}>Sdirsen</div>
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigation('/profile')} onMouseOver={() => onSetElement()} onMouseLeave={() => onEmptyElement()}>
-                <span className="font-semibold">{(user?.auth?.name && user?.auth?.name.split(' ')[0]) ?? 'Anonim'}</span>
+                <span className="font-semibold">{(user?.auth?.user?.name && user?.auth?.user?.name.split(' ')[0]) ?? 'Anonim'}</span>
                 <div className="w-8 h-8 rounded-full bg-slate-200"></div>
             </div>
             {element}

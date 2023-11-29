@@ -51,13 +51,13 @@ export const UserCreateContextProvider = ({ children }) => {
         });
     }
 
-    const onCheckedPermission = (itemIndex, value) => {
-        const permission_data = permission.data;
+    const onCheckedPermission = (itemParent, itemIndexChild, value) => {
+        const permission_data = permission[itemParent][itemIndexChild];
         let dataBatch = controller.permission ?? {};
         if (value) {
-            dataBatch = { ...dataBatch, [permission_data[itemIndex].id]: true };
+            dataBatch = { ...dataBatch, [permission_data.original_data.id]: true };
         } else {
-            delete dataBatch[permission_data[itemIndex].id];
+            delete dataBatch[permission_data.original_data.id];
         }
 
         onSetController('permission', dataBatch);

@@ -16,10 +16,9 @@ export const LoginContextProvider = ({ children }) => {
 
     const onLogin = async () => {
         await loginRequest({ body: { username: controller.username, password: controller.password } }).then((res) => {
-            console.log(res);
             res?.list_data?.errors && setErrors(res?.list_data?.errors);
             !res?.list_data?.errors && setErrors(res);
-            if (res?.id) {
+            if (res?.user?.id) {
                 setLocalUser({ auth: res });
                 navigation('/dashboard');
             };

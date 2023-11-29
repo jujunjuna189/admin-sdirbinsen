@@ -1,5 +1,6 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UsePersonilContext } from "../../contexts/personil/PersonilContext";
+import { getLocalUser } from "../../utils";
 
 const PersonilPage = () => {
     const { navigation, element, personil, sumberPa, onTabSwitch, onShowConfirmDelete } = UsePersonilContext();
@@ -40,7 +41,9 @@ const PersonilPage = () => {
                                     <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                         <div className="flex gap-3 justify-end">
                                             <Button className="border py-[0.2rem] bg-green-50 border-green-800 text-green-800" onClick={() => navigation(`/personil/detail/${item.id}`)}>Detail</Button>
-                                            <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>Hapus</Button>
+                                            {getLocalUser()?.auth?.permission['personil.delete'] && (
+                                                <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>Hapus</Button>
+                                            )}
                                         </div>
                                     </td>
                                 </tr>
@@ -56,16 +59,18 @@ const PersonilPage = () => {
         <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
                 <span className="font-bold text-xl text-slate-800">Daftar Personil</span>
-                <div>
-                    <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/personil/create')}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 5l0 14"></path>
-                            <path d="M5 12l14 0"></path>
-                        </svg>
-                        Tambah Personil
-                    </Button>
-                </div>
+                {getLocalUser()?.auth?.permission['personil.create'] && (
+                    <div>
+                        <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/personil/create')}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 5l0 14"></path>
+                                <path d="M5 12l14 0"></path>
+                            </svg>
+                            Tambah Personil
+                        </Button>
+                    </div>
+                )}
             </div>
             <div className="my-3 flex flex-wrap gap-2">
                 {sumberPa.map((item, index) => {

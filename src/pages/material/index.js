@@ -1,5 +1,6 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UseMaterialContext } from "../../contexts/material/MaterialContext";
+import { getLocalUser } from "../../utils";
 
 const MaterialPage = () => {
     const { navigation, element, material, onShowConfirmDelete } = UseMaterialContext();
@@ -12,7 +13,7 @@ const MaterialPage = () => {
                         <th className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-start">
                             <div className="flex gap-5 items-center">
                                 <input type="checkbox" className="" />
-                                Judul Material
+                                Judul
                             </div>
                         </th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Link File</th>
@@ -34,8 +35,12 @@ const MaterialPage = () => {
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan.nama}</td>
                                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                     <div className="flex gap-3 justify-end">
-                                        <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/material/update/${item.id}`)}>Ubah</Button>
-                                        <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>Hapus</Button>
+                                        {getLocalUser()?.auth?.permission['material.update'] && (
+                                            <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/material/update/${item.id}`)}>Ubah</Button>
+                                        )}
+                                        {getLocalUser()?.auth?.permission['material.delete'] && (
+                                            <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>Hapus</Button>
+                                        )}
                                     </div>
                                 </td>
                             </tr>
@@ -49,17 +54,19 @@ const MaterialPage = () => {
     return (
         <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
-                <span className="font-bold text-xl text-slate-800">Daftar Material</span>
-                <div>
-                    <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/material/create')}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 5l0 14"></path>
-                            <path d="M5 12l14 0"></path>
-                        </svg>
-                        Tambah Material
-                    </Button>
-                </div>
+                <span className="font-bold text-xl text-slate-800">Daftar</span>
+                {getLocalUser()?.auth?.permission['material.create'] && (
+                    <div>
+                        <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/material/create')}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 5l0 14"></path>
+                                <path d="M5 12l14 0"></path>
+                            </svg>
+                            Tambah
+                        </Button>
+                    </div>
+                )}
             </div>
             <div className="mt-4">
                 <Card>

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { UseAuthContext } from "../../../contexts/auth/AuthContext";
+import { getLocalUser } from "../../../utils";
 import { Button } from "../../atoms";
 import Card from "../card";
 
@@ -11,16 +12,18 @@ const MenuProfileModal = (props) => {
         <div className="absolute top-[3rem] right-5 w-80 pt-5 -mt-1 cursor-pointer" onMouseOver={() => props.onMouseOver && props.onMouseOver()} onMouseLeave={() => props.onMouseLeave && props.onMouseLeave()}>
             <Card className="shadow-lg">
                 <div className="leading-3 px-4">
-                    <h4 className="font-bold text-base">{props.user?.auth?.name ? props.user?.auth?.name.split(' ')[0] : 'Anonim'}</h4>
-                    <span className="font-medium">{props.user?.auth?.username}</span>
+                    <h4 className="font-bold text-base">{props.user?.auth?.user?.name ? props.user?.auth?.user?.name.split(' ')[0] : 'Anonim'}</h4>
+                    <span className="font-medium">{props.user?.auth?.user?.username}</span>
                 </div>
                 <div className="border-t w-full h-[1px] my-3" />
                 <div className="mt-2 px-4">
                     <ul>
                         <li className="py-1 px-2 hover:bg-slate-100 rounded-lg" onClick={() => navigation('/profile')}><span>Biodata</span></li>
-                        <li className="py-1 px-2 hover:bg-slate-100 rounded-lg" onClick={() => navigation('/setting/personil')}>
-                            <span>Pengaturan</span>
-                        </li>
+                        {getLocalUser()?.auth?.permission?.['setting.menu'] && (
+                            <li className="py-1 px-2 hover:bg-slate-100 rounded-lg" onClick={() => navigation('/setting/personil')}>
+                                <span>Pengaturan</span>
+                            </li>
+                        )}
                     </ul>
                 </div>
                 <div className="border-t w-full h-[1px] my-3" />

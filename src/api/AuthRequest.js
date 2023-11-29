@@ -10,7 +10,7 @@ export const loginRequest = async ({ body = {} }) => {
                 "Content-Type": 'multipart/form-data'
             }
         });
-        return response.data.list_data.user;
+        return response.data.list_data;
     } catch (error) {
         return error?.response?.data ?? undefined;
     }

@@ -10,22 +10,32 @@ import PersonilUpdatePage from "./personil/form/update";
 import ProfilePage from "./profile";
 import SettingPersonilPage from "./setting/personil";
 import SettingSatuanCreatePage from "./setting/personil/form/SettingSatuanCreatePage";
+import SettingUserPage from "./setting/user";
+import TrakorpsPage from "./trakorps";
+import TrakorpsDetailPage from "./trakorps/detail";
+import TrakorpsCreatePage from "./trakorps/form/create";
 import UserPage from "./user";
+import UserDetailPage from "./user/detail";
 import UserCreatePage from "./user/form/create";
 
 export {
-    LoginPage,
-    DashboardPage,
-    PersonilPage,
-    PersonilDetailPage,
-    MaterialPage,
-    PersonilCreatePage,
-    PersonilUpdatePage,
-    MaterialCreatePage,
-    MaterialUpdatePage,
-    ProfilePage,
-    SettingPersonilPage,
-    SettingSatuanCreatePage,
-    UserPage,
-    UserCreatePage,
-}
+  LoginPage,
+  DashboardPage,
+  PersonilPage,
+  PersonilDetailPage,
+  MaterialPage,
+  PersonilCreatePage,
+  PersonilUpdatePage,
+  MaterialCreatePage,
+  MaterialUpdatePage,
+  ProfilePage,
+  SettingPersonilPage,
+  SettingSatuanCreatePage,
+  SettingUserPage,
+  UserPage,
+  UserCreatePage,
+  UserDetailPage,
+  TrakorpsPage,
+  TrakorpsCreatePage,
+  TrakorpsDetailPage,
+};

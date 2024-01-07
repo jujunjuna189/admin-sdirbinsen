@@ -66,6 +66,8 @@ export const UserCreateContextProvider = ({ children }) => {
     const saveUser = async () => {
         let dataBatch = { ...controller };
         dataBatch.role = controller?.role?.name_lower ?? '';
+        dataBatch.satuan_id = controller?.satuan?.id;
+
         let res = {};
         if (dataSaved.user) {
             res = dataSaved.user;
@@ -113,6 +115,7 @@ export const UserCreateContextProvider = ({ children }) => {
 
     useEffect(() => {
         onTabSwitch(0);
+        onSetController('satuan', { id: null, nama: 'Semua Satuan' });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

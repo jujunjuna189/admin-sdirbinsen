@@ -1,6 +1,6 @@
 import { Button, Content, InputChecked, InputPassword, InputText } from "../../../../components";
 import { UseUserCreateContext } from "../../../../contexts/user/UserCreateContext";
-import { RoleModal } from "../../component";
+import { RoleModal, SatuanModal } from "../../component";
 
 const UserCreatePage = () => {
     const { controller, errors, onSetController, permission, step, stepActive, onTabSwitch, onCheckedPermission, onSaveAndAdd, onSave } = UseUserCreateContext();
@@ -31,6 +31,7 @@ const UserCreatePage = () => {
                         <span className="font-medium">Password</span>
                         <InputPassword className="mt-1" value={controller.password} error={errors.password} onChange={(value) => onSetController('password', value)} placeholder="..." />
                     </div>
+                    <SatuanModal value={controller.satuan?.nama} error={errors.satuan_id} onChange={(value) => onSetController('satuan', value)} />
                     <RoleModal value={controller.role?.name} error={errors.role} onChange={(value) => onSetController('role', value)} />
                 </div>
                 <div className="flex justify-end mt-8 mb-3 gap-2">

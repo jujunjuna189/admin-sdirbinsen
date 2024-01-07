@@ -58,7 +58,7 @@ export const createSatuanRequest = async ({ body = {} }) => {
   }
 };
 
-export const deleteSatuanRequest = async ({ satuan_id = null, body = {} }) => {
+export const deleteSatuanRequest = async ({ satuan_id = null }) => {
   // const user = getLocalUser();
   try {
     const response = await axios.delete(`${API_SATUAN_GET}/${satuan_id}`, {

@@ -2,7 +2,7 @@ import { Button, Card, Content } from "../../../components";
 import { UseTrakorpsDetailContext } from "../../../contexts/trakorps/TrakorpsDetailContext";
 
 const TrakorpsDetailPage = () => {
-  const { navigation, satuan, navTrakorps, onTabSwitch } = UseTrakorpsDetailContext();
+  const { navigation, satuan, navTrakorps, navTrakorpsActive, onTabSwitch, onGetContent } = UseTrakorpsDetailContext();
 
   return (
     <Content>
@@ -23,7 +23,7 @@ const TrakorpsDetailPage = () => {
             </div>
           </div>
         </Card>
-        <div className="flex gap-3 mt-3 mb-1">
+        <div className="flex gap-2 mt-3 mb-1">
           {navTrakorps.map((item, index) => {
             return (
               <Button key={index} className={`border ${item.isActive && "border-red-700 bg-red-50 text-red-700"}`} onClick={() => onTabSwitch(index)}>
@@ -32,6 +32,7 @@ const TrakorpsDetailPage = () => {
             );
           })}
         </div>
+        <div>{onGetContent(navTrakorpsActive.page)}</div>
       </div>
     </Content>
   );

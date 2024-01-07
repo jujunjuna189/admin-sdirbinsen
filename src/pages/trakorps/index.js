@@ -2,7 +2,7 @@ import { Button, Card, Content, EmptyData, TableLoader } from "../../components"
 import { UseTrakorpsContext } from "../../contexts/trakorps/TrakorpsContext";
 
 const TrakorpsPage = () => {
-  const { navigation, satuan } = UseTrakorpsContext();
+  const { navigation, element, satuan, onShowConfirmDelete } = UseTrakorpsContext();
 
   const renderTable = () => {
     return (
@@ -35,7 +35,7 @@ const TrakorpsPage = () => {
                     <Button className="border py-[0.2rem] bg-green-50 border-green-800 text-green-800" onClick={() => navigation(`/trakorps/detail/${item.id}`)}>
                       Detail
                     </Button>
-                    <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => {}}>
+                    <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>
                       Hapus
                     </Button>
                   </div>
@@ -49,7 +49,7 @@ const TrakorpsPage = () => {
   };
 
   return (
-    <Content>
+    <Content element={element}>
       <div className="flex flex-wrap justify-between items-center">
         <span className="font-bold text-xl text-slate-800">Daftar Satuan</span>
         <div>

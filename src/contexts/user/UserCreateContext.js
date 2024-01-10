@@ -115,7 +115,7 @@ export const UserCreateContextProvider = ({ children }) => {
 
     useEffect(() => {
         onTabSwitch(0);
-        onSetController('satuan', { id: null, nama: 'Semua Satuan' });
+        onSetController('satuan', { id: 0, nama: 'Semua Satuan' });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

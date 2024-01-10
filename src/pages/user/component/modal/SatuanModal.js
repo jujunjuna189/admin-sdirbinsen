@@ -30,7 +30,7 @@ const SatuanModal = (props) => {
             item = data[itemIndex];
         } else {
             item = {
-                id: null,
+                id: 0,
                 nama: "Semua Satuan",
             };
         }

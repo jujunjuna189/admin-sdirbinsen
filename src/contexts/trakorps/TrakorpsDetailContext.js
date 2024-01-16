@@ -8,6 +8,7 @@ const TrakorpsDetailContext = createContext();
 export const TrakorpsDetailContextProvider = ({ children }) => {
   const navigation = useNavigate();
   const params = useParams();
+  const [element] = useState(false);
   const [satuan, setSatuan] = useState({});
   const [navTrakorpsActive, setNavTrakorpsActive] = useState({});
   const [navTrakorps, setNavTrakorps] = useState([
@@ -44,6 +45,10 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     });
   };
 
+  // const updateSejarah = async ({ satuan_id = null }) => {
+  //   console.log(satuan_id);
+  // };
+
   const onTabSwitch = (indexItem) => {
     navTrakorps.forEach((item, index) => {
       navTrakorps[index].isActive = false;
@@ -56,7 +61,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
 
   const onGetContent = (page) => {
     const content = {
-      1: <SejarahTrakorpsDetail satuan={satuan} />,
+      1: <SejarahTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
       2: <PrestasiTrakorpsDetail />,
       3: <PejabatDansatTrakorpsDetail />,
       4: <MarsTrakorpsDetail satuan={satuan} />,
@@ -72,7 +77,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <TrakorpsDetailContext.Provider value={{ navigation, satuan, navTrakorps, navTrakorpsActive, onTabSwitch, onGetContent }}>{children}</TrakorpsDetailContext.Provider>;
+  return <TrakorpsDetailContext.Provider value={{ navigation, element, satuan, navTrakorps, navTrakorpsActive, onTabSwitch, onGetContent }}>{children}</TrakorpsDetailContext.Provider>;
 };
 
 export const UseTrakorpsDetailContext = () => {

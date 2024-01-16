@@ -1,4 +1,4 @@
-import { Card } from "../../../../components";
+import { Button, Card } from "../../../../components";
 const MarsTrakorpsDetail = (props) => {
   return (
     <>
@@ -6,7 +6,7 @@ const MarsTrakorpsDetail = (props) => {
         <span className="cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" stroke-width="0" fill="currentColor" />
+            <path d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z" strokeWidth="0" fill="currentColor" />
           </svg>
         </span>
         <div className="grow">
@@ -16,7 +16,10 @@ const MarsTrakorpsDetail = (props) => {
         </div>
       </Card>
       <Card className="px-4 mt-2">
-        <span className="font-bold text-base">Lirik Mars</span>
+        <div className="flex justify-between items-center pb-3">
+          <span className="font-bold text-base">Lirik Mars</span>
+          <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center py-[0.35rem]">Ubah</Button>
+        </div>
         <hr />
         <div className="mt-3" dangerouslySetInnerHTML={{ __html: props.satuan.mars }} />
       </Card>

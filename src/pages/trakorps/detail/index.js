@@ -2,10 +2,10 @@ import { Button, Card, Content } from "../../../components";
 import { UseTrakorpsDetailContext } from "../../../contexts/trakorps/TrakorpsDetailContext";
 
 const TrakorpsDetailPage = () => {
-  const { navigation, satuan, navTrakorps, navTrakorpsActive, onTabSwitch, onGetContent } = UseTrakorpsDetailContext();
+  const { navigation, element, satuan, navTrakorps, navTrakorpsActive, onTabSwitch, onGetContent } = UseTrakorpsDetailContext();
 
   return (
-    <Content>
+    <Content element={element}>
       <div className="flex gap-2 items-center cursor-pointer" onClick={() => navigation(-1)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

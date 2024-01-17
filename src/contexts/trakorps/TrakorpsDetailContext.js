@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getSatuanPrestasiRequest } from "../../api/SatuanPrestasiRequest";
 import { getSatuanDetailRequest } from "../../api/SatuanRequest";
 import { HimneTrakorpsDetail, MarsTrakorpsDetail, PejabatDansatTrakorpsDetail, PrestasiTrakorpsDetail, SejarahTrakorpsDetail } from "../../pages/trakorps/component";
 
@@ -10,31 +11,37 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const params = useParams();
   const [element] = useState(false);
   const [satuan, setSatuan] = useState({});
+  const [satuanPrestasi, setSatuanPrestasi] = useState({});
   const [navTrakorpsActive, setNavTrakorpsActive] = useState({});
   const [navTrakorps, setNavTrakorps] = useState([
     {
       title: "Sejarah",
       page: 1,
+      onClick: () => { },
       isActive: false,
     },
     {
       title: "Data Prestasi",
       page: 2,
+      onClick: () => onGetSatuanPrestasi(),
       isActive: false,
     },
     {
       title: "Data Pejabat Dansat",
       page: 3,
+      onClick: () => { },
       isActive: false,
     },
     {
       title: "Lagu Mars",
       page: 4,
+      onClick: () => { },
       isActive: false,
     },
     {
       title: "Lagu Himne",
       page: 5,
+      onClick: () => { },
       isActive: false,
     },
   ]);
@@ -45,9 +52,11 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     });
   };
 
-  // const updateSejarah = async ({ satuan_id = null }) => {
-  //   console.log(satuan_id);
-  // };
+  const onGetSatuanPrestasi = async () => {
+    await getSatuanPrestasiRequest().then((res) => {
+      setSatuanPrestasi(res);
+    });
+  };
 
   const onTabSwitch = (indexItem) => {
     navTrakorps.forEach((item, index) => {
@@ -55,6 +64,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     });
 
     navTrakorps[indexItem].isActive = true;
+    navTrakorps[indexItem].onClick();
     setNavTrakorpsActive({ ...navTrakorps[indexItem] });
     setNavTrakorps([...navTrakorps]);
   };
@@ -62,7 +72,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const onGetContent = (page) => {
     const content = {
       1: <SejarahTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
-      2: <PrestasiTrakorpsDetail />,
+      2: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi()} />,
       3: <PejabatDansatTrakorpsDetail />,
       4: <MarsTrakorpsDetail satuan={satuan} />,
       5: <HimneTrakorpsDetail satuan={satuan} />,

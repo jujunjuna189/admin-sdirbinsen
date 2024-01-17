@@ -17,3 +17,5 @@ export const API_PERSONIL_LIST_GET = `${REACT_APP_API_URL}admin/list/personil`;
 export const API_MATERIAL_GET = `${REACT_APP_API_URL}admin/material`;
 // Satuan
 export const API_SATUAN_GET = `${REACT_APP_API_URL}admin/satuan`;
+// Satuan Prestasi
+export const API_SATUAN_PRESTASI_GET = `${REACT_APP_API_URL}admin/satuan-prestasi`;

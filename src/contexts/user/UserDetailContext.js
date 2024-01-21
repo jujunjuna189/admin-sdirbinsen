@@ -30,7 +30,7 @@ export const UserDetailContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserDetailContext.Provider value={{ navigation, user, permissions }}>
+        <UserDetailContext.Provider value={{ navigation, user, permissions, getPermission }}>
             {children}
         </UserDetailContext.Provider>
     );

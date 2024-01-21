@@ -19,3 +19,5 @@ export const API_MATERIAL_GET = `${REACT_APP_API_URL}admin/material`;
 export const API_SATUAN_GET = `${REACT_APP_API_URL}admin/satuan`;
 // Satuan Prestasi
 export const API_SATUAN_PRESTASI_GET = `${REACT_APP_API_URL}admin/satuan-prestasi`;
+// Satuan Penjabat Dansat
+export const API_SATUAN_PEJABAT_DANSAT_GET = `${REACT_APP_API_URL}admin/satuan-jabatan-dansat`;

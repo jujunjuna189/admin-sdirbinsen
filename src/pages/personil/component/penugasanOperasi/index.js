@@ -33,11 +33,6 @@ const PenugasanOperasiPersonilDetail = (props) => {
                                             </div>
                                             <div className="h-3 w-[1px] bg-slate-300" />
                                             <div className="leading-3 mt-1">
-                                                <small className="font-medium">Status</small><br />
-                                                <small>{item.status ?? '...'}</small>
-                                            </div>
-                                            <div className="h-3 w-[1px] bg-slate-300" />
-                                            <div className="leading-3 mt-1">
                                                 <small className="font-medium">Prestasi</small><br />
                                                 <small>{item.prestasi ?? '...'}</small>
                                             </div>

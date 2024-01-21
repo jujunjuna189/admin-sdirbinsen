@@ -17,7 +17,6 @@ export const TrakorpsContextProvider = ({ children }) => {
   };
 
   const onShowConfirmDelete = (satuan_id) => {
-    console.log("satuan");
     setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteSatuan({ satuan_id: satuan_id })} />);
   };
 

@@ -67,7 +67,6 @@ export const updateSatuanRequest = async ({ satuan_id = null, body = {} }) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response);
     return response.data.list_data.satuan;
   } catch (error) {
     console.log(error?.response);

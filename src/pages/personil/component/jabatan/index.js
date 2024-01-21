@@ -35,7 +35,7 @@ const JabatanPersonilDetail = (props) => {
                                         <span className="font-medium">{item.jabatan}</span>
                                         <div className="leading-3 mt-1">
                                             <small className="font-medium">Masa Jabatan</small><br />
-                                            <small>{item.tmt} - {item.tst}</small>
+                                            <small>{item.tmt}</small>
                                         </div>
                                     </div>
                                     <div className="mx-3 flex gap-2">

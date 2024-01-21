@@ -1,7 +1,7 @@
 import { Button, Content, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { UsePersonilCreateContext } from "../../../../contexts/personil/PersonilCreateContext";
 import { dateFormatterV2 } from "../../../../utils";
-import { AgamaModal, SatuanModal, SumberPAModal } from "../../component";
+import { AgamaModal, GolDarahModal, SatuanModal, SumberPAModal } from "../../component";
 
 const PersonilCreatePage = () => {
     const { navigation, element, formContent, onTabFormContent, controller, errors, onSetController, onSave, onSaveAndAdd } = UsePersonilCreateContext();
@@ -71,10 +71,7 @@ const PersonilCreatePage = () => {
                             <InputText className="mt-1" value={controller.suku_bangsa} error={errors.suku_bangsa} onChange={(value) => onSetController('suku_bangsa', value)} placeholder="..." />
                         </div>
                     </div>
-                    <div className="w-52">
-                        <span className="font-medium">Golongan Darah</span>
-                        <InputText className="mt-1" value={controller.golongan_darah} error={errors.golongan_darah} onChange={(value) => onSetController('golongan_darah', value)} placeholder="..." />
-                    </div>
+                    <GolDarahModal value={controller.golongan_darah} error={errors.golongan_darah} onChange={(value) => onSetController('golongan_darah', value)} />
                     <hr />
                     <SatuanModal value={controller.satuan?.nama} error={errors.satuan} onChange={(value) => onSetController('satuan', value)} />
                     <SumberPAModal value={controller.sumber_pa} error={errors.sumber_pa} onChange={(value) => onSetController('sumber_pa', value)} />

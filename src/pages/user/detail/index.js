@@ -1,8 +1,9 @@
 import { Content, EmptyData } from "../../../components";
 import { UseUserDetailContext } from "../../../contexts/user/UserDetailContext";
+import { PermissionModal } from "../component";
 
 const UserDetailPage = () => {
-    const { navigation, user, permissions } = UseUserDetailContext();
+    const { navigation, user, permissions, getPermission } = UseUserDetailContext();
     return (
         <Content>
             <div className="flex gap-2 items-center cursor-pointer" onClick={() => navigation(-1)}>
@@ -58,9 +59,16 @@ const UserDetailPage = () => {
                     </div>
                 </div>
                 <div className="flex-grow">
-                    <div className="px-5 flex flex-col leading-4">
-                        <span className="font-semibold">List Akses Dalam Aplikasi</span>
-                        <small>Izin aplikasi hanya akan di daftarkan oleh super admin</small>
+                    <div className="px-5 flex flex-col">
+                        <div className="flex justify-between items-center">
+                            <div className="flex flex-col leading-4">
+                                <span className="font-semibold">List Akses Dalam Aplikasi</span>
+                                <small>Izin aplikasi hanya akan di daftarkan oleh super admin</small>
+                            </div>
+                            <div>
+                                <PermissionModal user={user} permissions={permissions} onSave={() => getPermission()} />
+                            </div>
+                        </div>
                         <ul className="flex flex-col gap-1 my-4">
                             {!permissions && <EmptyData />}
                             {permissions?.map((item, index) => {

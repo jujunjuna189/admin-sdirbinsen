@@ -28,8 +28,9 @@ const PermissionSetting = (props) => {
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                                 <path d="M12 7a5 5 0 1 1 -4.995 5.217l-.005 -.217l.005 -.217a5 5 0 0 1 4.995 -4.783z" strokeWidth="0" fill="currentColor"></path>
                                             </svg>
-                                            <div className="leading-4">
-                                                {itemChild.action}
+                                            <div className="flex flex-col leading-4">
+                                                <span className="font-medium">{itemChild.original_data?.display}</span>
+                                                <small>{itemChild.original_data?.key}</small>
                                             </div>
                                         </div>
                                         <span className="cursor-pointer" onClick={() => props.onShowConfirmDelete && props.onShowConfirmDelete(itemChild?.original_data?.id)}>

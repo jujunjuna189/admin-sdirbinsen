@@ -1,5 +1,6 @@
 import Button from "./button";
 import InputFile from "./file/InputFile";
+import InputFileMusic from "./file/InputFileMusic";
 import InputArea from "./input/InputArea"
 import InputChecked from "./input/InputChecked"
 import InputDate from "./input/InputDate";
@@ -14,6 +15,7 @@ import ProtectedAuth from "./protected/ProtectedAuth";
 export {
     Button,
     InputFile,
+    InputFileMusic,
     InputArea,
     InputChecked,
     InputEmail,

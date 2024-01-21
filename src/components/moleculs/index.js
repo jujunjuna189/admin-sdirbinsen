@@ -5,6 +5,7 @@ import EmptyData from "./empty/EmptyData";
 import TableLoader from "./loader/TableLoader";
 import ConfirmDeleteModal from "./modal/ConfirmDeleteModal";
 import Navbar from "./navbar";
+import AudioPlayer from "./player/AudioPlayer";
 import ErrorPopup from "./popup/ErrorPopup";
 import LoaderPopup from "./popup/LoaderPopup";
 import SuccessPopup from "./popup/SuccessPopup";
@@ -28,4 +29,5 @@ export {
     SuccessPopup,
     ErrorPopup,
     ConfirmDeleteModal,
+    AudioPlayer,
 }

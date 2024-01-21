@@ -24,7 +24,7 @@ export const PersonilCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.picture = dataBatch.picture?.file ?? null;
-        dataBatch.satuan = dataBatch.satuan?.nama ?? null;
+        dataBatch.satuan_id = dataBatch.satuan?.id ?? null;
         dataBatch.status = 'Aktif';
         await createPersonilRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);

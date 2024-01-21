@@ -31,9 +31,15 @@ const KepangkatanPersonilDetail = (props) => {
                                 <div className="absolute w-3 h-3 rounded-full bg-white border -left-[0.45rem]"></div>
                                 <div className="relative flex items-center">
                                     <div className="border-solid border-r-8 border-y-transparent border-y-8 border-l-0 absolute -left-2"></div>
-                                    <div className="border rounded-lg p-3 bg-white pr-10 flex-grow flex justify-between items-center gap-3 w-96">
-                                        <span className="font-medium">{item.pangkat}</span>
-                                        <div className="leading-3 mt-1">
+                                    <div className="border rounded-lg p-3 bg-white pr-10 flex-grow flex justify-between gap-3 w-96">
+                                        <div className="flex flex-col leading-4">
+                                            <span className="font-medium">{item.pangkat}</span>
+                                            <div className="flex flex-col mt-2">
+                                                <small>Nomor Kep/Skep:</small>
+                                                <small className="font-medium">{item.nomor_kep_skep}</small>
+                                            </div>
+                                        </div>
+                                        <div className="leading-3">
                                             <small className="font-medium">Masa Pangkat</small><br />
                                             <small>{item.tmt}</small>
                                         </div>

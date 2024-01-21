@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getSatuanPejabatDansatRequest } from "../../api/SatuanPejabatDansatRequest";
 import { getSatuanPrestasiRequest } from "../../api/SatuanPrestasiRequest";
 import { getSatuanDetailRequest } from "../../api/SatuanRequest";
 import { HimneTrakorpsDetail, MarsTrakorpsDetail, PejabatDansatTrakorpsDetail, PrestasiTrakorpsDetail, SejarahTrakorpsDetail } from "../../pages/trakorps/component";
@@ -12,6 +13,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const [element] = useState(false);
   const [satuan, setSatuan] = useState({});
   const [satuanPrestasi, setSatuanPrestasi] = useState({});
+  const [satuanPejabatDansat, setSatuanPejabatDansat] = useState({});
   const [navTrakorpsActive, setNavTrakorpsActive] = useState({});
   const [navTrakorps, setNavTrakorps] = useState([
     {
@@ -23,13 +25,13 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     {
       title: "Data Prestasi",
       page: 2,
-      onClick: () => onGetSatuanPrestasi(),
+      onClick: () => onGetSatuanPrestasi({ satuan_id: params.id }),
       isActive: false,
     },
     {
       title: "Data Pejabat Dansat",
       page: 3,
-      onClick: () => { },
+      onClick: () => onGetSatuanPejabatDansat({ satuan_id: params.id }),
       isActive: false,
     },
     {
@@ -52,9 +54,15 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     });
   };
 
-  const onGetSatuanPrestasi = async () => {
-    await getSatuanPrestasiRequest().then((res) => {
+  const onGetSatuanPrestasi = async ({ satuan_id = null }) => {
+    await getSatuanPrestasiRequest({ satuan_id: satuan_id }).then((res) => {
       setSatuanPrestasi(res);
+    });
+  };
+
+  const onGetSatuanPejabatDansat = async ({ satuan_id = null }) => {
+    await getSatuanPejabatDansatRequest({ satuan_id: satuan_id }).then((res) => {
+      setSatuanPejabatDansat(res);
     });
   };
 
@@ -72,10 +80,10 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const onGetContent = (page) => {
     const content = {
       1: <SejarahTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
-      2: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi()} />,
-      3: <PejabatDansatTrakorpsDetail />,
-      4: <MarsTrakorpsDetail satuan={satuan} />,
-      5: <HimneTrakorpsDetail satuan={satuan} />,
+      2: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi({ satuan_id: params.id })} />,
+      3: <PejabatDansatTrakorpsDetail satuan={satuan} satuanPejabatDansat={satuanPejabatDansat} onSave={() => onGetSatuanPejabatDansat({ satuan_id: params.id })} />,
+      4: <MarsTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
+      5: <HimneTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
     };
 
     return content[page];

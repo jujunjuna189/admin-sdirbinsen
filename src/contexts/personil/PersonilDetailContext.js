@@ -7,7 +7,7 @@ import { deletePangkatRequest, getPangkatByPersonilRequest } from "../../api/Pan
 import { getPendidikanMiliterByPersonilRequest } from "../../api/PendidikanMiliterRequest";
 import { getPendidikanUmumByPersonilRequest } from "../../api/PendidikanUmumRequest";
 import { deletePenugasanLuarNegeriRequest, getPenugasanLuarNegeriByPersonilRequest } from "../../api/PenugasanLuarNegeriRequest";
-import { getPenugasanOperasiByPersonilRequest } from "../../api/PenugasanOperasiRequest";
+import { deletePenugasanOperasiRequest, getPenugasanOperasiByPersonilRequest } from "../../api/PenugasanOperasiRequest";
 import { getPersonilDetailRequest } from "../../api/PersonilRequest";
 import { getTandaJasaByPersonilRequest } from "../../api/TandaJasaRequest";
 import { ConfirmDeleteModal } from "../../components";
@@ -211,13 +211,22 @@ export const PersonilDetailContextProvider = ({ children }) => {
         });
     }
 
+    const onDeletePenugasanOperasi = async ({ penugasan_operasi_id }) => {
+        await deletePenugasanOperasiRequest({ personil_id: param.id, penugasan_operasi_id: penugasan_operasi_id }).then((res) => {
+            res === undefined && (res = {});
+            res === null && (res = {});
+            setElement(false);
+            onGetPenugasanOperasi({ id: param.id });
+        });
+    }
+
     const onGetContent = (page) => {
         const content = {
             1: <BiodataPersonilDetail navigation={navigation} personil={personil} />,
             2: <JabatanPersonilDetail personil={personil} jabatan_active={personil?.jabatan_sekarang?.id} jabatan={jabatan} onAdd={() => onGetJabatan({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteJabatan({ jabatan_id: itemId })} />)} />,
             3: <KepangkatanPersonilDetail personil={personil} pangkat_active={personil?.kepangkatan_sekarang?.id} pangkat={pangkat} onAdd={() => onGetPangkat({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePangkat({ pangkat_id: itemId })} />)} />,
             4: <PenugasanLuarNegeriPersonilDetail personil={personil} penugasan={penugasanLuarNegeri} onAdd={() => onGetPenugasanLuarNegeri({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePenugasanLuarNegeri({ penugasan_luar_negeri_id: itemId })} />)} />,
-            5: <PenugasanOperasiPersonilDetail personil={personil} penugasan={penugasanOperasi} onAdd={() => onGetPenugasanOperasi({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => console.log(itemId)} />)} />,
+            5: <PenugasanOperasiPersonilDetail personil={personil} penugasan={penugasanOperasi} onAdd={() => onGetPenugasanOperasi({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePenugasanOperasi({ penugasan_operasi_id: itemId })} />)} />,
             6: <TandaJasaPersonilDetail personil={personil} tanda_jasa={tandaJasa} onAdd={() => onGetTandaJasa({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => console.log(itemId)} />)} />,
             7: <KeluargaPersonilDetail personil={personil} keluarga={keluarga} onAdd={() => onGetKeluarga({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => console.log(itemId)} />)} />,
             // 8: <BiodataPersonilDetail />,

@@ -26,7 +26,6 @@ const AddPangkatModal = (props) => {
   const onSave = async () => {
     let dataBatch = { ...controller };
     dataBatch.personil_id = props.personil_id;
-    dataBatch.isActive = 1;
     await createPangkatByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       if (!res?.errors) {
@@ -73,7 +72,7 @@ const AddPangkatModal = (props) => {
             </div>
             <div>
               <span className="font-medium">Nomor Kep/Skep</span>
-              <InputNumber className="mt-1" value={controller.nomor_kep} error={errors.nomor_kep} onChange={(value) => onSetController("nomor_kep", value)} placeholder="..." />
+              <InputNumber className="mt-1" value={controller.nomor_kep_skep} error={errors.nomor_kep_skep} onChange={(value) => onSetController("nomor_kep_skep", value)} placeholder="..." />
             </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">

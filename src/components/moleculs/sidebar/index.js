@@ -122,13 +122,13 @@ const Sidebar = (props) => {
           </div>
           <div className="">
             <ul className="ml-[2.5rem]">
-              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material")}>
+              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material/senjata")}>
                 <span className="text-xs">Senjata</span>
               </li>
-              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material")}>
+              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material/material")}>
                 <span className="text-xs">Material</span>
               </li>
-              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material")}>
+              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material/alutsista")}>
                 <span className="text-xs">Alutsista</span>
               </li>
             </ul>

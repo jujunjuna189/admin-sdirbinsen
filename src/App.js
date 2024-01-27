@@ -176,7 +176,7 @@ function App() {
         />
         {/* Material */}
         <Route
-          path="/material"
+          path="/material/:kategori"
           element={
             <ProtectedAuth>
               <MaterialContextProvider>

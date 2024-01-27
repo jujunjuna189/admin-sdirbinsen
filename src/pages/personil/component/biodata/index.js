@@ -70,7 +70,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">Jabatan</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.nrp}</span>
+                  <span className="px-4">: {props.personil?.jabatan}</span>
                 </td>
               </tr>
               <tr>
@@ -78,7 +78,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">Pangkat</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.nrp}</span>
+                  <span className="px-4">: {props.personil?.pangkat}</span>
                 </td>
               </tr>
               <tr>
@@ -86,7 +86,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">Korps</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.nrp}</span>
+                  <span className="px-4">: {props.personil?.korps}</span>
                 </td>
               </tr>
               <tr>
@@ -94,7 +94,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">Sumber Pa</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.nrp}</span>
+                  <span className="px-4">: {props.personil?.sumber_pa}</span>
                 </td>
               </tr>
               <tr>
@@ -102,7 +102,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">Satuan</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.nrp}</span>
+                  <span className="px-4">: {props.personil?.satuan?.nama}</span>
                 </td>
               </tr>
               <tr>
@@ -110,7 +110,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">Psi</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.nrp}</span>
+                  <span className="px-4">: {props.personil?.psi}</span>
                 </td>
               </tr>
               <tr>
@@ -126,7 +126,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">TMT</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.status}</span>
+                  <span className="px-4">: {props.personil?.tmt_1}</span>
                 </td>
               </tr>
               <tr>
@@ -134,7 +134,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">TMT</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.status}</span>
+                  <span className="px-4">: {props.personil?.tmt_2}</span>
                 </td>
               </tr>
               <tr>
@@ -142,7 +142,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">TMT TNI</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.status}</span>
+                  <span className="px-4">: {props.personil?.tmt_tni}</span>
                 </td>
               </tr>
               <tr>
@@ -150,7 +150,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">TMT Jab</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.status}</span>
+                  <span className="px-4">: {props.personil?.tmt_jab}</span>
                 </td>
               </tr>
             </tbody>

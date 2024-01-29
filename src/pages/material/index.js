@@ -3,7 +3,7 @@ import { UseMaterialContext } from "../../contexts/material/MaterialContext";
 import { getLocalUser } from "../../utils";
 
 const MaterialPage = () => {
-    const { navigation, element, material, onShowConfirmDelete } = UseMaterialContext();
+    const { navigation, element, param, material, onShowConfirmDelete } = UseMaterialContext();
 
     const renderTable = () => {
         return (
@@ -57,7 +57,7 @@ const MaterialPage = () => {
                 <span className="font-bold text-xl text-slate-800">Daftar</span>
                 {getLocalUser()?.auth?.permission['material.create'] && (
                     <div>
-                        <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/material/create')}>
+                        <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/material/create/${param.kategori}`)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M12 5l0 14"></path>

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteMaterialRequest, getMaterialRequest } from "../../api/MaterialRequest"
 import { ConfirmDeleteModal } from "../../components";
 
@@ -7,6 +7,7 @@ const MaterialContext = createContext();
 
 export const MaterialContextProvider = ({ children }) => {
     const navigation = useNavigate();
+    const param = useParams();
     const [element, setElement] = useState(false);
     const [material, setMaterial] = useState({});
 
@@ -35,7 +36,7 @@ export const MaterialContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <MaterialContext.Provider value={{ navigation, element, material, onShowConfirmDelete }}>
+        <MaterialContext.Provider value={{ navigation, element, param, material, onShowConfirmDelete }}>
             {children}
         </MaterialContext.Provider>
     );

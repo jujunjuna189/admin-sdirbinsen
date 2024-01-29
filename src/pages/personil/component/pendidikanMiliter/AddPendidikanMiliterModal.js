@@ -25,6 +25,7 @@ const AddPendidikanMiliterModal = (props) => {
   const onSave = async () => {
     let dataBatch = { ...controller };
     dataBatch.personil_id = props.personil_id;
+    dataBatch.prestasi = `Ke-${controller.prestasi_to} Dari-${controller.prestasi_from}`;
     await createPendidikanMiliterByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       if (!res?.errors) {
@@ -63,15 +64,25 @@ const AddPendidikanMiliterModal = (props) => {
           <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
             <div>
               <span className="font-medium">Dikma/Diktuk/Dibangum</span>
-              <InputText className="mt-1" value={controller.nama_dik} error={errors.nama_dik} onChange={(value) => onSetController("nama_dik", value)} placeholder="..." />
+              <InputText className="mt-1" value={controller.dikma_diktuk_dibangun} error={errors.dikma_diktuk_dibangun} onChange={(value) => onSetController("dikma_diktuk_dibangun", value)} placeholder="..." />
             </div>
             <div>
               <span className="font-medium">Tahun</span>
               <InputNumber className="mt-1" value={controller.tahun} error={errors.tahun} onChange={(value) => onSetController("tahun", value)} placeholder="..." />
             </div>
-            <div>
+            <div className="flex flex-col leading-3 mt-2">
               <span className="font-medium">Prestasi</span>
-              <InputText className="mt-1" value={controller.prestasi} error={errors.prestasi} onChange={(value) => onSetController("prestasi", value)} placeholder="29/302" />
+              <hr className="my-1" />
+              <div className="flex gap-2">
+                <div>
+                  <small>Ke</small>
+                  <InputNumber className="mt-1" value={controller.prestasi_to} error={errors.prestasi} onChange={(value) => onSetController("prestasi_to", value)} placeholder="..." />
+                </div>
+                <div>
+                  <small>Dari</small>
+                  <InputNumber className="mt-1" value={controller.prestasi_from} error={errors.prestasi} onChange={(value) => onSetController("prestasi_from", value)} placeholder="..." />
+                </div>
+              </div>
             </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">

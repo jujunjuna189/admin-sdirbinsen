@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteJabatanRequest, getJabatanByPersonilRequest } from "../../api/JabatanRequest";
-import { getKeluargaByPersonilRequest } from "../../api/KeluargaRequest";
-import { getKemampuanBahasaByPersonilRequest } from "../../api/KemampuanBahasaRequest";
+import { deleteKeluargaRequest, getKeluargaByPersonilRequest } from "../../api/KeluargaRequest";
+import { deleteKemampuanBahasaRequest, getKemampuanBahasaByPersonilRequest } from "../../api/KemampuanBahasaRequest";
 import { deletePangkatRequest, getPangkatByPersonilRequest } from "../../api/PangkatRequest";
-import { getPendidikanMiliterByPersonilRequest } from "../../api/PendidikanMiliterRequest";
-import { getPendidikanUmumByPersonilRequest } from "../../api/PendidikanUmumRequest";
+import { deletePendidikanMiliterRequest, getPendidikanMiliterByPersonilRequest } from "../../api/PendidikanMiliterRequest";
+import { deletePendidikanUmumRequest, getPendidikanUmumByPersonilRequest } from "../../api/PendidikanUmumRequest";
 import { deletePenugasanLuarNegeriRequest, getPenugasanLuarNegeriByPersonilRequest } from "../../api/PenugasanLuarNegeriRequest";
 import { deletePenugasanOperasiRequest, getPenugasanOperasiByPersonilRequest } from "../../api/PenugasanOperasiRequest";
 import { getPersonilDetailRequest } from "../../api/PersonilRequest";
@@ -229,6 +229,42 @@ export const PersonilDetailContextProvider = ({ children }) => {
         });
     }
 
+    const onDeleteKeluarga = async ({ keluarga_id }) => {
+        await deleteKeluargaRequest({ personil_id: param.id, keluarga_id: keluarga_id }).then((res) => {
+            res === undefined && (res = {});
+            res === null && (res = {});
+            setElement(false);
+            onGetKeluarga({ id: param.id });
+        });
+    }
+
+    const onDeletePendidikanUmum = async ({ pendidikan_umum_id }) => {
+        await deletePendidikanUmumRequest({ personil_id: param.id, pendidikan_umum_id: pendidikan_umum_id }).then((res) => {
+            res === undefined && (res = {});
+            res === null && (res = {});
+            setElement(false);
+            onGetPendidikanUmum({ id: param.id });
+        });
+    }
+
+    const onDeletePendidikanMiliter = async ({ pendidikan_militer_id }) => {
+        await deletePendidikanMiliterRequest({ personil_id: param.id, pendidikan_militer_id: pendidikan_militer_id }).then((res) => {
+            res === undefined && (res = {});
+            res === null && (res = {});
+            setElement(false);
+            onGetPendidikanMiliter({ id: param.id });
+        });
+    }
+
+    const onDeleteKemampuanBahasa = async ({ kemampuan_bahasa_id }) => {
+        await deleteKemampuanBahasaRequest({ personil_id: param.id, kemampuan_bahasa_id: kemampuan_bahasa_id }).then((res) => {
+            res === undefined && (res = {});
+            res === null && (res = {});
+            setElement(false);
+            onGetKemampuanBahasa({ id: param.id });
+        });
+    }
+
     const onGetContent = (page) => {
         const content = {
             1: <BiodataPersonilDetail navigation={navigation} personil={personil} />,
@@ -237,11 +273,11 @@ export const PersonilDetailContextProvider = ({ children }) => {
             4: <PenugasanLuarNegeriPersonilDetail personil={personil} penugasan={penugasanLuarNegeri} onAdd={() => onGetPenugasanLuarNegeri({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePenugasanLuarNegeri({ penugasan_luar_negeri_id: itemId })} />)} />,
             5: <PenugasanOperasiPersonilDetail personil={personil} penugasan={penugasanOperasi} onAdd={() => onGetPenugasanOperasi({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePenugasanOperasi({ penugasan_operasi_id: itemId })} />)} />,
             6: <TandaJasaPersonilDetail personil={personil} tanda_jasa={tandaJasa} onAdd={() => onGetTandaJasa({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteTandaJasa({ tanda_jasa_id: itemId })} />)} />,
-            7: <KeluargaPersonilDetail personil={personil} keluarga={keluarga} onAdd={() => onGetKeluarga({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => console.log(itemId)} />)} />,
+            7: <KeluargaPersonilDetail personil={personil} keluarga={keluarga} onAdd={() => onGetKeluarga({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteKeluarga({ keluarga_id: itemId })} />)} />,
             // 8: <BiodataPersonilDetail />,
-            9: <PendidikanUmumPersonilDetail personil={personil} pendidikan={pendidikanUmum} onAdd={() => onGetPendidikanUmum({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => console.log(itemId)} />)} />,
-            10: <PendidikanMiliterPersonilDetail personil={personil} pendidikan={pendidikanMiliter} onAdd={() => onGetPendidikanMiliter({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => console.log(itemId)} />)} />,
-            11: <KemampuanBahasaPersonilDetail personil={personil} kemampuan_bahasa={kemampuanBahasa} onAdd={() => onGetKemampuanBahasa({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => console.log(itemId)} />)} />,
+            9: <PendidikanUmumPersonilDetail personil={personil} pendidikan={pendidikanUmum} onAdd={() => onGetPendidikanUmum({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePendidikanUmum({ pendidikan_umum_id: itemId })} />)} />,
+            10: <PendidikanMiliterPersonilDetail personil={personil} pendidikan={pendidikanMiliter} onAdd={() => onGetPendidikanMiliter({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePendidikanMiliter({ pendidikan_militer_id: itemId })} />)} />,
+            11: <KemampuanBahasaPersonilDetail personil={personil} kemampuan_bahasa={kemampuanBahasa} onAdd={() => onGetKemampuanBahasa({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteKemampuanBahasa({ kemampuan_bahasa_id: itemId })} />)} />,
         };
 
         return content[page];

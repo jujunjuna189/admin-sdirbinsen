@@ -33,19 +33,13 @@ const PendidikanMiliterPersonilDetail = (props) => {
                       <div className="leading-3 mt-1">
                         <small className="font-medium">Jenis Pendidikan</small>
                         <br />
-                        <small>{item.jenis_dik}</small>
+                        <small>{item.dikma_diktuk_dibangun}</small>
                       </div>
                       <div className="h-3 w-[1px] bg-slate-300" />
                       <div className="leading-3 mt-1">
                         <small className="font-medium">Tahun</small>
                         <br />
                         <small>{item.tahun}</small>
-                      </div>
-                      <div className="h-3 w-[1px] bg-slate-300" />
-                      <div className="leading-3 mt-1">
-                        <small className="font-medium">Status</small>
-                        <br />
-                        <small>{item.status}</small>
                       </div>
                       <div className="h-3 w-[1px] bg-slate-300" />
                       <div className="leading-3 mt-1">

@@ -26,9 +26,15 @@ const KemampuanBahasaPersonilDetail = (props) => {
                                     <div className="border-solid border-r-8 border-y-transparent border-y-8 border-l-0 absolute -left-2"></div>
                                     <div className="border rounded-lg p-3 bg-white pr-10 flex-grow flex justify-between items-center gap-3 w-96">
                                         <span className="font-medium">{item.nama}</span>
-                                        <div className="leading-3 mt-1">
-                                            <small className="font-medium">Jenis Bahasa</small><br />
-                                            <small>{item.jenis_bahasa}</small>
+                                        <div className="flex gap-2">
+                                            <div className="leading-3 mt-1">
+                                                <small className="font-medium">Jenis Bahasa</small><br />
+                                                <small>{item.jenis_bahasa}</small>
+                                            </div>
+                                            <div className="leading-3 mt-1">
+                                                <small className="font-medium">Status</small><br />
+                                                <small>{item.status}</small>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="mx-3 flex gap-2">

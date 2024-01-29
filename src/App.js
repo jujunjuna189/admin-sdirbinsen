@@ -186,7 +186,7 @@ function App() {
           }
         />
         <Route
-          path="/material/create"
+          path="/material/create/:kategori"
           element={
             <ProtectedAuth>
               <MaterialCreateContextProvider>

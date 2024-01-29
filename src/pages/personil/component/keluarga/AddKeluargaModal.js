@@ -63,7 +63,7 @@ const AddKeluargaModal = (props) => {
           <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
             <div>
               <span className="font-medium">Status</span>
-              <InputText className="mt-1" value={controller.nama_ibu} error={errors.nama_ibu} onChange={(value) => onSetController("nama_ibu", value)} placeholder="..." />
+              <InputText className="mt-1" value={controller.status} error={errors.status} onChange={(value) => onSetController("status", value)} placeholder="..." />
             </div>
             <div>
               <span className="font-medium">Nama Ibu</span>

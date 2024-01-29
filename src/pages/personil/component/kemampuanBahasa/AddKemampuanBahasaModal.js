@@ -71,7 +71,7 @@ const AddKemampuanBahasaModal = (props) => {
             </div>
             <div>
               <span className="font-medium">Status</span>
-              <InputText className="mt-1" value={controller.jenis_bahasa} error={errors.jenis_bahasa} onChange={(value) => onSetController("jenis_bahasa", value)} placeholder="..." />
+              <InputText className="mt-1" value={controller.status} error={errors.status} onChange={(value) => onSetController("status", value)} placeholder="..." />
             </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">

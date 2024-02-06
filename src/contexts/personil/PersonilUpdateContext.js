@@ -22,6 +22,7 @@ export const PersonilUpdateContextProvider = ({ children }) => {
     }
 
     const settingController = (res) => {
+        console.log(res);
         let dataBatch = {
             picture: {
                 preview: res.picture,
@@ -33,12 +34,16 @@ export const PersonilUpdateContextProvider = ({ children }) => {
             agama: res.agama,
             suku_bangsa: res.suku_bangsa,
             golongan_darah: res.golongan_darah,
-            satuan: {
-                nama: res.satuan,
-            },
+            satuan: res.satuan,
             sumber_pa: res.sumber_pa,
-            tmt: res.tmt,
+            jabatan: res.jabatan,
+            pangkat: res.pangkat,
+            korps: res.korps,
+            psi: res.psi,
+            tmt_1: res.tmt_1,
+            tmt_2: res.tmt_2,
             tmt_tni: res.tmt_tni,
+            tmt_jab: res.tmt_jab,
         };
 
         setController(dataBatch);
@@ -56,7 +61,7 @@ export const PersonilUpdateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.picture?.file ? (dataBatch.picture = dataBatch.picture?.file ?? null) : (delete dataBatch.picture);
-        dataBatch.satuan = dataBatch.satuan?.nama ?? null;
+        dataBatch.satuan_id = dataBatch.satuan?.id ?? null;
         dataBatch.status = 'Aktif';
         await updatePersonilRequest({ personil_id: param.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);

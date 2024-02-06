@@ -157,7 +157,7 @@ const BiodataPersonilDetail = (props) => {
           </table>
         </div>
         <div className="grow flex items-center gap-2 mt-4">
-          {getLocalUser()?.auth?.permission["personil.update"] && (
+          {getLocalUser()?.auth?.permission["binman.update"] && (
             <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center" onClick={() => props.navigation(`/personil/update/${props?.personil?.id}`)}>
               Ubah Personil
             </Button>

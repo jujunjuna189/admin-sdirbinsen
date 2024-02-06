@@ -41,29 +41,31 @@ const Sidebar = (props) => {
           </div>
         </div>
       )}
-      <div className="px-4 py-3 cursor-pointer hover:bg-slate-100 flex justify-between items-center" onClick={() => navigation("/trakorps")}>
-        <div className="flex gap-3 items-center text-sm">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-red-800"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-            <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-            <path d="M11 14h1v4h1" />
-            <path d="M12 11h.01" />
-          </svg>
-          <span className="font-medium">Trakorps</span>
+      {getLocalUser()?.auth?.permission?.["trakorps.menu"] && (
+        <div className="px-4 py-3 cursor-pointer hover:bg-slate-100 flex justify-between items-center" onClick={() => navigation("/trakorps")}>
+          <div className="flex gap-3 items-center text-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-red-800"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              strokeWidth="2"
+              stroke="currentColor"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+              <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+              <path d="M11 14h1v4h1" />
+              <path d="M12 11h.01" />
+            </svg>
+            <span className="font-medium">Trakorps</span>
+          </div>
         </div>
-      </div>
-      {getLocalUser()?.auth?.permission?.["personil.menu"] && (
+      )}
+      {getLocalUser()?.auth?.permission?.["binman.menu"] && (
         <div className="px-4 py-3 cursor-pointer hover:bg-slate-100 flex justify-between items-center" onClick={() => navigation("/personil")}>
           <div className="flex gap-3 items-center text-sm">
             <svg width="24" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +89,7 @@ const Sidebar = (props) => {
           </div>
         </div>
       )}
-      {getLocalUser()?.auth?.permission?.["material.menu"] && (
+      {getLocalUser()?.auth?.permission?.["binmat.menu"] && (
         <div className="cursor-pointer">
           <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3">
             <div className="flex gap-3 items-center text-sm">

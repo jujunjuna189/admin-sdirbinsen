@@ -35,10 +35,10 @@ const MaterialPage = () => {
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan.nama}</td>
                                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                     <div className="flex gap-3 justify-end">
-                                        {getLocalUser()?.auth?.permission['material.update'] && (
+                                        {getLocalUser()?.auth?.permission['binmat.update'] && (
                                             <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/material/update/${item.id}`)}>Ubah</Button>
                                         )}
-                                        {getLocalUser()?.auth?.permission['material.delete'] && (
+                                        {getLocalUser()?.auth?.permission['binmat.delete'] && (
                                             <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>Hapus</Button>
                                         )}
                                     </div>
@@ -55,7 +55,7 @@ const MaterialPage = () => {
         <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
                 <span className="font-bold text-xl text-slate-800">Daftar</span>
-                {getLocalUser()?.auth?.permission['material.create'] && (
+                {getLocalUser()?.auth?.permission['binmat.create'] && (
                     <div>
                         <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/material/create/${param.kategori}`)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">

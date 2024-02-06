@@ -13,7 +13,7 @@ export const MaterialContextProvider = ({ children }) => {
 
     const onGetMaterial = async () => {
         setMaterial({});
-        await getMaterialRequest().then((res) => {
+        await getMaterialRequest({ kategori: param.kategori }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setMaterial(res);
@@ -33,7 +33,8 @@ export const MaterialContextProvider = ({ children }) => {
 
     useEffect(() => {
         onGetMaterial();
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [param]);
 
     return (
         <MaterialContext.Provider value={{ navigation, element, param, material, onShowConfirmDelete }}>

@@ -1,5 +1,6 @@
 import { Content, EmptyData } from "../../../components";
 import { UseUserDetailContext } from "../../../contexts/user/UserDetailContext";
+import { getLocalUser } from "../../../utils";
 import { PermissionModal } from "../component";
 
 const UserDetailPage = () => {
@@ -65,9 +66,11 @@ const UserDetailPage = () => {
                                 <span className="font-semibold">List Akses Dalam Aplikasi</span>
                                 <small>Izin aplikasi hanya akan di daftarkan oleh super admin</small>
                             </div>
-                            <div>
-                                <PermissionModal user={user} permissions={permissions} onSave={() => getPermission()} />
-                            </div>
+                            {getLocalUser()?.auth?.permission['pengguna.update'] && (
+                                <div>
+                                    <PermissionModal user={user} permissions={permissions} onSave={() => getPermission()} />
+                                </div>
+                            )}
                         </div>
                         <ul className="flex flex-col gap-1 my-4">
                             {!permissions && <EmptyData />}

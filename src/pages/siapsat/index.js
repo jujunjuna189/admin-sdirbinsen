@@ -102,7 +102,7 @@ const SiapsatPage = () => {
           </div>
           <div className="overflow-x-auto">{Object.keys(siapsat).length === 0 ? <TableLoader /> : siapsat.data.length === 0 ? <EmptyData /> : renderTable()}</div>
           <div className="flex justify-end px-5 py-3">
-            <span className="font-semibold text-sm">Rows per page: 10</span>
+            <span className="font-semibold text-sm">Rows per page 10</span>
           </div>
         </Card>
       </div>

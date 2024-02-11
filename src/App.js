@@ -19,6 +19,9 @@ import { UserDetailContextProvider } from "./contexts/user/UserDetailContext";
 import { TrakorpsContextProvider } from "./contexts/trakorps/TrakorpsContext";
 import { TrakorpsCreateContextProvider } from "./contexts/trakorps/TrakorpsCreateContext";
 import { TrakorpsDetailContextProvider } from "./contexts/trakorps/TrakorpsDetailContext";
+import { SiapsatContextProvider } from "./contexts/siapsat/SiapsatContext";
+import { SiapsatCreateContextProvider } from "./contexts/siapsat/SIapsatCreateContext";
+import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateContext";
 import {
   DashboardPage,
   LoginPage,
@@ -33,6 +36,9 @@ import {
   SettingPersonilPage,
   SettingSatuanCreatePage,
   SettingUserPage,
+  SiapsatCreatePage,
+  SiapsatPage,
+  SiapsatUpdatePage,
   TrakorpsCreatePage,
   TrakorpsDetailPage,
   TrakorpsPage,
@@ -176,7 +182,7 @@ function App() {
         />
         {/* Material */}
         <Route
-          path="/material/:kategori"
+          path="/material"
           element={
             <ProtectedAuth>
               <MaterialContextProvider>
@@ -202,6 +208,37 @@ function App() {
               <MaterialUpdateContextProvider>
                 <MaterialUpdatePage />
               </MaterialUpdateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        {/* Binsiapsat */}
+        <Route
+          path="/siapsat"
+          element={
+            <ProtectedAuth>
+              <SiapsatContextProvider>
+                <SiapsatPage />
+              </SiapsatContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/create/:kategori"
+          element={
+            <ProtectedAuth>
+              <SiapsatCreateContextProvider>
+                <SiapsatCreatePage />
+              </SiapsatCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/update/:id"
+          element={
+            <ProtectedAuth>
+              <SiapsatUpdateContextProvider>
+                <SiapsatUpdatePage />
+              </SiapsatUpdateContextProvider>
             </ProtectedAuth>
           }
         />

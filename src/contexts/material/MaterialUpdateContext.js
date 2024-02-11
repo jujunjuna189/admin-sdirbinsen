@@ -6,60 +6,62 @@ import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
 const MaterialUpdateContext = createContext();
 
 export const MaterialUpdateContextProvider = ({ children }) => {
-    const navigation = useNavigate();
-    const param = useParams();
-    const [element, setElement] = useState(false);
-    const [controller, setController] = useState({});
-    const [errors, setErrors] = useState({});
+  const navigation = useNavigate();
+  const param = useParams();
+  const [element, setElement] = useState(false);
+  const [controller, setController] = useState({});
+  const [errors, setErrors] = useState({});
 
-    const onGetMaterialDetail = async () => {
-        await getMaterialDetailRequest({ id: param.id }).then((res) => {
-            res === undefined && (res = {});
-            res === null && (res = {});
-            settingController(res);
-        });
-    }
+  const onGetMaterialDetail = async () => {
+    await getMaterialDetailRequest({ id: param.id }).then((res) => {
+      res === undefined && (res = {});
+      res === null && (res = {});
+      settingController(res);
+    });
+  };
 
-    const settingController = (res) => {
-        let dataBatch = {
-            satuan_id: { ...res.satuan },
-            nama: res.nama,
-            file: res.file,
-        };
+  const settingController = (res) => {
+    let dataBatch = {
+      satuan_id: { ...res.satuan },
+      kategori: res.kategori,
+      jenis: res.jenis,
+      no_reg: res.no_reg,
+      kondisi: res.kondisi,
+      file: res.file,
+      keterangan: res.keterangan,
+    };
 
-        setController(dataBatch);
-    }
+    setController(dataBatch);
+  };
 
-    const onSetController = (field, value) => {
-        setController({ ...controller, [field]: value });
-    }
+  const onSetController = (field, value) => {
+    setController({ ...controller, [field]: value });
+  };
 
-    const onSave = async () => {
-        setElement(<LoaderPopup />);
-        let dataBatch = { ...controller };
-        dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        dataBatch.kondisi = 1;
-        dataBatch.status = 'Baik';
-        await updateMaterialRequest({ material_id: param.id, body: dataBatch }).then((res) => {
-            res?.errors && setErrors(res?.errors);
-            res?.errors && setElement(<ErrorPopup />);
-            !res?.errors && setElement(<SuccessPopup />);
-            setTimeout(() => { setElement(false); !res?.errors && navigation('/material'); }, 1000);
-        });
-    }
+  const onSave = async () => {
+    setElement(<LoaderPopup />);
+    let dataBatch = { ...controller };
+    dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
+    dataBatch.status = "Baik";
+    await updateMaterialRequest({ material_id: param.id, body: dataBatch }).then((res) => {
+      res?.errors && setErrors(res?.errors);
+      res?.errors && setElement(<ErrorPopup />);
+      !res?.errors && setElement(<SuccessPopup />);
+      setTimeout(() => {
+        setElement(false);
+        !res?.errors && navigation("/material");
+      }, 1000);
+    });
+  };
 
-    useEffect(() => {
-        onGetMaterialDetail();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  useEffect(() => {
+    onGetMaterialDetail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    return (
-        <MaterialUpdateContext.Provider value={{ navigation, element, controller, errors, onSetController, onSave }}>
-            {children}
-        </MaterialUpdateContext.Provider>
-    );
-}
+  return <MaterialUpdateContext.Provider value={{ navigation, element, controller, errors, onSetController, onSave }}>{children}</MaterialUpdateContext.Provider>;
+};
 
 export const UseMaterialUpdateContext = () => {
-    return useContext(MaterialUpdateContext);
-}
+  return useContext(MaterialUpdateContext);
+};

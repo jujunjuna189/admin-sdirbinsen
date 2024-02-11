@@ -1,29 +1,15 @@
 import Button from "./button";
 import InputFile from "./file/InputFile";
 import InputFileMusic from "./file/InputFileMusic";
-import InputArea from "./input/InputArea"
-import InputChecked from "./input/InputChecked"
+import InputArea from "./input/InputArea";
+import InputChecked from "./input/InputChecked";
 import InputDate from "./input/InputDate";
-import InputEmail from "./input/InputEmail"
-import InputNumber from "./input/InputNumber"
-import InputPassword from "./input/InputPassword"
-import InputSearch from "./input/InputSearch"
+import InputEmail from "./input/InputEmail";
+import InputNumber from "./input/InputNumber";
+import InputPassword from "./input/InputPassword";
+import InputSearch from "./input/InputSearch";
 import InputSelect from "./input/InputSelect";
-import InputText from "./input/InputText"
+import InputText from "./input/InputText";
 import ProtectedAuth from "./protected/ProtectedAuth";
 
-export {
-    Button,
-    InputFile,
-    InputFileMusic,
-    InputArea,
-    InputChecked,
-    InputEmail,
-    InputNumber,
-    InputPassword,
-    InputSearch,
-    InputText,
-    InputSelect,
-    InputDate,
-    ProtectedAuth,
-}
+export { Button, InputFile, InputFileMusic, InputArea, InputChecked, InputEmail, InputNumber, InputPassword, InputSearch, InputText, InputSelect, InputDate, ProtectedAuth };

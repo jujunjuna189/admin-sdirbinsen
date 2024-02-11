@@ -90,7 +90,7 @@ const Sidebar = (props) => {
         </div>
       )}
       {getLocalUser()?.auth?.permission?.["binmat.menu"] && (
-        <div className="cursor-pointer">
+        <div className="cursor-pointer" onClick={() => navigation("/material")}>
           <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3">
             <div className="flex gap-3 items-center text-sm">
               <svg width="24" height="24" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,25 +115,31 @@ const Sidebar = (props) => {
               </svg>
               <span className="font-medium">Binmat</span>
             </div>
-            <span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 9l6 6l6 -6" />
-              </svg>
-            </span>
           </div>
-          <div className="">
-            <ul className="ml-[2.5rem]">
-              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material/senjata")}>
-                <span className="text-xs">Senjata</span>
-              </li>
-              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material/material")}>
-                <span className="text-xs">Material</span>
-              </li>
-              <li className="py-1 pl-3 rounded font-medium hover:bg-slate-100 hover:font-semibold" onClick={() => navigation("/material/alutsista")}>
-                <span className="text-xs">Alutsista</span>
-              </li>
-            </ul>
+        </div>
+      )}
+      {getLocalUser()?.auth?.permission?.["siapsat.menu"] && (
+        <div className="cursor-pointer" onClick={() => navigation("/siapsat")}>
+          <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3">
+            <div className="flex gap-3 items-center text-sm">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                className="text-red-800"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2z" />
+                <path d="M16 7h4" />
+                <path d="M18 19h-13a2 2 0 1 1 0 -4h4a2 2 0 1 0 0 -4h-3" />
+              </svg>
+              <span className="font-medium">Binsiapsat</span>
+            </div>
           </div>
         </div>
       )}

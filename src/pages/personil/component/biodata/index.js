@@ -131,7 +131,7 @@ const BiodataPersonilDetail = (props) => {
               </tr>
               <tr>
                 <td className="py-[7px]">
-                  <span className="font-medium">TMT</span>
+                  <span className="font-medium">TMT Pangkat</span>
                 </td>
                 <td className="py-[7px]">
                   <span className="px-4">: {props.personil?.tmt_2}</span>

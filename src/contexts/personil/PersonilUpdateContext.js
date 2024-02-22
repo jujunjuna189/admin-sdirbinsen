@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPersonilDetailRequest, updatePersonilRequest } from "../../api/PersonilRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const PersonilUpdateContext = createContext();
 
@@ -22,7 +23,6 @@ export const PersonilUpdateContextProvider = ({ children }) => {
     }
 
     const settingController = (res) => {
-        console.log(res);
         let dataBatch = {
             picture: {
                 preview: res.picture,
@@ -61,7 +61,8 @@ export const PersonilUpdateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.picture?.file ? (dataBatch.picture = dataBatch.picture?.file ?? null) : (delete dataBatch.picture);
-        dataBatch.satuan_id = dataBatch.satuan?.id ?? null;
+        !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+        getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
         dataBatch.status = 'Aktif';
         await updatePersonilRequest({ personil_id: param.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);

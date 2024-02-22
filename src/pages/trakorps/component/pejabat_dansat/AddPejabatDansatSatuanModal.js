@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createSatuanPejabatDansatRequest } from "../../../../api/SatuanPejabatDansatRequest";
-import { Button, InputFile, InputText } from "../../../../components";
+import { Button, InputDate, InputFile, InputText } from "../../../../components";
 
 const AddPejabatDansatSatuanModal = (props) => {
     const ref = useRef();
@@ -73,6 +73,19 @@ const AddPejabatDansatSatuanModal = (props) => {
                         <div>
                             <span className="font-medium">Nama Pejabat</span>
                             <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
+                        </div>
+                        <div className="flex flex-col leading-3 mt-2">
+                            <span className="font-medium">Masa Jabatan</span>
+                            <hr className="my-1" />
+                            <div className="flex items-center gap-2">
+                                <div>
+                                    <InputDate className="mt-1" value={controller.masa_jabatan_from} error={errors.masa_jabatan_from} onChange={(value) => onSetController("masa_jabatan_from", value)} placeholder="..." />
+                                </div>
+                                <small>s/d</small>
+                                <div>
+                                    <InputDate className="mt-1" value={controller.masa_jabatan_to} error={errors.masa_jabatan_to} onChange={(value) => onSetController("masa_jabatan_to", value)} placeholder="..." />
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <span className="font-medium">Deskripsi</span>

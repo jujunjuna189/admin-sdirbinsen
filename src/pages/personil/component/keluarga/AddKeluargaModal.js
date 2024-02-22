@@ -95,6 +95,12 @@ const AddKeluargaModal = (props) => {
               <span className="font-medium">Alamat Orang Tua</span>
               <InputArea className="mt-1" value={controller.alamat_orang_tua} error={errors.alamat_orang_tua} onChange={(value) => onSetController("alamat_orang_tua", value)} placeholder="..." />
             </div>
+            <small>Data Anak</small>
+            <hr />
+            <div>
+              <span className="font-medium">Jumlah Anak</span>
+              <InputNumber className="mt-1" value={controller.jumlah_anak} error={errors.jumlah_anak} onChange={(value) => onSetController("jumlah_anak", value)} placeholder="..." />
+            </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">
               <Button className="bg-slate-700 text-white" onClick={() => onSave()}>

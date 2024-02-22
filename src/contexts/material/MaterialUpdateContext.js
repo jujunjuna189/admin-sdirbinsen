@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMaterialDetailRequest, updateMaterialRequest } from "../../api/MaterialRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const MaterialUpdateContext = createContext();
 
@@ -41,7 +42,8 @@ export const MaterialUpdateContextProvider = ({ children }) => {
   const onSave = async () => {
     setElement(<LoaderPopup />);
     let dataBatch = { ...controller };
-    dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
+    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+    getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.status = "Baik";
     await updateMaterialRequest({ material_id: param.id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);

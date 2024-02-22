@@ -1,6 +1,6 @@
 import { Button, Content, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { UsePersonilUpdateContext } from "../../../../contexts/personil/PersonilUpdateContext";
-import { dateFormatterV2 } from "../../../../utils";
+import { dateFormatterV2, getLocalUser } from "../../../../utils";
 import { AgamaModal, SatuanModal, SumberPAModal } from "../../component";
 
 const PersonilUpdatePage = () => {
@@ -79,7 +79,7 @@ const PersonilUpdatePage = () => {
                             <InputText className="mt-1" value={controller.golongan_darah} error={errors.golongan_darah} onChange={(value) => onSetController('golongan_darah', value)} placeholder="..." />
                         </div>
                         <hr />
-                        <SatuanModal value={controller.satuan?.nama} error={errors.satuan} onChange={(value) => onSetController('satuan', value)} />
+                        {!getLocalUser()?.auth?.user?.satuan_id && <SatuanModal value={controller.satuan?.nama} error={errors.satuan} onChange={(value) => onSetController('satuan', value)} />}
                         <SumberPAModal value={controller.sumber_pa} error={errors.sumber_pa} onChange={(value) => onSetController('sumber_pa', value)} />
                         <div className="flex gap-2">
                             <div className="flex-grow">
@@ -107,7 +107,7 @@ const PersonilUpdatePage = () => {
                                 <InputDate className="mt-1" value={controller.tmt_1} error={errors.tmt_1} onChange={(value) => onSetController('tmt_1', value)} placeholder={dateFormatterV2(new Date())} />
                             </div>
                             <div className="flex-grow">
-                                <span className="font-medium">Tmt</span>
+                                <span className="font-medium">Tmt Pangkat</span>
                                 <InputDate className="mt-1" value={controller.tmt_2} error={errors.tmt_2} onChange={(value) => onSetController('tmt_2', value)} placeholder={dateFormatterV2(new Date())} />
                             </div>
                         </div>

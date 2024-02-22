@@ -66,8 +66,8 @@ const Sidebar = (props) => {
         </div>
       )}
       {getLocalUser()?.auth?.permission?.["binman.menu"] && (
-        <div className="px-4 py-3 cursor-pointer hover:bg-slate-100 flex justify-between items-center" onClick={() => navigation("/personil")}>
-          <div className="flex gap-3 items-center text-sm">
+        <div className="cursor-pointer">
+          <div className="flex gap-3 items-center text-sm px-4 py-3 hover:bg-slate-100">
             <svg width="24" height="18" viewBox="0 0 28 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M7.33816 10.8919L7.338 10.8921L7.33784 10.8923L7.33773 10.8924L7.33744 10.8928L7.24611 11.0151L7.19534 11.1606C7.1179 11.3826 7.07236 11.6121 7.05764 11.8432L7.01781 11.8594L6.99721 11.8678L6.97701 11.8771C6.24694 12.2132 5.62867 12.7307 5.1723 13.3665C5.32283 13.0669 5.40546 12.7313 5.40546 12.3829V12.0095C5.40546 11.7224 5.35841 11.439 5.26723 11.1695L5.21598 11.018L5.121 10.8913L5.12081 10.8911L5.12051 10.8907L5.1203 10.8904L5.12006 10.8901L5.1197 10.8896L5.11071 10.8773C5.10196 10.8653 5.08788 10.8457 5.06921 10.8192C5.03184 10.7661 4.97635 10.6853 4.90876 10.5813C4.77304 10.3725 4.59151 10.0746 4.41067 9.72231C4.03531 8.99107 3.72207 8.13833 3.72207 7.39526C3.72207 5.39667 4.93692 4.36206 6.22803 4.36206C6.74257 4.36206 7.21263 4.51867 7.60373 4.80579C7.59555 4.94783 7.5907 5.09387 7.5907 5.24369C7.5907 6.54803 7.9903 7.81603 8.43721 8.83733C8.25303 9.33941 8.01213 9.80886 7.79545 10.1813C7.66444 10.4065 7.54642 10.5892 7.46251 10.7137C7.42066 10.7758 7.38756 10.8231 7.36591 10.8534L7.34244 10.886L7.33816 10.8919ZM4.12606 14.3757C4.44163 14.2313 4.7113 14.0177 4.92055 13.7578C4.66535 14.2027 4.48362 14.6928 4.38936 15.2105L4.37884 15.2664L4.36879 15.3197L4.36458 15.3739L4.26634 16.6364H1.0447C1.02975 16.6364 1.0199 16.6306 1.01406 16.6243L1.01407 16.6243L1.00987 16.6198C1.00423 16.6137 0.999083 16.6032 1.00014 16.5883C1.00014 16.5882 1.00015 16.5881 1.00016 16.588L1.03888 16.0923C1.10603 15.7985 1.30301 15.5503 1.57496 15.4189L4.0881 14.3922L4.10725 14.3843L4.12606 14.3757Z"
@@ -85,7 +85,26 @@ const Sidebar = (props) => {
                 strokeWidth="2"
               />
             </svg>
-            <span className="font-medium">Binman</span>
+            <span className="font-medium">Kelola Binman</span>
+          </div>
+          {/* Dub Menu */}
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/personil")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">Binman</span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/personil/peta_jabatan")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">Peta Jabatan</span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/personil/komposisi_personil")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">komposisi Personil</span>
+            </div>
           </div>
         </div>
       )}
@@ -119,7 +138,7 @@ const Sidebar = (props) => {
         </div>
       )}
       {getLocalUser()?.auth?.permission?.["siapsat.menu"] && (
-        <div className="cursor-pointer" onClick={() => navigation("/siapsat")}>
+        <div className="cursor-pointer">
           <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3">
             <div className="flex gap-3 items-center text-sm">
               <svg
@@ -138,7 +157,32 @@ const Sidebar = (props) => {
                 <path d="M16 7h4" />
                 <path d="M18 19h-13a2 2 0 1 1 0 -4h4a2 2 0 1 0 0 -4h-3" />
               </svg>
+              <span className="font-medium">Kelola Binsiapsat</span>
+            </div>
+          </div>
+          {/* sub menu */}
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
               <span className="font-medium">Binsiapsat</span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat/rencana_binsat")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">Rencana Binsat</span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat/laporan_binsat")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">Laporan Binsat</span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat/laporan_satuan")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">Laporan Satuan</span>
             </div>
           </div>
         </div>

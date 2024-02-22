@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPersonilRequest } from "../../api/PersonilRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const PersonilCreateContext = createContext();
 
@@ -24,7 +25,8 @@ export const PersonilCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.picture = dataBatch.picture?.file ?? null;
-        dataBatch.satuan_id = dataBatch.satuan?.id ?? null;
+        !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+        getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
         dataBatch.status = 'Aktif';
         await createPersonilRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
@@ -38,7 +40,8 @@ export const PersonilCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.picture = dataBatch.picture?.file ?? null;
-        dataBatch.satuan = dataBatch.satuan?.id ?? null;
+        !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+        getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
         dataBatch.status = 'Aktif';
         await createPersonilRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);

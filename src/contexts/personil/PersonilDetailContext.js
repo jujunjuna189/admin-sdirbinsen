@@ -62,13 +62,13 @@ export const PersonilDetailContextProvider = ({ children }) => {
             is_active: false,
         },
         {
-            title: 'Tanda Jasa',
+            title: 'Riwayat Tanda Jasa',
             page: 6,
             on_click: () => onGetTandaJasa({ id: param.id }),
             is_active: false,
         },
         {
-            title: 'Keluarga',
+            title: 'Riwayat Keluarga',
             page: 7,
             on_click: () => onGetKeluarga({ id: param.id }),
             is_active: false,

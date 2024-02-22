@@ -4,6 +4,7 @@ import { deleteMaterialRequest, getMaterialRequest } from "../../api/MaterialReq
 import { ConfirmDeleteModal } from "../../components";
 import { getMaterialKategoriRequest } from "../../api/MaterialKategoriRequest";
 import { ConverUrl } from "../../utils/convert/UrlConvert";
+import { getLocalUser } from "../../utils";
 
 const MaterialContext = createContext();
 
@@ -46,7 +47,7 @@ export const MaterialContextProvider = ({ children }) => {
 
   const onGetMaterial = async ({ kategori = null }) => {
     setMaterial({});
-    await getMaterialRequest({ kategori: ConverUrl(kategori) }).then((res) => {
+    await getMaterialRequest({ kategori: ConverUrl(kategori), satuan_id: getLocalUser()?.auth?.user?.satuan_id }).then((res) => {
       res === undefined && (res = {});
       res === null && (res = {});
       setMaterial(res);

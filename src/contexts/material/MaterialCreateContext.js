@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createMaterialRequest } from "../../api/MaterialRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const MaterialCreateContext = createContext();
 
@@ -21,7 +22,8 @@ export const MaterialCreateContextProvider = ({ children }) => {
   const onSave = async () => {
     setElement(<LoaderPopup />);
     let dataBatch = { ...controller };
-    dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
+    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+    getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.kategori = param.kategori;
     dataBatch.status = "Baik";
     await createMaterialRequest({ body: dataBatch }).then((res) => {
@@ -38,7 +40,8 @@ export const MaterialCreateContextProvider = ({ children }) => {
   const onSaveAndAdd = async () => {
     setElement(<LoaderPopup />);
     let dataBatch = { ...controller };
-    dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
+    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+    getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.kategori = param.kategori;
     dataBatch.status = "Baik";
     await createMaterialRequest({ body: dataBatch }).then((res) => {

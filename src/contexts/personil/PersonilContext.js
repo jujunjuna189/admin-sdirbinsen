@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deletePersonilRequest, getPersonilRequest } from "../../api/PersonilRequest"
 import { ConfirmDeleteModal } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const PersonilContext = createContext();
 
@@ -32,14 +33,14 @@ export const PersonilContextProvider = ({ children }) => {
             isActive: false,
         },
         {
-            title: 'TA',
+            title: 'TA PK',
             isActive: false,
         },
     ]);
 
     const onGetPersonil = async ({ sumberPa }) => {
         setPersonil({});
-        await getPersonilRequest({ sumber_pa: sumberPa }).then((res) => {
+        await getPersonilRequest({ sumber_pa: sumberPa, satuan_id: getLocalUser()?.auth?.user?.satuan_id }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPersonil(res);

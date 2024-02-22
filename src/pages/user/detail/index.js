@@ -4,7 +4,7 @@ import { getLocalUser } from "../../../utils";
 import { PermissionModal } from "../component";
 
 const UserDetailPage = () => {
-    const { navigation, user, permissions, getPermission } = UseUserDetailContext();
+    const { navigation, user, permissions, satuan, getPermission } = UseUserDetailContext();
     return (
         <Content>
             <div className="flex gap-2 items-center cursor-pointer" onClick={() => navigation(-1)}>
@@ -37,6 +37,24 @@ const UserDetailPage = () => {
                                 </div>
                             </div>
                         </div>
+                        {satuan?.logo && (
+                            <>
+                                <div className="py-2 mt-2">
+                                    <span className="text-base font-medium">Satuan Yang Dipegang</span>
+                                </div>
+                                <div className="py-3 p-2 border rounded-lg bg-white flex justify-between items-center">
+                                    <div className="flex gap-2 items-center">
+                                        <div className="h-10 w-10 border bg-slate-400 rounded-full overflow-hidden">
+                                            {satuan.logo && (<img src={satuan.logo} alt="ImagePengguna" className="w-full h-full object-cover" />)}
+                                        </div>
+                                        <div className="flex flex-col leading-4">
+                                            <span className="font-semibold">Nama Satuan</span>
+                                            <small>{satuan.nama}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                         <div className="py-2 mt-2">
                             <span className="text-base font-medium">Data Biodata Ketentaraan</span>
                         </div>
@@ -47,7 +65,7 @@ const UserDetailPage = () => {
                                 </div>
                                 <div className="flex flex-col leading-4">
                                     <span className="font-semibold">Nama Profile</span>
-                                    <small>Jabatan</small>
+                                    <small>Comming Soon</small>
                                 </div>
                             </div>
                             <div className="w-5 h-5 bg-red-50 rounded-full flex justify-center items-center">

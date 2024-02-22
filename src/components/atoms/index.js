@@ -9,7 +9,8 @@ import InputNumber from "./input/InputNumber";
 import InputPassword from "./input/InputPassword";
 import InputSearch from "./input/InputSearch";
 import InputSelect from "./input/InputSelect";
+import InputSelectDropDown from "./input/InputSelectDropDown";
 import InputText from "./input/InputText";
 import ProtectedAuth from "./protected/ProtectedAuth";
 
-export { Button, InputFile, InputFileMusic, InputArea, InputChecked, InputEmail, InputNumber, InputPassword, InputSearch, InputText, InputSelect, InputDate, ProtectedAuth };
+export { Button, InputFile, InputFileMusic, InputArea, InputChecked, InputEmail, InputNumber, InputPassword, InputSearch, InputText, InputSelect, InputSelectDropDown, InputDate, ProtectedAuth };

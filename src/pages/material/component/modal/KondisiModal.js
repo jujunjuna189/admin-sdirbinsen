@@ -7,7 +7,7 @@ const KondisiModal = (props) => {
   const [data, setData] = useState([]);
 
   const getKondisi = async () => {
-    setData(["B", "RR", "RB"]);
+    setData(["Bagus", "Rusak Ringan", "Rusak Berat"]);
   };
 
   const toogleModal = () => {

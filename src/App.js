@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { ProtectedAuth } from "./components";
+import { Content, ProtectedAuth } from "./components";
 import { AuthContextProvider } from "./contexts/auth/AuthContext";
 import { LoginContextProvider } from "./contexts/auth/LoginContext";
 import { MaterialContextProvider } from "./contexts/material/MaterialContext";
@@ -180,6 +180,20 @@ function App() {
             </ProtectedAuth>
           }
         />
+        {/* Peta jabatan */}
+        <Route
+          path="/personil/peta_jabatan"
+          element={
+            <Content>Coming Soon</Content>
+          }
+        />
+        {/* komposisi Personil */}
+        <Route
+          path="/personil/komposisi_personil"
+          element={
+            <Content>Coming Soon</Content>
+          }
+        />
         {/* Material */}
         <Route
           path="/material"
@@ -240,6 +254,27 @@ function App() {
                 <SiapsatUpdatePage />
               </SiapsatUpdateContextProvider>
             </ProtectedAuth>
+          }
+        />
+        {/* Rencana Binsat */}
+        <Route
+          path="/siapsat/rencana_binsat"
+          element={
+            <Content>Coming Soon</Content>
+          }
+        />
+        {/* Laporan Binsat */}
+        <Route
+          path="/siapsat/laporan_binsat"
+          element={
+            <Content>Coming Soon</Content>
+          }
+        />
+        {/* Laporan Satuan */}
+        <Route
+          path="/siapsat/laporan_satuan"
+          element={
+            <Content>Coming Soon</Content>
           }
         />
         {/* Setting User */}

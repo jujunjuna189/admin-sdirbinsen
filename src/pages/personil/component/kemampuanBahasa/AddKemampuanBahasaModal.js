@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createKemampuanBahasaByPersonilRequest } from "../../../../api/KemampuanBahasaRequest";
-import { Button, InputText } from "../../../../components";
+import { Button, InputSelectDropDown, InputText } from "../../../../components";
 
 const AddKemampuanBahasaModal = (props) => {
   const ref = useRef();
@@ -25,6 +25,8 @@ const AddKemampuanBahasaModal = (props) => {
   const onSave = async () => {
     let dataBatch = { ...controller };
     dataBatch.personil_id = props.personil_id;
+    dataBatch.jenis_bahasa = dataBatch.jenis_bahasa?.key;
+    dataBatch.status = dataBatch.status?.key;
     await createKemampuanBahasaByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       if (!res?.errors) {
@@ -67,11 +69,11 @@ const AddKemampuanBahasaModal = (props) => {
             </div>
             <div>
               <span className="font-medium">Jenis Bahasa</span>
-              <InputText className="mt-1" value={controller.jenis_bahasa} error={errors.jenis_bahasa} onChange={(value) => onSetController("jenis_bahasa", value)} placeholder="..." />
+              <InputSelectDropDown className="mt-1" data={[{ title: 'Daerah', key: 'Daerah' }, { title: 'Asing', key: 'Asing' }]} value={controller.jenis_bahasa?.title} error={errors.jenis_bahasa} onChange={(value) => onSetController("jenis_bahasa", value)} placeholder="..." />
             </div>
             <div>
               <span className="font-medium">Status</span>
-              <InputText className="mt-1" value={controller.status} error={errors.status} onChange={(value) => onSetController("status", value)} placeholder="..." />
+              <InputSelectDropDown className="mt-1" data={[{ title: 'Aktif', key: 'Aktif' }, { title: 'Pasif', key: 'Pasif' }]} value={controller.status?.title} error={errors.status} onChange={(value) => onSetController("status", value)} placeholder="..." />
             </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">

@@ -67,7 +67,7 @@ const AddPendidikanUmumModal = (props) => {
               <InputText className="mt-1" value={controller.jenis_pendidikan} error={errors.jenis_pendidikan} onChange={(value) => onSetController("jenis_pendidikan", value)} placeholder="..." />
             </div>
             <div>
-              <span className="font-medium">Nama Pendidikan/Jurusan/Fakultas/Prodi</span>
+              <span className="text-[12px] font-medium">Nama Pendidikan/Jurusan/Fakultas/Prodi/Tempat</span>
               <InputText className="mt-1" value={controller.nama_pendidikan} error={errors.nama_pendidikan} onChange={(value) => onSetController("nama_pendidikan", value)} placeholder="..." />
             </div>
             <div>

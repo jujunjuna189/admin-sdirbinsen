@@ -4,7 +4,6 @@ const KeluargaPersonilDetail = (props) => {
     return (
         <div>
             <div className="shadow-none p-4 border rounded-lg">
-                <span className="font-semibold text-base">Keluarga</span>
                 <div className="mt-2 px-3">
                     <span className="font-semibold">Riwayat Keluarga</span>
                 </div>
@@ -42,6 +41,10 @@ const KeluargaPersonilDetail = (props) => {
                                         <tr>
                                             <td className="py-[7px]"><span className="font-medium">Nomor Hp</span></td>
                                             <td className="py-[7px]"><span className="px-4">: {item.nomor_hp}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td className="py-[7px]"><span className="font-medium">Jumlah Anak</span></td>
+                                            <td className="py-[7px]"><span className="px-4">: {item.jumlah_anak}</span></td>
                                         </tr>
                                     </tbody>
                                 </table>

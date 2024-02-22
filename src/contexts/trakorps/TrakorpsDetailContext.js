@@ -23,26 +23,44 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
       isActive: false,
     },
     {
-      title: "Data Prestasi",
+      title: "Lambang Satuan",
       page: 2,
+      onClick: () => { },
+      isActive: false,
+    },
+    {
+      title: "Tradisi Satuan",
+      page: 3,
+      onClick: () => { },
+      isActive: false,
+    },
+    {
+      title: "Data Prestasi",
+      page: 4,
       onClick: () => onGetSatuanPrestasi({ satuan_id: params.id }),
       isActive: false,
     },
     {
       title: "Data Pejabat Dansat",
-      page: 3,
+      page: 5,
       onClick: () => onGetSatuanPejabatDansat({ satuan_id: params.id }),
       isActive: false,
     },
     {
+      title: "Data Purnawirawan",
+      page: 6,
+      onClick: () => { },
+      isActive: false,
+    },
+    {
       title: "Lagu Mars",
-      page: 4,
+      page: 7,
       onClick: () => { },
       isActive: false,
     },
     {
       title: "Lagu Himne",
-      page: 5,
+      page: 8,
       onClick: () => { },
       isActive: false,
     },
@@ -80,10 +98,13 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const onGetContent = (page) => {
     const content = {
       1: <SejarahTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
-      2: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi({ satuan_id: params.id })} />,
-      3: <PejabatDansatTrakorpsDetail satuan={satuan} satuanPejabatDansat={satuanPejabatDansat} onSave={() => onGetSatuanPejabatDansat({ satuan_id: params.id })} />,
-      4: <MarsTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
-      5: <HimneTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
+      2: <span>Comming soon</span>,
+      3: <span>Comming soon</span>,
+      4: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi({ satuan_id: params.id })} />,
+      5: <PejabatDansatTrakorpsDetail satuan={satuan} satuanPejabatDansat={satuanPejabatDansat} onSave={() => onGetSatuanPejabatDansat({ satuan_id: params.id })} />,
+      6: <span>Comming soon</span>,
+      7: <MarsTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
+      8: <HimneTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
     };
 
     return content[page];

@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteSatuanRequest, getSatuanRequest } from "../../api/SatuanRequest";
 import { ConfirmDeleteModal } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const TrakorpsContext = createContext();
 
@@ -11,7 +12,8 @@ export const TrakorpsContextProvider = ({ children }) => {
   const [satuan, setSatuan] = useState({});
 
   const getSatuan = async () => {
-    await getSatuanRequest().then((res) => {
+    console.log(getLocalUser());
+    await getSatuanRequest({ satuan_id: getLocalUser()?.auth?.user?.satuan_id }).then((res) => {
       setSatuan(res);
     });
   };

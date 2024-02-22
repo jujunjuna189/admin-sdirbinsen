@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createSatuanPrestasiRequest } from "../../../../api/SatuanPrestasiRequest";
-import { Button, InputFile, InputText } from "../../../../components";
+import { Button, InputFile, InputNumber, InputText } from "../../../../components";
 
 const AddPrestasiSatuanModal = (props) => {
     const ref = useRef();
@@ -77,6 +77,10 @@ const AddPrestasiSatuanModal = (props) => {
                         <div>
                             <span className="font-medium">Deskripsi</span>
                             <InputText className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Tahun</span>
+                            <InputNumber className="mt-1" value={controller.tahun} error={errors.tahun} onChange={(value) => onSetController("tahun", value)} placeholder="..." />
                         </div>
                         <div className="flex-grow" />
                         <div className="flex justify-end mt-3">

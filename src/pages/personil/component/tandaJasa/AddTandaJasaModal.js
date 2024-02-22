@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createTandaJasaByPersonilRequest } from "../../../../api/TandaJasaRequest";
-import { Button, InputText } from "../../../../components";
+import { Button, InputNumber, InputText } from "../../../../components";
 
 const AddTandaJasaModal = (props) => {
   const ref = useRef();
@@ -64,6 +64,10 @@ const AddTandaJasaModal = (props) => {
             <div>
               <span className="font-medium">Tanda Kehormatan</span>
               <InputText className="mt-1" value={controller.tanda_kehormatan} error={errors.tanda_kehormatan} onChange={(value) => onSetController("tanda_kehormatan", value)} placeholder="..." />
+            </div>
+            <div>
+              <span className="font-medium">Nomor Kep/Sprin</span>
+              <InputNumber className="mt-1" value={controller.no_kep_sprint} error={errors.no_kep_sprint} onChange={(value) => onSetController("no_kep_sprint", value)} placeholder="..." />
             </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">

@@ -1,5 +1,6 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UseTrakorpsContext } from "../../contexts/trakorps/TrakorpsContext";
+import { getLocalUser } from "../../utils";
 
 const TrakorpsPage = () => {
   const { navigation, element, satuan, onShowConfirmDelete } = UseTrakorpsContext();
@@ -35,9 +36,11 @@ const TrakorpsPage = () => {
                     <Button className="border py-[0.2rem] bg-green-50 border-green-800 text-green-800" onClick={() => navigation(`/trakorps/detail/${item.id}`)}>
                       Detail
                     </Button>
-                    <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>
-                      Hapus
-                    </Button>
+                    {getLocalUser()?.auth?.permission?.["trakorps.delete"] && (
+                      <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>
+                        Hapus
+                      </Button>
+                    )}
                   </div>
                 </td>
               </tr>
@@ -52,16 +55,18 @@ const TrakorpsPage = () => {
     <Content element={element}>
       <div className="flex flex-wrap justify-between items-center">
         <span className="font-bold text-xl text-slate-800">Daftar Satuan</span>
-        <div>
-          <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation("/trakorps/create")}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M12 5l0 14"></path>
-              <path d="M5 12l14 0"></path>
-            </svg>
-            Tambah Satuan
-          </Button>
-        </div>
+        {getLocalUser()?.auth?.permission?.["trakorps.delete"] && (
+          <div>
+            <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation("/trakorps/create")}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 5l0 14"></path>
+                <path d="M5 12l14 0"></path>
+              </svg>
+              Tambah Satuan
+            </Button>
+          </div>
+        )}
       </div>
       <div className="mt-4">
         <Card>

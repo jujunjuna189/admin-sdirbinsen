@@ -3,7 +3,7 @@ import { UseProfileContext } from "../../contexts/profile/ProfileContext";
 
 
 const ProfilePage = () => {
-    const { navigation, element, user, permissions, onUserPersonil } = UseProfileContext();
+    const { navigation, element, user, permissions, satuan, onUserPersonil } = UseProfileContext();
 
     return (
         <Content element={element}>
@@ -37,6 +37,24 @@ const ProfilePage = () => {
                                 </div>
                             </div>
                         </div>
+                        {satuan?.logo && (
+                            <>
+                                <div className="py-2 mt-2">
+                                    <span className="text-base font-medium">Satuan Yang Dipegang</span>
+                                </div>
+                                <div className="py-3 p-2 border rounded-lg bg-white flex justify-between items-center">
+                                    <div className="flex gap-2 items-center">
+                                        <div className="h-10 w-10 border bg-slate-400 rounded-full overflow-hidden">
+                                            {satuan.logo && (<img src={satuan.logo} alt="ImagePengguna" className="w-full h-full object-cover" />)}
+                                        </div>
+                                        <div className="flex flex-col leading-4">
+                                            <span className="font-semibold">Nama Satuan</span>
+                                            <small>{satuan.nama}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                         <div className="py-2 mt-2">
                             <span className="text-base font-medium">Data Biodata Ketentaraan</span>
                         </div>

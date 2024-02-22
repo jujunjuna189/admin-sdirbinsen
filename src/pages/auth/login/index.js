@@ -1,3 +1,4 @@
+import { imgBg } from "../../../assets";
 import { Button, InputPassword, InputText } from "../../../components";
 import { UseLoginContext } from "../../../contexts/auth/LoginContext";
 
@@ -7,7 +8,9 @@ const LoginPage = () => {
     return (
         <>
             <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-r from-red-100 animate-pulse" />
-            <div className="absolute top-0 bottom-0 left-0 right-0 opacity-10" style={{ background: "url('https://beredukasi.com/wp-content/uploads/2020/12/photostudio_1606983022872.jpg')", backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} />
+            <div className="absolute top-0 bottom-0 left-0 right-0 opacity-[0.15] overflow-hidden flex justify-center items-end">
+                <img src={imgBg} alt="BackgroundApp" className="object-cover w-full" />
+            </div>
             <div className="fixed top-0 bottom-0 left-0 right-0 overflow-auto flex justify-center items-center">
                 {/* <div className="lg:pr-36 lg:pl-10">
                     <div className="px-5 mt-[2vh] mix-blend-multiply opacity-80">

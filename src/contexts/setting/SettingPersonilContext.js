@@ -23,7 +23,7 @@ export const SettingPersonilContextProvider = ({ children }) => {
     ]);
 
     const getSatuan = async () => {
-        await getSatuanRequest().then((res) => {
+        await getSatuanRequest({}).then((res) => {
             setSatuan(res);
         });
     }

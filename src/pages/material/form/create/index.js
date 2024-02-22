@@ -1,5 +1,6 @@
 import { Button, Content, InputText, InputNumber } from "../../../../components";
 import { UseMaterialCreateContext } from "../../../../contexts/material/MaterialCreateContext";
+import { getLocalUser } from "../../../../utils";
 import { SatuanModal } from "../../../personil/component";
 import { KondisiModal } from "../../component";
 
@@ -19,7 +20,7 @@ const MaterialCreatePage = () => {
         <div className="border rounded-lg p-3 w-full max-w-[652px]">
           <span className="text-base font-medium">Tambah Material</span>
           <div className="flex flex-col gap-3 mt-3">
-            <SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />
+            {!getLocalUser()?.auth?.user?.satuan_id && (<SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />)}
             <div>
               <span className="font-medium">Kategori</span>
               <InputText className="mt-1" value={controller.kategori} error={errors.kategori} onChange={(value) => onSetController("kategori", value)} readOnly={true} placeholder="..." />
@@ -36,7 +37,7 @@ const MaterialCreatePage = () => {
               <KondisiModal value={controller.kondisi} error={errors.kondisi} onChange={(value) => onSetController("kondisi", value)} />
             </div>
             <div>
-              <span className="font-medium">Link File</span>
+              <span className="font-medium">Photo</span>
               <InputText className="mt-1" value={controller.file} error={errors.file} onChange={(value) => onSetController("file", value)} placeholder="https://drive.google.com" />
             </div>
             <div>

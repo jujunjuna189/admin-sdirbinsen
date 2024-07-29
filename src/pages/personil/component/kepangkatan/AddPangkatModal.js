@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPangkatByPersonilRequest } from "../../../../api/PangkatRequest";
-import { Button, InputDate, InputNumber, InputText } from "../../../../components";
+import { Button, InputDate, InputText } from "../../../../components";
 import { dateFormatterV2 } from "../../../../utils";
 
 const AddPangkatModal = (props) => {
@@ -72,7 +72,7 @@ const AddPangkatModal = (props) => {
             </div>
             <div>
               <span className="font-medium">Nomor Kep/Skep</span>
-              <InputNumber className="mt-1" value={controller.nomor_kep_skep} error={errors.nomor_kep_skep} onChange={(value) => onSetController("nomor_kep_skep", value)} placeholder="..." />
+              <InputText className="mt-1" value={controller.nomor_kep_skep} error={errors.nomor_kep_skep} onChange={(value) => onSetController("nomor_kep_skep", value)} placeholder="..." />
             </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">

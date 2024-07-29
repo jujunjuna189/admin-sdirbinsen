@@ -5,12 +5,23 @@ const BiodataPersonilDetail = (props) => {
   return (
     <div>
       <div className="shadow-none p-4 border rounded-lg">
-        <span className="font-semibold text-base">Biodata</span>
+        <div className="flex justify-between items-center flex-wrap">
+          <span className="font-semibold text-base">Biodata</span>
+          <div className="flex items-center gap-2 flex-wrap">
+            {getLocalUser()?.auth?.permission["binman.update"] && (
+              <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center" onClick={() => props.navigation(`/personil/update/${props?.personil?.id}`)}>
+                Ubah Personel
+              </Button>
+            )}
+            <Button className="border border-green-700 bg-green-50 text-green-700 flex justify-center" onClick={() => props.navigation(`/personil/detail_rh/${props?.personil?.id}`)}>Download RH</Button>
+          </div>
+        </div>
+        <hr className="mt-4" />
         <div className="px-2 mt-2">
           <table className="w-full">
             <tbody>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">NRP</span>
                 </td>
                 <td className="py-[7px]">
@@ -18,7 +29,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Nama</span>
                 </td>
                 <td className="py-[7px]">
@@ -26,7 +37,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Tanggal Lahir</span>
                 </td>
                 <td className="py-[7px]">
@@ -34,7 +45,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Tempat Lahir</span>
                 </td>
                 <td className="py-[7px]">
@@ -42,7 +53,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Agama</span>
                 </td>
                 <td className="py-[7px]">
@@ -50,7 +61,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Suku Bangsa</span>
                 </td>
                 <td className="py-[7px]">
@@ -58,7 +69,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Gol. Darah</span>
                 </td>
                 <td className="py-[7px]">
@@ -66,7 +77,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr className="border-t">
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Jabatan</span>
                 </td>
                 <td className="py-[7px]">
@@ -74,7 +85,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Pangkat</span>
                 </td>
                 <td className="py-[7px]">
@@ -82,7 +93,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Korps</span>
                 </td>
                 <td className="py-[7px]">
@@ -90,7 +101,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Sumber Pa</span>
                 </td>
                 <td className="py-[7px]">
@@ -98,7 +109,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Satuan</span>
                 </td>
                 <td className="py-[7px]">
@@ -106,7 +117,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Psi</span>
                 </td>
                 <td className="py-[7px]">
@@ -114,7 +125,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">Kategori</span>
                 </td>
                 <td className="py-[7px]">
@@ -122,7 +133,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr className="border-t">
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">TMT</span>
                 </td>
                 <td className="py-[7px]">
@@ -130,7 +141,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">TMT Pangkat</span>
                 </td>
                 <td className="py-[7px]">
@@ -138,7 +149,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">TMT TNI</span>
                 </td>
                 <td className="py-[7px]">
@@ -146,7 +157,7 @@ const BiodataPersonilDetail = (props) => {
                 </td>
               </tr>
               <tr>
-                <td className="py-[7px]">
+                <td className="py-[7px] w-32">
                   <span className="font-medium">TMT Jab</span>
                 </td>
                 <td className="py-[7px]">
@@ -155,14 +166,6 @@ const BiodataPersonilDetail = (props) => {
               </tr>
             </tbody>
           </table>
-        </div>
-        <div className="grow flex items-center gap-2 mt-4">
-          {getLocalUser()?.auth?.permission["binman.update"] && (
-            <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center" onClick={() => props.navigation(`/personil/update/${props?.personil?.id}`)}>
-              Ubah Personil
-            </Button>
-          )}
-          <Button className="border border-green-700 bg-green-50 text-green-700 flex justify-center">Download Portofolio</Button>
         </div>
       </div>
     </div>

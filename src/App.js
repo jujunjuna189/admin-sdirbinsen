@@ -30,6 +30,7 @@ import {
   MaterialUpdatePage,
   PersonilCreatePage,
   PersonilDetailPage,
+  PersonilDetailRhPage,
   PersonilPage,
   PersonilUpdatePage,
   ProfilePage,
@@ -156,6 +157,16 @@ function App() {
             <ProtectedAuth>
               <PersonilDetailContextProvider>
                 <PersonilDetailPage />
+              </PersonilDetailContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/personil/detail_rh/:id"
+          element={
+            <ProtectedAuth>
+              <PersonilDetailContextProvider>
+                <PersonilDetailRhPage />
               </PersonilDetailContextProvider>
             </ProtectedAuth>
           }

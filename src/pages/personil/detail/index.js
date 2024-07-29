@@ -11,7 +11,7 @@ const PersonilDetailPage = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M15 6l-6 6l6 6"></path>
                 </svg>
-                <span className="font-semibold text-base text-slate-800">Detail Personil</span>
+                <span className="font-semibold text-base text-slate-800">Detail Personel</span>
             </div>
             <div className="flex gap-2 mt-4">
                 <div className="w-80">
@@ -19,7 +19,7 @@ const PersonilDetailPage = () => {
                         <div className="py-4 p-2 border rounded-lg bg-white">
                             <div className="flex justify-center mb-3">
                                 <div className="h-24 w-24 border bg-slate-400 rounded-full overflow-hidden">
-                                    {personil.picture && (<img src={personil.picture} alt="ImagePersonil" className="w-full h-full object-cover" />)}
+                                    {personil.picture && (<img src={personil.picture} alt="ImagePersonel" className="w-full h-full object-cover" />)}
                                 </div>
                             </div>
                             <div className="text-center leading-4">

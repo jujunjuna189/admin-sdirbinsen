@@ -1,4 +1,4 @@
-import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
+import { Button, Card, Content, EmptyData, SimplePagination, TableLoader } from "../../components";
 import { UsePersonilContext } from "../../contexts/personil/PersonilContext";
 import { getLocalUser } from "../../utils";
 
@@ -58,7 +58,7 @@ const PersonilPage = () => {
     return (
         <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
-                <span className="font-bold text-xl text-slate-800">Daftar Personil</span>
+                <span className="font-bold text-xl text-slate-800">Daftar Personel</span>
                 {getLocalUser()?.auth?.permission['binman.create'] && (
                     <div>
                         <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/personil/create')}>
@@ -67,7 +67,7 @@ const PersonilPage = () => {
                                 <path d="M12 5l0 14"></path>
                                 <path d="M5 12l14 0"></path>
                             </svg>
-                            Tambah Personil
+                            Tambah Personel
                         </Button>
                     </div>
                 )}
@@ -98,7 +98,7 @@ const PersonilPage = () => {
                         {Object.keys(personil).length === 0 ? <TableLoader /> : personil.data.length === 0 ? <EmptyData /> : renderTable()}
                     </div>
                     <div className="flex justify-end px-5 py-3">
-                        <span className="font-semibold text-sm">Rows per page: 10</span>
+                        {Object.keys(personil).length !== 0 && personil.data.length !== 0 && <SimplePagination pages={personil?.links ?? []} currentPage={personil?.current_page} onCallback={((page) => { })} />}
                     </div>
                 </Card>
             </div>

@@ -5,6 +5,7 @@ import EmptyData from "./empty/EmptyData";
 import TableLoader from "./loader/TableLoader";
 import ConfirmDeleteModal from "./modal/ConfirmDeleteModal";
 import Navbar from "./navbar";
+import SimplePagination from "./pagination/SimplePagination";
 import AudioPlayer from "./player/AudioPlayer";
 import ErrorPopup from "./popup/ErrorPopup";
 import LoaderPopup from "./popup/LoaderPopup";
@@ -29,5 +30,6 @@ export {
     SuccessPopup,
     ErrorPopup,
     ConfirmDeleteModal,
+    SimplePagination,
     AudioPlayer,
 }

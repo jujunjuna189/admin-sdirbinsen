@@ -14,15 +14,15 @@ const MaterialUpdatePage = () => {
           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
           <path d="M15 6l-6 6l6 6"></path>
         </svg>
-        <span className="font-semibold text-base text-slate-800">Ubah Material</span>
+        <span className="font-semibold text-base text-slate-800">Ubah Materiel</span>
       </div>
       <div className="flex justify-center">
         <div className="border rounded-lg p-3 w-full max-w-[652px]">
-          <span className="text-base font-medium">Ubah Material</span>
+          <span className="text-base font-medium">Ubah Materiel</span>
           <div className="flex flex-col gap-3 mt-3">
             {!getLocalUser()?.auth?.user?.satuan_id && (<SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />)}
             <div>
-              <span className="font-medium">Nama Material</span>
+              <span className="font-medium">Nama Materiel</span>
               <InputText className="mt-1" value={controller.kategori} error={errors.kategori} onChange={(value) => onSetController("kategori", value)} readOnly={true} placeholder="..." />
             </div>
             <div>

@@ -156,29 +156,29 @@ const PersonilCreatePage = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M15 6l-6 6l6 6"></path>
                 </svg>
-                <span className="font-semibold text-base text-slate-800">Tambah Personil</span>
+                <span className="font-semibold text-base text-slate-800">Tambah Personel</span>
             </div>
             <div className="flex justify-center">
                 <div className="mt-5 flex flex-col gap-3">
                     <div className="flex justify-center gap-3">
                         <div className="border rounded-lg p-3 w-80 flex flex-col">
                             <div className="leading-3">
-                                <span className="text-base font-medium">Tambah personil dengan formulir</span><br />
-                                <small>Tambah personil dalam jumlah sedikit</small>
+                                <span className="text-base font-medium">Tambah personel dengan formulir</span><br />
+                                <small>Tambah personel dalam jumlah sedikit</small>
                             </div>
                             <div className="flex-grow" />
                             <div className="mt-3 flex justify-start">
-                                <Button className={`${formContent === 'form' ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`} onClick={() => onTabFormContent('form')}>Tambah Personil</Button>
+                                <Button className={`${formContent === 'form' ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`} onClick={() => onTabFormContent('form')}>Tambah Personel</Button>
                             </div>
                         </div>
                         <div className="border rounded-lg p-3 w-80 flex flex-col">
                             <div className="leading-3">
-                                <span className="text-base font-medium">Import Personil</span><br />
-                                <small>Tambah personil dalam jumlah banyak dengan menggunggah data personil dalam format excel</small>
+                                <span className="text-base font-medium">Import Personel</span><br />
+                                <small>Tambah personel dalam jumlah banyak dengan menggunggah data personel dalam format excel</small>
                             </div>
                             <div className="flex-grow" />
                             <div className="mt-3 flex justify-start">
-                                <Button className={`${formContent === 'import' ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`} onClick={() => onTabFormContent('import')}>Import Personil</Button>
+                                <Button className={`${formContent === 'import' ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`} onClick={() => onTabFormContent('import')}>Import Personel</Button>
                             </div>
                         </div>
                     </div>

@@ -12,11 +12,11 @@ const PersonilUpdatePage = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M15 6l-6 6l6 6"></path>
                 </svg>
-                <span className="font-semibold text-base text-slate-800">Ubah Personil</span>
+                <span className="font-semibold text-base text-slate-800">Ubah Personel</span>
             </div>
             <div className="flex justify-center mt-4">
                 <div className="border rounded-lg p-3 w-full max-w-[652px]">
-                    <span className="text-base font-medium">Ubah Personil</span>
+                    <span className="text-base font-medium">Ubah Personel</span>
                     <div className="flex flex-col gap-3 mt-3">
                         <div className="flex gap-5 items-center">
                             <div>

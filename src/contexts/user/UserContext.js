@@ -10,7 +10,7 @@ export const UserContextProvider = ({ children }) => {
     const [element, setElement] = useState(false);
     const [user, setUser] = useState({});
 
-    const onGetUser = async () => {
+    const onGetUser = async ({ page = 1 }) => {
         setUser({});
         await getUserRequest().then((res) => {
             res === undefined && (res = {});
@@ -26,12 +26,12 @@ export const UserContextProvider = ({ children }) => {
     const onDeleteUser = async ({ user_id = null }) => {
         await deleteUserRequest({ user_id: user_id }).then((res) => {
             setElement(false);
-            onGetUser();
+            onGetUser({});
         });
     }
 
     useEffect(() => {
-        onGetUser();
+        onGetUser({});
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -22,4 +22,30 @@
     .shadow-all {
         box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
     }
+
+    @media print {
+        .print-fill {
+            -webkit-print-color-adjust: exact;
+        }
+
+        .print-no-print {
+            display: none;
+        }
+
+        .print-pagebreak {
+            page-break-before: always;
+        }
+
+        .break-inside-avoid {
+            break-inside: avoid;
+        }
+
+        .print-no-padding {
+            padding: 0,
+        }
+
+        .print-no-margin {
+            margin: 0,
+        }
+    }
 }

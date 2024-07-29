@@ -12,14 +12,6 @@ const LoginPage = () => {
                 <img src={imgBg} alt="BackgroundApp" className="object-cover w-full" />
             </div>
             <div className="fixed top-0 bottom-0 left-0 right-0 overflow-auto flex justify-center items-center">
-                {/* <div className="lg:pr-36 lg:pl-10">
-                    <div className="px-5 mt-[2vh] mix-blend-multiply opacity-80">
-                        <h2 className="font-bold text-2xl">Selamat Datang Di Aplikasi, Sdirbinsen</h2>
-                        <div className="mt-5">
-                            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
-                        </div>
-                    </div>
-                </div> */}
                 <div>
                     <div className="border py-8 px-5 rounded-lg w-96 bg-white">
                         <div className="font-medium text-center text-lg">Masuk Aplikasi</div>

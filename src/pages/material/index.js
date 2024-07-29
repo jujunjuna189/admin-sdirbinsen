@@ -64,7 +64,7 @@ const MaterialPage = () => {
   return (
     <Content element={element}>
       <div className="flex flex-wrap justify-between items-center">
-        <span className="font-bold text-xl text-slate-800">Daftar Material</span>
+        <span className="font-bold text-xl text-slate-800">Daftar Materiel</span>
         {getLocalUser()?.auth?.permission["binmat.create"] && (
           <div>
             <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/material/create/${categoryActive.title}`)}>

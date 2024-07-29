@@ -45,7 +45,7 @@ const AddUserPersonilModal = (props) => {
             <div className="absolute h-full w-full bg-black opacity-30" onClick={() => onClickOutside()} />
             <div className="p-3 border rounded-lg bg-white w-96 z-10">
                 <div className="leading-3">
-                    <span className="text-base font-medium">Hubungkan dengan profil personil</span><br />
+                    <span className="text-base font-medium">Hubungkan dengan profil personel</span><br />
                 </div>
                 <div className="flex flex-col gap-1 py-2 my-2">
                     <div>

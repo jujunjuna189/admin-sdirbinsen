@@ -5,6 +5,7 @@ import MaterialCreatePage from "./material/form/create";
 import MaterialUpdatePage from "./material/form/update";
 import PersonilPage from "./personil";
 import PersonilDetailPage from "./personil/detail";
+import PersonilDetailRhPage from "./personil/detail_rh";
 import PersonilCreatePage from "./personil/form/create";
 import PersonilUpdatePage from "./personil/form/update";
 import ProfilePage from "./profile";
@@ -26,6 +27,7 @@ export {
   DashboardPage,
   PersonilPage,
   PersonilDetailPage,
+  PersonilDetailRhPage,
   MaterialPage,
   PersonilCreatePage,
   PersonilUpdatePage,

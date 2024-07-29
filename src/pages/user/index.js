@@ -1,9 +1,9 @@
-import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
+import { Button, Card, Content, EmptyData, SimplePagination, TableLoader } from "../../components";
 import { UseUserContext } from "../../contexts/user/UserContext";
 import { getLocalUser } from "../../utils";
 
 const UserPage = () => {
-    const { navigation, element, user, onShowConfirmDelete } = UseUserContext();
+    const { navigation, element, user, onShowConfirmDelete, onGetUser } = UseUserContext();
 
     const renderTable = () => {
         return (
@@ -83,7 +83,7 @@ const UserPage = () => {
                         {Object.keys(user).length === 0 ? <TableLoader /> : user.data.length === 0 ? <EmptyData /> : renderTable()}
                     </div>
                     <div className="flex justify-end px-5 py-3">
-                        <span className="font-semibold text-sm">Rows per page: 10</span>
+                        {Object.keys(user).length !== 0 && user.data.length !== 0 && <SimplePagination pages={user?.links ?? []} currentPage={user?.current_page} onCallback={((page) => onGetUser({ page: page }))} />}
                     </div>
                 </Card>
             </div>

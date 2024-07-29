@@ -4,9 +4,9 @@ import { UsePersonilDetailContext } from "../../../contexts/personil/PersonilDet
 const PersonilDetailRhPage = () => {
     const { personil } = UsePersonilDetailContext();
     return (
-        <div className="flex justify-center py-4">
-            <Card className="px-4 pb-10 pt-14 text-[12px] w-full max-w-[49.625rem]">
-                <div className="mb-3 text-center">
+        <div className="flex justify-center py-4 print-no-padding">
+            <Card className="px-4 print:px-0 pb-10 print:0 pt-14 print:pt-0 text-[12px] w-full max-w-[49.625rem] print-no-border">
+                <div className="mb-3 text-center print-no-margin">
                     <span className="font-bold underline text-[14px]">RIWAYAT HIDUP SINGKAT</span>
                 </div>
                 <span className="font-semibold">I. DATA POKOK</span>
@@ -67,7 +67,7 @@ const PersonilDetailRhPage = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className="mt-4">
+                <div className="mt-3 break-inside-avoid">
                     <span className="font-semibold">II. RIWAYAT PENDIDIKAN</span>
                     <div className="text-center underline font-semibold">PENDIDIKAN UMUM</div>
                 </div>
@@ -99,7 +99,7 @@ const PersonilDetailRhPage = () => {
                         })()}
                     </tbody>
                 </table>
-                <div className="mt-4">
+                <div className="mt-3 break-inside-avoid">
                     <div className="text-center underline font-semibold">PENDIDIKAN MILITER</div>
                 </div>
                 <table className="w-full mt-2">
@@ -136,7 +136,7 @@ const PersonilDetailRhPage = () => {
                         })()}
                     </tbody>
                 </table>
-                <div className="flex gap-3 mt-4">
+                <div className="flex gap-3 mt-3 break-inside-avoid">
                     <div className="grow">
                         <div className="flex">
                             <div className="grow">
@@ -186,7 +186,7 @@ const PersonilDetailRhPage = () => {
                         </table>
                     </div>
                 </div>
-                <div className="flex gap-3 mt-4 break-inside-avoid">
+                <div className="flex gap-3 mt-3 break-inside-avoid">
                     <div className="grow">
                         <div className="flex">
                             <div className="grow">
@@ -235,7 +235,7 @@ const PersonilDetailRhPage = () => {
                     </div>
                 </div>
                 <div className="break-inside-avoid">
-                    <div className="mt-4">
+                    <div className="mt-3">
                         <div className="underline font-semibold">VIII. RIWAYAT JABATAN</div>
                     </div>
                     <table className="w-full mt-2">
@@ -270,7 +270,7 @@ const PersonilDetailRhPage = () => {
                     </table>
                 </div>
                 <div className="break-inside-avoid">
-                    <div className="mt-4">
+                    <div className="mt-3">
                         <div className="underline font-semibold">IX. RIWAYAT KELUARGA</div>
                     </div>
                     <div className="flex gap-3 mt-2">
@@ -362,7 +362,7 @@ const PersonilDetailRhPage = () => {
                     </div>
                 </div>
                 <div className="break-inside-avoid">
-                    <div className="mt-4">
+                    <div className="mt-3">
                         <div className="underline font-semibold">X. RIWAYAT PRESTASI</div>
                     </div>
                     <table className="w-full mt-2">

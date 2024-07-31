@@ -295,7 +295,6 @@ export const PersonilDetailContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        console.log('Oke');
         onChangeNavProfile(0);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

@@ -311,52 +311,27 @@ const PersonilDetailRhPage = () => {
                             </tbody>
                         </table>
                         <table className="grow">
-                            <tbody>
+                            <thead>
                                 <tr>
                                     <td className="border border-stone-400 px-2 font-semibold text-center w-8 min-w-8 max-w-8">No</td>
                                     <td className="border border-stone-400 px-2 font-semibold text-center">Nama Anak</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">Tgl Lahir</td>
+                                    <td className="border border-stone-400 px-2 font-semibold text-center w-24 min-w-24 max-w-24">Tgl Lahir</td>
                                 </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">1</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">2</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">3</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">4</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">5</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">6</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">7</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
-                                <tr>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center">8</td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                    <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                </tr>
+                            </thead>
+                            <tbody>
+                                {(() => {
+                                    let components = [];
+                                    for (let i = 0; i < 8; i++) {
+                                        components.push(
+                                            <tr key={i}>
+                                                <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
+                                                <td className="border border-stone-400 px-2">{personil?.riwayat_keluarga_anak?.[i]?.nama}</td>
+                                                <td className="border border-stone-400 px-2 text-center">{personil?.riwayat_keluarga_anak?.[i]?.tanggal_lahir}</td>
+                                            </tr>
+                                        );
+                                    }
+                                    return components;
+                                })()}
                             </tbody>
                         </table>
                     </div>

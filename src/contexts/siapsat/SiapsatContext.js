@@ -29,7 +29,7 @@ export const SiapsatContextProvider = ({ children }) => {
     });
     setCategory([...datas]);
     setCategoryActive({ ...datas[0] });
-    onGetSiapsat({ kategori: datas[0].title });
+    onGetSiapsat({ kategori: datas?.[0]?.title });
   };
 
   const onTabSwitch = (indexItem) => {

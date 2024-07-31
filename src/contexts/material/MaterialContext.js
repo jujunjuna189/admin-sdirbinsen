@@ -31,7 +31,7 @@ export const MaterialContextProvider = ({ children }) => {
     });
     setCategory([...datas]);
     setCategoryActive({ ...datas[0] });
-    onGetMaterial({ kategori: datas[0].title });
+    onGetMaterial({ kategori: datas?.[0]?.title });
   };
 
   const onTabSwitch = (indexItem) => {

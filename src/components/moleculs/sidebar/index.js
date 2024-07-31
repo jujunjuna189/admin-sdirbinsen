@@ -187,6 +187,8 @@ const Sidebar = (props) => {
           </div>
         </div>
       )}
+      {/* Problem feature */}
+
     </aside>
   );
 };

@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Content, ProtectedAuth } from "./components";
 import { AuthContextProvider } from "./contexts/auth/AuthContext";
+import { ChatContextProvider } from "./contexts/chat/ChatContext";
 import { LoginContextProvider } from "./contexts/auth/LoginContext";
 import { MaterialContextProvider } from "./contexts/material/MaterialContext";
 import { MaterialCreateContextProvider } from "./contexts/material/MaterialCreateContext";
@@ -22,7 +23,9 @@ import { TrakorpsDetailContextProvider } from "./contexts/trakorps/TrakorpsDetai
 import { SiapsatContextProvider } from "./contexts/siapsat/SiapsatContext";
 import { SiapsatCreateContextProvider } from "./contexts/siapsat/SIapsatCreateContext";
 import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateContext";
+
 import {
+  ChatPage,
   DashboardPage,
   LoginPage,
   MaterialCreatePage,
@@ -317,6 +320,17 @@ function App() {
               <SettingSatuanCreateContextProvider>
                 <SettingSatuanCreatePage />
               </SettingSatuanCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        {/* Chat */}
+        <Route
+          path="/chat"
+          element={
+            <ProtectedAuth>
+              <ChatContextProvider>
+                <ChatPage />
+              </ChatContextProvider>
             </ProtectedAuth>
           }
         />

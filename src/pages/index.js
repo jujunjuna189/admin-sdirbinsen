@@ -1,4 +1,5 @@
 import LoginPage from "./auth/login";
+import ChatPage from "./chat";
 import DashboardPage from "./dashboard";
 import MaterialPage from "./material";
 import MaterialCreatePage from "./material/form/create";
@@ -24,6 +25,7 @@ import UserCreatePage from "./user/form/create";
 
 export {
   LoginPage,
+  ChatPage,
   DashboardPage,
   PersonilPage,
   PersonilDetailPage,

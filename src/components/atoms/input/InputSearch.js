@@ -2,7 +2,7 @@ const InputSearch = (props) => {
     return (
         <div className="flex gap-2 items-center">
             <div className={`rounded-lg shadow-md flex bg-white items-center border gap-2 flex-grow pl-3 ${props.className}`}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <mask id="mask0_763_18" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                         <path d="M0 0H24V24H0V0Z" fill="white" />
                     </mask>
@@ -11,7 +11,7 @@ const InputSearch = (props) => {
                         <path d="M3 21L9 15" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </g>
                 </svg>
-                <input type="text" className="py-3 px-3 text-sm w-full m-0 focus:outline-none rounded-full" placeholder={props.placeholder} />
+                <input type="text" className="py-2 px-3 text-sm w-full m-0 focus:outline-none rounded-full" placeholder={props.placeholder} />
             </div>
         </div>
     );

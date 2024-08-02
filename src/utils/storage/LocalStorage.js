@@ -13,3 +13,12 @@ export const getLocalUser = () => {
 export const clearLocal = () => {
     localStorage.clear();
 }
+
+// Message
+export const setLocalMessagePending = (value) => {
+    localStorage.setItem('sdirbinsen.message_pending', JSON.stringify(value));
+}
+
+export const getLocalMessagePending = () => {
+    return JSON.parse(localStorage.getItem('sdirbinsen.message_pending')) ?? [];
+}

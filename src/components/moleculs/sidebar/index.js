@@ -4,7 +4,7 @@ import { getLocalUser } from "../../../utils";
 
 const Sidebar = (props) => {
   const navigation = useNavigate();
-  const [dropDown, setDropDown] = useState(JSON.parse(localStorage.getItem('sdirbinsen.dropDown') ?? {}));
+  const [dropDown, setDropDown] = useState(JSON.parse(localStorage.getItem('sdirbinsen.dropDown')) ?? {});
 
   return (
     <aside className="relative w-[13rem] w-min-[13rem] w-max-[13rem] border-e bg-white">

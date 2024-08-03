@@ -31,7 +31,7 @@ const ChatPage = () => {
                                     </div>
                                     <div className="flex flex-col leading-4">
                                         <span className="font-medium">{ElipsisFormatter(item.name, 26)}</span>
-                                        <small className="text-slate-700">{item.role?.name_lower}</small>
+                                        <small className="text-slate-700">{ElipsisFormatter(item.last_message ?? item.role?.name_lower, 20)}</small>
                                     </div>
                                 </div>
                             );

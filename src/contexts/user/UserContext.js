@@ -12,7 +12,7 @@ export const UserContextProvider = ({ children }) => {
 
     const onGetUser = async ({ page = 1 }) => {
         setUser({});
-        await getUserRequest().then((res) => {
+        await getUserRequest({}).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setUser(res);

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createChatRequest, downloadChatRequest, getChatRequest } from "../../api/ChatRequest";
 import { createChatFirebase, getChatFirebase } from "../../api/firebase/ChatFirebase";
-import { getUserRequest } from "../../api/UserRequest";
+import { getUserFromChatRequest, getUserRequest } from "../../api/UserRequest";
 import { dateFormatterV3, getLocalMessagePending, getLocalUser, setLocalMessagePending } from "../../utils";
 import { timeFormatterV2 } from "../../utils/formatter/TimeFormatter";
 
@@ -37,8 +37,8 @@ export const ChatContextProvider = ({ children }) => {
         setController([{ ...props, from_id: user.auth.user.id, to_id: currentContact.id }]);
     }
 
-    const contactFormat = ({ id, picture, name, role }) => {
-        return { id: id, picture: picture, name: name, role: role };
+    const contactFormat = ({ id, picture, name, last_message, role }) => {
+        return { id: id, picture: picture, name: name, last_message: last_message, role: role };
     }
 
     const messageFormat = ({ id, attachment, attachment_name, message, from_id, to_id, created_at, status }) => {
@@ -46,7 +46,17 @@ export const ChatContextProvider = ({ children }) => {
     }
 
     const onGetUser = async () => {
-        await getUserRequest().then((res) => {
+        await getUserRequest({ filter: `?not_id=[${user.auth.user.id}]` }).then((res) => {
+            let contact = [];
+            res.data.forEach((item) => {
+                contact.push(contactFormat({ ...item }));
+            });
+            setContact(contact);
+        });
+    }
+
+    const onGetUserFromChat = async () => {
+        await getUserFromChatRequest({ id: user.auth.user.id }).then((res) => {
             let contact = [];
             res.data.forEach((item) => {
                 contact.push(contactFormat({ ...item }));
@@ -67,6 +77,9 @@ export const ChatContextProvider = ({ children }) => {
 
     const initial = (index) => {
         switch (index) {
+            case 0:
+                onGetUserFromChat();
+                break;
             case 1:
                 onGetUser();
                 break;

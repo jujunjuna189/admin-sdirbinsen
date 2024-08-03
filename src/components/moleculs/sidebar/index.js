@@ -9,12 +9,13 @@ const Sidebar = (props) => {
   return (
     <aside className="relative w-[13rem] w-min-[13rem] w-max-[13rem] border-e bg-white">
       <div className="px-2 py-3 mb-3 border-y cursor-pointer">
-        <div className="flex gap-3 items-center justify-center text-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <div className="flex gap-3 justify-center text-sm">
+          {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M15 6l-6 6l6 6"></path>
-          </svg>
-          <span className="font-medium">Sembunyikan Menu</span>
+          </svg> */}
+          {/* <span className="font-medium">Sembunyikan Menu</span> */}
+          <span className="font-medium text-slate-600">Menu Aplikasi</span>
         </div>
       </div>
       {getLocalUser()?.auth?.permission?.["pengguna.menu"] && (

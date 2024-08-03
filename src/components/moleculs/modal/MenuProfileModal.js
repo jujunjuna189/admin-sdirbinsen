@@ -24,6 +24,7 @@ const MenuProfileModal = (props) => {
                                 <span>Pengaturan</span>
                             </li>
                         )}
+                        <li className="py-1 px-2 hover:bg-slate-100 rounded-lg" onClick={() => navigation('/help-center/tutorial')}><span>Pusat Bantuan</span></li>
                     </ul>
                 </div>
                 <div className="border-t w-full h-[1px] my-3" />

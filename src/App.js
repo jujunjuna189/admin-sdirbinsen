@@ -27,6 +27,7 @@ import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateCo
 import {
   ChatPage,
   DashboardPage,
+  HelpTutorialPage,
   LoginPage,
   MaterialCreatePage,
   MaterialPage,
@@ -291,6 +292,17 @@ function App() {
             <Content>Coming Soon</Content>
           }
         />
+        {/* Chat */}
+        <Route
+          path="/chat"
+          element={
+            <ProtectedAuth>
+              <ChatContextProvider>
+                <ChatPage />
+              </ChatContextProvider>
+            </ProtectedAuth>
+          }
+        />
         {/* Setting User */}
         <Route
           path="/setting/user"
@@ -313,6 +325,7 @@ function App() {
             </ProtectedAuth>
           }
         />
+        {/* Setting personil satuan */}
         <Route
           path="/setting/personil/satuan/create"
           element={
@@ -323,14 +336,12 @@ function App() {
             </ProtectedAuth>
           }
         />
-        {/* Chat */}
+        {/* Help Center */}
         <Route
-          path="/chat"
+          path="/help-center/tutorial"
           element={
             <ProtectedAuth>
-              <ChatContextProvider>
-                <ChatPage />
-              </ChatContextProvider>
+              <HelpTutorialPage />
             </ProtectedAuth>
           }
         />

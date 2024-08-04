@@ -36,7 +36,6 @@ export const PersonilUpdateContextProvider = ({ children }) => {
             golongan_darah: res.golongan_darah,
             satuan: res.satuan,
             sumber_pa: res.sumber_pa,
-            gol_jabatan: res.gol_jabatan,
             jabatan: res.jabatan,
             pangkat: res.pangkat,
             korps: res.korps,

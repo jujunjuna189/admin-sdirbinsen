@@ -27,6 +27,7 @@ import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateCo
 import {
   ChatPage,
   DashboardPage,
+  HelpSuggestionPage,
   HelpTicketPage,
   HelpTutorialPage,
   LoginPage,
@@ -351,6 +352,14 @@ function App() {
           element={
             <ProtectedAuth>
               <HelpTicketPage />
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/help-center/suggestion"
+          element={
+            <ProtectedAuth>
+              <HelpSuggestionPage />
             </ProtectedAuth>
           }
         />

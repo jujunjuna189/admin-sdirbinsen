@@ -1,6 +1,7 @@
 import LoginPage from "./auth/login";
 import ChatPage from "./chat";
 import DashboardPage from "./dashboard";
+import HelpSuggestionPage from "./help/suggestion";
 import HelpTicketPage from "./help/ticket";
 import HelpTutorialPage from "./help/tutorial";
 import MaterialPage from "./material";
@@ -29,6 +30,7 @@ export {
   LoginPage,
   ChatPage,
   DashboardPage,
+  HelpSuggestionPage,
   HelpTicketPage,
   HelpTutorialPage,
   PersonilPage,

@@ -90,7 +90,7 @@ const KeluargaPersonilDetail = (props) => {
                                         <tbody>
                                             {item?.keluarga_anak.length === 0 && (
                                                 <tr>
-                                                    <td className="border text-center py-2" colSpan={3}>Tidak ada data</td>
+                                                    <td className="border text-center py-2" colSpan={4}>Tidak ada data</td>
                                                 </tr>
                                             )}
                                             {item?.keluarga_anak?.map((item, index) => {

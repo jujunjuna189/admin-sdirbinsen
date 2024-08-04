@@ -9,7 +9,7 @@ const ChatPage = () => {
     return (
         <Content>
             <div className="flex gap-3 h-full">
-                <Card className="border rounded-lg px-2 py-2">
+                <Card className="border rounded-lg px-2 py-2 h-full flex flex-col">
                     <div className="rounded-full px-2 py-1 border flex gap-2 justify-center items-center">
                         {tab.map((item, index) => {
                             return (
@@ -19,7 +19,7 @@ const ChatPage = () => {
                     </div>
                     <hr className="mt-3" />
                     <InputSearch className="shadow-none border rounded-lg mt-2" placeholder="Cari..." />
-                    <div className="my-5 overflow-y-auto flex flex-col gap-1">
+                    <div className="grow my-5 overflow-y-auto scrollbar-hidden flex flex-col gap-1">
                         {contact.map((item, index) => {
                             return (
                                 <div key={index} className="flex gap-2 items-center cursor-pointer hover:bg-slate-100 p-1 rounded-lg" onClick={() => onSetCurrentContact(index)}>

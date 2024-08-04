@@ -174,6 +174,8 @@ export const ChatContextProvider = ({ children }) => {
             link.setAttribute('download', `${file_name}`);
             document.body.appendChild(link);
             link.click();
+            // Clear child
+            document.body.removeChild(link);
         });
     }
 

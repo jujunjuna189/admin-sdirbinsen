@@ -1,9 +1,7 @@
 import { Button, Content, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { UsePersonilUpdateContext } from "../../../../contexts/personil/PersonilUpdateContext";
 import { dateFormatterV2, getLocalUser } from "../../../../utils";
-import { AgamaModal, GolDarahModal, SatuanModal, SumberPAModal } from "../../component";
-import KorpsModal from "../../component/modal/KorpsModal";
-import PangkatModal from "../../component/modal/PangkatModal";
+import { AgamaModal, GolDarahModal, GolJabatanModal, KorpsModal, PangkatModal, SatuanModal, SumberPAModal } from "../../component";
 
 const PersonilUpdatePage = () => {
     const { navigation, element, controller, errors, onSetController, onSave } = UsePersonilUpdateContext();
@@ -80,6 +78,7 @@ const PersonilUpdatePage = () => {
                         <hr />
                         {!getLocalUser()?.auth?.user?.satuan_id && <SatuanModal value={controller.satuan?.nama} error={errors.satuan} onChange={(value) => onSetController('satuan', value)} />}
                         <SumberPAModal value={controller.sumber_pa} error={errors.sumber_pa} onChange={(value) => onSetController('sumber_pa', value)} />
+                        <GolJabatanModal value={controller.gol_jabatan} error={errors.gol_jabatan} onChange={(value) => onSetController('gol_jabatan', value.nama)} />
                         <div className="flex gap-2">
                             <div className="flex-grow">
                                 <span className="font-medium">Jabatan</span>

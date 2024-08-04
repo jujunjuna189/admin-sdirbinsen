@@ -5,6 +5,10 @@ import KemampuanBahasaPersonilDetail from "./kemampuanBahasa"
 import KepangkatanPersonilDetail from "./kepangkatan"
 import AgamaModal from "./modal/AgamaModal"
 import GolDarahModal from "./modal/GolDarahModal"
+import GolJabatanModal from "./modal/GolJabatanModal"
+import JabatanModal from "./modal/JabatanModal"
+import KorpsModal from "./modal/KorpsModal"
+import PangkatModal from "./modal/PangkatModal"
 import SatuanModal from "./modal/SatuanModal"
 import SumberPAModal from "./modal/SumberPAModal"
 import PendidikanMiliterPersonilDetail from "./pendidikanMiliter"
@@ -26,6 +30,10 @@ export {
     PendidikanUmumPersonilDetail,
     PendidikanMiliterPersonilDetail,
     KemampuanBahasaPersonilDetail,
+    GolJabatanModal,
+    JabatanModal,
+    KorpsModal,
+    PangkatModal,
     SatuanModal,
     SumberPAModal,
     AgamaModal,

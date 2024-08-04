@@ -64,7 +64,7 @@ const AddPangkatModal = (props) => {
           </div>
           <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
             <div>
-              <PangkatModal value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value)} />
+              <PangkatModal value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value.nama)} />
             </div>
             <div>
               <span className="font-medium">Tmt</span>

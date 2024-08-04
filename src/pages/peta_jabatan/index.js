@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UsePetaJabatanContext } from "../../contexts/peta_jabatan/PetaJabatanContext";
 import { calculateDifferenceDate } from "../../utils";
@@ -10,35 +11,47 @@ const PetaJabatanPage = () => {
             <table className="w-full border-collapse">
                 <thead className="bg-slate-50">
                     <tr>
-                        <th className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-start">
+                        <th colSpan={2} className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-center w-[1rem] min-w-[1rem] max-w-[1rem] bg-slate-200">
                             No
                         </th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Jabatan</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Nama</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Pangkat</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">NRP</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">TMT</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Tahun</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Bulan</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Jabatan</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Nama</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Pangkat</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">NRP</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">TMT</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Tahun</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Bulan</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {petaJabatan?.data?.map((item, index) => {
-                        return (
+                    {Object.keys(petaJabatan?.data)?.map((item, index) => (
+                        <React.Fragment key={index}>
                             <tr key={index}>
-                                <td className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2">
-                                    {index + 1}
-                                </td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.jabatan}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.personil.nama}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.personil.pangkat}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.personil.nrp}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.tmt}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{calculateDifferenceDate(item.tmt, new Date()).years === 0 ? "Tahun" : `${calculateDifferenceDate(item.tmt, new Date()).years} Tahun`}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{calculateDifferenceDate(item.tmt, new Date()).months === 0 ? 'Bulan' : `${calculateDifferenceDate(item.tmt, new Date()).months} Bulan`}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-2 py-2"></td>
+                                <td className="border-b-[1.5px] border-slate-200 px-2 py-2"></td>
+                                <td colSpan={7} className="border-b-[1.5px] border-slate-200 px-2 py-2 font-semibold">{item}</td>
                             </tr>
-                        );
-                    })}
+                            {petaJabatan?.data?.[item]?.map((item, childIndex) => {
+                                return (
+                                    <tr key={childIndex}>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2 text-center">
+                                            {index + (childIndex + 1)}
+                                        </td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2 text-center">
+                                            {childIndex + 1}
+                                        </td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.jabatan}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.nama}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.pangkat}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.nrp}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.tmt}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(item.tmt, new Date()).years === 0 ? "Tahun" : `${calculateDifferenceDate(item.tmt, new Date()).years} Tahun`}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(item.tmt, new Date()).months === 0 ? 'Bulan' : `${calculateDifferenceDate(item.tmt, new Date()).months} Bulan`}</td>
+                                    </tr>
+                                );
+                            })}
+                        </React.Fragment>
+                    ))}
                 </tbody>
             </table>
         );

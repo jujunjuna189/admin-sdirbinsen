@@ -22,6 +22,8 @@ export const API_MATERIAL_KATEGORI_GET = `${REACT_APP_API_URL}admin/master/mater
 export const API_SIAPSAT_GET = `${REACT_APP_API_URL}admin/binsiapsat`;
 // Siapsat Kategori
 export const API_SIAPSAT_KATEGORI_GET = `${REACT_APP_API_URL}admin/master/binsiapsat-category`;
+// Peta Jabatan
+export const API_PETA_JABATAN_GET = `${REACT_APP_API_URL}admin/peta-jabatan`;
 // Satuan
 export const API_SATUAN_GET = `${REACT_APP_API_URL}admin/satuan`;
 // gol jabatan

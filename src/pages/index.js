@@ -13,6 +13,8 @@ import PersonilDetailRhPage from "./personil/detail_rh";
 import PersonilCreatePage from "./personil/form/create";
 import PersonilUpdatePage from "./personil/form/update";
 import PetaJabatanPage from "./peta_jabatan";
+import PetaJabatanCreatePage from "./peta_jabatan/form/create";
+import PetaJabatanUpdatePage from "./peta_jabatan/form/update";
 import ProfilePage from "./profile";
 import SettingPersonilPage from "./setting/personil";
 import SettingSatuanCreatePage from "./setting/personil/form/SettingSatuanCreatePage";
@@ -43,6 +45,8 @@ export {
   MaterialCreatePage,
   MaterialUpdatePage,
   PetaJabatanPage,
+  PetaJabatanCreatePage,
+  PetaJabatanUpdatePage,
   ProfilePage,
   SettingPersonilPage,
   SettingSatuanCreatePage,

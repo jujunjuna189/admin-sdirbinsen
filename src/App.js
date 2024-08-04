@@ -24,6 +24,8 @@ import { SiapsatContextProvider } from "./contexts/siapsat/SiapsatContext";
 import { SiapsatCreateContextProvider } from "./contexts/siapsat/SIapsatCreateContext";
 import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateContext";
 import { PetaJabatanContextProvider } from "./contexts/peta_jabatan/PetaJabatanContext";
+import { PetaJabatanCreateContextProvider } from "./contexts/peta_jabatan/PetaJabatanCreateContext";
+import { PetaJabatanUpdateContextProvider } from "./contexts/peta_jabatan/PetaJabatanUpdateContext";
 
 import {
   ChatPage,
@@ -40,7 +42,9 @@ import {
   PersonilDetailRhPage,
   PersonilPage,
   PersonilUpdatePage,
+  PetaJabatanCreatePage,
   PetaJabatanPage,
+  PetaJabatanUpdatePage,
   ProfilePage,
   SettingPersonilPage,
   SettingSatuanCreatePage,
@@ -207,6 +211,26 @@ function App() {
               <PetaJabatanContextProvider>
                 <PetaJabatanPage />
               </PetaJabatanContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/personil/peta_jabatan/create"
+          element={
+            <ProtectedAuth>
+              <PetaJabatanCreateContextProvider>
+                <PetaJabatanCreatePage />
+              </PetaJabatanCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/personil/peta_jabatan/update"
+          element={
+            <ProtectedAuth>
+              <PetaJabatanUpdateContextProvider>
+                <PetaJabatanUpdatePage />
+              </PetaJabatanUpdateContextProvider>
             </ProtectedAuth>
           }
         />

@@ -1,8 +1,9 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UsePetaJabatanContext } from "../../contexts/peta_jabatan/PetaJabatanContext";
+import { calculateDifferenceDate } from "../../utils";
 
 const PetaJabatanPage = () => {
-    const { element, petaJabatan } = UsePetaJabatanContext();
+    const { navigation, element, petaJabatan } = UsePetaJabatanContext();
 
     const renderTable = () => {
         return (
@@ -10,16 +11,15 @@ const PetaJabatanPage = () => {
                 <thead className="bg-slate-50">
                     <tr>
                         <th className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-start">
-                            <div className="flex gap-5 items-center">
-                                <input type="checkbox" className="" />
-                                Nomor REG
-                            </div>
+                            No
                         </th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kategori</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Jenis</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kondisi</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Link File</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Jabatan</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Nama</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Pangkat</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">NRP</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">TMT</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Tahun</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Bulan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,16 +27,15 @@ const PetaJabatanPage = () => {
                         return (
                             <tr key={index}>
                                 <td className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2">
-                                    <div className="flex gap-5 items-center">
-                                        <input type="checkbox" className="" />
-                                        {item.no_reg}
-                                    </div>
+                                    {index + 1}
                                 </td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.kategori}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.jenis}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.kondisi}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.file ?? "-"}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan?.nama ?? ""}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.jabatan}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.personil.nama}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.personil.pangkat}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.personil.nrp}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.tmt}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{calculateDifferenceDate(item.tmt, new Date()).years === 0 ? "Tahun" : `${calculateDifferenceDate(item.tmt, new Date()).years} Tahun`}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{calculateDifferenceDate(item.tmt, new Date()).months === 0 ? 'Bulan' : `${calculateDifferenceDate(item.tmt, new Date()).months} Bulan`}</td>
                             </tr>
                         );
                     })}
@@ -49,6 +48,16 @@ const PetaJabatanPage = () => {
         <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
                 <span className="font-bold text-xl text-slate-800">Peta Jabatan</span>
+                <div>
+                    <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/personil/peta_jabatan/create')}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 5l0 14"></path>
+                            <path d="M5 12l14 0"></path>
+                        </svg>
+                        Tambah
+                    </Button>
+                </div>
             </div>
             <div className="mt-4">
                 <Card>

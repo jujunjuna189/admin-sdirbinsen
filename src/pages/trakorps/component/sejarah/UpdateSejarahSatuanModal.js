@@ -1,31 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "../../../../components";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { updateSatuanRequest } from "../../../../api/SatuanRequest";
+import { Button, InputArea, InputFile } from "../../../../components";
 
 const UpdateSejarahSatuanModal = (props) => {
     const ref = useRef();
     const [isShow, setIsShow] = useState(false);
-    const [value, setValue] = useState('');
-    // eslint-disable-next-line no-unused-vars
+    const [controller, setController] = useState({});
     const [errors, setErrors] = useState({});
-
-    const modules = {
-        toolbar: [
-            [{ header: [1, 2, 3, 4, 5, 6, false] }],
-            [{ font: [] }],
-            [{ size: [] }],
-            ["bold", "italic", "underline", "strike", "blockquote"],
-            [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-            ],
-            ["link", "image", "video"]
-        ]
-    }
 
     const toogleModal = () => {
         setIsShow(!isShow);
@@ -37,10 +18,20 @@ const UpdateSejarahSatuanModal = (props) => {
         }
     };
 
+    const onSetController = (field, value) => {
+        setController({ ...controller, [field]: value });
+    };
+
     const onSave = async () => {
         let dataBatch = { ...props.satuan };
         dataBatch.satuan_id = props.satuan.id;
-        dataBatch.sejarah = value;
+        dataBatch.sejarah = [
+            {
+                gambar: controller.picture?.file ?? null,
+                style: 'float: left; margin: 5px; height: 150px; border-radius: 8px',
+                text: `<div>--gambar_0--${controller.sejarah}</div>`,
+            },
+        ];
         delete dataBatch.logo;
         await updateSatuanRequest({ satuan_id: props.satuan.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
@@ -54,8 +45,6 @@ const UpdateSejarahSatuanModal = (props) => {
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
-        setValue(props.satuan.sejarah);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -67,24 +56,36 @@ const UpdateSejarahSatuanModal = (props) => {
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && "hidden"}`}>
                 <div className="absolute w-full h-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
-                <div className="p-3 border bg-white w-full h-full z-10 overflow-y-auto">
-                    <div className="flex justify-between items-center">
-                        <div className="leading-3">
-                            <span className="text-base font-medium">Ubah Sejarah Satuan</span>
-                            <br />
-                            <small>Buat atau lengkapi sejarah satuan</small>
+                <div className="p-3 border rounded-lg bg-white w-96 z-10">
+                    <div className="leading-3">
+                        <span className="text-base font-medium">Ubah Sejarah Satuan</span>
+                        <br />
+                        <small>Silahkan isi form sejarah satuan</small>
+                    </div>
+                    <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
+                        <div className="flex justify-center">
+                            <div className="w-40 h-40 relative">
+                                {controller?.picture?.preview && (<div className="w-full h-full absolute bg-slate-100">
+                                    <img src={controller?.picture?.preview} alt="ImageProfile" className="object-cover w-full h-full" />
+                                </div>)}
+                                <div className="flex justify-center items-center h-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="text-slate-300" width="100" height="100" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex justify-end gap-3 mt-3">
-                            <Button className="border border-slate-700 text-slate-700" onClick={() => toogleModal()}>
-                                Batal
-                            </Button>
+                        <div className="flex justify-center my-4">
+                            <InputFile error={errors.picture} onChange={(value) => onSetController('picture', value)} />
+                        </div>
+                        <div>
+                            <span className="font-medium">Sejarah</span>
+                            <InputArea className="mt-1" value={controller.sejarah} error={errors.sejarah} onChange={(value) => onSetController("sejarah", value)} placeholder="..." />
+                        </div>
+                        <div className="flex-grow" />
+                        <div className="flex justify-end mt-3">
                             <Button className="bg-slate-700 text-white" onClick={() => onSave()}>
                                 Simpan
                             </Button>
                         </div>
-                    </div>
-                    <div className="gap-1 py-2 my-2">
-                        <ReactQuill className="h-[75vh]" modules={modules} theme="snow" value={value ?? props.satuan.sejarah} onChange={setValue} />
                     </div>
                 </div>
             </div>

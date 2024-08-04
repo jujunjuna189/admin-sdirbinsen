@@ -11,6 +11,7 @@ import PendidikanMiliterPersonilDetail from "./pendidikanMiliter"
 import PendidikanUmumPersonilDetail from "./pendidikanUmum"
 import PenugasanLuarNegeriPersonilDetail from "./penugasanLuarNegeri"
 import PenugasanOperasiPersonilDetail from "./penugasanOperasi"
+import PrestasiPersonilDetail from "./prestasi"
 import TandaJasaPersonilDetail from "./tandaJasa"
 
 export {
@@ -19,6 +20,7 @@ export {
     KepangkatanPersonilDetail,
     PenugasanLuarNegeriPersonilDetail,
     PenugasanOperasiPersonilDetail,
+    PrestasiPersonilDetail,
     TandaJasaPersonilDetail,
     KeluargaPersonilDetail,
     PendidikanUmumPersonilDetail,

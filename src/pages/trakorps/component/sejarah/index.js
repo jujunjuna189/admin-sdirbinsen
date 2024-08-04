@@ -9,7 +9,7 @@ const SejarahTrakorpsDetail = (props) => {
         <UpdateSejarahSatuanModal onSave={() => props.onSave && props.onSave()} satuan={props.satuan} />
       </div>
       <hr />
-      <div className="mt-3" dangerouslySetInnerHTML={{ __html: props.satuan.sejarah }} />
+      <div className="mt-3" style={{ display: 'flex' }} dangerouslySetInnerHTML={{ __html: props.satuan.sejarah }} />
     </Card>
   );
 };

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API_PERSONIL_LIST_GET, API_SATUAN_GET } from "../config/api";
 
+// digunakan di binman dan tambah user
 export const getSatuanPersonilRequest = async () => {
   // const user = getLocalUser();
   try {

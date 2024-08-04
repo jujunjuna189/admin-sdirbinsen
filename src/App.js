@@ -23,6 +23,7 @@ import { TrakorpsDetailContextProvider } from "./contexts/trakorps/TrakorpsDetai
 import { SiapsatContextProvider } from "./contexts/siapsat/SiapsatContext";
 import { SiapsatCreateContextProvider } from "./contexts/siapsat/SIapsatCreateContext";
 import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateContext";
+import { PetaJabatanContextProvider } from "./contexts/peta_jabatan/PetaJabatanContext";
 
 import {
   ChatPage,
@@ -39,6 +40,7 @@ import {
   PersonilDetailRhPage,
   PersonilPage,
   PersonilUpdatePage,
+  PetaJabatanPage,
   ProfilePage,
   SettingPersonilPage,
   SettingSatuanCreatePage,
@@ -201,7 +203,11 @@ function App() {
         <Route
           path="/personil/peta_jabatan"
           element={
-            <Content>Coming Soon</Content>
+            <ProtectedAuth>
+              <PetaJabatanContextProvider>
+                <PetaJabatanPage />
+              </PetaJabatanContextProvider>
+            </ProtectedAuth>
           }
         />
         {/* komposisi Personil */}

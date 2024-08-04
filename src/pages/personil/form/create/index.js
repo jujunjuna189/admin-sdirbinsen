@@ -2,9 +2,11 @@ import { Button, Content, InputDate, InputFile, InputNumber, InputText } from ".
 import { UsePersonilCreateContext } from "../../../../contexts/personil/PersonilCreateContext";
 import { dateFormatterV2, getLocalUser } from "../../../../utils";
 import { AgamaModal, GolDarahModal, SatuanModal, SumberPAModal } from "../../component";
+import KorpsModal from "../../component/modal/KorpsModal";
+import PangkatModal from "../../component/modal/PangkatModal";
 
 const PersonilCreatePage = () => {
-    const { navigation, element, formContent, onTabFormContent, controller, errors, onSetController, onSave, onSaveAndAdd } = UsePersonilCreateContext();
+    const { navigation, element, formContent, controller, errors, onSetController, onSave, onSaveAndAdd } = UsePersonilCreateContext();
 
     const renderContentForm = () => {
         return formContent === 'form' ? renderForm() : renderImport();
@@ -81,14 +83,12 @@ const PersonilCreatePage = () => {
                             <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController('jabatan', value)} placeholder="..." />
                         </div>
                         <div className="flex-grow">
-                            <span className="font-medium">Pangkat</span>
-                            <InputText className="mt-1" value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value)} placeholder="..." />
+                            <PangkatModal value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value.nama)} />
                         </div>
                     </div>
                     <div className="flex gap-2">
                         <div className="flex-grow">
-                            <span className="font-medium">Korps</span>
-                            <InputText className="mt-1" value={controller.korps} error={errors.korps} onChange={(value) => onSetController('korps', value)} placeholder="..." />
+                            <KorpsModal value={controller.korps} error={errors.korps} onChange={(value) => onSetController('korps', value.nama)} />
                         </div>
                         <div className="flex-grow">
                             <span className="font-medium">Psi</span>
@@ -159,9 +159,9 @@ const PersonilCreatePage = () => {
                 <span className="font-semibold text-base text-slate-800">Tambah Personel</span>
             </div>
             <div className="flex justify-center">
-                <div className="mt-5 flex flex-col gap-3">
-                    <div className="flex justify-center gap-3">
-                        <div className="border rounded-lg p-3 w-80 flex flex-col">
+                <div className="mt-5 flex flex-col gap-3 w-[40rem] min-w-[40rem]">
+                    {/* <div className="flex justify-center gap-3">
+                        <div className="border rounded-lg p-3 flex flex-col">
                             <div className="leading-3">
                                 <span className="text-base font-medium">Tambah personel dengan formulir</span><br />
                                 <small>Tambah personel dalam jumlah sedikit</small>
@@ -171,7 +171,7 @@ const PersonilCreatePage = () => {
                                 <Button className={`${formContent === 'form' ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`} onClick={() => onTabFormContent('form')}>Tambah Personel</Button>
                             </div>
                         </div>
-                        <div className="border rounded-lg p-3 w-80 flex flex-col">
+                        <div className="border rounded-lg p-3 flex flex-col">
                             <div className="leading-3">
                                 <span className="text-base font-medium">Import Personel</span><br />
                                 <small>Tambah personel dalam jumlah banyak dengan menggunggah data personel dalam format excel</small>
@@ -181,7 +181,7 @@ const PersonilCreatePage = () => {
                                 <Button className={`${formContent === 'import' ? 'bg-green-700 text-white' : 'bg-red-700 text-white'}`} onClick={() => onTabFormContent('import')}>Import Personel</Button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     {renderContentForm()}
                 </div>
             </div>

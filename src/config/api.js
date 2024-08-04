@@ -24,6 +24,14 @@ export const API_SIAPSAT_GET = `${REACT_APP_API_URL}admin/binsiapsat`;
 export const API_SIAPSAT_KATEGORI_GET = `${REACT_APP_API_URL}admin/master/binsiapsat-category`;
 // Satuan
 export const API_SATUAN_GET = `${REACT_APP_API_URL}admin/satuan`;
+// gol jabatan
+export const API_GOL_JABATAN_GET = `${REACT_APP_API_URL}admin/gol-jabatan`;
+// jabatan
+export const API_JABATAN_GET = `${REACT_APP_API_URL}admin/jabatan`;
+// Pangkat
+export const API_PANGKAT_GET = `${REACT_APP_API_URL}admin/pangkat`;
+// Korps
+export const API_KORPS_GET = `${REACT_APP_API_URL}admin/korps`;
 // Satuan Prestasi
 export const API_SATUAN_PRESTASI_GET = `${REACT_APP_API_URL}admin/satuan-prestasi`;
 // Satuan Penjabat Dansat

@@ -1,7 +1,9 @@
 import { Button, Content, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { UsePersonilUpdateContext } from "../../../../contexts/personil/PersonilUpdateContext";
 import { dateFormatterV2, getLocalUser } from "../../../../utils";
-import { AgamaModal, SatuanModal, SumberPAModal } from "../../component";
+import { AgamaModal, GolDarahModal, SatuanModal, SumberPAModal } from "../../component";
+import KorpsModal from "../../component/modal/KorpsModal";
+import PangkatModal from "../../component/modal/PangkatModal";
 
 const PersonilUpdatePage = () => {
     const { navigation, element, controller, errors, onSetController, onSave } = UsePersonilUpdateContext();
@@ -74,10 +76,7 @@ const PersonilUpdatePage = () => {
                                 <InputText className="mt-1" value={controller.suku_bangsa} error={errors.suku_bangsa} onChange={(value) => onSetController('suku_bangsa', value)} placeholder="..." />
                             </div>
                         </div>
-                        <div className="w-52">
-                            <span className="font-medium">Golongan Darah</span>
-                            <InputText className="mt-1" value={controller.golongan_darah} error={errors.golongan_darah} onChange={(value) => onSetController('golongan_darah', value)} placeholder="..." />
-                        </div>
+                        <GolDarahModal value={controller.golongan_darah} error={errors.golongan_darah} onChange={(value) => onSetController('golongan_darah', value)} />
                         <hr />
                         {!getLocalUser()?.auth?.user?.satuan_id && <SatuanModal value={controller.satuan?.nama} error={errors.satuan} onChange={(value) => onSetController('satuan', value)} />}
                         <SumberPAModal value={controller.sumber_pa} error={errors.sumber_pa} onChange={(value) => onSetController('sumber_pa', value)} />
@@ -87,14 +86,12 @@ const PersonilUpdatePage = () => {
                                 <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController('jabatan', value)} placeholder="..." />
                             </div>
                             <div className="flex-grow">
-                                <span className="font-medium">Pangkat</span>
-                                <InputText className="mt-1" value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value)} placeholder="..." />
+                                <PangkatModal value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value.nama)} />
                             </div>
                         </div>
                         <div className="flex gap-2">
                             <div className="flex-grow">
-                                <span className="font-medium">Korps</span>
-                                <InputText className="mt-1" value={controller.korps} error={errors.korps} onChange={(value) => onSetController('korps', value)} placeholder="..." />
+                                <KorpsModal value={controller.korps} error={errors.korps} onChange={(value) => onSetController('korps', value.nama)} />
                             </div>
                             <div className="flex-grow">
                                 <span className="font-medium">Psi</span>

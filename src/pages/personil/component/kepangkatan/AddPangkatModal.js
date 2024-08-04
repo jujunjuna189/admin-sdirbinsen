@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { createPangkatByPersonilRequest } from "../../../../api/PangkatRequest";
+import { createRiwayatPangkatByPersonilRequest } from "../../../../api/RiwayatPangkatRequest";
 import { Button, InputDate, InputText } from "../../../../components";
 import { dateFormatterV2 } from "../../../../utils";
+import PangkatModal from "../modal/PangkatModal";
 
 const AddPangkatModal = (props) => {
   const ref = useRef();
@@ -26,7 +27,7 @@ const AddPangkatModal = (props) => {
   const onSave = async () => {
     let dataBatch = { ...controller };
     dataBatch.personil_id = props.personil_id;
-    await createPangkatByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
+    await createRiwayatPangkatByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       if (!res?.errors) {
         setController({});
@@ -63,8 +64,7 @@ const AddPangkatModal = (props) => {
           </div>
           <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
             <div>
-              <span className="font-medium">Pangkat</span>
-              <InputText className="mt-1" value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController("pangkat", value)} placeholder="..." />
+              <PangkatModal value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value)} />
             </div>
             <div>
               <span className="font-medium">Tmt</span>

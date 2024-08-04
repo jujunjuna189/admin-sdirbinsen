@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createJabatanByPersonilRequest } from "../../../../api/JabatanRequest";
+import { createRiwayatJabatanByPersonilRequest } from "../../../../api/RiwayatJabatanRequest";
 import { Button, InputDate, InputText } from "../../../../components";
 import { dateFormatterV2 } from "../../../../utils";
 
@@ -27,7 +27,7 @@ const AddJabatanModal = (props) => {
     let dataBatch = { ...controller };
     dataBatch.personil_id = props.personil_id;
     dataBatch.isActive = 1;
-    await createJabatanByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
+    await createRiwayatJabatanByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       if (!res?.errors) {
         setController({});

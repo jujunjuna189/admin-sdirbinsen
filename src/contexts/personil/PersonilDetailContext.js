@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { deleteJabatanRequest, getJabatanByPersonilRequest } from "../../api/JabatanRequest";
+import { deleteRiwayatJabatanRequest, getRiwayatJabatanByPersonilRequest } from "../../api/RiwayatJabatanRequest";
 import { deleteKeluargaRequest, getKeluargaByPersonilRequest } from "../../api/KeluargaRequest";
 import { deleteKemampuanBahasaRequest, getKemampuanBahasaByPersonilRequest } from "../../api/KemampuanBahasaRequest";
-import { deletePangkatRequest, getPangkatByPersonilRequest } from "../../api/PangkatRequest";
+import { deleteRiwayatPangkatByPersonilRequest, getRiwayatPangkatByPersonilRequest } from "../../api/RiwayatPangkatRequest";
 import { deletePendidikanMiliterRequest, getPendidikanMiliterByPersonilRequest } from "../../api/PendidikanMiliterRequest";
 import { deletePendidikanUmumRequest, getPendidikanUmumByPersonilRequest } from "../../api/PendidikanUmumRequest";
 import { deletePenugasanLuarNegeriRequest, getPenugasanLuarNegeriByPersonilRequest } from "../../api/PenugasanLuarNegeriRequest";
@@ -116,7 +116,7 @@ export const PersonilDetailContextProvider = ({ children }) => {
     }
 
     const onGetJabatan = async ({ id }) => {
-        await getJabatanByPersonilRequest({ personil_id: id }).then((res) => {
+        await getRiwayatJabatanByPersonilRequest({ personil_id: id }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setJabatan(res);
@@ -124,7 +124,7 @@ export const PersonilDetailContextProvider = ({ children }) => {
     }
 
     const onGetPangkat = async ({ id }) => {
-        await getPangkatByPersonilRequest({ personil_id: id }).then((res) => {
+        await getRiwayatPangkatByPersonilRequest({ personil_id: id }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPangkat(res);
@@ -201,7 +201,7 @@ export const PersonilDetailContextProvider = ({ children }) => {
 
     // Delete
     const onDeleteJabatan = async ({ jabatan_id }) => {
-        await deleteJabatanRequest({ personil_id: param.id, jabatan_id: jabatan_id }).then((res) => {
+        await deleteRiwayatJabatanRequest({ personil_id: param.id, jabatan_id: jabatan_id }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setElement(false);
@@ -210,7 +210,7 @@ export const PersonilDetailContextProvider = ({ children }) => {
     }
 
     const onDeletePangkat = async ({ pangkat_id }) => {
-        await deletePangkatRequest({ personil_id: param.id, pangkat_id: pangkat_id }).then((res) => {
+        await deleteRiwayatPangkatByPersonilRequest({ personil_id: param.id, pangkat_id: pangkat_id }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setElement(false);

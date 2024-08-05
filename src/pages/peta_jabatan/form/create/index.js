@@ -1,6 +1,5 @@
-import { Button, Content, InputText, InputDate } from "../../../../components";
+import { Button, Content, InputText } from "../../../../components";
 import { UsePetaJabatanCreateContext } from "../../../../contexts/peta_jabatan/PetaJabatanCreateContext";
-import { dateFormatterV2 } from "../../../../utils";
 import { ChoosePersonilModal, GolJabatanModal } from "../../component";
 
 const PetaJabatanCreatePage = () => {
@@ -28,14 +27,6 @@ const PetaJabatanCreatePage = () => {
                         </div>
                         <div>
                             <GolJabatanModal value={controller.golongan} error={errors.golongan} onChange={(value) => onSetController("golongan", value.nama)} />
-                        </div>
-                        <div>
-                            <span className="font-medium">Jabatan</span>
-                            <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController("jabatan", value)} placeholder="..." />
-                        </div>
-                        <div>
-                            <span className="font-medium">Tmt</span>
-                            <InputDate className="mt-1" value={controller.tmt} error={errors.tmt} onChange={(value) => onSetController("tmt", value)} placeholder={dateFormatterV2(new Date())} />
                         </div>
                     </div>
                     <div className="flex justify-end mt-8 mb-3 gap-2">

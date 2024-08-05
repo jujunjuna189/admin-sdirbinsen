@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPetaJabatanRequest } from "../../api/PetaJabatanRequest";
+import { deletePetaJabatanRequest, getPetaJabatanRequest } from "../../api/PetaJabatanRequest";
+import { ConfirmDeleteModal } from "../../components";
 import { getLocalUser } from "../../utils";
 
 const PetaJabatanContext = createContext();
@@ -20,13 +21,24 @@ export const PetaJabatanContextProvider = ({ children }) => {
         });
     }
 
+    const onShowConfirmDelete = (peta_jabatan_id) => {
+        setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePetaJabatan({ peta_jabatan_id: peta_jabatan_id })} />);
+    };
+
+    const onDeletePetaJabatan = async ({ peta_jabatan_id = null }) => {
+        await deletePetaJabatanRequest({ peta_jabatan_id: peta_jabatan_id }).then((res) => {
+            setElement(false);
+            onGetPetaJabatan();
+        });
+    };
+
     useEffect(() => {
         onGetPetaJabatan();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <PetaJabatanContext.Provider value={{ navigation, user, element, petaJabatan, setElement, setPetaJabatan }}>
+        <PetaJabatanContext.Provider value={{ navigation, user, element, petaJabatan, setElement, setPetaJabatan, onShowConfirmDelete }}>
             {children}
         </PetaJabatanContext.Provider>
     );

@@ -22,7 +22,7 @@ export const MaterialCreateContextProvider = ({ children }) => {
   const onSave = async () => {
     setElement(<LoaderPopup />);
     let dataBatch = { ...controller };
-    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.kategori = param.kategori;
     dataBatch.status = "Baik";
@@ -40,7 +40,7 @@ export const MaterialCreateContextProvider = ({ children }) => {
   const onSaveAndAdd = async () => {
     setElement(<LoaderPopup />);
     let dataBatch = { ...controller };
-    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.kategori = param.kategori;
     dataBatch.status = "Baik";

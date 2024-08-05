@@ -225,7 +225,7 @@ function App() {
           }
         />
         <Route
-          path="/personil/peta_jabatan/update"
+          path="/personil/peta_jabatan/update/:id"
           element={
             <ProtectedAuth>
               <PetaJabatanUpdateContextProvider>

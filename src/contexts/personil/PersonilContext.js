@@ -21,19 +21,19 @@ export const PersonilContextProvider = ({ children }) => {
             isActive: false,
         },
         {
-            title: 'Secapa PK',
+            title: 'Diktukpa',
             isActive: false,
         },
         {
-            title: 'BA PK',
+            title: 'Dikmaba PK',
             isActive: false,
         },
         {
-            title: 'BA Reg',
+            title: 'Diktukba',
             isActive: false,
         },
         {
-            title: 'TA PK',
+            title: 'Dikjurta',
             isActive: false,
         },
     ]);

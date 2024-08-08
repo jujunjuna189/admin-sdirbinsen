@@ -26,6 +26,10 @@ export const API_SIAPSAT_KATEGORI_GET = `${REACT_APP_API_URL}admin/master/binsia
 export const API_PETA_JABATAN_GET = `${REACT_APP_API_URL}admin/peta-jabatan`;
 // Satuan
 export const API_SATUAN_GET = `${REACT_APP_API_URL}admin/satuan`;
+// Satuan Lambang
+export const API_SATUAN_LAMBANG_GET = `${REACT_APP_API_URL}admin/satuan/lambang`;
+// Satuan Tradisi
+export const API_SATUAN_TRADISI_GET = `${REACT_APP_API_URL}admin/satuan/tradisi`;
 // gol jabatan
 export const API_GOL_JABATAN_GET = `${REACT_APP_API_URL}admin/gol-jabatan`;
 // jabatan

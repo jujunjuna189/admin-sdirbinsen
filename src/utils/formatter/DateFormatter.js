@@ -25,6 +25,11 @@ export const dateFormatterV3 = (value) => {
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
 }
 
+export const dateFormatterV4 = (value) => {
+    const date = new Date(value);
+    return value === undefined ? '' : `${setZero(date.getDate())}-${setZero(date.getMonth())}-${date.getFullYear()}`;
+}
+
 const setZero = (value) => {
     return value < 10 ? `0${value}` : value;
 }

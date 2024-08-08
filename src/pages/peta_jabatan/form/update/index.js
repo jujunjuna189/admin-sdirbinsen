@@ -12,11 +12,11 @@ const PetaJabatanUpdatePage = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M15 6l-6 6l6 6"></path>
                 </svg>
-                <span className="font-semibold text-base text-slate-800">Tambah Peta Jabatan</span>
+                <span className="font-semibold text-base text-slate-800">Ubah Peta Jabatan</span>
             </div>
             <div className="flex justify-center">
                 <div className="border rounded-lg p-3 w-full max-w-[652px]">
-                    <span className="text-base font-medium">Tambah Peta Jabatan</span>
+                    <span className="text-base font-medium">Ubah Peta Jabatan</span>
                     <div className="flex flex-col gap-3 mt-3">
                         <div>
                             <ChoosePersonilModal value={controller.personil?.nama} error={errors.personil_id} onChange={(value) => onSetController("personil", value)} />

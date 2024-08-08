@@ -1,5 +1,5 @@
 import { Button } from "../../../../components";
-import { getLocalUser } from "../../../../utils";
+import { dateFormatterV4, getLocalUser } from "../../../../utils";
 
 const BiodataPersonilDetail = (props) => {
   return (
@@ -137,7 +137,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">TMT</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.tmt_1}</span>
+                  <span className="px-4">: {dateFormatterV4(props.personil?.tmt_1)}</span>
                 </td>
               </tr>
               <tr>
@@ -145,7 +145,7 @@ const BiodataPersonilDetail = (props) => {
                   <span className="font-medium">TMT Pangkat</span>
                 </td>
                 <td className="py-[7px]">
-                  <span className="px-4">: {props.personil?.tmt_2}</span>
+                  <span className="px-4">: {dateFormatterV4(props.personil?.tmt_2)}</span>
                 </td>
               </tr>
               <tr>

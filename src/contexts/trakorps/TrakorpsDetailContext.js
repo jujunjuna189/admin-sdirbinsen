@@ -1,9 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getSatuanLambangRequest } from "../../api/SatuanLambangRequest";
 import { getSatuanPejabatDansatRequest } from "../../api/SatuanPejabatDansatRequest";
 import { getSatuanPrestasiRequest } from "../../api/SatuanPrestasiRequest";
 import { getSatuanDetailRequest } from "../../api/SatuanRequest";
-import { HimneTrakorpsDetail, MarsTrakorpsDetail, PejabatDansatTrakorpsDetail, PrestasiTrakorpsDetail, SejarahTrakorpsDetail } from "../../pages/trakorps/component";
+import { getSatuanTradisiRequest } from "../../api/SatuanTradisiRequest";
+import { HimneTrakorpsDetail, LambangTrakorpsDetail, MarsTrakorpsDetail, PejabatDansatTrakorpsDetail, PrestasiTrakorpsDetail, SejarahTrakorpsDetail, TradisiTrakorpsDetail } from "../../pages/trakorps/component";
 
 const TrakorpsDetailContext = createContext();
 
@@ -12,6 +14,8 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const params = useParams();
   const [element] = useState(false);
   const [satuan, setSatuan] = useState({});
+  const [satuanLambang, setSatuanLambang] = useState({});
+  const [satuanTradisi, setSatuanTradisi] = useState([]);
   const [satuanPrestasi, setSatuanPrestasi] = useState({});
   const [satuanPejabatDansat, setSatuanPejabatDansat] = useState({});
   const [navTrakorpsActive, setNavTrakorpsActive] = useState({});
@@ -25,13 +29,13 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     {
       title: "Lambang Satuan",
       page: 2,
-      onClick: () => { },
+      onClick: () => onGetSatuanLambang(),
       isActive: false,
     },
     {
       title: "Tradisi Satuan",
       page: 3,
-      onClick: () => { },
+      onClick: () => onGetSatuanTradisi(),
       isActive: false,
     },
     {
@@ -72,6 +76,18 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     });
   };
 
+  const onGetSatuanLambang = async () => {
+    await getSatuanLambangRequest({ filter: `?satuan_id=${params.id}` }).then((res) => {
+      setSatuanLambang(res.data[0]);
+    });
+  }
+
+  const onGetSatuanTradisi = async () => {
+    await getSatuanTradisiRequest({ filter: `?satuan_id=${params.id}` }).then((res) => {
+      setSatuanTradisi(res.data);
+    });
+  }
+
   const onGetSatuanPrestasi = async ({ satuan_id = null }) => {
     await getSatuanPrestasiRequest({ satuan_id: satuan_id }).then((res) => {
       setSatuanPrestasi(res);
@@ -98,8 +114,8 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const onGetContent = (page) => {
     const content = {
       1: <SejarahTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
-      2: <span>Comming soon</span>,
-      3: <span>Comming soon</span>,
+      2: <LambangTrakorpsDetail satuan={satuan} satuanLambang={satuanLambang} onSave={() => onGetSatuanLambang()} />,
+      3: <TradisiTrakorpsDetail satuan={satuan} satuanTradisi={satuanTradisi} onSave={() => onGetSatuanTradisi()} />,
       4: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi({ satuan_id: params.id })} />,
       5: <PejabatDansatTrakorpsDetail satuan={satuan} satuanPejabatDansat={satuanPejabatDansat} onSave={() => onGetSatuanPejabatDansat({ satuan_id: params.id })} />,
       6: <span>Comming soon</span>,

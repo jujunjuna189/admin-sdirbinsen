@@ -167,28 +167,22 @@ const Sidebar = (props) => {
           </div>
           {/* sub menu */}
           <div className={`${dropDown.binsiapsat ? 'block' : 'hidden'}`}>
-            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat")}>
-              <div className="flex gap-2 items-center text-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-                <span className="font-medium">Data Ekko</span>
-              </div>
-            </div>
             <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat/rencana_binsat")}>
               <div className="flex gap-2 items-center text-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-                <span className="font-medium">Rencana Binsat</span>
+                <span className="font-medium">Data Binsat</span>
               </div>
             </div>
             <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat/laporan_binsat")}>
               <div className="flex gap-2 items-center text-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-                <span className="font-medium">Laporan Binsat</span>
+                <span className="font-medium">Data Lapsat</span>
               </div>
             </div>
-            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat/laporan_satuan")}>
+            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/siapsat")}>
               <div className="flex gap-2 items-center text-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-                <span className="font-medium">Laporan Satuan</span>
+                <span className="font-medium">Data Ekko</span>
               </div>
             </div>
           </div>

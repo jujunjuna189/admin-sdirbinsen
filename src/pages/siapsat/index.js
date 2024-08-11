@@ -64,7 +64,7 @@ const SiapsatPage = () => {
   return (
     <Content element={element}>
       <div className="flex flex-wrap justify-between items-center">
-        <span className="font-bold text-xl text-slate-800">Daftar Siapsat</span>
+        <span className="font-bold text-xl text-slate-800">Data Ekko</span>
         {getLocalUser()?.auth?.permission?.["siapsat.create"] && (
           <div>
             <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/siapsat/create/${categoryActive.title}`)}>

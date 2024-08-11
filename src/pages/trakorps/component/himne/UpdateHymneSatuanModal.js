@@ -42,6 +42,7 @@ const UpdateHymneSatuanModal = (props) => {
         dataBatch.satuan_id = props.satuan.id;
         dataBatch.hymne = value;
         delete dataBatch.logo;
+        delete dataBatch.sejarah;
         await updateSatuanRequest({ satuan_id: props.satuan.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {

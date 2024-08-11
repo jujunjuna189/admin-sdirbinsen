@@ -42,5 +42,7 @@ export const API_KORPS_GET = `${REACT_APP_API_URL}admin/korps`;
 export const API_SATUAN_PRESTASI_GET = `${REACT_APP_API_URL}admin/satuan-prestasi`;
 // Satuan Penjabat Dansat
 export const API_SATUAN_PEJABAT_DANSAT_GET = `${REACT_APP_API_URL}admin/satuan-jabatan-dansat`;
+// Satuan Lain Lain
+export const API_SATUAN_LAIN_LAIN_GET = `${REACT_APP_API_URL}admin/satuan-lain-lain`;
 // Chat
 export const API_CHAT_GET = `${REACT_APP_API_URL}admin/chat`;

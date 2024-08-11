@@ -1,11 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { getSatuanLainLainRequest } from "../../api/SatuanLainLainRequest";
 import { getSatuanLambangRequest } from "../../api/SatuanLambangRequest";
 import { getSatuanPejabatDansatRequest } from "../../api/SatuanPejabatDansatRequest";
 import { getSatuanPrestasiRequest } from "../../api/SatuanPrestasiRequest";
 import { getSatuanDetailRequest } from "../../api/SatuanRequest";
 import { getSatuanTradisiRequest } from "../../api/SatuanTradisiRequest";
-import { HimneTrakorpsDetail, LambangTrakorpsDetail, MarsTrakorpsDetail, PejabatDansatTrakorpsDetail, PrestasiTrakorpsDetail, SejarahTrakorpsDetail, TradisiTrakorpsDetail } from "../../pages/trakorps/component";
+import { HimneTrakorpsDetail, LainLainTrakorpsDetail, LambangTrakorpsDetail, MarsTrakorpsDetail, PejabatDansatTrakorpsDetail, PrestasiTrakorpsDetail, SejarahTrakorpsDetail, TradisiTrakorpsDetail } from "../../pages/trakorps/component";
 
 const TrakorpsDetailContext = createContext();
 
@@ -18,6 +19,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const [satuanTradisi, setSatuanTradisi] = useState([]);
   const [satuanPrestasi, setSatuanPrestasi] = useState({});
   const [satuanPejabatDansat, setSatuanPejabatDansat] = useState({});
+  const [satuanLainLain, setSatuanLainLain] = useState({});
   const [navTrakorpsActive, setNavTrakorpsActive] = useState({});
   const [navTrakorps, setNavTrakorps] = useState([
     {
@@ -68,6 +70,12 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
       onClick: () => { },
       isActive: false,
     },
+    {
+      title: "Lain-Lain",
+      page: 9,
+      onClick: () => { },
+      isActive: false,
+    },
   ]);
 
   const getSatuan = async ({ satuan_id = null }) => {
@@ -100,6 +108,12 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     });
   };
 
+  const onGetSatuanLainLain = async ({ satuan_id = null }) => {
+    await getSatuanLainLainRequest({ satuan_id: satuan_id }).then((res) => {
+      setSatuanLainLain(res);
+    });
+  };
+
   const onTabSwitch = (indexItem) => {
     navTrakorps.forEach((item, index) => {
       navTrakorps[index].isActive = false;
@@ -121,6 +135,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
       6: <span>Comming soon</span>,
       7: <MarsTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
       8: <HimneTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
+      9: <LainLainTrakorpsDetail satuan={satuan} satuanLainLain={satuanLainLain} onSave={() => onGetSatuanLainLain({ satuan_id: params.id })} />,
     };
 
     return content[page];

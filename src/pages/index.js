@@ -20,6 +20,8 @@ import SettingPersonilPage from "./setting/personil";
 import SettingSatuanCreatePage from "./setting/personil/form/SettingSatuanCreatePage";
 import SettingUserPage from "./setting/user";
 import SiapsatPage from "./siapsat";
+import SiapsatEkkoIndukPage from "./siapsat/ekko_induk";
+import SiapsatEkkoIndukCreatePage from "./siapsat/ekko_induk/form/create";
 import SiapsatCreatePage from "./siapsat/form/create";
 import SiapsatUpdatePage from "./siapsat/form/update";
 import TrakorpsPage from "./trakorps";
@@ -60,4 +62,6 @@ export {
   SiapsatPage,
   SiapsatCreatePage,
   SiapsatUpdatePage,
+  SiapsatEkkoIndukPage,
+  SiapsatEkkoIndukCreatePage,
 };

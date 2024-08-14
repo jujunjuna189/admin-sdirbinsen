@@ -1,5 +1,6 @@
 import Button from "./button";
 import InputFile from "./file/InputFile";
+import InputFileAll from "./file/InputFileAll";
 import InputFileMusic from "./file/InputFileMusic";
 import InputFileVideo from "./file/InputFileVideo";
 import InputArea from "./input/InputArea";
@@ -14,4 +15,4 @@ import InputSelectDropDown from "./input/InputSelectDropDown";
 import InputText from "./input/InputText";
 import ProtectedAuth from "./protected/ProtectedAuth";
 
-export { Button, InputFile, InputFileMusic, InputFileVideo, InputArea, InputChecked, InputEmail, InputNumber, InputPassword, InputSearch, InputText, InputSelect, InputSelectDropDown, InputDate, ProtectedAuth };
+export { Button, InputFile, InputFileAll, InputFileMusic, InputFileVideo, InputArea, InputChecked, InputEmail, InputNumber, InputPassword, InputSearch, InputText, InputSelect, InputSelectDropDown, InputDate, ProtectedAuth };

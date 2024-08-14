@@ -50,6 +50,8 @@ import {
   SettingSatuanCreatePage,
   SettingUserPage,
   SiapsatCreatePage,
+  SiapsatEkkoIndukCreatePage,
+  SiapsatEkkoIndukPage,
   SiapsatPage,
   SiapsatUpdatePage,
   TrakorpsCreatePage,
@@ -59,6 +61,8 @@ import {
   UserDetailPage,
   UserPage,
 } from "./pages";
+import { SiapsatEkkoIndukContextProvider } from "./contexts/siapsat/SiapsatEkkoIndukContext";
+import { SiapsatEkkoIndukCreateContextProvider } from "./contexts/siapsat/SiapsatEkkoIndukCreateContext";
 
 function App() {
   return (
@@ -273,6 +277,26 @@ function App() {
           }
         />
         {/* Binsiapsat */}
+        <Route
+          path="/siapsat/ekko_induk"
+          element={
+            <ProtectedAuth>
+              <SiapsatEkkoIndukContextProvider>
+                <SiapsatEkkoIndukPage />
+              </SiapsatEkkoIndukContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/ekko_induk/create"
+          element={
+            <ProtectedAuth>
+              <SiapsatEkkoIndukCreateContextProvider>
+                <SiapsatEkkoIndukCreatePage />
+              </SiapsatEkkoIndukCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
         <Route
           path="/siapsat"
           element={

@@ -18,7 +18,7 @@ export const TrakorpsCreateContextProvider = ({ children }) => {
   const onSave = async () => {
     setElement(<LoaderPopup />);
     let dataBatch = { ...controller };
-    dataBatch.logo = dataBatch.picture?.file ?? null;;
+    dataBatch.logo = dataBatch.picture?.file ?? null;
     dataBatch.sejarah = '-';
     dataBatch.hymne = '-';
     dataBatch.mars = '-';

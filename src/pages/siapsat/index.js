@@ -1,6 +1,7 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UseSiapsatContext } from "../../contexts/siapsat/SiapsatContext";
 import { getLocalUser } from "../../utils";
+import { EkkoNav } from "./component";
 
 const SiapsatPage = () => {
   const { navigation, element, category, categoryActive, siapsat, onTabSwitch, onShowConfirmDelete } = UseSiapsatContext();
@@ -63,8 +64,14 @@ const SiapsatPage = () => {
 
   return (
     <Content element={element}>
+      <div className="my-2">
+        <EkkoNav />
+      </div>
       <div className="flex flex-wrap justify-between items-center">
-        <span className="font-bold text-xl text-slate-800">Data Ekko</span>
+        <div className="flex flex-col leading-3">
+          <span className="font-bold text-xl text-slate-800">Data Ekko</span>
+          <small>Lampiran</small>
+        </div>
         {getLocalUser()?.auth?.permission?.["siapsat.create"] && (
           <div>
             <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/siapsat/create/${categoryActive.title}`)}>

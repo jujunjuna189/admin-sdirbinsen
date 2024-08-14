@@ -73,7 +73,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     {
       title: "Lain-Lain",
       page: 9,
-      onClick: () => { },
+      onClick: () => onGetSatuanLainLain({ satuan_id: params.id }),
       isActive: false,
     },
   ]);

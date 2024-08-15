@@ -1,5 +1,9 @@
+import BinsatNav from "./nav/BinsatNav"
 import EkkoNav from "./nav/EkkoNav"
+import LapsatNav from "./nav/LapsatNav"
 
 export {
-    EkkoNav
+    BinsatNav,
+    EkkoNav,
+    LapsatNav
 }

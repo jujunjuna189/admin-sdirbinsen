@@ -5,8 +5,8 @@ const BinsatNav = () => {
     const location = useLocation();
     return (
         <div className="flex gap-2">
-            <div className={`rounded-lg ${location.pathname === '/siapsat/ekko_induk' ? 'bg-slate-700 text-white' : 'border border-slate-700'} px-3 py-1 cursor-pointer`} onClick={() => navigation("/siapsat/ekko_induk")}>Induk</div>
-            <div className={`rounded-lg ${location.pathname === '/siapsat' ? 'bg-slate-700 text-white' : 'border border-slate-700'}  px-3 py-1 cursor-pointer`} onClick={() => navigation("/siapsat")}>Lampiran</div>
+            <div className={`rounded-lg ${location.pathname === '/siapsat/binsat_renlakgiat' ? 'bg-slate-700 text-white' : 'border border-slate-700'} px-3 py-1 cursor-pointer`} onClick={() => navigation("/siapsat/binsat_renlakgiat")}>Renlakgiat</div>
+            <div className={`rounded-lg ${location.pathname === '/siapsat/binsat_laplakgiat' ? 'bg-slate-700 text-white' : 'border border-slate-700'}  px-3 py-1 cursor-pointer`} onClick={() => navigation("/siapsat/binsat_laplakgiat")}>Laplakgiat</div>
         </div>
     );
 }

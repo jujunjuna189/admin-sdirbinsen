@@ -1,10 +1,10 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../../components";
-import { UseSiapsatEkkoIndukContext } from "../../../contexts/siapsat/SiapsatEkkoIndukContext";
+import { UseSiapsatLapsatIndukContext } from "../../../contexts/siapsat/SiapsatLapsatIndukContext";
 import { getLocalUser } from "../../../utils";
-import { EkkoNav } from "../component";
+import { LapsatNav } from "../component";
 
-const SiapsatEkkoIndukPage = () => {
-    const { navigation, element, data, onShowConfirmDelete } = UseSiapsatEkkoIndukContext();
+const SiapsatLapsatIndukPage = () => {
+    const { navigation, element, data, onShowConfirmDelete } = UseSiapsatLapsatIndukContext();
 
     const renderTable = () => {
         return (
@@ -60,16 +60,16 @@ const SiapsatEkkoIndukPage = () => {
     return (
         <Content element={element}>
             <div className="my-2">
-                <EkkoNav />
+                <LapsatNav />
             </div>
             <div className="flex flex-wrap justify-between items-center">
                 <div className="flex flex-col leading-3">
-                    <span className="font-bold text-xl text-slate-800">Data Ekko</span>
+                    <span className="font-bold text-xl text-slate-800">Data Lapsat</span>
                     <small>Induk</small>
                 </div>
                 {getLocalUser()?.auth?.permission?.["siapsat.create"] && (
                     <div>
-                        <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/siapsat/ekko_induk/create')}>
+                        <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation('/siapsat/lapsat_induk/create')}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                 <path d="M12 5l0 14"></path>
@@ -103,4 +103,4 @@ const SiapsatEkkoIndukPage = () => {
     );
 }
 
-export default SiapsatEkkoIndukPage;
+export default SiapsatLapsatIndukPage;

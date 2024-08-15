@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { createSiapsatLapsatLampiranRequest } from "../../api/SiapsatLapsatLampiranRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
-import { createSiapsatIndukRequest } from "../../api/SiapsatIndukRequest";
 
-const SiapsatEkkoIndukCreateContext = createContext();
+const SiapsatLapsatLampiranCreateContext = createContext();
 
-export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
+export const SiapsatLapsatLampiranCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const param = useParams();
     const [element, setElement] = useState(false);
@@ -22,13 +22,14 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createSiapsatIndukRequest({ body: dataBatch }).then((res) => {
+        dataBatch.kategori = param.kategori;
+        await createSiapsatLapsatLampiranRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && navigation(`/siapsat/ekko_induk`);
+                !res?.errors && navigation(`/siapsat/lapsat_lampiran`);
             }, 1000);
         });
     };
@@ -37,7 +38,8 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createSiapsatIndukRequest({ body: dataBatch }).then((res) => {
+        dataBatch.kategori = param.kategori;
+        await createSiapsatLapsatLampiranRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
@@ -47,9 +49,9 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         });
     };
 
-    return <SiapsatEkkoIndukCreateContext.Provider value={{ navigation, param, element, controller, errors, onSetController, onSave, onSaveAndAdd }}>{children}</SiapsatEkkoIndukCreateContext.Provider>;
+    return <SiapsatLapsatLampiranCreateContext.Provider value={{ navigation, param, element, controller, errors, onSetController, onSave, onSaveAndAdd }}>{children}</SiapsatLapsatLampiranCreateContext.Provider>;
 };
 
-export const UseSiapsatEkkoIndukCreateContext = () => {
-    return useContext(SiapsatEkkoIndukCreateContext);
+export const UseSiapsatLapsatLampiranCreateContext = () => {
+    return useContext(SiapsatLapsatLampiranCreateContext);
 };

@@ -1,17 +1,15 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { createSiapsatBinsatLaplakgiatRequest } from "../../api/SiapsatBinsatLaplakgiatRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
-import { createSiapsatIndukRequest } from "../../api/SiapsatIndukRequest";
 
-const SiapsatEkkoIndukCreateContext = createContext();
+const SiapsatBinsatLaplakgiatCreateContext = createContext();
 
-export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
+export const SiapsatBinsatLaplakgiatCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const param = useParams();
     const [element, setElement] = useState(false);
-    const [controller, setController] = useState({
-        kategori: param.kategori,
-    });
+    const [controller, setController] = useState({});
     const [errors, setErrors] = useState({});
 
     const onSetController = (field, value) => {
@@ -22,13 +20,13 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createSiapsatIndukRequest({ body: dataBatch }).then((res) => {
+        await createSiapsatBinsatLaplakgiatRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && navigation(`/siapsat/ekko_induk`);
+                !res?.errors && navigation(`/siapsat/binsat_laplakgiat`);
             }, 1000);
         });
     };
@@ -37,7 +35,7 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createSiapsatIndukRequest({ body: dataBatch }).then((res) => {
+        await createSiapsatBinsatLaplakgiatRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
@@ -47,9 +45,9 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         });
     };
 
-    return <SiapsatEkkoIndukCreateContext.Provider value={{ navigation, param, element, controller, errors, onSetController, onSave, onSaveAndAdd }}>{children}</SiapsatEkkoIndukCreateContext.Provider>;
+    return <SiapsatBinsatLaplakgiatCreateContext.Provider value={{ navigation, param, element, controller, errors, onSetController, onSave, onSaveAndAdd }}>{children}</SiapsatBinsatLaplakgiatCreateContext.Provider>;
 };
 
-export const UseSiapsatEkkoIndukCreateContext = () => {
-    return useContext(SiapsatEkkoIndukCreateContext);
+export const UseSiapsatBinsatLaplakgiatCreateContext = () => {
+    return useContext(SiapsatBinsatLaplakgiatCreateContext);
 };

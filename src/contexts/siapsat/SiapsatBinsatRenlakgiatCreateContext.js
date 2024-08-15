@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { createSiapsatBinsatRenlakgiatRequest } from "../../api/SiapsatBinsatRenlakgiatRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
-import { createSiapsatIndukRequest } from "../../api/SiapsatIndukRequest";
 
-const SiapsatEkkoIndukCreateContext = createContext();
+const SiapsatBinsatRenlakgiatCreateContext = createContext();
 
-export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
+export const SiapsatBinsatRenlakgiatCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const param = useParams();
     const [element, setElement] = useState(false);
@@ -22,13 +22,13 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createSiapsatIndukRequest({ body: dataBatch }).then((res) => {
+        await createSiapsatBinsatRenlakgiatRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && navigation(`/siapsat/ekko_induk`);
+                !res?.errors && navigation(`/siapsat/binsat_renlakgiat`);
             }, 1000);
         });
     };
@@ -37,7 +37,7 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createSiapsatIndukRequest({ body: dataBatch }).then((res) => {
+        await createSiapsatBinsatRenlakgiatRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
@@ -47,9 +47,9 @@ export const SiapsatEkkoIndukCreateContextProvider = ({ children }) => {
         });
     };
 
-    return <SiapsatEkkoIndukCreateContext.Provider value={{ navigation, param, element, controller, errors, onSetController, onSave, onSaveAndAdd }}>{children}</SiapsatEkkoIndukCreateContext.Provider>;
+    return <SiapsatBinsatRenlakgiatCreateContext.Provider value={{ navigation, param, element, controller, errors, onSetController, onSave, onSaveAndAdd }}>{children}</SiapsatBinsatRenlakgiatCreateContext.Provider>;
 };
 
-export const UseSiapsatEkkoIndukCreateContext = () => {
-    return useContext(SiapsatEkkoIndukCreateContext);
+export const UseSiapsatBinsatRenlakgiatCreateContext = () => {
+    return useContext(SiapsatBinsatRenlakgiatCreateContext);
 };

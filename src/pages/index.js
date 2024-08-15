@@ -20,10 +20,18 @@ import SettingPersonilPage from "./setting/personil";
 import SettingSatuanCreatePage from "./setting/personil/form/SettingSatuanCreatePage";
 import SettingUserPage from "./setting/user";
 import SiapsatPage from "./siapsat";
+import SiapsatBinsatLaplakgiatPage from "./siapsat/binsat_laplakgiat";
+import SiapsatBinsatLaplakgiatCreatePage from "./siapsat/binsat_laplakgiat/form/create";
+import SiapsatBinsatRenlakgiatPage from "./siapsat/binsat_renlakgiat";
+import SiapsatBinsatRenlakgiatCreatePage from "./siapsat/binsat_renlakgiat/form/create";
 import SiapsatEkkoIndukPage from "./siapsat/ekko_induk";
 import SiapsatEkkoIndukCreatePage from "./siapsat/ekko_induk/form/create";
 import SiapsatCreatePage from "./siapsat/form/create";
 import SiapsatUpdatePage from "./siapsat/form/update";
+import SiapsatLapsatIndukPage from "./siapsat/lapsat_induk";
+import SiapsatLapsatIndukCreatePage from "./siapsat/lapsat_induk/form/create";
+import SiapsatLapsatLampiranPage from "./siapsat/lapsat_lampiran";
+import SiapsatLapsatLampiranCreatePage from "./siapsat/lapsat_lampiran/form/create";
 import TrakorpsPage from "./trakorps";
 import TrakorpsDetailPage from "./trakorps/detail";
 import TrakorpsCreatePage from "./trakorps/form/create";
@@ -60,8 +68,16 @@ export {
   TrakorpsCreatePage,
   TrakorpsDetailPage,
   SiapsatPage,
+  SiapsatBinsatLaplakgiatPage,
+  SiapsatBinsatLaplakgiatCreatePage,
+  SiapsatBinsatRenlakgiatPage,
+  SiapsatBinsatRenlakgiatCreatePage,
   SiapsatCreatePage,
   SiapsatUpdatePage,
   SiapsatEkkoIndukPage,
   SiapsatEkkoIndukCreatePage,
+  SiapsatLapsatIndukPage,
+  SiapsatLapsatIndukCreatePage,
+  SiapsatLapsatLampiranPage,
+  SiapsatLapsatLampiranCreatePage,
 };

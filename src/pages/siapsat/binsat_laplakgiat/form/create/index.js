@@ -1,9 +1,9 @@
 import { Button, Content, InputFileAll, InputText } from "../../../../../components";
-import { UseSiapsatEkkoIndukCreateContext } from "../../../../../contexts/siapsat/SiapsatEkkoIndukCreateContext";
+import { UseSiapsatBinsatLaplakgiatCreateContext } from "../../../../../contexts/siapsat/SiapsatBinsatLaplakgiatCreateContext";
 import { SatuanModal } from "../../../../personil/component";
 
-const SiapsatEkkoIndukCreatePage = () => {
-  const { navigation, element, controller, errors, onSetController, onSave, onSaveAndAdd } = UseSiapsatEkkoIndukCreateContext();
+const SiapsatBinsatLaplakgiatCreatePage = () => {
+  const { navigation, element, controller, errors, onSetController, onSave, onSaveAndAdd } = UseSiapsatBinsatLaplakgiatCreateContext();
 
   return (
     <Content element={element}>
@@ -12,11 +12,11 @@ const SiapsatEkkoIndukCreatePage = () => {
           <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
           <path d="M15 6l-6 6l6 6"></path>
         </svg>
-        <span className="font-semibold text-base text-slate-800">Tambah Ekko Induk</span>
+        <span className="font-semibold text-base text-slate-800">Tambah Binsat Laplakgiat</span>
       </div>
       <div className="flex justify-center">
         <div className="border rounded-lg p-3 w-full max-w-[652px]">
-          <span className="text-base font-medium">Tambah Ekko Induk</span>
+          <span className="text-base font-medium">Tambah Binsat Laplakgiat</span>
           <div className="flex flex-col gap-3 mt-3">
             <SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />
             <div>
@@ -42,4 +42,4 @@ const SiapsatEkkoIndukCreatePage = () => {
     </Content>
   );
 };
-export default SiapsatEkkoIndukCreatePage;
+export default SiapsatBinsatLaplakgiatCreatePage;

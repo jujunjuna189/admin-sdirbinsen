@@ -49,9 +49,17 @@ import {
   SettingPersonilPage,
   SettingSatuanCreatePage,
   SettingUserPage,
+  SiapsatBinsatLaplakgiatCreatePage,
+  SiapsatBinsatLaplakgiatPage,
+  SiapsatBinsatRenlakgiatCreatePage,
+  SiapsatBinsatRenlakgiatPage,
   SiapsatCreatePage,
   SiapsatEkkoIndukCreatePage,
   SiapsatEkkoIndukPage,
+  SiapsatLapsatIndukCreatePage,
+  SiapsatLapsatIndukPage,
+  SiapsatLapsatLampiranCreatePage,
+  SiapsatLapsatLampiranPage,
   SiapsatPage,
   SiapsatUpdatePage,
   TrakorpsCreatePage,
@@ -63,6 +71,14 @@ import {
 } from "./pages";
 import { SiapsatEkkoIndukContextProvider } from "./contexts/siapsat/SiapsatEkkoIndukContext";
 import { SiapsatEkkoIndukCreateContextProvider } from "./contexts/siapsat/SiapsatEkkoIndukCreateContext";
+import { SiapsatLapsatIndukContextProvider } from "./contexts/siapsat/SiapsatLapsatIndukContext";
+import { SiapsatLapsatIndukCreateContextProvider } from "./contexts/siapsat/SiapsatLapsatIndukCreateContext";
+import { SiapsatLapsatLampiranContextProvider } from "./contexts/siapsat/SiapsatLapsatLampiranContext";
+import { SiapsatLapsatLampiranCreateContextProvider } from "./contexts/siapsat/SiapsatLapsatLampiranCreateContext";
+import { SiapsatBinsatRenlakgiatContextProvider } from "./contexts/siapsat/SiapsatBinsatRenlakgiatContext";
+import { SiapsatBinsatRenlakgiatCreateContextProvider } from "./contexts/siapsat/SiapsatBinsatRenlakgiatCreateContext";
+import { SiapsatBinsatLaplakgiatContextProvider } from "./contexts/siapsat/SiapsatBinsatLaplakgiatContext";
+import { SiapsatBinsatLaplakgiatCreateContextProvider } from "./contexts/siapsat/SiapsatBinsatLaplakgiatCreateContext";
 
 function App() {
   return (
@@ -277,6 +293,86 @@ function App() {
           }
         />
         {/* Binsiapsat */}
+        <Route
+          path="/siapsat/binsat_renlakgiat"
+          element={
+            <ProtectedAuth>
+              <SiapsatBinsatRenlakgiatContextProvider>
+                <SiapsatBinsatRenlakgiatPage />
+              </SiapsatBinsatRenlakgiatContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/binsat_renlakgiat/create"
+          element={
+            <ProtectedAuth>
+              <SiapsatBinsatRenlakgiatCreateContextProvider>
+                <SiapsatBinsatRenlakgiatCreatePage />
+              </SiapsatBinsatRenlakgiatCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/binsat_laplakgiat"
+          element={
+            <ProtectedAuth>
+              <SiapsatBinsatLaplakgiatContextProvider>
+                <SiapsatBinsatLaplakgiatPage />
+              </SiapsatBinsatLaplakgiatContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/binsat_laplakgiat/create"
+          element={
+            <ProtectedAuth>
+              <SiapsatBinsatLaplakgiatCreateContextProvider>
+                <SiapsatBinsatLaplakgiatCreatePage />
+              </SiapsatBinsatLaplakgiatCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/lapsat_induk"
+          element={
+            <ProtectedAuth>
+              <SiapsatLapsatIndukContextProvider>
+                <SiapsatLapsatIndukPage />
+              </SiapsatLapsatIndukContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/lapsat_induk/create"
+          element={
+            <ProtectedAuth>
+              <SiapsatLapsatIndukCreateContextProvider>
+                <SiapsatLapsatIndukCreatePage />
+              </SiapsatLapsatIndukCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/lapsat_lampiran"
+          element={
+            <ProtectedAuth>
+              <SiapsatLapsatLampiranContextProvider>
+                <SiapsatLapsatLampiranPage />
+              </SiapsatLapsatLampiranContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/lapsat_lampiran/create/:kategori"
+          element={
+            <ProtectedAuth>
+              <SiapsatLapsatLampiranCreateContextProvider>
+                <SiapsatLapsatLampiranCreatePage />
+              </SiapsatLapsatLampiranCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
         <Route
           path="/siapsat/ekko_induk"
           element={

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UsePetaJabatanContext } from "../../contexts/peta_jabatan/PetaJabatanContext";
-import { calculateDifferenceDate } from "../../utils";
+import { calculateDifferenceDate, ValidDateConvert } from "../../utils";
 
 const PetaJabatanPage = () => {
     const { navigation, element, petaJabatan, onShowConfirmDelete } = UsePetaJabatanContext();
@@ -46,8 +46,8 @@ const PetaJabatanPage = () => {
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.pangkat}</td>
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.nrp}</td>
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.tmt_jab}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(item.personil.tmt_jab, new Date()).years === 0 ? "Tahun" : `${calculateDifferenceDate(item.personil.tmt_jab, new Date()).years} Tahun`}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(item.personil.tmt_jab, new Date()).months === 0 ? 'Bulan' : `${calculateDifferenceDate(item.personil.tmt_jab, new Date()).months} Bulan`}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).years === 0 ? "Tahun" : `${calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).years} Tahun`}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).months === 0 ? 'Bulan' : `${calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).months} Bulan`}</td>
                                         <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                             <div className="flex gap-3 justify-end">
                                                 <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/personil/peta_jabatan/update/${item.id}`)}>

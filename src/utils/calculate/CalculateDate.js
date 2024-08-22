@@ -10,6 +10,7 @@ export const calculateDifferenceDate = (startDateString, endDateString) => {
         monthDifference += 12;
     }
 
+    console.log(startDateString);
     return {
         years: yearDifference,
         months: monthDifference

@@ -4,6 +4,7 @@ import DashboardPage from "./dashboard";
 import HelpSuggestionPage from "./help/suggestion";
 import HelpTicketPage from "./help/ticket";
 import HelpTutorialPage from "./help/tutorial";
+import KompersSatjarPage from "./kompers_satjar";
 import MaterialPage from "./material";
 import MaterialCreatePage from "./material/form/create";
 import MaterialUpdatePage from "./material/form/update";
@@ -52,6 +53,7 @@ export {
   MaterialPage,
   PersonilCreatePage,
   PersonilUpdatePage,
+  KompersSatjarPage,
   MaterialCreatePage,
   MaterialUpdatePage,
   PetaJabatanPage,

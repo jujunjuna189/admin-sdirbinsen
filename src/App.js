@@ -44,7 +44,11 @@ import {
   HelpSuggestionPage,
   HelpTicketPage,
   HelpTutorialPage,
+  KompersSatjarCategoryCreatePage,
+  KompersSatjarCreatePage,
+  KompersSatjarDetailPage,
   KompersSatjarPage,
+  KompersSatjarUpdatePage,
   LoginPage,
   MaterialCreatePage,
   MaterialPage,
@@ -81,6 +85,10 @@ import {
   UserDetailPage,
   UserPage,
 } from "./pages";
+import { KompersSatjarCategoryCreateContextProvider } from "./contexts/kompers_satjat/KompersSatjarCategoryCreateContext";
+import { KompersSatjarCreateContextProvider } from "./contexts/kompers_satjat/KompersSatjarCreateContext";
+import { KompersSatjarDetailContextProvider } from "./contexts/kompers_satjat/KompersSatjarDetailContext";
+import { KompersSatjarUpdateContextProvider } from "./contexts/kompers_satjat/KompersSatjarUpdateContext";
 
 function App() {
   return (
@@ -264,6 +272,47 @@ function App() {
               <KompersSatjarContextProvider>
                 <KompersSatjarPage />
               </KompersSatjarContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/personil/kompers_satjar/detail/:id"
+          element={
+            <ProtectedAuth>
+              <KompersSatjarDetailContextProvider>
+                <KompersSatjarDetailPage />
+              </KompersSatjarDetailContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/personil/kompers_satjar/create/:kompers_satjar_category_id"
+          element={
+            <ProtectedAuth>
+              <KompersSatjarCreateContextProvider>
+                <KompersSatjarCreatePage />
+              </KompersSatjarCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/personil/kompers_satjar/update/:id"
+          element={
+            <ProtectedAuth>
+              <KompersSatjarUpdateContextProvider>
+                <KompersSatjarUpdatePage />
+              </KompersSatjarUpdateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        {/* Kompers satjar catery */}
+        <Route
+          path="/personil/kompers_satjar_category"
+          element={
+            <ProtectedAuth>
+              <KompersSatjarCategoryCreateContextProvider>
+                <KompersSatjarCategoryCreatePage />
+              </KompersSatjarCategoryCreateContextProvider>
             </ProtectedAuth>
           }
         />

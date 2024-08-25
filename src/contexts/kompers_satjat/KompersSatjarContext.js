@@ -23,6 +23,7 @@ export const KompersSatjarContextProvider = ({ children }) => {
         res.forEach((item, index) => {
             datas.push({
                 id: item.id,
+                kompers_satjar_categorys_id: item.kompers_satjar_categorys_id,
                 category: item.category,
                 sub_category: item.sub_category,
                 isActive: index === 0 ? true : false,
@@ -30,7 +31,7 @@ export const KompersSatjarContextProvider = ({ children }) => {
         });
         setKompersSatjarCategory([...datas]);
         setKompersSatjarCategoryActive({ ...datas[0] });
-        getKompersSatjar({ category: datas?.[0]?.category, sub_category: datas?.[0]?.sub_category });
+        getKompersSatjar({ kompers_satjar_categorys_id: datas?.[0]?.kompers_satjar_categorys_id });
     };
 
     const getKompersSatjar = async ({ category = '', sub_category = '' }) => {
@@ -47,7 +48,7 @@ export const KompersSatjarContextProvider = ({ children }) => {
         kompersSatjarCategory[indexItem].isActive = true;
         setKompersSatjarCategory([...kompersSatjarCategory]);
         setKompersSatjarCategoryActive({ ...kompersSatjarCategory[indexItem] });
-        getKompersSatjar({ category: kompersSatjarCategory[indexItem].category, sub_category: kompersSatjarCategory[indexItem].sub_category });
+        getKompersSatjar({ kompers_satjar_categorys_id: kompersSatjarCategory[indexItem].kompers_satjar_categorys_id });
     };
 
     useEffect(() => {

@@ -20,6 +20,7 @@ export const KompersSatjarCreateContextProvider = ({ children }) => {
     const settingController = (item) => {
         setController({
             ...controller,
+            kompers_satjar_categorys_id: item.id,
             category: item.category,
             sub_category: item.sub_category,
             form: typeof item.form === 'string' ? JSON.parse(item.form) : item.form,
@@ -31,7 +32,8 @@ export const KompersSatjarCreateContextProvider = ({ children }) => {
     };
 
     const onSave = async () => {
-        await createKompersSatjarRequest({ body: { ...controller } }).then((res) => {
+        let dataBatch = { ...controller };
+        await createKompersSatjarRequest({ body: dataBatch }).then((res) => {
             console.log(res);
         });
     }

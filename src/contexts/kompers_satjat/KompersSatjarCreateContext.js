@@ -2,13 +2,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getKompersSatjarCategoryRequest } from "../../api/KompersSatjarCategoryRequest";
 import { createKompersSatjarRequest } from "../../api/KompersSatjarRequest";
+import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
 
 const KompersSatjarCreateContext = createContext();
 
 export const KompersSatjarCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const params = useParams();
-    const [element] = useState(false);
+    const [element, setElement] = useState(false);
+    const [errors, setErrors] = useState({});
     const [controller, setController] = useState({});
 
     const getKompersSatjarCategory = async () => {
@@ -32,9 +34,16 @@ export const KompersSatjarCreateContextProvider = ({ children }) => {
     };
 
     const onSave = async () => {
+        setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         await createKompersSatjarRequest({ body: dataBatch }).then((res) => {
-            console.log(res);
+            res?.errors && setErrors(res?.errors);
+            res?.errors && setElement(<ErrorPopup />);
+            !res?.errors && setElement(<SuccessPopup />);
+            setTimeout(() => {
+                setElement(false);
+                !res?.errors && navigation(`/personil/kompers_satjar`);
+            }, 1000);
         });
     }
 
@@ -43,7 +52,7 @@ export const KompersSatjarCreateContextProvider = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return <KompersSatjarCreateContext.Provider value={{ navigation, element, controller, onSetController, onSave }}>{children}</KompersSatjarCreateContext.Provider>;
+    return <KompersSatjarCreateContext.Provider value={{ navigation, element, controller, errors, onSetController, onSave }}>{children}</KompersSatjarCreateContext.Provider>;
 };
 
 export const UseKompersSatjarCreateContext = () => {

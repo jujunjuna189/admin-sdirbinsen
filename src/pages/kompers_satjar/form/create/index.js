@@ -3,10 +3,10 @@ import { UseKompersSatjarCreateContext } from "../../../../contexts/kompers_satj
 import TableGenerator from "../../../kompers_satjar_category/component/TableGenerator";
 
 const KompersSatjarCreatePage = () => {
-    const { controller, onSetController, onSave } = UseKompersSatjarCreateContext();
+    const { element, controller, onSetController, onSave } = UseKompersSatjarCreateContext();
 
     return (
-        <Content>
+        <Content element={element}>
             <div className="flex justify-between">
                 <span className="font-bold text-xl text-slate-800">Tambah Rekapitulasi</span>
                 <div className="py-[2px]">

@@ -3,10 +3,10 @@ import { UseKompersSatjarCategoryCreateContext } from "../../../../contexts/komp
 import TableGenerator from "../../component/TableGenerator";
 
 const KompersSatjarCategoryCreatePage = () => {
-    const { controller, onSetController, onSave } = UseKompersSatjarCategoryCreateContext();
+    const { element, controller, onSetController, onSave } = UseKompersSatjarCategoryCreateContext();
 
     return (
-        <Content>
+        <Content element={element}>
             <div className="flex justify-between">
                 <span className="font-bold text-xl text-slate-800">Buat Format Rekapitulasi</span>
                 <div>

@@ -1,13 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getKompersSatjarRequest, updateKompersSatjarRequest } from "../../api/KompersSatjarRequest";
+import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
 
 const KompersSatjarUpdateContext = createContext();
 
 export const KompersSatjarUpdateContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const params = useParams();
-    const [element] = useState(false);
+    const [element, setElement] = useState(false);
+    const [errors, setErrors] = useState({});
     const [controller, setController] = useState({});
 
     const getKompersSatjarCategory = async () => {
@@ -32,9 +34,16 @@ export const KompersSatjarUpdateContextProvider = ({ children }) => {
     };
 
     const onSave = async () => {
+        setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         await updateKompersSatjarRequest({ id: params.id, body: dataBatch }).then((res) => {
-            console.log(res);
+            res?.errors && setErrors(res?.errors);
+            res?.errors && setElement(<ErrorPopup />);
+            !res?.errors && setElement(<SuccessPopup />);
+            setTimeout(() => {
+                setElement(false);
+                setElement(false);
+            }, 1000);
         });
     }
 
@@ -43,7 +52,7 @@ export const KompersSatjarUpdateContextProvider = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return <KompersSatjarUpdateContext.Provider value={{ navigation, element, controller, onSetController, onSave }}>{children}</KompersSatjarUpdateContext.Provider>;
+    return <KompersSatjarUpdateContext.Provider value={{ navigation, element, errors, controller, onSetController, onSave }}>{children}</KompersSatjarUpdateContext.Provider>;
 };
 
 export const UseKompersSatjarUpdateContext = () => {

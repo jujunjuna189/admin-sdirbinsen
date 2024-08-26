@@ -3,7 +3,7 @@ import { UseKompersSatjarContext } from "../../contexts/kompers_satjat/KompersSa
 import { dateFormatterV4 } from "../../utils";
 
 const KompersSatjarPage = () => {
-    const { navigation, kompersSatjarCategory, kompersSatjarCategoryActive, kompersSatjar, onTabSwitch } = UseKompersSatjarContext();
+    const { navigation, element, kompersSatjarCategory, kompersSatjarCategoryActive, kompersSatjar, onTabSwitch } = UseKompersSatjarContext();
 
     const renderTable = () => {
         return (
@@ -45,7 +45,7 @@ const KompersSatjarPage = () => {
     };
 
     return (
-        <Content>
+        <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
                 <div className="flex flex-col leading-3">
                     <span className="font-bold text-xl text-slate-800">Kompers Satjar</span>

@@ -1,4 +1,4 @@
-import { Button, Content, InputText, InputNumber } from "../../../../components";
+import { Button, Content, InputText } from "../../../../components";
 import { UseMaterialCreateContext } from "../../../../contexts/material/MaterialCreateContext";
 import { getLocalUser } from "../../../../utils";
 import { SatuanModal } from "../../../personil/component";
@@ -31,7 +31,7 @@ const MaterialCreatePage = () => {
             </div>
             <div>
               <span className="font-medium">Nomor REG</span>
-              <InputNumber className="mt-1" value={controller.no_reg} error={errors.no_reg} onChange={(value) => onSetController("no_reg", value)} placeholder="..." />
+              <InputText className="mt-1" value={controller.no_reg} error={errors.no_reg} onChange={(value) => onSetController("no_reg", value)} placeholder="..." />
             </div>
             <div>
               <KondisiModal value={controller.kondisi} error={errors.kondisi} onChange={(value) => onSetController("kondisi", value)} />
@@ -41,7 +41,10 @@ const MaterialCreatePage = () => {
               <InputText className="mt-1" value={controller.file} error={errors.file} onChange={(value) => onSetController("file", value)} placeholder="https://drive.google.com" />
             </div>
             <div>
-              <span className="font-medium">Keterangan</span>
+              <div className="flex flex-col leading-3">
+                <span className="font-medium">Keterangan</span>
+                <small>Isi "-" (strip) jika tidak ditambahkan keterangan</small>
+              </div>
               <InputText className="mt-1" value={controller.keterangan} error={errors.keterangan} onChange={(value) => onSetController("keterangan", value)} placeholder="..." />
             </div>
           </div>

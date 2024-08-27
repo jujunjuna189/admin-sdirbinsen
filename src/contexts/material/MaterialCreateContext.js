@@ -25,7 +25,7 @@ export const MaterialCreateContextProvider = ({ children }) => {
     !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.kategori = param.kategori;
-    dataBatch.status = "Baik";
+    dataBatch.status = 1;
     await createMaterialRequest({ body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       res?.errors && setElement(<ErrorPopup />);
@@ -43,14 +43,14 @@ export const MaterialCreateContextProvider = ({ children }) => {
     !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.kategori = param.kategori;
-    dataBatch.status = "Baik";
+    dataBatch.status = 1;
     await createMaterialRequest({ body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       res?.errors && setElement(<ErrorPopup />);
       !res?.errors && setElement(<SuccessPopup />);
       setTimeout(() => {
         setElement(false);
-        !res?.errors && setController({});
+        !res?.errors && setController({ kategori: controller.kategori });
       }, 1000);
     });
   };

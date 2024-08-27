@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deletePersonilRequest, getPersonilRequest } from "../../api/PersonilRequest"
+import { getSumberPAPersonilRequest } from "../../api/SumberPARequest";
 import { ConfirmDeleteModal } from "../../components";
 import { getLocalUser } from "../../utils";
 
@@ -11,36 +12,19 @@ export const PersonilContextProvider = ({ children }) => {
     const [element, setElement] = useState(false);
     const [personil, setPersonil] = useState({});
     const [sumberPaActiveIndex, setSumberPaActiveIndex] = useState(0);
-    const [sumberPa, setSumperPa] = useState([
-        {
-            title: 'Akmil',
-            isActive: true,
-        },
-        {
-            title: 'Sepa PK',
-            isActive: false,
-        },
-        {
-            title: 'Secaba PK',
-            isActive: false,
-        },
-        {
-            title: 'Diktukpa',
-            isActive: false,
-        },
-        {
-            title: 'Dikmaba PK',
-            isActive: false,
-        },
-        {
-            title: 'Diktukba',
-            isActive: false,
-        },
-        {
-            title: 'Dikjurta',
-            isActive: false,
-        },
-    ]);
+    const [sumberPa, setSumperPa] = useState([]);
+
+    const getSumberPa = async () => {
+        await getSumberPAPersonilRequest().then((res) => {
+            var sumberPa = [];
+            res.forEach((item, index) => {
+                sumberPa.push({ title: item, isActive: index === 0 ? true : false });
+            })
+            setSumperPa(sumberPa);
+            setSumberPaActiveIndex(sumberPa[0]);
+            onGetPersonil({ sumberPa: sumberPa[0].title });
+        });
+    }
 
     const onGetPersonil = async ({ sumberPa }) => {
         setPersonil({});
@@ -74,7 +58,7 @@ export const PersonilContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        onTabSwitch(0);
+        getSumberPa();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

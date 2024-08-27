@@ -100,7 +100,7 @@ const PersonilDetailRhPage = () => {
                                             <td className="border border-stone-400 px-2">{personil?.pendidikan_umum?.[i]?.jenis_pendidikan}</td>
                                             <td className="border border-stone-400 px-2 text-center">{personil?.pendidikan_umum?.[i]?.tahun}</td>
                                             <td className="border border-stone-400 px-2">{personil?.pendidikan_umum?.[i]?.nama_pendidikan}</td>
-                                            <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.pendidikan_umum?.[i]?.prestasi}</td>
+                                            <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.pendidikan_umum?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.pendidikan_umum?.[i]?.prestasi : ''}</td>
                                         </tr>
                                     );
                                 }
@@ -133,7 +133,7 @@ const PersonilDetailRhPage = () => {
                                             <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
                                             <td className="border border-stone-400 px-2">{personil?.pendidikan_militer?.[i]?.dikma_diktuk_dibangun}</td>
                                             <td className="border border-stone-400 px-2 text-center">{personil?.pendidikan_militer?.[i]?.tahun}</td>
-                                            <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.pendidikan_militer?.[i]?.prestasi}</td>
+                                            <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.pendidikan_militer?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.pendidikan_militer?.[i]?.prestasi : ''}</td>
                                             <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
                                             <td className="border border-stone-400 px-2 font-semibold text-center"></td>
                                             <td className="border border-stone-400 px-2 font-semibold text-center"></td>
@@ -180,7 +180,7 @@ const PersonilDetailRhPage = () => {
                                                     <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
                                                     <td className="border border-stone-400 px-2">{personil?.penugasan_operasi?.[i]?.nama_operasi}</td>
                                                     <td className="border border-stone-400 px-2 text-center">{personil?.penugasan_operasi?.[i]?.tahun}</td>
-                                                    <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.penugasan_operasi?.[i]?.prestasi}</td>
+                                                    <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.penugasan_operasi?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.penugasan_operasi?.[i]?.prestasi : ''}</td>
                                                     <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
                                                     <td className="border border-stone-400 px-2">{personil?.tanda_jasa?.[i]?.tanda_kehormatan}</td>
                                                     {i !== 5 ? <td className="border border-stone-400 px-2 font-semibold text-center">{(i + 1) > 5 ? (i - 5) : (i + 1)}</td> : <td className="border border-stone-400 px-2 font-semibold text-center">No</td>}
@@ -233,7 +233,7 @@ const PersonilDetailRhPage = () => {
                                                     <td className="border border-stone-400 px-2">{personil?.penugasan_luar_negeri?.[i]?.macam_tugas}</td>
                                                     <td className="border border-stone-400 px-2 text-center">{personil?.penugasan_luar_negeri?.[i]?.tahun}</td>
                                                     <td className="border border-stone-400 px-2 text-center">{personil?.penugasan_luar_negeri?.[i]?.negara}</td>
-                                                    <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.penugasan_luar_negeri?.[i]?.prestasi}</td>
+                                                    <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.penugasan_luar_negeri?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.penugasan_luar_negeri?.[i]?.prestasi : ''}</td>
                                                 </tr>
                                             );
                                         }

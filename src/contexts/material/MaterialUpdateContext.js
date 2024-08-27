@@ -42,7 +42,7 @@ export const MaterialUpdateContextProvider = ({ children }) => {
   const onSave = async () => {
     setElement(<LoaderPopup />);
     let dataBatch = { ...controller };
-    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan?.id ?? null);
+    !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.status = "Baik";
     await updateMaterialRequest({ material_id: param.id, body: dataBatch }).then((res) => {

@@ -1,4 +1,4 @@
-import { Button, Content, InputNumber, InputText } from "../../../../components";
+import { Button, Content, InputText } from "../../../../components";
 import { UseMaterialUpdateContext } from "../../../../contexts/material/MaterialUpdateContext";
 import { getLocalUser } from "../../../../utils";
 import { SatuanModal } from "../../../personil/component";
@@ -31,7 +31,7 @@ const MaterialUpdatePage = () => {
             </div>
             <div>
               <span className="font-medium">Nomor REG</span>
-              <InputNumber className="mt-1" value={controller.no_reg} error={errors.no_reg} onChange={(value) => onSetController("no_reg", value)} placeholder="..." />
+              <InputText className="mt-1" value={controller.no_reg} error={errors.no_reg} onChange={(value) => onSetController("no_reg", value)} placeholder="..." />
             </div>
             <div>
               <KondisiModal value={controller.kondisi} error={errors.kondisi} onChange={(value) => onSetController("kondisi", value)} />

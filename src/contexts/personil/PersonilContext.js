@@ -21,6 +21,10 @@ export const PersonilContextProvider = ({ children }) => {
             isActive: false,
         },
         {
+            title: 'Secaba PK',
+            isActive: false,
+        },
+        {
             title: 'Diktukpa',
             isActive: false,
         },

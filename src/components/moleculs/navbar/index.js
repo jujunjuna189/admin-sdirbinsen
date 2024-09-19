@@ -23,7 +23,7 @@ const Navbar = (props) => {
                 <div className="min-w-8 w-8 max-w-8">
                     <img src={logLogo} alt="LogoPussenarmed" className="w-full" />
                 </div>
-                <span>Sdirsen</span>
+                <span>Gunner Smart App</span>
             </div>
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigation('/profile')} onMouseOver={() => onSetElement()} onMouseLeave={() => onEmptyElement()}>
                 <span className="font-semibold">{(user?.auth?.user?.name && user?.auth?.user?.name.split(' ')[0]) ?? 'Anonim'}</span>

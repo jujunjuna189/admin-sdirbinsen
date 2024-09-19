@@ -46,5 +46,7 @@ export const API_SATUAN_PRESTASI_GET = `${REACT_APP_API_URL}admin/satuan-prestas
 export const API_SATUAN_PEJABAT_DANSAT_GET = `${REACT_APP_API_URL}admin/satuan-jabatan-dansat`;
 // Satuan Lain Lain
 export const API_SATUAN_LAIN_LAIN_GET = `${REACT_APP_API_URL}admin/satuan-lain-lain`;
+// Learning
+export const API_LEARNING_GET = `${REACT_APP_API_URL}admin/learning`;
 // Chat
 export const API_CHAT_GET = `${REACT_APP_API_URL}admin/chat`;

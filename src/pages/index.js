@@ -9,6 +9,8 @@ import KompersSatjarDetailPage from "./kompers_satjar/detail";
 import KompersSatjarCreatePage from "./kompers_satjar/form/create";
 import KompersSatjarUpdatePage from "./kompers_satjar/form/update";
 import KompersSatjarCategoryCreatePage from "./kompers_satjar_category/form/create";
+import LearningPage from "./learning";
+import LearningCreatePage from "./learning/form/create";
 import MaterialPage from "./material";
 import MaterialCreatePage from "./material/form/create";
 import MaterialUpdatePage from "./material/form/update";
@@ -54,6 +56,8 @@ export {
   PersonilPage,
   PersonilDetailPage,
   PersonilDetailRhPage,
+  LearningPage,
+  LearningCreatePage,
   MaterialPage,
   PersonilCreatePage,
   PersonilUpdatePage,

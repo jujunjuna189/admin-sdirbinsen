@@ -37,6 +37,12 @@ import { SiapsatBinsatRenlakgiatCreateContextProvider } from "./contexts/siapsat
 import { SiapsatBinsatLaplakgiatContextProvider } from "./contexts/siapsat/SiapsatBinsatLaplakgiatContext";
 import { SiapsatBinsatLaplakgiatCreateContextProvider } from "./contexts/siapsat/SiapsatBinsatLaplakgiatCreateContext";
 import { KompersSatjarContextProvider } from "./contexts/kompers_satjat/KompersSatjarContext";
+import { KompersSatjarCategoryCreateContextProvider } from "./contexts/kompers_satjat/KompersSatjarCategoryCreateContext";
+import { KompersSatjarCreateContextProvider } from "./contexts/kompers_satjat/KompersSatjarCreateContext";
+import { KompersSatjarDetailContextProvider } from "./contexts/kompers_satjat/KompersSatjarDetailContext";
+import { KompersSatjarUpdateContextProvider } from "./contexts/kompers_satjat/KompersSatjarUpdateContext";
+import { LearningContextProvider } from "./contexts/learning/LearningContext";
+import { LearningCreateContextProvider } from "./contexts/learning/LearningCreateContext";
 
 import {
   ChatPage,
@@ -49,6 +55,8 @@ import {
   KompersSatjarDetailPage,
   KompersSatjarPage,
   KompersSatjarUpdatePage,
+  LearningCreatePage,
+  LearningPage,
   LoginPage,
   MaterialCreatePage,
   MaterialPage,
@@ -85,10 +93,6 @@ import {
   UserDetailPage,
   UserPage,
 } from "./pages";
-import { KompersSatjarCategoryCreateContextProvider } from "./contexts/kompers_satjat/KompersSatjarCategoryCreateContext";
-import { KompersSatjarCreateContextProvider } from "./contexts/kompers_satjat/KompersSatjarCreateContext";
-import { KompersSatjarDetailContextProvider } from "./contexts/kompers_satjat/KompersSatjarDetailContext";
-import { KompersSatjarUpdateContextProvider } from "./contexts/kompers_satjat/KompersSatjarUpdateContext";
 
 function App() {
   return (
@@ -497,6 +501,27 @@ function App() {
           path="/siapsat/laporan_satuan"
           element={
             <Content>Coming Soon</Content>
+          }
+        />
+        {/* Learning */}
+        <Route
+          path="/learning/:kategori"
+          element={
+            <ProtectedAuth>
+              <LearningContextProvider>
+                <LearningPage />
+              </LearningContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/create/:kategori"
+          element={
+            <ProtectedAuth>
+              <LearningCreateContextProvider>
+                <LearningCreatePage />
+              </LearningCreateContextProvider>
+            </ProtectedAuth>
           }
         />
         {/* Chat */}

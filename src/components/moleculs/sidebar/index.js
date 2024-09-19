@@ -188,6 +188,36 @@ const Sidebar = (props) => {
           </div>
         </div>
       )}
+      {/* Smart Book */}
+      <div className="cursor-pointer">
+        <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3" onClick={() => { setDropDown({ ...dropDown, smartBook: !dropDown.smartBook }); localStorage.setItem('sdirbinsen.dropDown', JSON.stringify({ ...dropDown, smartBook: !dropDown.smartBook })); }}>
+          <div className="flex gap-3 items-center text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="text-red-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M9 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M5 8h4" /><path d="M9 16h4" /><path d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z" /><path d="M14 9l4 -1" /><path d="M16 16l3.923 -.98" /></svg>
+            <span className="font-medium">Buku Pintar</span>
+          </div>
+        </div>
+        {/* sub menu */}
+        <div className={`${dropDown.smartBook ? 'block' : 'hidden'}`}>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/learning/alutsista")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">Data Alutsista</span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/learning/munisi")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium">Data Munisi</span>
+            </div>
+          </div>
+          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/learning/tugas-dan-tanggung-jawab")}>
+            <div className="flex gap-2 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+              <span className="font-medium text-xs">Tugas dan Tanggung Jawab</span>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Chat feature */}
       <div className="cursor-pointer" onClick={() => navigation("/chat")}>
         <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3">

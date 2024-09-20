@@ -11,15 +11,13 @@ const LearningPage = () => {
                     <tr>
                         <th className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-start">
                             <div className="flex gap-5 items-center">
-                                <input type="checkbox" className="" />
-                                Nomor REG
+                                No
                             </div>
                         </th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kategori</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Jenis</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kondisi</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Link File</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Judul</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Materi</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kategori</th>
                         <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
                     </tr>
                 </thead>
@@ -29,15 +27,13 @@ const LearningPage = () => {
                             <tr key={index}>
                                 <td className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2">
                                     <div className="flex gap-5 items-center">
-                                        <input type="checkbox" className="" />
-                                        {item.no_reg}
+                                        {index + 1}
                                     </div>
                                 </td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.kategori}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.jenis}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.kondisi}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.title}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.file ?? "-"}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan?.nama ?? ""}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item?.satuan?.nama ?? ''}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.category}</td>
                                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                     <div className="flex gap-3 justify-end">
                                         <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => { }}>

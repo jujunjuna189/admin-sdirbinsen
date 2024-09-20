@@ -12,7 +12,7 @@ export const LearningContextProvider = ({ children }) => {
     const [learning, setLearning] = useState({});
 
     const onGetLearning = async () => {
-        await getLearningRequest().then((res) => {
+        await getLearningRequest({ filter: `category=${params.kategori}` }).then((res) => {
             setLearning(res);
         });
     };
@@ -30,7 +30,8 @@ export const LearningContextProvider = ({ children }) => {
 
     useEffect(() => {
         onGetLearning();
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [params.kategori]);
 
     return (
         <LearningContext.Provider value={{ navigation, params, element, setElement, learning, setLearning, onShowConfirmDelete }}>

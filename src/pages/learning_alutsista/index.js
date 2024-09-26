@@ -1,8 +1,8 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
-import { UseLearningContext } from "../../contexts/learning/LearningContext";
+import { UseLearningAlutsistaContext } from "../../contexts/learning/LearningAlutsistaContext";
 
-const LearningPage = () => {
-    const { navigation, element, params, learning, onShowConfirmDelete } = UseLearningContext();
+const LearningAlutsistaPage = () => {
+    const { navigation, element, category, categoryActive, learning, onShowConfirmDelete, onTabSwitch } = UseLearningAlutsistaContext();
 
     const renderTable = () => {
         return (
@@ -56,9 +56,12 @@ const LearningPage = () => {
     return (
         <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
-                <span className="font-bold text-xl text-slate-800">Daftar Buku Pintar</span>
+                <div className="flex flex-col leading-3">
+                    <span className="font-bold text-xl text-slate-800">Daftar Alutsista</span>
+                    <span>Buku Pintar</span>
+                </div>
                 <div>
-                    <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/learning/create/${params.kategori}`)}>
+                    <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/learning/alutsista/create/${categoryActive.key}`)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 5l0 14"></path>
@@ -67,6 +70,15 @@ const LearningPage = () => {
                         Tambah
                     </Button>
                 </div>
+            </div>
+            <div className="my-3 flex flex-wrap gap-2">
+                {category.map((item, index) => {
+                    return (
+                        <Button key={index} className={`${item.isActive ? "bg-slate-600 text-white" : "bg-white text-slate-900"} border`} onClick={() => onTabSwitch(index)}>
+                            {item.title}
+                        </Button>
+                    );
+                })}
             </div>
             <div className="mt-4">
                 <Card>
@@ -91,4 +103,4 @@ const LearningPage = () => {
     );
 }
 
-export default LearningPage;
+export default LearningAlutsistaPage;

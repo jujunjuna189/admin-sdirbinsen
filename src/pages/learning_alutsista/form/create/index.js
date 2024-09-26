@@ -1,10 +1,10 @@
 import { Button, Content, InputArea, InputFileAll, InputText } from "../../../../components";
-import { UseLearningCreateContext } from "../../../../contexts/learning/LearningCreateContext";
+import { UseLearningAlutsistaCreateContext } from "../../../../contexts/learning/LearningAlutsistaCreateContext";
 import { getLocalUser } from "../../../../utils";
 import { SatuanModal } from "../../../personil/component";
 
-const LearningCreatePage = () => {
-    const { navigation, element, controller, errors, onSetController, onSaveAndAdd, onSave } = UseLearningCreateContext();
+const LearningAlutsistaCreatePage = () => {
+    const { navigation, element, controller, errors, onSetController, onSaveAndAdd, onSave } = UseLearningAlutsistaCreateContext();
 
     return (
         <Content element={element}>
@@ -13,7 +13,7 @@ const LearningCreatePage = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M15 6l-6 6l6 6"></path>
                 </svg>
-                <span className="font-semibold text-base text-slate-800">Tambah Buku Pintar</span>
+                <span className="font-semibold text-base text-slate-800">Tambah Buku Pintar - Alutsista</span>
             </div>
             <div className="flex justify-center">
                 <div className="border rounded-lg p-3 w-full max-w-[652px]">
@@ -55,4 +55,4 @@ const LearningCreatePage = () => {
     );
 }
 
-export default LearningCreatePage;
+export default LearningAlutsistaCreatePage;

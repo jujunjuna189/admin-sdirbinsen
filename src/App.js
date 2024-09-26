@@ -41,8 +41,6 @@ import { KompersSatjarCategoryCreateContextProvider } from "./contexts/kompers_s
 import { KompersSatjarCreateContextProvider } from "./contexts/kompers_satjat/KompersSatjarCreateContext";
 import { KompersSatjarDetailContextProvider } from "./contexts/kompers_satjat/KompersSatjarDetailContext";
 import { KompersSatjarUpdateContextProvider } from "./contexts/kompers_satjat/KompersSatjarUpdateContext";
-import { LearningContextProvider } from "./contexts/learning/LearningContext";
-import { LearningCreateContextProvider } from "./contexts/learning/LearningCreateContext";
 
 import {
   ChatPage,
@@ -55,8 +53,11 @@ import {
   KompersSatjarDetailPage,
   KompersSatjarPage,
   KompersSatjarUpdatePage,
-  LearningCreatePage,
-  LearningPage,
+  LearningAlutsistaCreatePage,
+  LearningAlutsistaPage,
+  LearningMunisiCreatePage,
+  LearningMunisiPage,
+  LearningResponsibilityPage,
   LoginPage,
   MaterialCreatePage,
   MaterialPage,
@@ -93,6 +94,13 @@ import {
   UserDetailPage,
   UserPage,
 } from "./pages";
+import { LearningAlutsistaContextProvider } from "./contexts/learning/LearningAlutsistaContext";
+import { LearningMunisiContextProvider } from "./contexts/learning/LearningMunisiContext";
+import { LearningResponsibilityContextProvider } from "./contexts/learning/LearningResponsibilityContext";
+import { LearningAlutsistaCreateContextProvider } from "./contexts/learning/LearningAlutsistaCreateContext";
+import { LearningMunisiCreateContextProvider } from "./contexts/learning/LearningMunisiCreateContext";
+import { LearningResponsibilityCreateContextProvider } from "./contexts/learning/LearningResponsibilityCreateContext";
+import LearningResponsibilityCreatePage from "./pages/learning_responsibility/form/create";
 
 function App() {
   return (
@@ -505,22 +513,62 @@ function App() {
         />
         {/* Learning */}
         <Route
-          path="/learning/:kategori"
+          path="/learning/alutsista"
           element={
             <ProtectedAuth>
-              <LearningContextProvider>
-                <LearningPage />
-              </LearningContextProvider>
+              <LearningAlutsistaContextProvider>
+                <LearningAlutsistaPage />
+              </LearningAlutsistaContextProvider>
             </ProtectedAuth>
           }
         />
         <Route
-          path="/learning/create/:kategori"
+          path="/learning/alutsista/create/:kategori"
           element={
             <ProtectedAuth>
-              <LearningCreateContextProvider>
-                <LearningCreatePage />
-              </LearningCreateContextProvider>
+              <LearningAlutsistaCreateContextProvider>
+                <LearningAlutsistaCreatePage />
+              </LearningAlutsistaCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/munisi"
+          element={
+            <ProtectedAuth>
+              <LearningMunisiContextProvider>
+                <LearningMunisiPage />
+              </LearningMunisiContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/munisi/create/:kategori"
+          element={
+            <ProtectedAuth>
+              <LearningMunisiCreateContextProvider>
+                <LearningMunisiCreatePage />
+              </LearningMunisiCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/responsibility"
+          element={
+            <ProtectedAuth>
+              <LearningResponsibilityContextProvider>
+                <LearningResponsibilityPage />
+              </LearningResponsibilityContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/responsibility/create"
+          element={
+            <ProtectedAuth>
+              <LearningResponsibilityCreateContextProvider>
+                <LearningResponsibilityCreatePage />
+              </LearningResponsibilityCreateContextProvider>
             </ProtectedAuth>
           }
         />

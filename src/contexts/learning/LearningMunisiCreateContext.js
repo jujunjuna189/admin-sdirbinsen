@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createLearnigRequest } from "../../api/LearningRequest";
+import { createLearningMunisiRequest } from "../../api/LearningMunisiRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
 
-const LearningCreateContext = createContext();
+const LearningMunisiCreateContext = createContext();
 
-export const LearningCreateContextProvider = ({ children }) => {
+export const LearningMunisiCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const params = useParams();
     const [element, setElement] = useState(false);
@@ -22,13 +22,13 @@ export const LearningCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createLearnigRequest({ body: dataBatch }).then((res) => {
+        await createLearningMunisiRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && navigation(`/learning/${params.kategori}`);
+                !res?.errors && navigation(`/learning/munisi`);
             }, 1000);
         });
     };
@@ -37,24 +37,24 @@ export const LearningCreateContextProvider = ({ children }) => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
         dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createLearnigRequest({ body: dataBatch }).then((res) => {
+        await createLearningMunisiRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && setController({ kategori: controller.kategori });
+                !res?.errors && setController({ category: controller.category });
             }, 1000);
         });
     };
 
     return (
-        <LearningCreateContext.Provider value={{ navigation, element, controller, errors, setErrors, onSetController, onSaveAndAdd, onSave }}>
+        <LearningMunisiCreateContext.Provider value={{ navigation, element, controller, errors, setErrors, onSetController, onSaveAndAdd, onSave }}>
             {children}
-        </LearningCreateContext.Provider>
+        </LearningMunisiCreateContext.Provider>
     );
 }
 
-export const UseLearningCreateContext = () => {
-    return useContext(LearningCreateContext);
+export const UseLearningMunisiCreateContext = () => {
+    return useContext(LearningMunisiCreateContext);
 }

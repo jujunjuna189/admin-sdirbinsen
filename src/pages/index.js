@@ -13,7 +13,10 @@ import LearningAlutsistaPage from "./learning_alutsista";
 import LearningAlutsistaCreatePage from "./learning_alutsista/form/create";
 import LearningMunisiPage from "./learning_munisi";
 import LearningMunisiCreatePage from "./learning_munisi/form/create";
+import LearningPejabatSatuanPage from "./learning_pejabat_satuan";
 import LearningResponsibilityPage from "./learning_responsibility";
+import LearningSatuanPage from "./learning_satuan";
+import LearningSatuanCreatePage from "./learning_satuan/form/create";
 import MaterialPage from "./material";
 import MaterialCreatePage from "./material/form/create";
 import MaterialUpdatePage from "./material/form/update";
@@ -71,7 +74,10 @@ export {
   LearningAlutsistaCreatePage,
   LearningMunisiPage,
   LearningMunisiCreatePage,
+  LearningPejabatSatuanPage,
   LearningResponsibilityPage,
+  LearningSatuanPage,
+  LearningSatuanCreatePage,
   MaterialCreatePage,
   MaterialUpdatePage,
   PetaJabatanPage,

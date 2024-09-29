@@ -57,7 +57,10 @@ import {
   LearningAlutsistaPage,
   LearningMunisiCreatePage,
   LearningMunisiPage,
+  LearningPejabatSatuanPage,
   LearningResponsibilityPage,
+  LearningSatuanCreatePage,
+  LearningSatuanPage,
   LoginPage,
   MaterialCreatePage,
   MaterialPage,
@@ -101,6 +104,11 @@ import { LearningAlutsistaCreateContextProvider } from "./contexts/learning/Lear
 import { LearningMunisiCreateContextProvider } from "./contexts/learning/LearningMunisiCreateContext";
 import { LearningResponsibilityCreateContextProvider } from "./contexts/learning/LearningResponsibilityCreateContext";
 import LearningResponsibilityCreatePage from "./pages/learning_responsibility/form/create";
+import { LearningSatuanContextProvider } from "./contexts/learning/LearningSatuanContext";
+import { LearningSatuanCreateContextProvider } from "./contexts/learning/LearningSatuanCreateContext";
+import { LearningPejabatSatuanContextProvider } from "./contexts/learning/LearningPejabatSatuanContext";
+import { LearningPejabatSatuanCreateContextProvider } from "./contexts/learning/LearningPejabatSatuanCreateContext";
+import LearningPejabatSatuanCreatePage from "./pages/learning_pejabat_satuan/form/create";
 
 function App() {
   return (
@@ -569,6 +577,46 @@ function App() {
               <LearningResponsibilityCreateContextProvider>
                 <LearningResponsibilityCreatePage />
               </LearningResponsibilityCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/satuan"
+          element={
+            <ProtectedAuth>
+              <LearningSatuanContextProvider>
+                <LearningSatuanPage />
+              </LearningSatuanContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/satuan/create"
+          element={
+            <ProtectedAuth>
+              <LearningSatuanCreateContextProvider>
+                <LearningSatuanCreatePage />
+              </LearningSatuanCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/pejabat-satuan"
+          element={
+            <ProtectedAuth>
+              <LearningPejabatSatuanContextProvider>
+                <LearningPejabatSatuanPage />
+              </LearningPejabatSatuanContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/learning/pejabat-satuan/create/:kategori"
+          element={
+            <ProtectedAuth>
+              <LearningPejabatSatuanCreateContextProvider>
+                <LearningPejabatSatuanCreatePage />
+              </LearningPejabatSatuanCreateContextProvider>
             </ProtectedAuth>
           }
         />

@@ -50,7 +50,7 @@ export const MaterialCreateContextProvider = ({ children }) => {
       !res?.errors && setElement(<SuccessPopup />);
       setTimeout(() => {
         setElement(false);
-        !res?.errors && setController({ kategori: controller.kategori });
+        !res?.errors && setController({ kategori: param.kategori });
       }, 1000);
     });
   };

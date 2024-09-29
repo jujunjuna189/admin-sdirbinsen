@@ -9,11 +9,13 @@ const LambangTrakorpsDetail = (props) => {
                 <UpdateLambangSatuanModal satuan={props.satuan} satuanLambang={props.satuanLambang} onSave={() => props.onSave && props.onSave()} />
             </div>
             <hr />
-            <div className="flex gap-3 py-2">
-                {(Object.keys(props.satuanLambang ?? {}).length > 0 && props.satuanLambang.picture != null) && <img src={props.satuanLambang.picture} alt={props.satuanLambang.deskripsi} className={`h-36 aspect-square rounded-lg border ${!props.satuanLambang.picture && "bg-slate-400"}`} />}
-                <div className="flex flex-col">
+            <div className="py-2">
+                <div className="flex justify-center">
+                    {(Object.keys(props.satuanLambang ?? {}).length > 0 && props.satuanLambang.picture != null) && <img src={props.satuanLambang.picture} alt={props.satuanLambang.deskripsi} className={`h-48 aspect-video rounded-lg border ${!props.satuanLambang.picture && "bg-slate-400"}`} />}
+                </div>
+                <div className="flex flex-col mt-5">
                     <span className="font-semibold">Deskripsi</span>
-                    <div className="mt-1" style={{ display: 'flex' }} dangerouslySetInnerHTML={{ __html: props.satuanLambang?.deskripsi ?? '-' }} />
+                    <div className="mt-1" style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: props.satuanLambang?.deskripsi ?? '-' }} />
                 </div>
             </div>
         </Card>

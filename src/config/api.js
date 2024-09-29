@@ -10,6 +10,8 @@ export const API_ROLE_GET = `${REACT_APP_API_URL}admin/role`;
 export const API_USER_PERMISSION_GET = `${REACT_APP_API_URL}admin/user-permission`;
 // Permission
 export const API_PERMISSION_GET = `${REACT_APP_API_URL}admin/permission`;
+// Role Has Permission
+export const API_ROLE_PERMISSION_GET = `${REACT_APP_API_URL}admin/role-permission`;
 // Personil
 export const API_PERSONIL_GET = `${REACT_APP_API_URL}admin/personil`;
 // Personil List

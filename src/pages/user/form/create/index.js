@@ -3,7 +3,7 @@ import { UseUserCreateContext } from "../../../../contexts/user/UserCreateContex
 import { RoleModal, SatuanModal } from "../../component";
 
 const UserCreatePage = () => {
-    const { controller, errors, onSetController, permission, step, stepActive, onTabSwitch, onCheckedPermission, onSaveAndAdd, onSave } = UseUserCreateContext();
+    const { controller, setController, errors, onSetController, permission, step, stepActive, onTabSwitch, onCheckedPermission, onSaveAndAdd, onSave } = UseUserCreateContext();
 
     const renderForm = (page) => {
         const form = {
@@ -32,7 +32,7 @@ const UserCreatePage = () => {
                         <InputPassword className="mt-1" value={controller.password} error={errors.password} onChange={(value) => onSetController('password', value)} placeholder="..." />
                     </div>
                     <SatuanModal value={controller.satuan?.nama} error={errors.satuan_id} onChange={(value) => onSetController('satuan', value)} />
-                    <RoleModal value={controller.role?.name} error={errors.role} onChange={(value) => onSetController('role', value)} />
+                    <RoleModal value={controller.role?.name} error={errors.role} onChange={(value) => setController({ ...controller, role: value, permission: [] })} />
                 </div>
                 <div className="flex justify-end mt-8 mb-3 gap-2">
                     <Button className="bg-slate-700 text-white" onClick={() => onTabSwitch(1)}>Selanjutnya</Button>

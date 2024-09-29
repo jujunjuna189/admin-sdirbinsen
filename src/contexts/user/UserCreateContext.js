@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPermissionRequest } from "../../api/PermissionRequest";
+import { getRolePermissionRequest } from "../../api/RoleHasPermissionRequest";
 import { createUserPermissionRequest } from "../../api/UserPermissionRequest";
 import { createUserRequest } from "../../api/UserRequest";
 
@@ -25,7 +25,7 @@ export const UserCreateContextProvider = ({ children }) => {
             nav: () => onTabSwitch(0),
             title: "Atur Hak Akses",
             page: 2,
-            on_load: () => getPermission(),
+            on_load: (controller) => onGetRoleHasPermission(controller),
             isActive: false,
         },
     ]);
@@ -40,13 +40,13 @@ export const UserCreateContextProvider = ({ children }) => {
         });
 
         step[indexItem].isActive = true;
-        step[indexItem].on_load();
+        step[indexItem].on_load(controller);
         setStepActive(step[indexItem]);
         setStep([...step]);
     }
 
-    const getPermission = async () => {
-        await getPermissionRequest().then((res) => {
+    const onGetRoleHasPermission = async (controller) => {
+        await getRolePermissionRequest({ filter: `role_id=${controller.role?.id}` }).then((res) => {
             setPermission(res);
         });
     }
@@ -120,7 +120,7 @@ export const UserCreateContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <UserCreateContext.Provider value={{ navigation, controller, errors, onSetController, permission, step, stepActive, onTabSwitch, onCheckedPermission, onSaveAndAdd, onSave }}>
+        <UserCreateContext.Provider value={{ navigation, controller, setController, errors, onSetController, permission, step, stepActive, onTabSwitch, onCheckedPermission, onSaveAndAdd, onSave }}>
             {children}
         </UserCreateContext.Provider>
     );

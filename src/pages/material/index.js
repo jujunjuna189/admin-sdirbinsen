@@ -1,6 +1,6 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UseMaterialContext } from "../../contexts/material/MaterialContext";
-import { getLocalUser } from "../../utils";
+import { dateFormatterV4, getLocalUser } from "../../utils";
 
 const MaterialPage = () => {
   const { navigation, element, material, category, categoryActive, onTabSwitch, onShowConfirmDelete } = UseMaterialContext();
@@ -21,6 +21,7 @@ const MaterialPage = () => {
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kondisi</th>
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Link File</th>
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
+            <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
             <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
           </tr>
         </thead>
@@ -39,6 +40,7 @@ const MaterialPage = () => {
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.kondisi}</td>
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.file ?? "-"}</td>
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan?.nama ?? ""}</td>
+                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{dateFormatterV4(item.created_at)}</td>
                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                   <div className="flex gap-3 justify-end">
                     {getLocalUser()?.auth?.permission["binmat.update"] && (

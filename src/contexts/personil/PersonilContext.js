@@ -26,9 +26,9 @@ export const PersonilContextProvider = ({ children }) => {
         });
     }
 
-    const onGetPersonil = async ({ sumberPa }) => {
+    const onGetPersonil = async ({ sumberPa, page }) => {
         setPersonil({});
-        await getPersonilRequest({ sumber_pa: sumberPa, satuan_id: getLocalUser()?.auth?.user?.satuan_id }).then((res) => {
+        await getPersonilRequest({ sumber_pa: sumberPa, satuan_id: getLocalUser()?.auth?.user?.satuan_id, page: page }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPersonil(res);
@@ -44,6 +44,10 @@ export const PersonilContextProvider = ({ children }) => {
         onGetPersonil({ sumberPa: sumberPa[indexItem].title });
         setSumberPaActiveIndex(indexItem);
         setSumperPa([...sumberPa]);
+    }
+
+    const onNextPage = ({ page }) => {
+        onGetPersonil({ sumberPa: sumberPaActiveIndex.title, page: page });
     }
 
     const onShowConfirmDelete = (personil_id) => {
@@ -63,7 +67,7 @@ export const PersonilContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <PersonilContext.Provider value={{ navigation, element, personil, sumberPa, onTabSwitch, onShowConfirmDelete }}>
+        <PersonilContext.Provider value={{ navigation, element, personil, sumberPa, onTabSwitch, onNextPage, onShowConfirmDelete }}>
             {children}
         </PersonilContext.Provider>
     );

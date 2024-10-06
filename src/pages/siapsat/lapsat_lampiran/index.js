@@ -1,6 +1,6 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../../components";
 import { UseSiapsatLapsatLampiranContext } from "../../../contexts/siapsat/SiapsatLapsatLampiranContext";
-import { getLocalUser } from "../../../utils";
+import { dateFormatterV4, getLocalUser } from "../../../utils";
 import { LapsatNav } from "../component";
 
 const SiapsatLapsatLampiranPage = () => {
@@ -19,6 +19,7 @@ const SiapsatLapsatLampiranPage = () => {
                         </th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Nama</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Nama File</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
                         <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
                     </tr>
                 </thead>
@@ -34,6 +35,7 @@ const SiapsatLapsatLampiranPage = () => {
                                 </td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.nama}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.file}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{dateFormatterV4(item.created_at)}</td>
                                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                     <div className="flex gap-3 justify-end">
                                         {getLocalUser()?.auth?.permission?.["siapsat.update"] && (

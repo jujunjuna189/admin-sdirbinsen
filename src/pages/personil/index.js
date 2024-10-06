@@ -3,7 +3,7 @@ import { UsePersonilContext } from "../../contexts/personil/PersonilContext";
 import { getLocalUser } from "../../utils";
 
 const PersonilPage = () => {
-    const { navigation, element, personil, sumberPa, onTabSwitch, onShowConfirmDelete } = UsePersonilContext();
+    const { navigation, element, personil, sumberPa, onTabSwitch, onNextPage, onShowConfirmDelete } = UsePersonilContext();
 
     const renderTable = () => {
         return (
@@ -98,7 +98,7 @@ const PersonilPage = () => {
                         {Object.keys(personil).length === 0 ? <TableLoader /> : personil.data.length === 0 ? <EmptyData /> : renderTable()}
                     </div>
                     <div className="flex justify-end px-5 py-3">
-                        {Object.keys(personil).length !== 0 && personil.data.length !== 0 && <SimplePagination pages={personil?.links ?? []} currentPage={personil?.current_page} onCallback={((page) => { })} />}
+                        {Object.keys(personil).length !== 0 && personil.data.length !== 0 && <SimplePagination pages={personil?.links ?? []} currentPage={personil?.current_page} onCallback={((page) => onNextPage({ page: page }))} />}
                     </div>
                 </Card>
             </div>

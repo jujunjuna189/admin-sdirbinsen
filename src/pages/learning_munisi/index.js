@@ -1,5 +1,6 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UseLearningMunisiContext } from "../../contexts/learning/LearningMunisiContext";
+import { dateFormatterV4 } from "../../utils";
 
 const LearningMunisiPage = () => {
     const { navigation, element, category, categoryActive, learning, onShowConfirmDelete, onTabSwitch } = UseLearningMunisiContext();
@@ -18,6 +19,7 @@ const LearningMunisiPage = () => {
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Materi</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kategori</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
                         <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
                     </tr>
                 </thead>
@@ -34,6 +36,7 @@ const LearningMunisiPage = () => {
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.file ?? "-"}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item?.satuan?.nama ?? ''}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.category}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{dateFormatterV4(item.created_at)}</td>
                                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                     <div className="flex gap-3 justify-end">
                                         <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => { }}>

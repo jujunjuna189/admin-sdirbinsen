@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createLearningResponsibilityRequest } from "../../api/LearningResponsibilityRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
 
@@ -7,9 +7,11 @@ const LearningResponsibilityCreateContext = createContext();
 
 export const LearningResponsibilityCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
+    const location = useLocation();
     const [element, setElement] = useState(false);
     const [controller, setController] = useState({
-        category: '-',
+        category: location.state?.category,
+        type: location.state?.type,
     });
     const [errors, setErrors] = useState({});
 
@@ -27,7 +29,7 @@ export const LearningResponsibilityCreateContextProvider = ({ children }) => {
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && navigation(`/learning/responsibility`);
+                !res?.errors && navigation(`/learning/responsibility`, { state: { category: location.state?.category } });
             }, 1000);
         });
     };
@@ -42,7 +44,7 @@ export const LearningResponsibilityCreateContextProvider = ({ children }) => {
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && setController({ category: controller.category });
+                !res?.errors && setController({ category: location.state?.category, type: location.state?.type });
             }, 1000);
         });
     };

@@ -21,6 +21,14 @@ const LearningResponsibilityCreatePage = () => {
                     <div className="flex flex-col gap-3 mt-3">
                         {!getLocalUser()?.auth?.user?.satuan_id && (<SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />)}
                         <div>
+                            <span className="font-medium">Kategori</span>
+                            <InputText className="mt-1" value={controller.category} error={errors.category} onChange={(value) => onSetController("category", value)} readOnly={true} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Jenis</span>
+                            <InputText className="mt-1" value={controller.type} error={errors.type} onChange={(value) => onSetController("type", value)} readOnly={true} placeholder="..." />
+                        </div>
+                        <div>
                             <span className="font-medium">Judul</span>
                             <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
                         </div>

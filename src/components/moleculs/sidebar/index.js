@@ -249,13 +249,13 @@ const Sidebar = (props) => {
               </div>
               <hr />
               <div className="text-start">
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility")}>
+                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-rocket" } })}>
                   <span>Yonarmed Roket</span>
                 </div>
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility")}>
+                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-sedang" } })}>
                   <span>Yonarmed Sedang</span>
                 </div>
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility")}>
+                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-ringan" } })}>
                   <span>Yonarmed Ringan</span>
                 </div>
               </div>

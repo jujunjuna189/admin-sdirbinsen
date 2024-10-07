@@ -30,12 +30,12 @@ export const LearningAlutsistaContextProvider = ({ children }) => {
             case "yonarmed-rocket":
                 subCategory = [
                     {
-                        key: 'MLRS Astros II MK 6',
+                        key: 'MLRS-Astros-II-MK-6',
                         title: 'MLRS Astros II MK 6',
                         isActive: true,
                     },
                     {
-                        key: 'Peluru Kendali',
+                        key: 'Peluru-Kendali',
                         title: 'Peluru Kendali',
                         isActive: false,
                     },
@@ -44,17 +44,17 @@ export const LearningAlutsistaContextProvider = ({ children }) => {
             case "yonarmed-sedang":
                 subCategory = [
                     {
-                        key: 'Meriam 155 mm GS Caesar',
+                        key: 'Meriam-155-mm-GS-Caesar',
                         title: 'Meriam 155 mm GS Caesar',
                         isActive: true,
                     },
                     {
-                        key: 'Meriam 155 mm GS M109A4BE',
+                        key: 'Meriam-155-mm-GS-M109A4BE',
                         title: 'Meriam 155 mm GS M109A4BE',
                         isActive: false,
                     },
                     {
-                        key: 'Meriam 155 mm Tarik KH 179',
+                        key: 'Meriam-155-mm-Tarik-KH-179',
                         title: 'Meriam 155 mm Tarik KH 179',
                         isActive: false,
                     },
@@ -63,22 +63,22 @@ export const LearningAlutsistaContextProvider = ({ children }) => {
             case "yonarmed-ringan":
                 subCategory = [
                     {
-                        key: 'Meriam 105 mm Tarik KH 178',
+                        key: 'Meriam-105-mm-Tarik-KH-178',
                         title: 'Meriam 105 mm Tarik KH 178',
                         isActive: true,
                     },
                     {
-                        key: 'Meriam 105 mm Tarik M101A1',
+                        key: 'Meriam-105-mm-Tarik-M101A1',
                         title: 'Meriam 105 mm Tarik M101A1',
                         isActive: false,
                     },
                     {
-                        key: 'Meriam 76 mm Tarik M48',
+                        key: 'Meriam-76-mm-Tarik-M48',
                         title: 'Meriam 76 mm Tarik M48',
                         isActive: false,
                     },
                     {
-                        key: 'Meriam 75 mm Tarik Saluting Gun',
+                        key: 'Meriam-75-mm-Tarik-Saluting-Gun',
                         title: 'Meriam 75 mm Tarik Saluting Gun',
                         isActive: false,
                     },
@@ -107,7 +107,7 @@ export const LearningAlutsistaContextProvider = ({ children }) => {
     const onDeleteLearning = async ({ learning_id = null }) => {
         await deleteLearningAlutsistaRequest({ learning_id: learning_id }).then((res) => {
             setElement(false);
-            onGetLearning({ category: res.category });
+            onGetLearning({ category: location?.state?.category ?? '', type: categoryActive.key });
         });
     };
 

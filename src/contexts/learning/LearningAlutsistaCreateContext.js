@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createLearnigAlutsistaRequest } from "../../api/LearningAlutsistaRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
 
@@ -7,10 +7,11 @@ const LearningAlutsistaCreateContext = createContext();
 
 export const LearningAlutsistaCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
-    const params = useParams();
+    const location = useLocation();
     const [element, setElement] = useState(false);
     const [controller, setController] = useState({
-        category: params.kategori,
+        category: location.state?.category,
+        type: location.state?.type,
     });
     const [errors, setErrors] = useState({});
 
@@ -28,7 +29,7 @@ export const LearningAlutsistaCreateContextProvider = ({ children }) => {
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && navigation(`/learning/alutsista`);
+                !res?.errors && navigation(`/learning/alutsista`, { state: { category: location.state?.category } });
             }, 1000);
         });
     };
@@ -43,7 +44,7 @@ export const LearningAlutsistaCreateContextProvider = ({ children }) => {
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && setController({ category: controller.category });
+                !res?.errors && setController({ category: location.state?.category, type: location.state?.type });
             }, 1000);
         });
     };

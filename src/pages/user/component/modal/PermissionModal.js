@@ -38,7 +38,7 @@ const PermissionModal = (props) => {
 
     const setSettingPermission = () => {
         let dataBatch = {};
-        props.permissions.forEach((item, index) => {
+        props?.permissions?.forEach((item, index) => {
             dataBatch = { ...dataBatch, [item.id]: true };
         });
 

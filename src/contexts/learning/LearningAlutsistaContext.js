@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { deleteLearningAlutsistaRequest, getLearningAlutsistaRequest } from "../../api/LearningAlutsistaRequest";
 import { ConfirmDeleteModal } from "../../components";
 
@@ -7,26 +7,11 @@ const LearningAlutsistaContext = createContext();
 
 export const LearningAlutsistaContextProvider = ({ children }) => {
     const navigation = useNavigate();
+    const location = useLocation();
     const [element, setElement] = useState(false);
     const [learning, setLearning] = useState({});
     const [categoryActive, setCategoryActive] = useState({});
-    const [category, setCategory] = useState([
-        {
-            key: 'yonarmed-rocket',
-            title: 'Yonarmed Roket',
-            isActive: true,
-        },
-        {
-            key: 'yonarmed-sedang',
-            title: 'Yonarmed Sedang',
-            isActive: false,
-        },
-        {
-            key: 'yonarmed-ringan',
-            title: 'Yonarmed Ringan',
-            isActive: false,
-        },
-    ]);
+    const [category, setCategory] = useState([]);
 
     const onTabSwitch = (indexItem) => {
         category.forEach((item, index) => {
@@ -36,11 +21,81 @@ export const LearningAlutsistaContextProvider = ({ children }) => {
         category[indexItem].isActive = true;
         setCategory([...category]);
         setCategoryActive({ ...category[indexItem] });
-        onGetLearning({ category: category[indexItem].key });
+        onGetLearning({ category: location?.state?.category ?? '', type: category?.[indexItem]?.key ?? '' });
     };
 
-    const onGetLearning = async ({ category }) => {
-        await getLearningAlutsistaRequest({ filter: `category=${category}` }).then((res) => {
+    const onGetCategory = () => {
+        var subCategory = []
+        switch (location?.state?.category) {
+            case "yonarmed-rocket":
+                subCategory = [
+                    {
+                        key: 'MLRS Astros II MK 6',
+                        title: 'MLRS Astros II MK 6',
+                        isActive: true,
+                    },
+                    {
+                        key: 'Peluru Kendali',
+                        title: 'Peluru Kendali',
+                        isActive: false,
+                    },
+                ];
+                break;
+            case "yonarmed-sedang":
+                subCategory = [
+                    {
+                        key: 'Meriam 155 mm GS Caesar',
+                        title: 'Meriam 155 mm GS Caesar',
+                        isActive: true,
+                    },
+                    {
+                        key: 'Meriam 155 mm GS M109A4BE',
+                        title: 'Meriam 155 mm GS M109A4BE',
+                        isActive: false,
+                    },
+                    {
+                        key: 'Meriam 155 mm Tarik KH 179',
+                        title: 'Meriam 155 mm Tarik KH 179',
+                        isActive: false,
+                    },
+                ];
+                break;
+            case "yonarmed-ringan":
+                subCategory = [
+                    {
+                        key: 'Meriam 105 mm Tarik KH 178',
+                        title: 'Meriam 105 mm Tarik KH 178',
+                        isActive: true,
+                    },
+                    {
+                        key: 'Meriam 105 mm Tarik M101A1',
+                        title: 'Meriam 105 mm Tarik M101A1',
+                        isActive: false,
+                    },
+                    {
+                        key: 'Meriam 76 mm Tarik M48',
+                        title: 'Meriam 76 mm Tarik M48',
+                        isActive: false,
+                    },
+                    {
+                        key: 'Meriam 75 mm Tarik Saluting Gun',
+                        title: 'Meriam 75 mm Tarik Saluting Gun',
+                        isActive: false,
+                    },
+                ];
+                break;
+            default:
+                subCategory = [];
+                break;
+        }
+
+        setCategory(subCategory);
+        setCategoryActive({ ...subCategory[0] });
+        onGetLearning({ category: location?.state?.category ?? '', type: subCategory[0].key });
+    }
+
+    const onGetLearning = async ({ category, type }) => {
+        await getLearningAlutsistaRequest({ filter: `category=${category}&type=${type}` }).then((res) => {
             setLearning(res);
         });
     };
@@ -57,12 +112,12 @@ export const LearningAlutsistaContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        onTabSwitch(0);
+        onGetCategory();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [location?.state?.category]);
 
     return (
-        <LearningAlutsistaContext.Provider value={{ navigation, element, setElement, category, categoryActive, learning, setLearning, onShowConfirmDelete, onTabSwitch }}>
+        <LearningAlutsistaContext.Provider value={{ navigation, location, element, setElement, category, categoryActive, learning, setLearning, onShowConfirmDelete, onTabSwitch }}>
             {children}
         </LearningAlutsistaContext.Provider>
     );

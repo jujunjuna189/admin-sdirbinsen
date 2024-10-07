@@ -531,7 +531,7 @@ function App() {
           }
         />
         <Route
-          path="/learning/alutsista/create/:kategori"
+          path="/learning/alutsista/create"
           element={
             <ProtectedAuth>
               <LearningAlutsistaCreateContextProvider>

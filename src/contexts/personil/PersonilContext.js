@@ -26,9 +26,9 @@ export const PersonilContextProvider = ({ children }) => {
         });
     }
 
-    const onGetPersonil = async ({ sumberPa, page }) => {
+    const onGetPersonil = async ({ sumberPa, search, page }) => {
         setPersonil({});
-        await getPersonilRequest({ sumber_pa: sumberPa, satuan_id: getLocalUser()?.auth?.user?.satuan_id, page: page }).then((res) => {
+        await getPersonilRequest({ sumber_pa: sumberPa, satuan_id: getLocalUser()?.auth?.user?.satuan_id, search: search, page: page }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPersonil(res);
@@ -50,6 +50,11 @@ export const PersonilContextProvider = ({ children }) => {
         onGetPersonil({ sumberPa: sumberPaActiveIndex.title, page: page });
     }
 
+    const onSearch = (value) => {
+        console.log(value);
+        onGetPersonil({ sumberPa: sumberPaActiveIndex.title, search: value });
+    }
+
     const onShowConfirmDelete = (personil_id) => {
         setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteMaterial({ personil_id: personil_id })} />);
     }
@@ -67,7 +72,7 @@ export const PersonilContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <PersonilContext.Provider value={{ navigation, element, personil, sumberPa, onTabSwitch, onNextPage, onShowConfirmDelete }}>
+        <PersonilContext.Provider value={{ navigation, element, personil, sumberPa, onTabSwitch, onNextPage, onSearch, onShowConfirmDelete }}>
             {children}
         </PersonilContext.Provider>
     );

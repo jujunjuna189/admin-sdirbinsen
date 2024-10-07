@@ -25,6 +25,10 @@ const LearningAlutsistaCreatePage = () => {
                             <InputText className="mt-1" value={controller.category} error={errors.category} onChange={(value) => onSetController("category", value)} readOnly={true} placeholder="..." />
                         </div>
                         <div>
+                            <span className="font-medium">Jenis</span>
+                            <InputText className="mt-1" value={controller.type} error={errors.type} onChange={(value) => onSetController("type", value)} readOnly={true} placeholder="..." />
+                        </div>
+                        <div>
                             <span className="font-medium">Judul</span>
                             <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
                         </div>

@@ -12,7 +12,6 @@ export const TrakorpsContextProvider = ({ children }) => {
   const [satuan, setSatuan] = useState({});
 
   const getSatuan = async () => {
-    console.log(getLocalUser());
     await getSatuanRequest({ satuan_id: getLocalUser()?.auth?.user?.satuan_id }).then((res) => {
       setSatuan(res);
     });

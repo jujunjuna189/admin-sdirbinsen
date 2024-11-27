@@ -189,92 +189,94 @@ const Sidebar = (props) => {
         </div>
       )}
       {/* Smart Book */}
-      <div className="cursor-pointer">
-        <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3" onClick={() => { setDropDown({ ...dropDown, smartBook: !dropDown.smartBook }); localStorage.setItem('sdirbinsen.dropDown', JSON.stringify({ ...dropDown, smartBook: !dropDown.smartBook })); }}>
-          <div className="flex gap-3 items-center text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="text-red-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M9 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M5 8h4" /><path d="M9 16h4" /><path d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z" /><path d="M14 9l4 -1" /><path d="M16 16l3.923 -.98" /></svg>
-            <span className="font-medium">Buku Pintar</span>
+      {getLocalUser()?.auth?.permission?.["learning.menu"] && (
+        <div className="cursor-pointer">
+          <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3" onClick={() => { setDropDown({ ...dropDown, smartBook: !dropDown.smartBook }); localStorage.setItem('sdirbinsen.dropDown', JSON.stringify({ ...dropDown, smartBook: !dropDown.smartBook })); }}>
+            <div className="flex gap-3 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="text-red-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M9 4m0 1a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1z" /><path d="M5 8h4" /><path d="M9 16h4" /><path d="M13.803 4.56l2.184 -.53c.562 -.135 1.133 .19 1.282 .732l3.695 13.418a1.02 1.02 0 0 1 -.634 1.219l-.133 .041l-2.184 .53c-.562 .135 -1.133 -.19 -1.282 -.732l-3.695 -13.418a1.02 1.02 0 0 1 .634 -1.219l.133 -.041z" /><path d="M14 9l4 -1" /><path d="M16 16l3.923 -.98" /></svg>
+              <span className="font-medium">Buku Pintar</span>
+            </div>
+          </div>
+          {/* sub menu */}
+          <div className={`${dropDown.smartBook ? 'block' : 'hidden'}`}>
+            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] pr-2 py-2 relative" onClick={() => { setDropDown({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'alutsista' ? '' : 'alutsista' }); localStorage.setItem('sdirbinsen.dropDown', JSON.stringify({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'alutsista' ? '' : 'alutsista' })); }}>
+              <div className="flex gap-2 items-center grow justify-between text-sm">
+                <div className="flex gap-2 items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+                  <span className="font-medium">Data Alutsista</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg>
+              </div>
+              {/* Sub menu */}
+              <div className={`absolute left-[13.6rem] bg-white rounded-md z-10 shadow-all border ${dropDown.smartBookSub === 'alutsista' ? 'block' : 'hidden'}`}>
+                <div className="px-2 pb-1 pt-2">
+                  <span className="font-semibold whitespace-pre">Sub menu data Alutsista</span>
+                </div>
+                <hr />
+                <div className="text-start">
+                  <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/alutsista", { state: { category: "yonarmed-rocket" } })}>
+                    <span>Yonarmed Roket</span>
+                  </div>
+                  <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/alutsista", { state: { category: "yonarmed-sedang" } })}>
+                    <span>Yonarmed Sedang</span>
+                  </div>
+                  <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/alutsista", { state: { category: "yonarmed-ringan" } })}>
+                    <span>Yonarmed Ringan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] pr-2 py-2 relative" onClick={() => navigation("/learning/munisi")}>
+              <div className="flex gap-2 items-center grow justify-between text-sm">
+                <div className="flex gap-2 items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+                  <span className="font-medium">Data Munisi</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] pr-2 py-2 relative" onClick={() => { setDropDown({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'responsibility' ? '' : 'responsibility' }); localStorage.setItem('sdirbinsen.dropDown', JSON.stringify({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'responsibility' ? '' : 'responsibility' })); }}>
+              <div className="flex gap-2 items-center grow justify-between text-sm">
+                <div className="flex gap-2 items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+                  <span className="font-medium text-xs">Tugas dan Tanggung Jawab</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg>
+              </div>
+              {/* Sub menu */}
+              <div className={`absolute left-[13.6rem] bg-white rounded-md z-10 shadow-all border ${dropDown.smartBookSub === 'responsibility' ? 'block' : 'hidden'}`}>
+                <div className="px-2 pb-1 pt-2 flex flex-col">
+                  <span className="font-semibold whitespace-pre">Sub menu data</span>
+                  <span className="font-semibold whitespace-pre">Tugas dan Tanggung Jawab</span>
+                </div>
+                <hr />
+                <div className="text-start">
+                  <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-rocket" } })}>
+                    <span>Yonarmed Roket</span>
+                  </div>
+                  <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-sedang" } })}>
+                    <span>Yonarmed Sedang</span>
+                  </div>
+                  <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-ringan" } })}>
+                    <span>Yonarmed Ringan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/learning/satuan")}>
+              <div className="flex gap-2 items-center text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+                <span className="font-medium text-xs">Lambang dan Sejarah Satuan</span>
+              </div>
+            </div>
+            <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/learning/pejabat-satuan")}>
+              <div className="flex gap-2 items-center text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
+                <span className="font-medium text-xs">Pejabat Satuan Armed</span>
+              </div>
+            </div>
           </div>
         </div>
-        {/* sub menu */}
-        <div className={`${dropDown.smartBook ? 'block' : 'hidden'}`}>
-          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] pr-2 py-2 relative" onClick={() => { setDropDown({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'alutsista' ? '' : 'alutsista' }); localStorage.setItem('sdirbinsen.dropDown', JSON.stringify({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'alutsista' ? '' : 'alutsista' })); }}>
-            <div className="flex gap-2 items-center grow justify-between text-sm">
-              <div className="flex gap-2 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-                <span className="font-medium">Data Alutsista</span>
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg>
-            </div>
-            {/* Sub menu */}
-            <div className={`absolute left-[13.6rem] bg-white rounded-md z-10 shadow-all border ${dropDown.smartBookSub === 'alutsista' ? 'block' : 'hidden'}`}>
-              <div className="px-2 pb-1 pt-2">
-                <span className="font-semibold whitespace-pre">Sub menu data Alutsista</span>
-              </div>
-              <hr />
-              <div className="text-start">
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/alutsista", { state: { category: "yonarmed-rocket" } })}>
-                  <span>Yonarmed Roket</span>
-                </div>
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/alutsista", { state: { category: "yonarmed-sedang" } })}>
-                  <span>Yonarmed Sedang</span>
-                </div>
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/alutsista", { state: { category: "yonarmed-ringan" } })}>
-                  <span>Yonarmed Ringan</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] pr-2 py-2 relative" onClick={() => navigation("/learning/munisi")}>
-            <div className="flex gap-2 items-center grow justify-between text-sm">
-              <div className="flex gap-2 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-                <span className="font-medium">Data Munisi</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] pr-2 py-2 relative" onClick={() => { setDropDown({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'responsibility' ? '' : 'responsibility' }); localStorage.setItem('sdirbinsen.dropDown', JSON.stringify({ ...dropDown, smartBookSub: dropDown.smartBookSub === 'responsibility' ? '' : 'responsibility' })); }}>
-            <div className="flex gap-2 items-center grow justify-between text-sm">
-              <div className="flex gap-2 items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-                <span className="font-medium text-xs">Tugas dan Tanggung Jawab</span>
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg>
-            </div>
-            {/* Sub menu */}
-            <div className={`absolute left-[13.6rem] bg-white rounded-md z-10 shadow-all border ${dropDown.smartBookSub === 'responsibility' ? 'block' : 'hidden'}`}>
-              <div className="px-2 pb-1 pt-2 flex flex-col">
-                <span className="font-semibold whitespace-pre">Sub menu data</span>
-                <span className="font-semibold whitespace-pre">Tugas dan Tanggung Jawab</span>
-              </div>
-              <hr />
-              <div className="text-start">
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-rocket" } })}>
-                  <span>Yonarmed Roket</span>
-                </div>
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-sedang" } })}>
-                  <span>Yonarmed Sedang</span>
-                </div>
-                <div className="hover:bg-slate-100 pl-[1rem] py-2" onClick={() => navigation("/learning/responsibility", { state: { category: "yonarmed-ringan" } })}>
-                  <span>Yonarmed Ringan</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/learning/satuan")}>
-            <div className="flex gap-2 items-center text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-              <span className="font-medium text-xs">Lambang dan Sejarah Satuan</span>
-            </div>
-          </div>
-          <div className="flex justify-between items-center hover:bg-slate-100 pl-[2.1rem] py-2" onClick={() => navigation("/learning/pejabat-satuan")}>
-            <div className="flex gap-2 items-center text-sm">
-              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg>
-              <span className="font-medium text-xs">Pejabat Satuan Armed</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      )}
       {/* Chat feature */}
       <div className="cursor-pointer" onClick={() => navigation("/chat")}>
         <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3">

@@ -1,4 +1,4 @@
-import { Card } from "../../../../components";
+import { Button, Card } from "../../../../components";
 import CreateTradisiSatuanModal from "./CreateTradisiSatuanModal";
 import UpdateTradisiSatuanModal from "./UpdateTradisiSatuanModal";
 
@@ -13,19 +13,28 @@ const TradisiTrakorpsDetail = (props) => {
             <div>
                 {props.satuanTradisi.map((item, index) => {
                     return (
-                        <div key={index} className="flex justify-between gap-2 py-2">
+                        <div key={index} className="flex justify-between gap-2 py-2 border-b">
                             <div className="flex gap-3">
-                                {(Object.keys(item ?? {}).length > 0 && item.video != null) && (
-                                    <video width="220" height="140" controls>
-                                        <source src={item.video + '?time=' + new Date().getTime()} />
-                                    </video>
-                                )}
+                                <div>
+                                    {(Object.keys(item ?? {}).length > 0 && item.video != null) && (
+                                        <video width="220" height="140" controls>
+                                            <source src={item.video + '?time=' + new Date().getTime()} />
+                                        </video>
+                                    )}
+                                </div>
                                 <div className="flex flex-col">
                                     <span className="font-semibold">Deskripsi</span>
-                                    <div className="mt-1" style={{ display: 'flex' }} dangerouslySetInnerHTML={{ __html: item?.deskripsi ?? '-' }} />
+                                    <div className="mt-1" style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: item?.deskripsi ?? '-' }} />
                                 </div>
                             </div>
-                            <UpdateTradisiSatuanModal satuan={props.satuan} satuanTradisi={item} onSave={() => props.onSave && props.onSave()} />
+                            <div className="flex items-start py-2 px-2">
+                                <div className="flex gap-2">
+                                    <UpdateTradisiSatuanModal satuan={props.satuan} satuanTradisi={item} onSave={() => props.onSave && props.onSave()} />
+                                    <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => props.onDelete && props.onDelete(item.id)}>
+                                        Hapus
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
                     );
                 })}

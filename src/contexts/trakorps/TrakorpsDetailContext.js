@@ -5,7 +5,7 @@ import { getSatuanLambangRequest } from "../../api/SatuanLambangRequest";
 import { getSatuanPejabatDansatRequest } from "../../api/SatuanPejabatDansatRequest";
 import { deleteSatuanPrestasiRequest, getSatuanPrestasiRequest } from "../../api/SatuanPrestasiRequest";
 import { getSatuanDetailRequest } from "../../api/SatuanRequest";
-import { getSatuanTradisiRequest } from "../../api/SatuanTradisiRequest";
+import { deleteSatuanTradisiRequest, getSatuanTradisiRequest } from "../../api/SatuanTradisiRequest";
 import { ConfirmDeleteModal } from "../../components";
 import { HimneTrakorpsDetail, LainLainTrakorpsDetail, LambangTrakorpsDetail, MarsTrakorpsDetail, PejabatDansatTrakorpsDetail, PrestasiTrakorpsDetail, SejarahTrakorpsDetail, TradisiTrakorpsDetail } from "../../pages/trakorps/component";
 
@@ -130,7 +130,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     const content = {
       1: <SejarahTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
       2: <LambangTrakorpsDetail satuan={satuan} satuanLambang={satuanLambang} onSave={() => onGetSatuanLambang()} />,
-      3: <TradisiTrakorpsDetail satuan={satuan} satuanTradisi={satuanTradisi} onSave={() => onGetSatuanTradisi()} />,
+      3: <TradisiTrakorpsDetail satuan={satuan} satuanTradisi={satuanTradisi} onSave={() => onGetSatuanTradisi()} onDelete={(id) => onShowConfirmDelete(() => onDeleteSatuanTradisi({ id: id }))} />,
       4: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi({ satuan_id: params.id })} onDelete={(id) => onShowConfirmDelete(() => onDeleteSatuanPrestasi({ id: id }))} />,
       5: <PejabatDansatTrakorpsDetail satuan={satuan} satuanPejabatDansat={satuanPejabatDansat} onSave={() => onGetSatuanPejabatDansat({ satuan_id: params.id })} />,
       6: <span>Comming soon</span>,
@@ -144,6 +144,13 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
 
   const onShowConfirmDelete = (onDelete) => {
     setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={onDelete} />);
+  };
+
+  const onDeleteSatuanTradisi = async ({ id = null }) => {
+    await deleteSatuanTradisiRequest({ id: id }).then((res) => {
+      setElement(false);
+      onGetSatuanTradisi({ satuan_id: params.id });
+    });
   };
 
   const onDeleteSatuanPrestasi = async ({ id = null }) => {

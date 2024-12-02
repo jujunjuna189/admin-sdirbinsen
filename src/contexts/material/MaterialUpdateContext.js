@@ -44,6 +44,7 @@ export const MaterialUpdateContextProvider = ({ children }) => {
     let dataBatch = { ...controller };
     !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
+    dataBatch.file = dataBatch.picture?.file ?? null;
     dataBatch.status = "Baik";
     await updateMaterialRequest({ material_id: param.id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);

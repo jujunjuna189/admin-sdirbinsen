@@ -24,6 +24,7 @@ export const MaterialCreateContextProvider = ({ children }) => {
     let dataBatch = { ...controller };
     !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
+    dataBatch.file = dataBatch.picture?.file ?? null;
     dataBatch.kategori = param.kategori;
     dataBatch.status = 1;
     await createMaterialRequest({ body: dataBatch }).then((res) => {
@@ -42,6 +43,7 @@ export const MaterialCreateContextProvider = ({ children }) => {
     let dataBatch = { ...controller };
     !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
+    dataBatch.file = dataBatch.picture?.file ?? null;
     dataBatch.kategori = param.kategori;
     dataBatch.status = 1;
     await createMaterialRequest({ body: dataBatch }).then((res) => {

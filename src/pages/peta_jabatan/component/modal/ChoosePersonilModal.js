@@ -25,8 +25,12 @@ const ChoosePersonilModal = (props) => {
     };
 
     const onChange = (itemIndex) => {
-        const item = data[itemIndex];
-        props.onChange && props.onChange(item);
+        if (itemIndex >= 0) {
+            const item = data[itemIndex];
+            props.onChange && props.onChange(item);
+        } else {
+            props.onChange && props.onChange(null);
+        }
         setIsShow(false);
     }
 
@@ -51,6 +55,9 @@ const ChoosePersonilModal = (props) => {
                         <InputSearch className="shadow-none" placeholder="Cari..." />
                     </div>
                     <div className="overflow-y-auto h-[25vh] flex flex-col gap-1 py-2 my-2">
+                        <div className="p-2 border rounded-lg cursor-pointer hover:bg-slate-100" onClick={() => onChange(-1)}>
+                            Kosongkan Jabatan
+                        </div>
                         {data.map((item, index) => {
                             return (
                                 <div className="p-2 border rounded-lg cursor-pointer hover:bg-slate-100" key={index} onClick={() => onChange(index)}>

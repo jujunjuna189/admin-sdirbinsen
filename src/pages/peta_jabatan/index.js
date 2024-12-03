@@ -11,7 +11,7 @@ const PetaJabatanPage = () => {
             <table className="w-full border-collapse">
                 <thead className="bg-slate-50">
                     <tr>
-                        <th colSpan={2} className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-center w-[1rem] min-w-[1rem] max-w-[1rem]">
+                        <th className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-center w-[5rem] min-w-[5rem] max-w-[5rem]">
                             No
                         </th>
                         <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Jabatan</th>
@@ -27,8 +27,7 @@ const PetaJabatanPage = () => {
                 <tbody>
                     {Object.keys(petaJabatan?.data)?.map((item, index) => (
                         <React.Fragment key={index}>
-                            <tr key={index}>
-                                <td className="border-b-[1.5px] border-slate-200 px-2 py-2"></td>
+                            <tr key={index} className="bg-slate-100">
                                 <td className="border-b-[1.5px] border-slate-200 px-2 py-2"></td>
                                 <td colSpan={8} className="border-b-[1.5px] border-slate-200 px-2 py-2 font-semibold">{item}</td>
                             </tr>
@@ -38,16 +37,13 @@ const PetaJabatanPage = () => {
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2 text-center">
                                             {number++ + 1}
                                         </td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2 text-center">
-                                            {childIndex + 1}
-                                        </td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.jabatan}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.nama}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.pangkat}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.nrp}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil.tmt_jab}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).years === 0 ? "Tahun" : `${calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).years} Tahun`}</td>
-                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).months === 0 ? 'Bulan' : `${calculateDifferenceDate(ValidDateConvert(item.personil.tmt_jab), new Date()).months} Bulan`}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.jabatan}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.nama ?? '-'}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.pangkat ?? '-'}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.nrp ?? '-'}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.tmt_jab ?? '-'}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.tmt_jab != null ? calculateDifferenceDate(ValidDateConvert(item.personil?.tmt_jab), new Date()).years === 0 ? "Tahun" : `${calculateDifferenceDate(ValidDateConvert(item.personil?.tmt_jab), new Date()).years} Tahun` : "-"}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.tmt_jab != null ? calculateDifferenceDate(ValidDateConvert(item.personil?.tmt_jab), new Date()).months === 0 ? 'Bulan' : `${calculateDifferenceDate(ValidDateConvert(item.personil?.tmt_jab), new Date()).months} Bulan` : "-"}</td>
                                         <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                             <div className="flex gap-3 justify-end">
                                                 <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/personil/peta_jabatan/update/${item.id}`)}>

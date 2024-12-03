@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPetaJabatanDetailRequest, updatePetaJabatanRequest } from "../../api/PetaJabatanRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
-import { getLocalUser } from "../../utils";
+import { dateFormatterV6, getLocalUser } from "../../utils";
 
 const PetaJabatanUpdateContext = createContext();
 
@@ -21,11 +21,11 @@ export const PetaJabatanUpdateContextProvider = ({ children }) => {
     const onGetPetaJabatan = async () => {
         await getPetaJabatanDetailRequest({ id: params.id }).then((res) => {
             var dataBatch = {
-                personil: { id: res.personil.id, nama: res.personil.nama },
+                personil: { id: res.personil?.id, nama: res.personil?.nama },
                 kategori: res.kategori,
                 golongan: res.golongan,
-                jabatan: res.personil.jabatan,
-                tmt: res.personil.tmt_jab,
+                jabatan: res.jabatan,
+                tmt: res.personil?.tmt_jab,
             };
             setController(dataBatch);
         });
@@ -34,7 +34,9 @@ export const PetaJabatanUpdateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
-        dataBatch.personil_id = controller.personil.id;
+        dataBatch.personil_id = controller?.personil?.id;
+        console.log(controller.personil);
+        dataBatch.tmt = controller?.personil?.tmt_jabatan != null ? dateFormatterV6(controller?.personil?.tmt_jabatan) : null;
         await updatePetaJabatanRequest({ peta_jabatan_id: params.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);

@@ -30,6 +30,18 @@ export const dateFormatterV4 = (value) => {
     return value === undefined ? '' : `${setZero(date.getDate())}-${setZero(date.getMonth())}-${date.getFullYear()}`;
 }
 
+export const dateFormatterV5 = (value) => {
+    const date = new Date(value);
+    return value === undefined ? '' : `${date.getFullYear()}-${setZero(date.getMonth())}-${setZero(date.getDate())}`;
+}
+
+export const dateFormatterV6 = (value) => {
+    value = value.split("-");
+    value = `${value[2]}-${value[1]}-${value[0]}`;
+    const date = new Date(value);
+    return value === undefined ? '' : `${date.getFullYear()}-${setZero(date.getMonth())}-${setZero(date.getDate())}`;
+}
+
 const setZero = (value) => {
     return value < 10 ? `0${value}` : value;
 }

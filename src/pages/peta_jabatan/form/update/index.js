@@ -1,6 +1,6 @@
 import { Button, Content, InputText } from "../../../../components";
 import { UsePetaJabatanUpdateContext } from "../../../../contexts/peta_jabatan/PetaJabatanUpdateContext";
-import { ChoosePersonilModal, GolJabatanModal } from "../../component";
+import { ChoosePersonilModal } from "../../component";
 
 const PetaJabatanUpdatePage = () => {
     const { navigation, element, controller, errors, onSetController, onSave } = UsePetaJabatanUpdateContext();
@@ -22,11 +22,12 @@ const PetaJabatanUpdatePage = () => {
                             <ChoosePersonilModal value={controller.personil?.nama} error={errors.personil_id} onChange={(value) => onSetController("personil", value)} />
                         </div>
                         <div>
-                            <span className="font-medium">Kategori</span>
-                            <InputText className="mt-1" value={controller.kategori} error={errors.kategori} onChange={(value) => onSetController("kategori", value)} placeholder="..." />
+                            <span className="font-medium">Kelompok Jabatan</span>
+                            <InputText value={controller.golongan} error={errors.golongan} onChange={(value) => onSetController("golongan", value)} placeholder="..." />
                         </div>
                         <div>
-                            <GolJabatanModal value={controller.golongan} error={errors.golongan} onChange={(value) => onSetController("golongan", value.nama)} />
+                            <span className="font-medium">Nama Jabatan</span>
+                            <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController("jabatan", value)} placeholder="..." />
                         </div>
                     </div>
                     <div className="flex justify-end mt-8 mb-3 gap-2">

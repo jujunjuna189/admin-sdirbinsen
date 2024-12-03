@@ -20,9 +20,8 @@ export const PetaJabatanCreateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
-        dataBatch.personil_id = controller.personil.id;
-        dataBatch.jabatan = controller.personil.jabatan;
-        dataBatch.tmt = controller.personil.tmt_jab;
+        dataBatch.personil_id = controller?.personil?.id;
+        dataBatch.tmt = controller?.personil?.tmt_jab;
         await createPetaJabatanRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
@@ -37,9 +36,8 @@ export const PetaJabatanCreateContextProvider = ({ children }) => {
     const onSaveAndAdd = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
-        dataBatch.personil_id = controller.personil.id;
-        dataBatch.jabatan = controller.personil.jabatan;
-        dataBatch.tmt = controller.personil.tmt_jab;
+        dataBatch.personil_id = controller?.personil?.id;
+        dataBatch.tmt = controller?.personil?.tmt_jab;
         await createPetaJabatanRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);

@@ -81,7 +81,7 @@ const TrakorpsPage = () => {
               </Button>
             </div>
           </div>
-          <div className="overflow-x-auto">{Object.keys(satuan).length === 0 ? <TableLoader /> : satuan.data.length === 0 ? <EmptyData /> : renderTable()}</div>
+          <div className="overflow-x-auto">{Object.keys(satuan ?? {})?.length === 0 ? <TableLoader /> : satuan?.data?.length === 0 ? <EmptyData /> : renderTable()}</div>
           <div className="flex justify-end px-5 py-3">
             <span className="font-semibold text-sm">Rows per page: 10</span>
           </div>

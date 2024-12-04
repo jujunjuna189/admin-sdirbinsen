@@ -32,13 +32,18 @@ const SatuanModal = (props) => {
 
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className="inline-block" ref={ref}>
             <div className="cursor-pointer" onClick={() => toogleModal()}>
-                <span className="font-medium">Satuan</span>
-                <InputSelect className="mt-1" error={props.error} placeholder={props.value ?? 'Pilih Satuan...'} />
+                {props.btn ? props.btn : (
+                    <>
+                        <span className="font-medium">Satuan</span>
+                        <InputSelect className="mt-1" error={props.error} placeholder={props.value ?? 'Pilih Satuan...'} />
+                    </>
+                )}
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && 'hidden'}`}>
                 <div className="absolute h-full w-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>

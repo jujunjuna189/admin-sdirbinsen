@@ -1,5 +1,7 @@
 import { Button, Content, InputText } from "../../../../components";
 import { UsePetaJabatanUpdateContext } from "../../../../contexts/peta_jabatan/PetaJabatanUpdateContext";
+import { getLocalUser } from "../../../../utils";
+import { SatuanModal } from "../../../personil/component";
 import { ChoosePersonilModal } from "../../component";
 
 const PetaJabatanUpdatePage = () => {
@@ -18,6 +20,7 @@ const PetaJabatanUpdatePage = () => {
                 <div className="border rounded-lg p-3 w-full max-w-[652px]">
                     <span className="text-base font-medium">Ubah Peta Jabatan</span>
                     <div className="flex flex-col gap-3 mt-3">
+                        {!getLocalUser()?.auth?.user?.satuan_id && (<SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />)}
                         <div>
                             <ChoosePersonilModal value={controller.personil?.nama} error={errors.personil_id} onChange={(value) => onSetController("personil", value)} />
                         </div>

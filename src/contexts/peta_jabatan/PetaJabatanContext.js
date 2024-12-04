@@ -9,12 +9,19 @@ const PetaJabatanContext = createContext();
 export const PetaJabatanContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const user = getLocalUser();
+    const [filter, setFilter] = useState({});
     const [element, setElement] = useState(false);
     const [petaJabatan, setPetaJabatan] = useState([]);
 
+    const onFilter = (field, value) => {
+        setFilter({ ...filter, [field]: value });
+    }
+
     const onGetPetaJabatan = async () => {
         setPetaJabatan({});
-        await getPetaJabatanRequest().then((res) => {
+        // const satuan = (getLocalUser()?.auth?.user?.satuan_id === null && petaJabatan.length === 0) && await getSatuanRequest({ limit: 1 });
+        // (getLocalUser()?.auth?.user?.satuan_id === null && petaJabatan.length === 0) && (filter.satuan_id = (satuan?.data?.[0]?.id ?? null));
+        await getPetaJabatanRequest({ satuan_id: getLocalUser()?.auth?.user?.satuan_id ?? filter.satuan_id }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPetaJabatan(res);
@@ -35,10 +42,10 @@ export const PetaJabatanContextProvider = ({ children }) => {
     useEffect(() => {
         onGetPetaJabatan();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [filter]);
 
     return (
-        <PetaJabatanContext.Provider value={{ navigation, user, element, petaJabatan, setElement, setPetaJabatan, onShowConfirmDelete }}>
+        <PetaJabatanContext.Provider value={{ navigation, user, element, petaJabatan, setElement, setPetaJabatan, onFilter, onShowConfirmDelete }}>
             {children}
         </PetaJabatanContext.Provider>
     );

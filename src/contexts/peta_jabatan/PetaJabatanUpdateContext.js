@@ -21,6 +21,7 @@ export const PetaJabatanUpdateContextProvider = ({ children }) => {
     const onGetPetaJabatan = async () => {
         await getPetaJabatanDetailRequest({ id: params.id }).then((res) => {
             var dataBatch = {
+                satuan_id: { id: res.satuan?.id, nama: res.satuan?.nama },
                 personil: { id: res.personil?.id, nama: res.personil?.nama },
                 kategori: res.kategori,
                 golongan: res.golongan,
@@ -34,9 +35,10 @@ export const PetaJabatanUpdateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
+        !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
+        getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
         dataBatch.personil_id = controller?.personil?.id;
-        console.log(controller.personil);
-        dataBatch.tmt = controller?.personil?.tmt_jabatan != null ? dateFormatterV6(controller?.personil?.tmt_jabatan) : null;
+        dataBatch.tmt = controller?.personil?.tmt_jab != null ? dateFormatterV6(controller?.personil?.tmt_jab) : null;
         await updatePetaJabatanRequest({ peta_jabatan_id: params.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);

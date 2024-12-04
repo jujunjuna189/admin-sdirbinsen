@@ -2,9 +2,10 @@ import React from "react";
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UsePetaJabatanContext } from "../../contexts/peta_jabatan/PetaJabatanContext";
 import { calculateDifferenceDate, ValidDateConvert } from "../../utils";
+import { SatuanModal } from "../personil/component";
 
 const PetaJabatanPage = () => {
-    const { navigation, element, petaJabatan, onShowConfirmDelete } = UsePetaJabatanContext();
+    const { navigation, element, petaJabatan, onFilter, onShowConfirmDelete } = UsePetaJabatanContext();
     var number = 0;
     const renderTable = () => {
         return (
@@ -15,6 +16,7 @@ const PetaJabatanPage = () => {
                             No
                         </th>
                         <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Jabatan</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Satuan</th>
                         <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Nama</th>
                         <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">Pangkat</th>
                         <th className="border-b-[1.5px] border-slate-200 px-2 py-2 text-start">NRP</th>
@@ -29,7 +31,7 @@ const PetaJabatanPage = () => {
                         <React.Fragment key={index}>
                             <tr key={index} className="bg-slate-100">
                                 <td className="border-b-[1.5px] border-slate-200 px-2 py-2"></td>
-                                <td colSpan={8} className="border-b-[1.5px] border-slate-200 px-2 py-2 font-semibold">{item}</td>
+                                <td colSpan={9} className="border-b-[1.5px] border-slate-200 px-2 py-2 font-semibold">{item}</td>
                             </tr>
                             {petaJabatan?.data?.[item]?.map((item, childIndex) => {
                                 return (
@@ -38,6 +40,7 @@ const PetaJabatanPage = () => {
                                             {number++ + 1}
                                         </td>
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.jabatan}</td>
+                                        <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item?.satuan?.nama}</td>
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.nama ?? '-'}</td>
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.pangkat ?? '-'}</td>
                                         <td className="border-b-[1.5px] border-slate-200 px-2 py-2">{item.personil?.nrp ?? '-'}</td>
@@ -83,13 +86,13 @@ const PetaJabatanPage = () => {
                 <Card>
                     <div className="mb-3 px-5">
                         <div className="inline-block">
-                            <Button className="border-2 border-slate-100">
+                            <SatuanModal onLoad={(value) => onFilter("satuan_id", value.id)} onChange={(value) => onFilter("satuan_id", value.id)} btn={<Button className="border-2 border-slate-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
                                 </svg>
                                 Filter
-                            </Button>
+                            </Button>} />
                         </div>
                     </div>
                     <div className="overflow-x-auto">{Object.keys(petaJabatan).length === 0 ? <TableLoader /> : petaJabatan.data.length === 0 ? <EmptyData /> : renderTable()}</div>

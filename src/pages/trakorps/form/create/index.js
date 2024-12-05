@@ -1,4 +1,4 @@
-import { Button, Content, InputArea, InputFile, InputText } from "../../../../components";
+import { Button, Content, InputArea, InputFile, InputNumber, InputText } from "../../../../components";
 import { UseTrakorpsCreateContext } from "../../../../contexts/trakorps/TrakorpsCreateContext";
 
 const TrakorpsCreatePage = () => {
@@ -50,6 +50,10 @@ const TrakorpsCreatePage = () => {
               <div>
                 <span className="font-medium">Nama Satuan</span>
                 <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController('nama', value)} placeholder="..." />
+              </div>
+              <div>
+                <span className="font-medium">Urutan Satuan</span>
+                <InputNumber className="mt-1" value={controller.order_number} error={errors.order_number} onChange={(value) => onSetController('order_number', value)} placeholder="..." />
               </div>
               <div>
                 <span className="font-medium">Alamat</span>

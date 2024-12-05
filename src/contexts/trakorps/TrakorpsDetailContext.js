@@ -175,13 +175,17 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     });
   };
 
+  const onUpdateSatuan = () => {
+    getSatuan({ satuan_id: params.id });
+  }
+
   useEffect(() => {
     getSatuan({ satuan_id: params.id });
     onTabSwitch(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <TrakorpsDetailContext.Provider value={{ navigation, element, satuan, navTrakorps, navTrakorpsActive, onTabSwitch, onGetContent }}>{children}</TrakorpsDetailContext.Provider>;
+  return <TrakorpsDetailContext.Provider value={{ navigation, element, satuan, navTrakorps, navTrakorpsActive, onTabSwitch, onGetContent, onUpdateSatuan }}>{children}</TrakorpsDetailContext.Provider>;
 };
 
 export const UseTrakorpsDetailContext = () => {

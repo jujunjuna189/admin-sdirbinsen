@@ -10,9 +10,9 @@ const TrakorpsPage = () => {
       <table className="w-full border-collapse">
         <thead className="bg-slate-50">
           <tr>
+            <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start w-[2rem] max-w-[2rem] min-w-[2rem]">No.</th>
             <th className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2 text-start">
               <div className="flex gap-5 items-center">
-                <input type="checkbox" className="" />
                 Logo
               </div>
             </th>
@@ -24,9 +24,9 @@ const TrakorpsPage = () => {
           {satuan?.data?.map((item, index) => {
             return (
               <tr key={index}>
+                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{index + 1}</td>
                 <td className="border-b-[1.5px] border-slate-200 pl-5 pr-3 py-2">
                   <div className="flex gap-5 items-center">
-                    <input type="checkbox" className="" />
                     <img src={item.logo} alt={item.nama} className={`h-10 aspect-square rounded-lg ${!item.logo && "bg-slate-400"}`} />
                   </div>
                 </td>

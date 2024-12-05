@@ -22,7 +22,7 @@ export const getSatuanRequest = async ({ satuan_id = null, limit = null }) => {
     var filter = '';
 
     filter += `?id=${satuan_id ?? ''}`;
-    filter += `&per_page=${limit ?? ''}`;
+    filter += `&per_page=${limit ?? 100}`;
 
     const response = await axios.get(`${API_SATUAN_GET}${filter}`, {
       headers: {

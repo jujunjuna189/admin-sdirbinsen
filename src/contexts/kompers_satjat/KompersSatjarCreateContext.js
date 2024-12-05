@@ -36,6 +36,7 @@ export const KompersSatjarCreateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
+        dataBatch.part = dataBatch.part?.key;
         await createKompersSatjarRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);

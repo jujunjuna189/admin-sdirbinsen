@@ -1,16 +1,22 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getKompersSatjarCategoryRequest } from "../../api/KompersSatjarCategoryRequest";
-import { getKompersSatjarRequest } from "../../api/KompersSatjarRequest";
+import { deleteKompersSatjarRequest, getKompersSatjarRequest } from "../../api/KompersSatjarRequest";
+import { ConfirmDeleteModal } from "../../components";
 
 const KompersSatjarContext = createContext();
 
 export const KompersSatjarContextProvider = ({ children }) => {
     const navigation = useNavigate();
-    const [element] = useState(false);
+    const [element, setElement] = useState(false);
+    const [filter, setFilter] = useState({});
     const [kompersSatjarCategory, setKompersSatjarCategory] = useState([]);
     const [kompersSatjarCategoryActive, setKompersSatjarCategoryActive] = useState([]);
     const [kompersSatjar, setKompersSatjar] = useState({});
+
+    const onFilter = (field, value) => {
+        setFilter({ ...filter, [field]: value });
+    }
 
     const getKompersSatjarCategory = async () => {
         await getKompersSatjarCategoryRequest({}).then((res) => {
@@ -35,7 +41,7 @@ export const KompersSatjarContextProvider = ({ children }) => {
     };
 
     const getKompersSatjar = async ({ category = '', sub_category = '' }) => {
-        await getKompersSatjarRequest({ filter: `category=${category}&sub_category=${sub_category}` }).then((res) => {
+        await getKompersSatjarRequest({ filter: `part=${filter.part ?? ''}&category=${category}&sub_category=${sub_category}` }).then((res) => {
             setKompersSatjar(res);
         });
     }
@@ -51,12 +57,23 @@ export const KompersSatjarContextProvider = ({ children }) => {
         getKompersSatjar({ kompers_satjar_categorys_id: kompersSatjarCategory[indexItem].kompers_satjar_categorys_id });
     };
 
+    const onShowConfirmDelete = (kompers_satjar_id) => {
+        setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteKompersSatjar({ kompers_satjar_id: kompers_satjar_id })} />);
+    };
+
+    const onDeleteKompersSatjar = async ({ kompers_satjar_id = null }) => {
+        await deleteKompersSatjarRequest({ kompers_satjar_id: kompers_satjar_id }).then((res) => {
+            setElement(false);
+            getKompersSatjar({ category: res.category });
+        });
+    };
+
     useEffect(() => {
         getKompersSatjarCategory();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [filter]);
 
-    return <KompersSatjarContext.Provider value={{ navigation, element, kompersSatjar, kompersSatjarCategory, kompersSatjarCategoryActive, onTabSwitch }}>{children}</KompersSatjarContext.Provider>;
+    return <KompersSatjarContext.Provider value={{ navigation, element, kompersSatjar, kompersSatjarCategory, kompersSatjarCategoryActive, onTabSwitch, onFilter, onShowConfirmDelete }}>{children}</KompersSatjarContext.Provider>;
 };
 
 export const UseKompersSatjarContext = () => {

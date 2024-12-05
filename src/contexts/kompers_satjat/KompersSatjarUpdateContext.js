@@ -25,6 +25,7 @@ export const KompersSatjarUpdateContextProvider = ({ children }) => {
             title: item.title,
             category: item.category,
             sub_category: item.sub_category,
+            part: { title: item.part, value: item.part },
             form: typeof item.form === 'string' ? JSON.parse(item.form) : item.form,
         });
     }
@@ -36,6 +37,7 @@ export const KompersSatjarUpdateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
+        dataBatch.part = dataBatch.part?.key;
         await updateKompersSatjarRequest({ id: params.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);

@@ -16,6 +16,7 @@ const TrakorpsPage = () => {
                 Logo
               </div>
             </th>
+            <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Urutan</th>
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Nama</th>
             <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
           </tr>
@@ -30,6 +31,7 @@ const TrakorpsPage = () => {
                     <img src={item.logo} alt={item.nama} className={`h-10 aspect-square rounded-lg ${!item.logo && "bg-slate-400"}`} />
                   </div>
                 </td>
+                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.order_number}</td>
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.nama}</td>
                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                   <div className="flex gap-3 justify-end">

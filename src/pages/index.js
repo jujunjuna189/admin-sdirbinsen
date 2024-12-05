@@ -9,14 +9,9 @@ import KompersSatjarDetailPage from "./kompers_satjar/detail";
 import KompersSatjarCreatePage from "./kompers_satjar/form/create";
 import KompersSatjarUpdatePage from "./kompers_satjar/form/update";
 import KompersSatjarCategoryCreatePage from "./kompers_satjar_category/form/create";
-import LearningAlutsistaPage from "./learning_alutsista";
-import LearningAlutsistaCreatePage from "./learning_alutsista/form/create";
-import LearningMunisiPage from "./learning_munisi";
-import LearningMunisiCreatePage from "./learning_munisi/form/create";
-import LearningPejabatSatuanPage from "./learning_pejabat_satuan";
-import LearningResponsibilityPage from "./learning_responsibility";
-import LearningSatuanPage from "./learning_satuan";
-import LearningSatuanCreatePage from "./learning_satuan/form/create";
+import LearningPage from "./learning";
+import LearningCreatePage from "./learning/form/create";
+import LearningUpdatePage from "./learning/form/update";
 import MaterialPage from "./material";
 import MaterialCreatePage from "./material/form/create";
 import MaterialUpdatePage from "./material/form/update";
@@ -70,14 +65,9 @@ export {
   KompersSatjarCreatePage,
   KompersSatjarUpdatePage,
   KompersSatjarCategoryCreatePage,
-  LearningAlutsistaPage,
-  LearningAlutsistaCreatePage,
-  LearningMunisiPage,
-  LearningMunisiCreatePage,
-  LearningPejabatSatuanPage,
-  LearningResponsibilityPage,
-  LearningSatuanPage,
-  LearningSatuanCreatePage,
+  LearningPage,
+  LearningCreatePage,
+  LearningUpdatePage,
   MaterialCreatePage,
   MaterialUpdatePage,
   PetaJabatanPage,

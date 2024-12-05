@@ -1,16 +1,16 @@
 import { createContext, useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { createLearningMunisiRequest } from "../../api/LearningMunisiRequest";
+import { useLocation, useNavigate } from "react-router-dom";
+import { createLearningRequest } from "../../api/LearningRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
 
-const LearningMunisiCreateContext = createContext();
+const LearningCreateContext = createContext();
 
-export const LearningMunisiCreateContextProvider = ({ children }) => {
+export const LearningCreateContextProvider = ({ children }) => {
     const navigation = useNavigate();
-    const params = useParams();
+    const location = useLocation();
     const [element, setElement] = useState(false);
     const [controller, setController] = useState({
-        category: params.kategori,
+        category: location.state?.category,
     });
     const [errors, setErrors] = useState({});
 
@@ -21,14 +21,13 @@ export const LearningMunisiCreateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
-        dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createLearningMunisiRequest({ body: dataBatch }).then((res) => {
+        await createLearningRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && navigation(`/learning/munisi`);
+                !res?.errors && navigation(`/learning`, { state: { ...location.state } });
             }, 1000);
         });
     };
@@ -36,25 +35,24 @@ export const LearningMunisiCreateContextProvider = ({ children }) => {
     const onSaveAndAdd = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
-        dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null;
-        await createLearningMunisiRequest({ body: dataBatch }).then((res) => {
+        await createLearningRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
             !res?.errors && setElement(<SuccessPopup />);
             setTimeout(() => {
                 setElement(false);
-                !res?.errors && setController({ category: controller.category });
+                !res?.errors && setController({ category: location.state?.category });
             }, 1000);
         });
     };
 
     return (
-        <LearningMunisiCreateContext.Provider value={{ navigation, element, controller, errors, setErrors, onSetController, onSaveAndAdd, onSave }}>
+        <LearningCreateContext.Provider value={{ navigation, location, element, controller, errors, setErrors, onSetController, onSaveAndAdd, onSave }}>
             {children}
-        </LearningMunisiCreateContext.Provider>
+        </LearningCreateContext.Provider>
     );
 }
 
-export const UseLearningMunisiCreateContext = () => {
-    return useContext(LearningMunisiCreateContext);
+export const UseLearningCreateContext = () => {
+    return useContext(LearningCreateContext);
 }

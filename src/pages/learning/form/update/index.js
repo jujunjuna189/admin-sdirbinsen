@@ -1,10 +1,8 @@
 import { Button, Content, InputArea, InputFileAll, InputText } from "../../../../components";
-import { UseLearningResponsibilityCreateContext } from "../../../../contexts/learning/LearningResponsibilityCreateContext";
-import { getLocalUser } from "../../../../utils";
-import { SatuanModal } from "../../../personil/component";
+import { UseLearningUpdateContext } from "../../../../contexts/learning/LearningUpdateContext";
 
-const LearningResponsibilityCreatePage = () => {
-    const { navigation, element, controller, errors, onSetController, onSaveAndAdd, onSave } = UseLearningResponsibilityCreateContext();
+const LearningUpdatePage = () => {
+    const { navigation, location, element, controller, errors, onSetController, onSave } = UseLearningUpdateContext();
 
     return (
         <Content element={element}>
@@ -13,21 +11,12 @@ const LearningResponsibilityCreatePage = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M15 6l-6 6l6 6"></path>
                 </svg>
-                <span className="font-semibold text-base text-slate-800">Tambah Buku Pintar - Tugas dan Tanggung Jawab</span>
+                <span className="font-semibold text-base text-slate-800">Ubah Buku Pintar - {location.state?.title ?? '-'}</span>
             </div>
             <div className="flex justify-center">
                 <div className="border rounded-lg p-3 w-full max-w-[652px]">
-                    <span className="text-base font-medium">Tambah Buku Pintar</span>
+                    <span className="text-base font-medium">Ubah Buku Pintar</span>
                     <div className="flex flex-col gap-3 mt-3">
-                        {!getLocalUser()?.auth?.user?.satuan_id && (<SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />)}
-                        <div>
-                            <span className="font-medium">Kategori</span>
-                            <InputText className="mt-1" value={controller.category} error={errors.category} onChange={(value) => onSetController("category", value)} readOnly={true} placeholder="..." />
-                        </div>
-                        <div>
-                            <span className="font-medium">Jenis</span>
-                            <InputText className="mt-1" value={controller.type} error={errors.type} onChange={(value) => onSetController("type", value)} readOnly={true} placeholder="..." />
-                        </div>
                         <div>
                             <span className="font-medium">Judul</span>
                             <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
@@ -35,7 +24,7 @@ const LearningResponsibilityCreatePage = () => {
                         <div>
                             <span className="font-medium">Unggah File</span>
                             <div className="flex gap-2 items-center border rounded-lg pl-2 mt-2">
-                                <div className="grow">{controller.file?.name ? <span className="">{controller.file?.name}</span> : <span className="text-slate-400">Nama File...</span>}</div>
+                                <div className="grow truncate">{controller.file?.name ? <span className="truncate">{controller.file?.name}</span> : <span className="text-slate-400">Nama File...</span>}</div>
                                 <InputFileAll error={errors.file} onChange={(value) => onSetController('file', value)} />
                             </div>
                         </div>
@@ -48,7 +37,6 @@ const LearningResponsibilityCreatePage = () => {
                         </div>
                     </div>
                     <div className="flex justify-end mt-8 mb-3 gap-2">
-                        <Button className="border" onClick={() => onSaveAndAdd()}>{`Simpan & Tambah Lagi`}</Button>
                         <Button className="bg-slate-700 text-white" onClick={() => onSave()}>
                             Simpan
                         </Button>
@@ -59,4 +47,4 @@ const LearningResponsibilityCreatePage = () => {
     );
 }
 
-export default LearningResponsibilityCreatePage;
+export default LearningUpdatePage;

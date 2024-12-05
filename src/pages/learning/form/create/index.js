@@ -1,10 +1,8 @@
 import { Button, Content, InputArea, InputFileAll, InputText } from "../../../../components";
-import { UseLearningAlutsistaCreateContext } from "../../../../contexts/learning/LearningAlutsistaCreateContext";
-import { getLocalUser } from "../../../../utils";
-import { SatuanModal } from "../../../personil/component";
+import { UseLearningCreateContext } from "../../../../contexts/learning/LearningCreateContext";
 
-const LearningAlutsistaCreatePage = () => {
-    const { navigation, element, controller, errors, onSetController, onSaveAndAdd, onSave } = UseLearningAlutsistaCreateContext();
+const LearningCreatePage = () => {
+    const { navigation, location, element, controller, errors, onSetController, onSaveAndAdd, onSave } = UseLearningCreateContext();
 
     return (
         <Content element={element}>
@@ -13,21 +11,12 @@ const LearningAlutsistaCreatePage = () => {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M15 6l-6 6l6 6"></path>
                 </svg>
-                <span className="font-semibold text-base text-slate-800">Tambah Buku Pintar - Alutsista</span>
+                <span className="font-semibold text-base text-slate-800">Tambah Buku Pintar - {location.state?.title ?? '-'}</span>
             </div>
             <div className="flex justify-center">
                 <div className="border rounded-lg p-3 w-full max-w-[652px]">
                     <span className="text-base font-medium">Tambah Buku Pintar</span>
                     <div className="flex flex-col gap-3 mt-3">
-                        {!getLocalUser()?.auth?.user?.satuan_id && (<SatuanModal value={controller.satuan_id?.nama} error={errors.satuan_id} onChange={(value) => onSetController("satuan_id", value)} />)}
-                        <div>
-                            <span className="font-medium">Kategori</span>
-                            <InputText className="mt-1" value={controller.category} error={errors.category} onChange={(value) => onSetController("category", value)} readOnly={true} placeholder="..." />
-                        </div>
-                        <div>
-                            <span className="font-medium">Jenis</span>
-                            <InputText className="mt-1" value={controller.type} error={errors.type} onChange={(value) => onSetController("type", value)} readOnly={true} placeholder="..." />
-                        </div>
                         <div>
                             <span className="font-medium">Judul</span>
                             <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
@@ -59,4 +48,4 @@ const LearningAlutsistaCreatePage = () => {
     );
 }
 
-export default LearningAlutsistaCreatePage;
+export default LearningCreatePage;

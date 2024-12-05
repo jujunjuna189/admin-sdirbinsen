@@ -1,9 +1,9 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
-import { UseLearningResponsibilityContext } from "../../contexts/learning/LearningResponsibilityContext";
+import { UseLearningContext } from "../../contexts/learning/LearningContext";
 import { dateFormatterV4 } from "../../utils";
 
-const LearningResponsibilityPage = () => {
-    const { navigation, location, element, category, categoryActive, learning, onShowConfirmDelete, onTabSwitch } = UseLearningResponsibilityContext();
+const LearningPage = () => {
+    const { navigation, location, element, learning, onShowConfirmDelete } = UseLearningContext();
 
     const renderTable = () => {
         return (
@@ -15,12 +15,10 @@ const LearningResponsibilityPage = () => {
                                 No
                             </div>
                         </th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Judul</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kategori</th>
-                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Jenis</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Materi</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
                         <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
                     </tr>
                 </thead>
@@ -33,15 +31,24 @@ const LearningResponsibilityPage = () => {
                                         {index + 1}
                                     </div>
                                 </td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{dateFormatterV4(item.created_at)}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.title}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item?.satuan?.nama ?? ''}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.category}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item?.type ?? '-'}</td>
-                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.file ?? "-"}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">
+                                    {!item.file && (
+                                        <span>Tidak ada materi yang diunggah</span>
+                                    )}
+                                    {item.file && (
+                                        <div className="flex">
+                                            <Button className="border py-[0.2rem] bg-green-50 border-green-800 text-green-800" onClick={() => window.open(`https://docs.google.com/gview?url=${item.file}`, '_self')}>
+                                                Lihat Materi
+                                            </Button>
+                                        </div>
+                                    )}
+                                </td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item?.satuan?.nama ?? '-'}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{dateFormatterV4(item.created_at)}</td>
                                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                     <div className="flex gap-3 justify-end">
-                                        <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => { }}>
+                                        <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/learning/update/${item.id}`, { state: { ...location.state } })}>
                                             Ubah
                                         </Button>
                                         <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>
@@ -62,11 +69,11 @@ const LearningResponsibilityPage = () => {
         <Content element={element}>
             <div className="flex flex-wrap justify-between items-center">
                 <div className="flex flex-col leading-3">
-                    <span className="font-bold text-xl text-slate-800">Daftar Tugas dan Tanggung Jawab</span>
-                    <span>Buku Pintar {"-"} <span className="font-semibold">{location?.state?.category ?? ""}</span></span>
+                    <span className="font-bold text-xl text-slate-800">Buku Pintar</span>
+                    <span>{location.state?.title}</span>
                 </div>
                 <div>
-                    <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/learning/responsibility/create`, { state: { category: location.state?.category, type: categoryActive.title } })}>
+                    <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/learning/create`, { state: { ...location.state } })}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 5l0 14"></path>
@@ -75,15 +82,6 @@ const LearningResponsibilityPage = () => {
                         Tambah
                     </Button>
                 </div>
-            </div>
-            <div className="my-3 flex flex-wrap gap-2">
-                {category?.map((item, index) => {
-                    return (
-                        <Button key={index} className={`${item.isActive ? "bg-slate-600 text-white" : "bg-white text-slate-900"} border`} onClick={() => onTabSwitch(index)}>
-                            {item.title}
-                        </Button>
-                    );
-                })}
             </div>
             <div className="mt-4">
                 <Card>
@@ -98,7 +96,7 @@ const LearningResponsibilityPage = () => {
                             </Button>
                         </div>
                     </div>
-                    <div className="overflow-x-auto">{Object.keys(learning).length === 0 ? <TableLoader /> : learning.data.length === 0 ? <EmptyData /> : renderTable()}</div>
+                    <div className="overflow-x-auto">{Object.keys(learning ?? {})?.length === 0 ? <TableLoader /> : learning?.data?.length === 0 ? <EmptyData /> : renderTable()}</div>
                     <div className="flex justify-end px-5 py-3">
                         <span className="font-semibold text-sm">Rows per page: 10</span>
                     </div>
@@ -108,4 +106,4 @@ const LearningResponsibilityPage = () => {
     );
 }
 
-export default LearningResponsibilityPage;
+export default LearningPage;

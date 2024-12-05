@@ -53,14 +53,9 @@ import {
   KompersSatjarDetailPage,
   KompersSatjarPage,
   KompersSatjarUpdatePage,
-  LearningAlutsistaCreatePage,
-  LearningAlutsistaPage,
-  LearningMunisiCreatePage,
-  LearningMunisiPage,
-  LearningPejabatSatuanPage,
-  LearningResponsibilityPage,
-  LearningSatuanCreatePage,
-  LearningSatuanPage,
+  LearningCreatePage,
+  LearningPage,
+  LearningUpdatePage,
   LoginPage,
   MaterialCreatePage,
   MaterialPage,
@@ -97,18 +92,9 @@ import {
   UserDetailPage,
   UserPage,
 } from "./pages";
-import { LearningAlutsistaContextProvider } from "./contexts/learning/LearningAlutsistaContext";
-import { LearningMunisiContextProvider } from "./contexts/learning/LearningMunisiContext";
-import { LearningResponsibilityContextProvider } from "./contexts/learning/LearningResponsibilityContext";
-import { LearningAlutsistaCreateContextProvider } from "./contexts/learning/LearningAlutsistaCreateContext";
-import { LearningMunisiCreateContextProvider } from "./contexts/learning/LearningMunisiCreateContext";
-import { LearningResponsibilityCreateContextProvider } from "./contexts/learning/LearningResponsibilityCreateContext";
-import LearningResponsibilityCreatePage from "./pages/learning_responsibility/form/create";
-import { LearningSatuanContextProvider } from "./contexts/learning/LearningSatuanContext";
-import { LearningSatuanCreateContextProvider } from "./contexts/learning/LearningSatuanCreateContext";
-import { LearningPejabatSatuanContextProvider } from "./contexts/learning/LearningPejabatSatuanContext";
-import { LearningPejabatSatuanCreateContextProvider } from "./contexts/learning/LearningPejabatSatuanCreateContext";
-import LearningPejabatSatuanCreatePage from "./pages/learning_pejabat_satuan/form/create";
+import { LearningContextProvider } from "./contexts/learning/LearningContext";
+import { LearningCreateContextProvider } from "./contexts/learning/LearningCreateContext";
+import { LearningUpdateContextProvider } from "./contexts/learning/LearningUpdateContext";
 
 function App() {
   return (
@@ -521,102 +507,32 @@ function App() {
         />
         {/* Learning */}
         <Route
-          path="/learning/alutsista"
+          path="/learning"
           element={
             <ProtectedAuth>
-              <LearningAlutsistaContextProvider>
-                <LearningAlutsistaPage />
-              </LearningAlutsistaContextProvider>
+              <LearningContextProvider>
+                <LearningPage />
+              </LearningContextProvider>
             </ProtectedAuth>
           }
         />
         <Route
-          path="/learning/alutsista/create"
+          path="/learning/create"
           element={
             <ProtectedAuth>
-              <LearningAlutsistaCreateContextProvider>
-                <LearningAlutsistaCreatePage />
-              </LearningAlutsistaCreateContextProvider>
+              <LearningCreateContextProvider>
+                <LearningCreatePage />
+              </LearningCreateContextProvider>
             </ProtectedAuth>
           }
         />
         <Route
-          path="/learning/munisi"
+          path="/learning/update/:id"
           element={
             <ProtectedAuth>
-              <LearningMunisiContextProvider>
-                <LearningMunisiPage />
-              </LearningMunisiContextProvider>
-            </ProtectedAuth>
-          }
-        />
-        <Route
-          path="/learning/munisi/create/:kategori"
-          element={
-            <ProtectedAuth>
-              <LearningMunisiCreateContextProvider>
-                <LearningMunisiCreatePage />
-              </LearningMunisiCreateContextProvider>
-            </ProtectedAuth>
-          }
-        />
-        <Route
-          path="/learning/responsibility"
-          element={
-            <ProtectedAuth>
-              <LearningResponsibilityContextProvider>
-                <LearningResponsibilityPage />
-              </LearningResponsibilityContextProvider>
-            </ProtectedAuth>
-          }
-        />
-        <Route
-          path="/learning/responsibility/create"
-          element={
-            <ProtectedAuth>
-              <LearningResponsibilityCreateContextProvider>
-                <LearningResponsibilityCreatePage />
-              </LearningResponsibilityCreateContextProvider>
-            </ProtectedAuth>
-          }
-        />
-        <Route
-          path="/learning/satuan"
-          element={
-            <ProtectedAuth>
-              <LearningSatuanContextProvider>
-                <LearningSatuanPage />
-              </LearningSatuanContextProvider>
-            </ProtectedAuth>
-          }
-        />
-        <Route
-          path="/learning/satuan/create"
-          element={
-            <ProtectedAuth>
-              <LearningSatuanCreateContextProvider>
-                <LearningSatuanCreatePage />
-              </LearningSatuanCreateContextProvider>
-            </ProtectedAuth>
-          }
-        />
-        <Route
-          path="/learning/pejabat-satuan"
-          element={
-            <ProtectedAuth>
-              <LearningPejabatSatuanContextProvider>
-                <LearningPejabatSatuanPage />
-              </LearningPejabatSatuanContextProvider>
-            </ProtectedAuth>
-          }
-        />
-        <Route
-          path="/learning/pejabat-satuan/create/:kategori"
-          element={
-            <ProtectedAuth>
-              <LearningPejabatSatuanCreateContextProvider>
-                <LearningPejabatSatuanCreatePage />
-              </LearningPejabatSatuanCreateContextProvider>
+              <LearningUpdateContextProvider>
+                <LearningUpdatePage />
+              </LearningUpdateContextProvider>
             </ProtectedAuth>
           }
         />

@@ -1,17 +1,18 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { deleteLearningSatuanRequest, getLearningSatuanRequest } from "../../api/LearningSatuanRequest";
+import { useLocation, useNavigate } from "react-router-dom";
+import { deleteLearningRequest, getLearningRequest } from "../../api/LearningRequest";
 import { ConfirmDeleteModal } from "../../components";
 
-const LearningSatuanContext = createContext();
+const LearningContext = createContext();
 
-export const LearningSatuanContextProvider = ({ children }) => {
+export const LearningContextProvider = ({ children }) => {
     const navigation = useNavigate();
+    const location = useLocation();
     const [element, setElement] = useState(false);
     const [learning, setLearning] = useState({});
 
     const onGetLearning = async () => {
-        await getLearningSatuanRequest({}).then((res) => {
+        await getLearningRequest({ filter: `?category=${location.state?.category ?? ''}` }).then((res) => {
             setLearning(res);
         });
     };
@@ -21,7 +22,7 @@ export const LearningSatuanContextProvider = ({ children }) => {
     };
 
     const onDeleteLearning = async ({ learning_id = null }) => {
-        await deleteLearningSatuanRequest({ learning_id: learning_id }).then((res) => {
+        await deleteLearningRequest({ learning_id: learning_id }).then((res) => {
             setElement(false);
             onGetLearning({ category: res.category });
         });
@@ -30,15 +31,15 @@ export const LearningSatuanContextProvider = ({ children }) => {
     useEffect(() => {
         onGetLearning();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [location]);
 
     return (
-        <LearningSatuanContext.Provider value={{ navigation, element, setElement, learning, setLearning, onShowConfirmDelete }}>
+        <LearningContext.Provider value={{ navigation, location, element, setElement, learning, setLearning, onShowConfirmDelete }}>
             {children}
-        </LearningSatuanContext.Provider>
+        </LearningContext.Provider>
     );
 }
 
-export const UseLearningSatuanContext = () => {
-    return useContext(LearningSatuanContext);
+export const UseLearningContext = () => {
+    return useContext(LearningContext);
 }

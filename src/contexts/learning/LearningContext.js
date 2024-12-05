@@ -12,7 +12,7 @@ export const LearningContextProvider = ({ children }) => {
     const [learning, setLearning] = useState({});
 
     const onGetLearning = async () => {
-        await getLearningRequest({ filter: `?category=${location.state?.category ?? ''}` }).then((res) => {
+        await getLearningRequest({ filter: `category=${location.state?.category ?? ''}` }).then((res) => {
             setLearning(res);
         });
     };

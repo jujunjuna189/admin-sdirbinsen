@@ -1,3 +1,6 @@
+import AnnouncementPage from "./announcement";
+import AnnouncementCreatePage from "./announcement/form/create";
+import AnnouncementUpdatePage from "./announcement/form/update";
 import LoginPage from "./auth/login";
 import ChatPage from "./chat";
 import DashboardPage from "./dashboard";
@@ -36,6 +39,9 @@ import UserDetailPage from "./user/detail";
 import UserCreatePage from "./user/form/create";
 
 export {
+  AnnouncementPage,
+  AnnouncementCreatePage,
+  AnnouncementUpdatePage,
   LoginPage,
   ChatPage,
   DashboardPage,

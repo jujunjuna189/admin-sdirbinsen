@@ -30,6 +30,9 @@ import { KompersSatjarDetailContextProvider } from "./contexts/kompers_satjat/Ko
 import { KompersSatjarUpdateContextProvider } from "./contexts/kompers_satjat/KompersSatjarUpdateContext";
 
 import {
+  AnnouncementCreatePage,
+  AnnouncementPage,
+  AnnouncementUpdatePage,
   ChatPage,
   DashboardPage,
   HelpSuggestionPage,
@@ -70,6 +73,9 @@ import {
 import { LearningContextProvider } from "./contexts/learning/LearningContext";
 import { LearningCreateContextProvider } from "./contexts/learning/LearningCreateContext";
 import { LearningUpdateContextProvider } from "./contexts/learning/LearningUpdateContext";
+import { AnnouncementContextProvider } from "./contexts/announcement/AnnouncementContext";
+import { AnnouncementCreateContextProvider } from "./contexts/announcement/AnnouncementCreateContext";
+import { AnnouncementUpdateContextProvider } from "./contexts/announcement/AnnouncementUpdateContext";
 
 function App() {
   return (
@@ -365,6 +371,37 @@ function App() {
               <LearningUpdateContextProvider>
                 <LearningUpdatePage />
               </LearningUpdateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        {/* Announcement */}
+        <Route
+          path="/announcement"
+          element={
+            <ProtectedAuth>
+              <AnnouncementContextProvider>
+                <AnnouncementPage />
+              </AnnouncementContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/announcement/create"
+          element={
+            <ProtectedAuth>
+              <AnnouncementCreateContextProvider>
+                <AnnouncementCreatePage />
+              </AnnouncementCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/announcement/update/:id"
+          element={
+            <ProtectedAuth>
+              <AnnouncementUpdateContextProvider>
+                <AnnouncementUpdatePage />
+              </AnnouncementUpdateContextProvider>
             </ProtectedAuth>
           }
         />

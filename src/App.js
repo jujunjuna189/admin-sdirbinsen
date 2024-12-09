@@ -62,7 +62,9 @@ import {
   SettingPersonilPage,
   SettingSatuanCreatePage,
   SettingUserPage,
+  SiapsatCreatePage,
   SiapsatPage,
+  SiapsatUpdatePage,
   TrakorpsCreatePage,
   TrakorpsDetailPage,
   TrakorpsPage,
@@ -76,6 +78,9 @@ import { LearningUpdateContextProvider } from "./contexts/learning/LearningUpdat
 import { AnnouncementContextProvider } from "./contexts/announcement/AnnouncementContext";
 import { AnnouncementCreateContextProvider } from "./contexts/announcement/AnnouncementCreateContext";
 import { AnnouncementUpdateContextProvider } from "./contexts/announcement/AnnouncementUpdateContext";
+import { SiapsatContextProvider } from "./contexts/siapsat/SiapsatContext";
+import { SiapsatCreateContextProvider } from "./contexts/siapsat/SiapsatCreateContext";
+import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateContext";
 
 function App() {
   return (
@@ -339,7 +344,29 @@ function App() {
           path="/siapsat"
           element={
             <ProtectedAuth>
-              <SiapsatPage />
+              <SiapsatContextProvider>
+                <SiapsatPage />
+              </SiapsatContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/create"
+          element={
+            <ProtectedAuth>
+              <SiapsatCreateContextProvider>
+                <SiapsatCreatePage />
+              </SiapsatCreateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat/update/:id"
+          element={
+            <ProtectedAuth>
+              <SiapsatUpdateContextProvider>
+                <SiapsatUpdatePage />
+              </SiapsatUpdateContextProvider>
             </ProtectedAuth>
           }
         />

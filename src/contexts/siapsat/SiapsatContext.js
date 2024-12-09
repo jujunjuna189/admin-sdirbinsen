@@ -1,74 +1,56 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getSiapsatKategoriRequest } from "../../api/SiapsatKategoriRequest";
-import { deleteSiapsatRequest, getSiapsatRequest } from "../../api/SiapsatRequest";
-import { ConfirmDeleteModal } from "../../components";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getSatuanRequest } from "../../api/SatuanRequest";
+import { getSiapsatRequest } from "../../api/SiapsatRequest";
 
 const SiapsatContext = createContext();
 
 export const SiapsatContextProvider = ({ children }) => {
   const navigation = useNavigate();
-  const [element, setElement] = useState(false);
-  const [categoryActive, setCategoryActive] = useState({});
-  const [category, setCategory] = useState([]);
-  const [siapsat, setSiapsat] = useState([]);
+  const location = useLocation();
+  const [satuan, setSatuan] = useState({});
+  const [satuanData, setSatuanData] = useState({});
+  const [siapsat, setSiapsat] = useState({});
 
-  const onGetSiapsatKategori = async () => {
-    await getSiapsatKategoriRequest().then((res) => {
-      settingMaterialCategory(res.data);
+  const getSatuan = async () => {
+    await getSatuanRequest({}).then((res) => {
+      res?.data?.length > 0 && (res.data[0].isActive = true);
+      res?.data?.length > 0 && (setSatuanData(res.data[0]));
+      res?.data?.length > 0 && (onGetSiapsat({ satuan_id: res.data[0].id }));
+      setSatuan(res);
     });
   };
 
-  const settingMaterialCategory = (res) => {
-    var datas = [];
-    res.forEach((item, index) => {
-      datas.push({
-        title: item.name,
-        isActive: index === 0 ? true : false,
-      });
-    });
-    setCategory([...datas]);
-    setCategoryActive({ ...datas[0] });
-    onGetSiapsat({ kategori: datas?.[0]?.title });
-  };
+  const onChangeTab = (index) => {
+    const satuanIndex = satuan.data.findIndex((x) => x.isActive === true);
+    satuanIndex >= 0 && (satuan.data[satuanIndex].isActive = false);
 
-  const onTabSwitch = (indexItem) => {
-    category.forEach((item, index) => {
-      category[index].isActive = false;
-    });
+    satuan.data[index].isActive = true;
+    setSatuan({ ...satuan });
+    setSatuanData(satuan.data[index]);
+    onGetSiapsat({ satuan_id: satuan.data[index].id });
+  }
 
-    category[indexItem].isActive = true;
-    setCategory([...category]);
-    setCategoryActive({ ...category[indexItem] });
-    onGetSiapsat({ kategori: category[indexItem].title });
-  };
-
-  const onGetSiapsat = async ({ kategori = null }) => {
-    setSiapsat({});
-    await getSiapsatRequest({ kategori: kategori }).then((res) => {
-      res === undefined && (res = {});
-      res === null && (res = {});
+  const onGetSiapsat = async ({ satuan_id }) => {
+    await getSiapsatRequest({ filter: `category=${location.state?.category ?? ''}&satuan_id=${satuan_id}` }).then((res) => {
       setSiapsat(res);
     });
-  };
+  }
 
-  const onShowConfirmDelete = (siapsat_id) => {
-    setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteSiapsat({ siapsat_id: siapsat_id })} />);
-  };
+  const onChangeTabSiapsat = (index) => {
+    const siapsatIndex = siapsat.data.findIndex((x) => x.isActive === true);
+    siapsatIndex >= 0 && (siapsat.data[siapsatIndex].isActive = false);
 
-  const onDeleteSiapsat = async ({ siapsat_id = null }) => {
-    await deleteSiapsatRequest({ siapsat_id: siapsat_id }).then((res) => {
-      setElement(false);
-      onGetSiapsat({ kategori: categoryActive.title });
-    });
-  };
+    siapsat.data[index].isActive = true;
+    setSiapsat({ ...siapsat });
+  }
 
   useEffect(() => {
-    onGetSiapsatKategori();
+    getSatuan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <SiapsatContext.Provider value={{ navigation, element, category, categoryActive, siapsat, setSiapsat, onTabSwitch, onShowConfirmDelete }}>{children}</SiapsatContext.Provider>;
+  return <SiapsatContext.Provider value={{ navigation, location, satuan, satuanData, siapsat, setSiapsat, onChangeTab, onChangeTabSiapsat }}>{children}</SiapsatContext.Provider>;
 };
 
 export const UseSiapsatContext = () => {

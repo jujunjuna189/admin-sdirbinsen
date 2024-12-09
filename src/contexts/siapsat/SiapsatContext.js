@@ -48,7 +48,7 @@ export const SiapsatContextProvider = ({ children }) => {
   useEffect(() => {
     getSatuan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location.state]);
 
   return <SiapsatContext.Provider value={{ navigation, location, satuan, satuanData, siapsat, setSiapsat, onChangeTab, onChangeTabSiapsat }}>{children}</SiapsatContext.Provider>;
 };

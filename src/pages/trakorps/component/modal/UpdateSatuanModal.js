@@ -58,7 +58,7 @@ const UpdateSatuanModal = (props) => {
                     <div className="p-3 border rounded-lg bg-white z-10">
                         <div className="mt-5 flex flex-col gap-3">
                             <div className="border rounded-lg p-3 w-[652px]">
-                                <span className="text-base font-medium">Tambah Satuan</span>
+                                <span className="text-base font-medium">Ubah Satuan</span>
                                 <div className="flex flex-col gap-3 mt-3">
                                     <div className="flex gap-5 items-center">
                                         <div>

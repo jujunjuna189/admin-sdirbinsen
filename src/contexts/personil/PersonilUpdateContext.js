@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPersonilDetailRequest, updatePersonilRequest } from "../../api/PersonilRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
-import { getLocalUser } from "../../utils";
+import { dateFormatterV6, getLocalUser } from "../../utils";
 
 const PersonilUpdateContext = createContext();
 
@@ -29,7 +29,7 @@ export const PersonilUpdateContextProvider = ({ children }) => {
             },
             nrp: res.nrp,
             nama: res.nama,
-            tanggal_lahir: res.tanggal_lahir,
+            tanggal_lahir: dateFormatterV6(res.tanggal_lahir),
             tempat_lahir: res.tempat_lahir,
             agama: res.agama,
             suku_bangsa: res.suku_bangsa,
@@ -42,8 +42,8 @@ export const PersonilUpdateContextProvider = ({ children }) => {
             psi: res.psi,
             tmt_1: res.tmt_1,
             tmt_2: res.tmt_2,
-            tmt_tni: res.tmt_tni,
-            tmt_jab: res.tmt_jab,
+            tmt_tni: dateFormatterV6(res.tmt_tni),
+            tmt_jab: dateFormatterV6(res.tmt_jab),
         };
 
         setController(dataBatch);

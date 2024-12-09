@@ -26,6 +26,7 @@ export const PetaJabatanUpdateContextProvider = ({ children }) => {
                 kategori: res.kategori,
                 golongan: res.golongan,
                 jabatan: res.jabatan,
+                order_number: res.order_number,
                 tmt: res.personil?.tmt_jab,
             };
             setController(dataBatch);

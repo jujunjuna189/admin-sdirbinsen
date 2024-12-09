@@ -1,3 +1,4 @@
+import { icSoldier } from "../../../../assets";
 import { Button, Card } from "../../../../components";
 import AddPurnawirawanSatuanModal from "./AddPurnawirawanSatuanModal";
 
@@ -13,14 +14,75 @@ const PejabatPurnawirawanDetail = (props) => {
                 {props.satuanPurnawirawan?.data?.map((item, index) => {
                     return (
                         <div key={index} className="flex gap-3 border py-1 px-1 rounded-lg mb-2">
-                            {item.gambar && (
-                                <div className="h-16 w-16 relative border rounded-lg overflow-hidden">
+                            <div className="h-16 w-16 relative border rounded-lg overflow-hidden mt-1">
+                                {!item.gambar && (
+                                    <img src={icSoldier} alt="ImagePrestasi" className="object-cover w-full h-full" />
+                                )}
+                                {item.gambar && (
                                     <img src={item.gambar} alt="ImagePrestasi" className="object-cover w-full h-full" />
-                                </div>
-                            )}
-                            <div className="leading-5 mt-1 grow">
-                                <span className="font-semibold text-[14px]">{item.nama}</span>
-                                <p>{item.deskripsi}</p>
+                                )}
+                            </div>
+                            <div className="leading-5 grow">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Nama Lengkap</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span className="font-semibold text-[14px]">{item.nama}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Pangkat</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.pangkat}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Jabatan</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.jabatan}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Leting</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.leting}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>HP</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.no_hp}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Alamat</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.alamat}</td>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                             <div className="flex items-start py-2 px-2">
                                 <div className="flex gap-2">

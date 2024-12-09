@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createSatuanPurnawirawanRequest } from "../../../../api/SatuanPurnawirawanRequest";
-import { Button, InputDate, InputFile, InputText } from "../../../../components";
+import { Button, InputArea, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 
 const AddPurnawirawanSatuanModal = (props) => {
     const ref = useRef();
@@ -26,6 +26,7 @@ const AddPurnawirawanSatuanModal = (props) => {
         let dataBatch = { ...controller };
         dataBatch.satuan_id = props.satuan.id;
         dataBatch.gambar = dataBatch.picture?.file ?? null;
+        dataBatch.leting = `${dataBatch.leting}-${dataBatch.leting_tahun}`;
         await createSatuanPurnawirawanRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {
@@ -50,7 +51,7 @@ const AddPurnawirawanSatuanModal = (props) => {
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && "hidden"}`}>
                 <div className="absolute w-full h-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
-                <div className="p-3 border rounded-lg bg-white w-96 z-10">
+                <div className="p-3 border rounded-lg bg-white w-[652px] z-10 max-h-screen overflow-y-auto my-5">
                     <div className="leading-3">
                         <span className="text-base font-medium">Tambah Data purnawirawan</span>
                         <br />
@@ -71,11 +72,24 @@ const AddPurnawirawanSatuanModal = (props) => {
                             <InputFile error={errors.picture} onChange={(value) => onSetController('picture', value)} />
                         </div>
                         <div>
-                            <span className="font-medium">Nama Pejabat</span>
+                            <span className="font-medium">Nama Lengkap</span>
                             <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
                         </div>
+                        <div className="flex items-center gap-2">
+                            <div>
+                                <span className="font-medium">Pangkat</span>
+                                <InputText className="mt-1" value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController("pangkat", value)} placeholder="..." />
+                            </div>
+                            <div>
+                                <span className="font-medium">Jabatan</span>
+                                <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController("jabatan", value)} placeholder="..." />
+                            </div>
+                        </div>
                         <div className="flex flex-col leading-3 mt-2">
-                            <span className="font-medium">Masa Jabatan</span>
+                            <div className="flex gap-3">
+                                <span className="font-medium">Masa Jabatan</span>
+                                <small>(Opsional)</small>
+                            </div>
                             <hr className="my-1" />
                             <div className="flex items-center gap-2">
                                 <div>
@@ -87,9 +101,30 @@ const AddPurnawirawanSatuanModal = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <div className="flex flex-col leading-3 mt-2">
+                            <span className="font-medium">Leting</span>
+                            <hr className="my-1" />
+                            <div className="flex items-center gap-2">
+                                <div>
+                                    <InputText className="mt-1" value={controller.leting} error={errors.leting} onChange={(value) => onSetController("leting", value)} placeholder="..." />
+                                </div>
+                                <small>-</small>
+                                <div>
+                                    <InputNumber className="mt-1" value={controller.leting_tahun} error={errors.leting_tahun} onChange={(value) => onSetController("leting_tahun", value)} placeholder="Tahun" />
+                                </div>
+                            </div>
+                        </div>
                         <div>
-                            <span className="font-medium">Deskripsi</span>
-                            <InputText className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
+                            <span className="font-medium">HP</span>
+                            <InputText className="mt-1" value={controller.no_hp} error={errors.no_hp} onChange={(value) => onSetController("no_hp", value)} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Alamat</span>
+                            <InputArea className="mt-1" value={controller.alamat} error={errors.alamat} onChange={(value) => onSetController("alamat", value)} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Keterangan</span>
+                            <InputArea className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
                         </div>
                         <div className="flex-grow" />
                         <div className="flex justify-end mt-3">

@@ -1,4 +1,4 @@
-import { Button, Content, InputText } from "../../../../components";
+import { Button, Content, InputNumber, InputText } from "../../../../components";
 import { UsePetaJabatanCreateContext } from "../../../../contexts/peta_jabatan/PetaJabatanCreateContext";
 import { getLocalUser } from "../../../../utils";
 import { SatuanModal } from "../../../personil/component";
@@ -25,12 +25,19 @@ const PetaJabatanCreatePage = () => {
                             <ChoosePersonilModal value={controller.personil?.nama} error={errors.personil_id} onChange={(value) => onSetController("personil", value)} />
                         </div>
                         <div>
-                            <span className="font-medium">Kelompok Jabatan</span>
+                            <div className="flex flex-row gap-2">
+                                <span className="font-medium">Kelompok Jabatan</span>
+                                <small>(Opsional)</small>
+                            </div>
                             <InputText value={controller.golongan} error={errors.golongan} onChange={(value) => onSetController("golongan", value)} placeholder="..." />
                         </div>
                         <div>
                             <span className="font-medium">Nama Jabatan</span>
                             <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController("jabatan", value)} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Urutan</span>
+                            <InputNumber className="mt-1" value={controller.order_number} error={errors.order_number} onChange={(value) => onSetController("order_number", value)} placeholder="..." />
                         </div>
                     </div>
                     <div className="flex justify-end mt-8 mb-3 gap-2">

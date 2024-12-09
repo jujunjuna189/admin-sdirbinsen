@@ -99,21 +99,21 @@ const PersonilUpdatePage = () => {
                         <div className="flex gap-2">
                             <div className="flex-grow">
                                 <span className="font-medium">Tmt</span>
-                                <InputDate className="mt-1" value={controller.tmt_1} error={errors.tmt_1} onChange={(value) => onSetController('tmt_1', value)} placeholder={dateFormatterV2(new Date())} />
+                                <InputDate className="mt-1" value={controller.tmt_1} error={errors.tmt_1} onChange={(value) => onSetController('tmt_1', value)} />
                             </div>
                             <div className="flex-grow">
                                 <span className="font-medium">Tmt Pangkat</span>
-                                <InputDate className="mt-1" value={controller.tmt_2} error={errors.tmt_2} onChange={(value) => onSetController('tmt_2', value)} placeholder={dateFormatterV2(new Date())} />
+                                <InputDate className="mt-1" value={controller.tmt_2} error={errors.tmt_2} onChange={(value) => onSetController('tmt_2', value)} />
                             </div>
                         </div>
                         <div className="flex gap-2">
                             <div className="flex-grow">
                                 <span className="font-medium">Tmt TNI</span>
-                                <InputDate className="mt-1" value={controller.tmt_tni} error={errors.tmt_tni} onChange={(value) => onSetController('tmt_tni', value)} placeholder={dateFormatterV2(new Date())} />
+                                <InputDate className="mt-1" value={controller.tmt_tni} error={errors.tmt_tni} onChange={(value) => onSetController('tmt_tni', value)} />
                             </div>
                             <div className="flex-grow">
                                 <span className="font-medium">Tmt JAB</span>
-                                <InputDate className="mt-1" value={controller.tmt_jab} error={errors.tmt_jab} onChange={(value) => onSetController('tmt_jab', value)} placeholder={dateFormatterV2(new Date())} />
+                                <InputDate className="mt-1" value={controller.tmt_jab} error={errors.tmt_jab} onChange={(value) => onSetController('tmt_jab', value)} />
                             </div>
                         </div>
                     </div>

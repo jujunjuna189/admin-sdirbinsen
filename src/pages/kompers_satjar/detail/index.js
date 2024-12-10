@@ -18,6 +18,7 @@ const KompersSatjarDetailPage = () => {
                 <span className="text-base font-semibold">{kompersSatjar.title}</span>
             </div>
             <div className="mt-3 grow flex flex-col">
+                {console.log(kompersSatjar.form)}
                 <TableGenerator tools={false} controller={kompersSatjar.form} />
             </div>
         </Content>

@@ -25,7 +25,7 @@ export const KompersSatjarUpdateContextProvider = ({ children }) => {
             title: item.title,
             category: item.category,
             sub_category: item.sub_category,
-            part: { title: item.part, value: item.part },
+            part: { title: item.part, key: item.part },
             form: typeof item.form === 'string' ? JSON.parse(item.form) : item.form,
         });
     }

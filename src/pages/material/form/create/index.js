@@ -1,11 +1,11 @@
-import { Button, Content, InputFile, InputText } from "../../../../components";
+import { Button, Content, InputArea, InputFile, InputNumber, InputText } from "../../../../components";
 import { UseMaterialCreateContext } from "../../../../contexts/material/MaterialCreateContext";
 import { getLocalUser } from "../../../../utils";
 import { SatuanModal } from "../../../personil/component";
 import { KondisiModal } from "../../component";
 
 const MaterialCreatePage = () => {
-  const { navigation, element, controller, errors, onSetController, onSave, onSaveAndAdd } = UseMaterialCreateContext();
+  const { navigation, location, element, controller, errors, onSetController, onSave, onSaveAndAdd } = UseMaterialCreateContext();
 
   return (
     <Content element={element}>
@@ -26,51 +26,61 @@ const MaterialCreatePage = () => {
               <InputText className="mt-1" value={controller.kategori} error={errors.kategori} onChange={(value) => onSetController("kategori", value)} readOnly={true} placeholder="..." />
             </div>
             <div>
-              <span className="font-medium">Jenis</span>
-              <InputText className="mt-1" value={controller.jenis} error={errors.jenis} onChange={(value) => onSetController("jenis", value)} placeholder="..." />
+              <span className="font-medium">Komponen</span>
+              <InputText className="mt-1" value={controller.jenis} error={errors.jenis} onChange={(value) => onSetController("jenis", value)} readOnly={true} placeholder="..." />
             </div>
             <div>
-              <span className="font-medium">Nomor REG</span>
-              <InputText className="mt-1" value={controller.no_reg} error={errors.no_reg} onChange={(value) => onSetController("no_reg", value)} placeholder="..." />
+              <span className="font-medium">
+                {["taktik", "pengamanan"].includes(location.state?.type?.key) !== true ? "Nama" : "Judul"}
+              </span>
+              <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
             </div>
-            <div>
-              <KondisiModal value={controller.kondisi} error={errors.kondisi} onChange={(value) => onSetController("kondisi", value)} />
-            </div>
-            <div className="flex gap-5 items-center">
-              <div>
-                <div className="w-32 h-32 bg-slate-100 flex justify-center items-center relative">
-                  {controller?.picture?.preview && (<div className="w-full h-full absolute bg-slate-100">
-                    <img src={controller?.picture?.preview} alt="ImageProfile" className="object-cover w-full h-full" />
-                  </div>)}
-                  <div className="flex flex-col gap-1 text-center text-slate-300">
-                    <div className="flex justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                        <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                        <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
-                      </svg>
+            {["taktik", "pengamanan"].includes(location.state?.type?.key) !== true && (
+              <>
+                <div>
+                  <span className="font-medium">Jumlah</span>
+                  <InputNumber className="mt-1" value={controller.jumlah} error={errors.jumlah} onChange={(value) => onSetController("jumlah", value)} placeholder="..." />
+                </div>
+                <div>
+                  <KondisiModal value={controller.kondisi} error={errors.kondisi} onChange={(value) => onSetController("kondisi", value)} />
+                </div>
+                <div className="flex gap-5 items-center">
+                  <div>
+                    <div className="w-32 h-32 bg-slate-100 flex justify-center items-center relative">
+                      {controller?.picture?.preview && (<div className="w-full h-full absolute bg-slate-100">
+                        <img src={controller?.picture?.preview} alt="ImageProfile" className="object-cover w-full h-full" />
+                      </div>)}
+                      <div className="flex flex-col gap-1 text-center text-slate-300">
+                        <div className="flex justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                            <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                            <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855"></path>
+                          </svg>
+                        </div>
+                        <span className="font-medium">Gambar</span>
+                      </div>
                     </div>
-                    <span className="font-medium">Gambar</span>
+                  </div>
+                  <div className="grow">
+                    <div className="mb-2">
+                      <span className="font-medium">Unggah gambar</span><br />
+                      <small>Sertakan gambar satuan dengan mengunggah gambar...</small>
+                    </div>
+                    <div className="flex">
+                      <InputFile error={errors.picture} onChange={(value) => onSetController('picture', value)} />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="grow">
-                <div className="mb-2">
-                  <span className="font-medium">Unggah gambar</span><br />
-                  <small>Sertakan gambar satuan dengan mengunggah gambar...</small>
-                </div>
-                <div className="flex">
-                  <InputFile error={errors.picture} onChange={(value) => onSetController('picture', value)} />
-                </div>
-              </div>
-            </div>
+              </>
+            )}
             <div>
               <div className="flex flex-col leading-3">
                 <span className="font-medium">Keterangan</span>
                 <small>Isi "-" (strip) jika tidak ditambahkan keterangan</small>
               </div>
-              <InputText className="mt-1" value={controller.keterangan} error={errors.keterangan} onChange={(value) => onSetController("keterangan", value)} placeholder="..." />
+              <InputArea className="mt-1" value={controller.keterangan} error={errors.keterangan} onChange={(value) => onSetController("keterangan", value)} placeholder="..." />
             </div>
           </div>
           <div className="flex justify-end mt-8 mb-3 gap-2">

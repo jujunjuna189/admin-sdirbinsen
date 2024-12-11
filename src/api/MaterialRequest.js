@@ -1,12 +1,13 @@
 import axios from "axios";
 import { API_MATERIAL_GET } from "../config/api";
 
-export const getMaterialRequest = async ({ kategori = null, satuan_id = null }) => {
+export const getMaterialRequest = async ({ kategori = null, jenis, satuan_id = null }) => {
     // const user = getLocalUser();
     try {
         var filter = '';
 
         kategori && (filter += `?kategori=${kategori}`);
+        jenis && (filter += `&jenis=${jenis}`);
         satuan_id && (filter += `&satuan_id=${satuan_id}`);
 
         const response = await axios.get(`${API_MATERIAL_GET}${filter}`, {

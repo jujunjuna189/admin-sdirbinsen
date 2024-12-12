@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSatuanLainLainRequest } from "../../api/SatuanLainLainRequest";
 import { getSatuanLambangRequest } from "../../api/SatuanLambangRequest";
-import { getSatuanPejabatDansatRequest } from "../../api/SatuanPejabatDansatRequest";
+import { deleteSatuanPejabatDansatRequest, getSatuanPejabatDansatRequest } from "../../api/SatuanPejabatDansatRequest";
 import { deleteSatuanPrestasiRequest, getSatuanPrestasiRequest } from "../../api/SatuanPrestasiRequest";
 import { deleteSatuanPurnawirawanRequest, getSatuanPurnawirawanRequest } from "../../api/SatuanPurnawirawanRequest";
 import { getSatuanDetailRequest } from "../../api/SatuanRequest";
@@ -140,7 +140,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
       2: <LambangTrakorpsDetail satuan={satuan} satuanLambang={satuanLambang} onSave={() => onGetSatuanLambang()} />,
       3: <TradisiTrakorpsDetail satuan={satuan} satuanTradisi={satuanTradisi} onSave={() => onGetSatuanTradisi()} onDelete={(id) => onShowConfirmDelete(() => onDeleteSatuanTradisi({ id: id }))} />,
       4: <PrestasiTrakorpsDetail satuan={satuan} satuanPrestasi={satuanPrestasi} onSave={() => onGetSatuanPrestasi({ satuan_id: params.id })} onDelete={(id) => onShowConfirmDelete(() => onDeleteSatuanPrestasi({ id: id }))} />,
-      5: <PejabatDansatTrakorpsDetail satuan={satuan} satuanPejabatDansat={satuanPejabatDansat} onSave={() => onGetSatuanPejabatDansat({ satuan_id: params.id })} />,
+      5: <PejabatDansatTrakorpsDetail satuan={satuan} satuanPejabatDansat={satuanPejabatDansat} onSave={() => onGetSatuanPejabatDansat({ satuan_id: params.id })} onDelete={(id) => onShowConfirmDelete(() => onDeleteSatuanPejabatDansat({ id: id }))} />,
       6: <PejabatPurnawirawanDetail satuan={satuan} satuanPurnawirawan={satuanPurnawirawan} onSave={() => onGetSatuanPurnawirawan({ satuan_id: params.id })} onDelete={(id) => onShowConfirmDelete(() => onDeleteSatuanPurnawirawan({ id: id }))} />,
       7: <MarsTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
       8: <HimneTrakorpsDetail satuan={satuan} onSave={() => getSatuan({ satuan_id: params.id })} />,
@@ -165,6 +165,13 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
     await deleteSatuanPrestasiRequest({ id: id }).then((res) => {
       setElement(false);
       onGetSatuanPrestasi({ satuan_id: params.id });
+    });
+  };
+
+  const onDeleteSatuanPejabatDansat = async ({ id = null }) => {
+    await deleteSatuanPejabatDansatRequest({ id: id }).then((res) => {
+      setElement(false);
+      onGetSatuanPejabatDansat({ satuan_id: params.id });
     });
   };
 

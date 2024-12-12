@@ -22,6 +22,31 @@ const PrestasiTrakorpsDetail = (props) => {
               <div className="leading-5 mt-1 grow">
                 <span className="font-semibold text-[14px]">{item.title}</span>
                 <p>{item.deskripsi}</p>
+                <p>
+                  <small>Tahun:</small>
+                  <small> {item.tahun ?? '-'}</small>
+                </p>
+                <hr />
+                <table className="leading-4">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <small>Nama</small>
+                      </td>
+                      <td>
+                        <small>: {item.nama}</small>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <small>Pangkat</small>
+                      </td>
+                      <td>
+                        <small>: {item.pangkat}</small>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
               <div className="flex items-start py-2 px-2">
                 <div className="flex gap-2">

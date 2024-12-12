@@ -29,6 +29,9 @@ const MaterialPage = () => {
             )}
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Keterangan</th>
+            {["munisi-bp"].includes(categoryActive?.key) === true && (
+              <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Lokasi</th>
+            )}
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
             <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
           </tr>
@@ -57,6 +60,9 @@ const MaterialPage = () => {
                 )}
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan?.nama ?? ""}</td>
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.keterangan ?? ""}</td>
+                {["munisi-bp"].includes(categoryActive?.key) === true && (
+                  <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.lokasi ?? ""}</td>
+                )}
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{dateFormatterV4(item.created_at)}</td>
                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                   <div className="flex gap-3 justify-end">

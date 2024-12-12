@@ -22,6 +22,7 @@ const TrakorpsDetailPage = () => {
               <div className="flex flex-col leading-3">
                 <span>Nama Satuan atau Trakorps</span>
                 <span className="text-lg font-bold">{satuan.nama}</span>
+                <small>{satuan.alamat}</small>
               </div>
             </div>
             <div>

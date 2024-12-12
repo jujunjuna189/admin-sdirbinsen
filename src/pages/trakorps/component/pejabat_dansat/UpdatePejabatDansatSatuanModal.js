@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { createSatuanPejabatDansatRequest } from "../../../../api/SatuanPejabatDansatRequest";
+import { getSatuanPejabatDansatDetailRequest, updateSatuanPejabatDansatRequest } from "../../../../api/SatuanPejabatDansatRequest";
 import { Button, InputDate, InputFile, InputText } from "../../../../components";
 
-const AddPejabatDansatSatuanModal = (props) => {
+const UpdatePejabatDansatSatuanModal = (props) => {
     const ref = useRef();
     const [isShow, setIsShow] = useState(false);
     const [controller, setController] = useState({});
@@ -22,11 +22,23 @@ const AddPejabatDansatSatuanModal = (props) => {
         setController({ ...controller, [field]: value });
     };
 
+    const onGetSatuanPejabatDansat = async () => {
+        await getSatuanPejabatDansatDetailRequest({ id: props.item.id }).then((res) => {
+            setController({
+                picture: { preview: res.gambar },
+                nama: res.nama,
+                date_from: res.date_from,
+                date_to: res.date_to,
+                deskripsi: res.deskripsi,
+            });
+        });
+    }
+
     const onSave = async () => {
         let dataBatch = { ...controller };
         dataBatch.satuan_id = props.satuan.id;
         dataBatch.gambar = dataBatch.picture?.file ?? null;
-        await createSatuanPejabatDansatRequest({ body: dataBatch }).then((res) => {
+        await updateSatuanPejabatDansatRequest({ id: props.item.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {
                 setController({});
@@ -43,18 +55,21 @@ const AddPejabatDansatSatuanModal = (props) => {
 
     return (
         <div className="inline-block" ref={ref}>
-            <div className="cursor-pointer" onClick={() => toogleModal()}>
+            <div className="cursor-pointer" onClick={() => {
+                toogleModal();
+                onGetSatuanPejabatDansat();
+            }}>
                 <div className="flex gap-3 items-center text-slate-600">
-                    <Button className="bg-red-800 text-white flex justify-center py-[0.4rem]">Tambah</Button>
+                    <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center py-[0.35rem]">Ubah</Button>
                 </div>
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && "hidden"}`}>
                 <div className="absolute w-full h-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
                 <div className="p-3 border rounded-lg bg-white w-96 z-10">
                     <div className="leading-3">
-                        <span className="text-base font-medium">Tambah Data Pejabat Dansat</span>
+                        <span className="text-base font-medium">Ubah Data Pejabat Dansat</span>
                         <br />
-                        <small>Silahkan isi form data pejabat dansat</small>
+                        <small>Formulir perbaruan data pejabat dansat</small>
                     </div>
                     <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
                         <div className="flex justify-center">
@@ -104,4 +119,4 @@ const AddPejabatDansatSatuanModal = (props) => {
     );
 };
 
-export default AddPejabatDansatSatuanModal;
+export default UpdatePejabatDansatSatuanModal;

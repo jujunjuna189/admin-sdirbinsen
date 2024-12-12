@@ -50,7 +50,7 @@ const AddPrestasiSatuanModal = (props) => {
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && "hidden"}`}>
                 <div className="absolute w-full h-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
-                <div className="p-3 border rounded-lg bg-white w-96 z-10">
+                <div className="p-3 border rounded-lg bg-white w-96 max-h-screen overflow-y-auto z-10">
                     <div className="leading-3">
                         <span className="text-base font-medium">Tambah Data Prestasi</span>
                         <br />
@@ -81,6 +81,15 @@ const AddPrestasiSatuanModal = (props) => {
                         <div>
                             <span className="font-medium">Tahun</span>
                             <InputNumber className="mt-1" value={controller.tahun} error={errors.tahun} onChange={(value) => onSetController("tahun", value)} placeholder="..." />
+                        </div>
+                        <hr />
+                        <div>
+                            <span className="font-medium">Nama</span>
+                            <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Pangkat</span>
+                            <InputText className="mt-1" value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController("pangkat", value)} placeholder="..." />
                         </div>
                         <div className="flex-grow" />
                         <div className="flex justify-end mt-3">

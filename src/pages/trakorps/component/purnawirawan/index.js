@@ -1,6 +1,7 @@
 import { icSoldier } from "../../../../assets";
 import { Button, Card } from "../../../../components";
 import AddPurnawirawanSatuanModal from "./AddPurnawirawanSatuanModal";
+import UpdatePurnawirawanSatuanModal from "./UpdatePurnawirawanSatuanModal";
 
 const PejabatPurnawirawanDetail = (props) => {
     return (
@@ -24,7 +25,7 @@ const PejabatPurnawirawanDetail = (props) => {
                             </div>
                             <div className="leading-5 grow">
                                 <table>
-                                    <thead>
+                                    <tbody>
                                         <tr>
                                             <td>
                                                 <div className="flex justify-between gap-3">
@@ -39,6 +40,35 @@ const PejabatPurnawirawanDetail = (props) => {
                                         <tr>
                                             <td>
                                                 <div className="flex justify-between gap-3">
+                                                    <span>Tmp, Tgl Lahir</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span>{item.tempat_lahir ?? '-'}, {item.tanggal_lahir ?? '-'}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Agama</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.agama}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Suku Bangsa</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.suku_bangsa}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
                                                     <span>Pangkat</span>
                                                     <span>:</span>
                                                 </div>
@@ -46,13 +76,24 @@ const PejabatPurnawirawanDetail = (props) => {
                                             <td>{item.pangkat}</td>
                                         </tr>
                                         <tr>
-                                            <td>
+                                            <td style={{ verticalAlign: 'top' }}>
                                                 <div className="flex justify-between gap-3">
                                                     <span>Jabatan</span>
                                                     <span>:</span>
                                                 </div>
                                             </td>
-                                            <td>{item.jabatan}</td>
+                                            <td>
+                                                <div style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: item.jabatan }} />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Tahun Jabatan</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.date_from ?? '-'} <small>s/d</small> {item.date_to ?? '-'}</td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -61,7 +102,7 @@ const PejabatPurnawirawanDetail = (props) => {
                                                     <span>:</span>
                                                 </div>
                                             </td>
-                                            <td>{item.leting}</td>
+                                            <td>{item.leting ?? '-'}</td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -73,19 +114,31 @@ const PejabatPurnawirawanDetail = (props) => {
                                             <td>{item.no_hp}</td>
                                         </tr>
                                         <tr>
-                                            <td>
+                                            <td style={{ verticalAlign: 'top' }}>
                                                 <div className="flex justify-between gap-3">
                                                     <span>Alamat</span>
                                                     <span>:</span>
                                                 </div>
                                             </td>
-                                            <td>{item.alamat}</td>
+                                            <td>
+                                                <div style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: item.alamat }} />
+                                            </td>
                                         </tr>
-                                    </thead>
+                                        <tr>
+                                            <td>
+                                                <div className="flex justify-between gap-3">
+                                                    <span>Deskripsi</span>
+                                                    <span>:</span>
+                                                </div>
+                                            </td>
+                                            <td>{item.deskripsi}</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
                             <div className="flex items-start py-2 px-2">
                                 <div className="flex gap-2">
+                                    <UpdatePurnawirawanSatuanModal item={item} onSave={() => props.onSave && props.onSave()} satuan={props.satuan} />
                                     <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => props.onDelete && props.onDelete(item.id)}>
                                         Hapus
                                     </Button>

@@ -44,6 +44,12 @@ const MaterialUpdatePage = () => {
                 <div>
                   <KondisiModal value={controller.kondisi} error={errors.kondisi} onChange={(value) => onSetController("kondisi", value)} />
                 </div>
+                {["munisi-bp"].includes(location.state?.type?.key) === true && (
+                  <div>
+                    <span className="font-medium">Lokasi</span>
+                    <InputText className="mt-1" value={controller.lokasi} error={errors.lokasi} onChange={(value) => onSetController("lokasi", value)} placeholder="..." />
+                  </div>
+                )}
                 <div className="flex gap-5 items-center">
                   <div>
                     <div className="w-32 h-32 bg-slate-100 flex justify-center items-center relative">

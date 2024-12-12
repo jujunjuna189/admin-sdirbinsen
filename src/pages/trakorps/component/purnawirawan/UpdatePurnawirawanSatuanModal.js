@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { createSatuanPurnawirawanRequest } from "../../../../api/SatuanPurnawirawanRequest";
+import { getSatuanPurnawirawanDetailRequest, updateSatuanPurnawirawanRequest } from "../../../../api/SatuanPurnawirawanRequest";
 import { Button, InputArea, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { AgamaModal } from "../../../personil/component";
 
-const AddPurnawirawanSatuanModal = (props) => {
+const UpdatePurnawirawanSatuanModal = (props) => {
     const ref = useRef();
     const [isShow, setIsShow] = useState(false);
     const [controller, setController] = useState({});
@@ -23,13 +23,35 @@ const AddPurnawirawanSatuanModal = (props) => {
         setController({ ...controller, [field]: value });
     };
 
+    const onGetSatuanPurnawirawan = async () => {
+        await getSatuanPurnawirawanDetailRequest({ id: props.item.id }).then((res) => {
+            setController({
+                picture: { preview: res.gambar },
+                nama: res.nama,
+                tempat_lahir: res.tempat_lahir,
+                tanggal_lahir: res.tanggal_lahir,
+                agama: res.agama,
+                suku_bangsa: res.suku_bangsa,
+                pangkat: res.pangkat,
+                jabatan: res.jabatan,
+                date_from: res.date_from,
+                date_to: res.date_to,
+                leting: res.leting?.split('-')?.[0] ?? '-',
+                leting_tahun: res.leting?.split('-')?.[1] ?? '-',
+                no_hp: res.no_hp,
+                alamat: res.alamat,
+                deskripsi: res.deskripsi,
+            });
+        });
+    }
+
     const onSave = async () => {
         let dataBatch = { ...controller };
         dataBatch.satuan_id = props.satuan.id;
         dataBatch.gambar = dataBatch.picture?.file ?? null;
         dataBatch.leting && (dataBatch.leting = `${dataBatch.leting ?? '-'}`);
         dataBatch.leting_tahun && (dataBatch.leting += `-${dataBatch.leting_tahun}`);
-        await createSatuanPurnawirawanRequest({ body: dataBatch }).then((res) => {
+        await updateSatuanPurnawirawanRequest({ id: props.item.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {
                 setController({});
@@ -46,18 +68,21 @@ const AddPurnawirawanSatuanModal = (props) => {
 
     return (
         <div className="inline-block" ref={ref}>
-            <div className="cursor-pointer" onClick={() => toogleModal()}>
+            <div className="cursor-pointer" onClick={() => {
+                toogleModal();
+                onGetSatuanPurnawirawan();
+            }}>
                 <div className="flex gap-3 items-center text-slate-600">
-                    <Button className="bg-red-800 text-white flex justify-center py-[0.4rem]">Tambah</Button>
+                    <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center py-[0.35rem]">Ubah</Button>
                 </div>
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && "hidden"}`}>
                 <div className="absolute w-full h-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
-                <div className="p-3 border rounded-lg bg-white w-[652px] z-10 max-h-screen overflow-y-auto my-5">
+                <div className="p-3 border rounded-lg bg-white w-[652px] max-h-screen overflow-y-auto z-10">
                     <div className="leading-3">
-                        <span className="text-base font-medium">Tambah Data purnawirawan</span>
+                        <span className="text-base font-medium">Ubah Data Pejabat Dansat</span>
                         <br />
-                        <small>Silahkan isi form data purnawirawan</small>
+                        <small>Formulir perbaruan data pejabat dansat</small>
                     </div>
                     <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
                         <div className="flex justify-center">
@@ -163,4 +188,4 @@ const AddPurnawirawanSatuanModal = (props) => {
     );
 };
 
-export default AddPurnawirawanSatuanModal;
+export default UpdatePurnawirawanSatuanModal;

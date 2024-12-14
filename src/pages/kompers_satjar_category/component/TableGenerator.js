@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { InputText } from "../../../components";
+import PreviewPinModal from "./PreviewPinModal";
 
 const TableGenerator = (props) => {
     const inputRefs = useRef({});
+    const [element, setElement] = useState(null);
     const [controller, setController] = useState({
         row: 2,
         col: 40,
@@ -12,6 +14,8 @@ const TableGenerator = (props) => {
     const [mergedCells, setMergedCells] = useState([]);
     const [cellValues, setCellValues] = useState({});
     const [cellTextAlignments, setCellTextAlignments] = useState({});
+    // eslint-disable-next-line no-unused-vars
+    const [cellPins, setCellPins] = useState({});
 
     // Function to handle keyboard navigation
     const handleKeyDown = (event) => {
@@ -66,6 +70,7 @@ const TableGenerator = (props) => {
             setMergedCells(props.controller.mergedCells ?? []);
             setCellValues(props.controller.cellValues ?? []);
             setCellTextAlignments(props.controller.cellTextAlignments ?? {});
+            setCellPins(props.controller.cellPins ?? {});
         }
     }
 
@@ -76,13 +81,14 @@ const TableGenerator = (props) => {
             mergedCells: mergedCells,
             cellValues: cellValues,
             cellTextAlignments: cellTextAlignments,
+            cellPins: cellPins,
         });
     }
 
     useEffect(() => {
         onChanged();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [controller, mergedCells, cellValues, cellTextAlignments]);
+    }, [controller, mergedCells, cellValues, cellTextAlignments, cellPins]);
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
@@ -99,13 +105,14 @@ const TableGenerator = (props) => {
 
     return (
         <>
-            {props.tools !== false && renderTools({ controller, setController, selectedCells, mergedCells, cellValues, setMergedCells, setSelectedCells, setCellTextAlignments })}
+            {props.tools !== false && renderTools({ controller, setController, selectedCells, mergedCells, cellValues, cellPins, setMergedCells, setSelectedCells, setCellTextAlignments, setCellPins, setElement })}
             {renderCells({ inputRefs, tools: props.tools, controller, selectedCells, mergedCells, cellValues, cellTextAlignments, setSelectedCells, setMergedCells, setCellValues })}
+            {element}
         </>
     );
 }
 
-const renderTools = ({ controller, setController, selectedCells, mergedCells, cellValues, setMergedCells, setSelectedCells, setCellTextAlignments }) => {
+const renderTools = ({ controller, setController, selectedCells, mergedCells, cellValues, cellPins, setMergedCells, setSelectedCells, setCellTextAlignments, setCellPins, setElement }) => {
     // Function to handle merging cells
     const handleMerge = () => {
         if (selectedCells.length > 1) {
@@ -169,6 +176,56 @@ const renderTools = ({ controller, setController, selectedCells, mergedCells, ce
         }
     };
 
+    // pin
+    const pin = async () => {
+        var cellData = { ...cellPins };
+        if (selectedCells.length > 0) {
+            await selectedCells.forEach((item, index) => {
+                var value = cellValues[`${item.row}-${item.col}`] || '';
+                value = value !== "" ? value : mergedCells.find((x) => x.row === item.row && x.col === item.col)?.content ?? '';
+
+                console.log(value, 'ok');
+                cellData = { ...cellData, [item.col]: { columnName: value } };
+                setCellPins((prevPins) => {
+                    return {
+                        ...prevPins,
+                        [item.col]: {
+                            columnName: value,
+                        },
+                    };
+                });
+            });
+        }
+        setElement(<PreviewPinModal data={cellData} onClickOutside={() => setElement(null)} onCancel={() => setElement(null)} onRemove={(col, data) => {
+            setCellPins((prev) => {
+                var datas = { ...prev };
+                delete datas[col];
+                return datas;
+            });
+        }} />);
+    };
+
+    const unPin = async () => {
+        var cellData = { ...cellPins };
+        if (selectedCells.length > 0) {
+            await selectedCells.forEach((item, index) => {
+                delete cellData[item.col];
+                setCellPins((prev) => {
+                    var datas = { ...prev };
+                    delete datas[item.col];
+                    return datas;
+                });
+            });
+        }
+        setElement(<PreviewPinModal data={cellData} onClickOutside={() => setElement(null)} onCancel={() => setElement(null)} onRemove={(col, data) => {
+            setCellPins((prev) => {
+                var datas = { ...prev };
+                delete datas[col];
+                return datas;
+            });
+        }} />);
+    };
+
     return (
         <div className="flex flex-col my-4">
             <div className="flex gap-2 mt-1 items-center">
@@ -200,6 +257,14 @@ const renderTools = ({ controller, setController, selectedCells, mergedCells, ce
                     </span>
                     <span onClick={() => handleTextAlignChange('end')}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6l16 0" /><path d="M10 12l10 0" /><path d="M6 18l14 0" /></svg>
+                    </span>
+                </div>
+                <div className="ml-5 flex gap-1">
+                    <span onClick={() => pin()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+                    </span>
+                    <span onClick={() => unPin()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 3l18 18" /><path d="M15 4.5l-3.249 3.249m-2.57 1.433l-2.181 .818l-1.5 1.5l7 7l1.5 -1.5l.82 -2.186m1.43 -2.563l3.25 -3.251" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
                     </span>
                 </div>
             </div>

@@ -23,7 +23,7 @@ const SiapsatPage = () => {
             );
           })}
         </div>
-        <Card className="grow p-5">
+        <Card className="grow p-5 overflow-auto h-full">
           <div className="flex flex-wrap justify-between items-center">
             <div className="flex flex-col leading-3">
               <span className="font-bold text-xl text-slate-800">{satuanData?.nama ?? '-'}</span>

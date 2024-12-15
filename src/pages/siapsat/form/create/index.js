@@ -21,7 +21,7 @@ const SiapsatCreatePage = () => {
               <div className="flex flex-col leading-3">
                 <span className="font-medium">Judul</span>
               </div>
-              <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
+              <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." readOnly={location.state?.sub_category ? true : false} />
             </div>
             <div className="flex gap-5 items-center">
               <div>

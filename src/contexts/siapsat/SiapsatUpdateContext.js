@@ -49,7 +49,7 @@ export const SiapsatUpdateContextProvider = ({ children }) => {
       !res?.errors && setElement(<SuccessPopup />);
       setTimeout(() => {
         setElement(false);
-        !res?.errors && navigation(`/siapsat`, { state: { title: location.state.title, category: location.state.category } });
+        !res?.errors && navigation(location?.state?.path ?? `/siapsat`, { state: { ...location.state, title: location.state.title, category: location.state.category } });
       }, 1000);
     });
   };

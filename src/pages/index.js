@@ -33,6 +33,7 @@ import SettingUserPage from "./setting/user";
 import SiapsatPage from "./siapsat";
 import SiapsatCreatePage from "./siapsat/form/create";
 import SiapsatUpdatePage from "./siapsat/form/update";
+import SiapsatSatgasPage from "./siapsat_satgas";
 import TrakorpsPage from "./trakorps";
 import TrakorpsDetailPage from "./trakorps/detail";
 import TrakorpsCreatePage from "./trakorps/form/create";
@@ -82,4 +83,5 @@ export {
   SiapsatPage,
   SiapsatCreatePage,
   SiapsatUpdatePage,
+  SiapsatSatgasPage,
 };

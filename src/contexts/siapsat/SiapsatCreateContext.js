@@ -10,6 +10,7 @@ export const SiapsatCreateContextProvider = ({ children }) => {
   const location = useLocation();
   const [element, setElement] = useState(false);
   const [controller, setController] = useState({
+    title: location.state.sub_category,
     category: location.state.category,
     satuan_id: location.state.satuan_id,
   });
@@ -29,7 +30,7 @@ export const SiapsatCreateContextProvider = ({ children }) => {
       !res?.errors && setElement(<SuccessPopup />);
       setTimeout(() => {
         setElement(false);
-        !res?.errors && navigation(`/siapsat`, { state: { title: location.state.title, category: location.state.category } });
+        !res?.errors && navigation(location?.state?.path ?? `/siapsat`, { state: { ...location.state, title: location.state.title, category: location.state.category } });
       }, 1000);
     });
   };

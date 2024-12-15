@@ -64,6 +64,7 @@ import {
   SettingUserPage,
   SiapsatCreatePage,
   SiapsatPage,
+  SiapsatSatgasPage,
   SiapsatUpdatePage,
   TrakorpsCreatePage,
   TrakorpsDetailPage,
@@ -81,6 +82,7 @@ import { AnnouncementUpdateContextProvider } from "./contexts/announcement/Annou
 import { SiapsatContextProvider } from "./contexts/siapsat/SiapsatContext";
 import { SiapsatCreateContextProvider } from "./contexts/siapsat/SiapsatCreateContext";
 import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateContext";
+import { SiapsatSatgasContextProvider } from "./contexts/siapsat/SiapsatSatgasContext";
 
 function App() {
   return (
@@ -347,6 +349,16 @@ function App() {
               <SiapsatContextProvider>
                 <SiapsatPage />
               </SiapsatContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        <Route
+          path="/siapsat-satgas"
+          element={
+            <ProtectedAuth>
+              <SiapsatSatgasContextProvider>
+                <SiapsatSatgasPage />
+              </SiapsatSatgasContextProvider>
             </ProtectedAuth>
           }
         />

@@ -51,7 +51,6 @@ export const PersonilContextProvider = ({ children }) => {
     }
 
     const onSearch = (value) => {
-        console.log(value);
         onGetPersonil({ sumberPa: sumberPaActiveIndex.title, search: value });
     }
 

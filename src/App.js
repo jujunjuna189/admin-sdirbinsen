@@ -59,6 +59,7 @@ import {
   PetaJabatanPage,
   PetaJabatanUpdatePage,
   ProfilePage,
+  ReferensiPage,
   SettingPersonilPage,
   SettingSatuanCreatePage,
   SettingUserPage,
@@ -83,6 +84,7 @@ import { SiapsatContextProvider } from "./contexts/siapsat/SiapsatContext";
 import { SiapsatCreateContextProvider } from "./contexts/siapsat/SiapsatCreateContext";
 import { SiapsatUpdateContextProvider } from "./contexts/siapsat/SiapsatUpdateContext";
 import { SiapsatSatgasContextProvider } from "./contexts/siapsat/SiapsatSatgasContext";
+import { ReferensiContextProvider } from "./contexts/referensi/ReferensiContext";
 
 function App() {
   return (
@@ -410,6 +412,17 @@ function App() {
               <LearningUpdateContextProvider>
                 <LearningUpdatePage />
               </LearningUpdateContextProvider>
+            </ProtectedAuth>
+          }
+        />
+        {/* Referensi */}
+        <Route
+          path="/referensi"
+          element={
+            <ProtectedAuth>
+              <ReferensiContextProvider>
+                <ReferensiPage />
+              </ReferensiContextProvider>
             </ProtectedAuth>
           }
         />

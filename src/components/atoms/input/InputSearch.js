@@ -11,7 +11,7 @@ const InputSearch = (props) => {
                         <path d="M3 21L9 15" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </g>
                 </svg>
-                <input type="text" className="py-2 px-3 text-sm w-full m-0 focus:outline-none rounded-full" onChange={(event) => props.onChange && props.onChange(event.target.value)} placeholder={props.placeholder} />
+                <input type="text" className="py-2 px-3 text-sm w-full m-0 focus:outline-none rounded-full" value={props?.value ?? ''} onChange={(event) => props.onChange && props.onChange(event.target.value)} placeholder={props.placeholder} />
             </div>
         </div>
     );

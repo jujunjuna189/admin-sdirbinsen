@@ -59,7 +59,7 @@ export const updateSiapsatRequest = async ({ siapsat_id = null, body = {} }) => 
   }
 };
 
-export const deleteSiapsatRequest = async ({ siapsat_id = null, body = {} }) => {
+export const deleteSiapsatRequest = async ({ siapsat_id = null }) => {
   // const user = getLocalUser();
   try {
     const response = await axios.delete(`${API_SIAPSAT_GET}/${siapsat_id}`, {

@@ -1,13 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getSatuanRequest } from "../../api/SatuanRequest";
-import { getSiapsatRequest } from "../../api/SiapsatRequest";
+import { deleteSiapsatRequest, getSiapsatRequest } from "../../api/SiapsatRequest";
+import { ConfirmDeleteModal } from "../../components";
 
 const SiapsatContext = createContext();
 
 export const SiapsatContextProvider = ({ children }) => {
   const navigation = useNavigate();
   const location = useLocation();
+  const [element, setElement] = useState(false);
   const [satuan, setSatuan] = useState({});
   const [satuanData, setSatuanData] = useState({});
   const [siapsat, setSiapsat] = useState({});
@@ -45,12 +47,23 @@ export const SiapsatContextProvider = ({ children }) => {
     setSiapsat({ ...siapsat });
   }
 
+  const onShowConfirmDelete = (siapsat_id) => {
+    setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteSiapsat({ siapsat_id: siapsat_id })} />);
+  }
+
+  const onDeleteSiapsat = async ({ siapsat_id = null }) => {
+    await deleteSiapsatRequest({ siapsat_id: siapsat_id }).then((res) => {
+      setElement(false);
+      onGetSiapsat({ satuan_id: satuanData.id });
+    });
+  }
+
   useEffect(() => {
     getSatuan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state]);
 
-  return <SiapsatContext.Provider value={{ navigation, location, satuan, satuanData, siapsat, setSiapsat, onChangeTab, onChangeTabSiapsat }}>{children}</SiapsatContext.Provider>;
+  return <SiapsatContext.Provider value={{ navigation, location, element, satuan, satuanData, siapsat, setSiapsat, onChangeTab, onChangeTabSiapsat, onShowConfirmDelete }}>{children}</SiapsatContext.Provider>;
 };
 
 export const UseSiapsatContext = () => {

@@ -52,6 +52,8 @@ export const API_SATUAN_PURNAWIRAWAN_GET = `${REACT_APP_API_URL}admin/satuan-pur
 export const API_SATUAN_LAIN_LAIN_GET = `${REACT_APP_API_URL}admin/satuan-lain-lain`;
 // Learning
 export const API_LEARNING_GET = `${REACT_APP_API_URL}admin/learning`;
+// referensi
+export const API_REFERENSI_GET = `${REACT_APP_API_URL}admin/referensi`;
 // Announcement
 export const API_ANNOUNCEMENT_GET = `${REACT_APP_API_URL}admin/pengumuman`;
 // Chat

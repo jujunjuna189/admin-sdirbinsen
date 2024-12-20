@@ -27,6 +27,7 @@ import PetaJabatanPage from "./peta_jabatan";
 import PetaJabatanCreatePage from "./peta_jabatan/form/create";
 import PetaJabatanUpdatePage from "./peta_jabatan/form/update";
 import ProfilePage from "./profile";
+import ReferensiPage from "./referensi";
 import SettingPersonilPage from "./setting/personil";
 import SettingSatuanCreatePage from "./setting/personil/form/SettingSatuanCreatePage";
 import SettingUserPage from "./setting/user";
@@ -84,4 +85,5 @@ export {
   SiapsatCreatePage,
   SiapsatUpdatePage,
   SiapsatSatgasPage,
+  ReferensiPage,
 };

@@ -2,9 +2,9 @@ import { Button, Card, Content, } from "../../components";
 import { UseSiapsatContext } from "../../contexts/siapsat/SiapsatContext";
 
 const SiapsatPage = () => {
-  const { navigation, location, satuan, satuanData, siapsat, onChangeTab, onChangeTabSiapsat } = UseSiapsatContext();
+  const { navigation, element, location, satuan, satuanData, siapsat, onChangeTab, onChangeTabSiapsat, onShowConfirmDelete } = UseSiapsatContext();
   return (
-    <Content>
+    <Content element={element}>
       <div className="flex flex-wrap justify-between items-center">
         <span className="font-bold text-xl text-slate-800">{location.state?.title ?? "-"}</span>
       </div>
@@ -42,12 +42,17 @@ const SiapsatPage = () => {
           <div className="mt-5">
             {siapsat?.data?.map((item, index) => {
               return (
-                <Card key={index} className="border p-5 mt-1" onClick={() => onChangeTabSiapsat(index)}>
-                  <div className="flex justify-between">
-                    <span>{item.title}</span>
-                    <span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 9l6 6l6 -6" /></svg>
-                    </span>
+                <Card key={index} className="border p-5 mt-1">
+                  <div className="flex justify-between gap-2 items-center">
+                    <div className="flex grow justify-between" onClick={() => onChangeTabSiapsat(index)}>
+                      <span>{item.title}</span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 9l6 6l6 -6" /></svg>
+                      </span>
+                    </div>
+                    <div>
+                      <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>Hapus</Button>
+                    </div>
                   </div>
                   {item?.isActive && (
                     <Card className="p-5 mt-4">

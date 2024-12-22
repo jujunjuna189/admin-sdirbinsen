@@ -270,14 +270,14 @@ const Sidebar = (props) => {
             </div>
           </div>
         )}
-        {/* {getLocalUser()?.auth?.permission?.["referensi.menu"] && ( */}
-        <div className="px-4 py-3 cursor-pointer hover:bg-slate-100 flex justify-between items-center" onClick={() => navigation("/referensi")}>
-          <div className="flex gap-3 items-center text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="text-red-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 3h3l2 2h5a2 2 0 0 1 2 2v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><path d="M17 16v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" /></svg>
-            <span className="font-medium">Referensi</span>
+        {getLocalUser()?.auth?.permission?.["referensi.menu"] && (
+          <div className="px-4 py-3 cursor-pointer hover:bg-slate-100 flex justify-between items-center" onClick={() => navigation("/referensi")}>
+            <div className="flex gap-3 items-center text-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" className="text-red-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 3h3l2 2h5a2 2 0 0 1 2 2v7a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /><path d="M17 16v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2h2" /></svg>
+              <span className="font-medium">Referensi</span>
+            </div>
           </div>
-        </div>
-        {/* )} */}
+        )}
         {/* Announcement feature */}
         <div className="cursor-pointer" onClick={() => navigation("/announcement")}>
           <div className="flex justify-between items-center hover:bg-slate-100 px-4 py-3">

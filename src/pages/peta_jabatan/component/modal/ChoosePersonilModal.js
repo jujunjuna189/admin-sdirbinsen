@@ -5,16 +5,22 @@ import { EmptyData, InputSearch, InputSelect } from "../../../../components";
 const ChoosePersonilModal = (props) => {
     const ref = useRef();
     const [isShow, setIsShow] = useState(false);
+    const [filter, setFilter] = useState({});
     const [data, setData] = useState([]);
 
-    const getPersonil = async () => {
-        await getPersonilRequest({}).then((res) => {
-            setData(res.data);
+    const onSetFilter = (field, value) => {
+        setFilter({ ...filter, [field]: value });
+        getPersonil({ filter: { ...filter, [field]: value } });
+    }
+
+    const getPersonil = async ({ filter = {} }) => {
+        await getPersonilRequest({ search: filter.search }).then((res) => {
+            setData(res?.data ?? []);
         });
     }
 
     const toogleModal = () => {
-        getPersonil();
+        getPersonil({});
         setIsShow(!isShow);
     }
 
@@ -52,7 +58,7 @@ const ChoosePersonilModal = (props) => {
                         <small>Klik item jika akan memilih</small>
                     </div>
                     <div className="mt-5 mb-2">
-                        <InputSearch className="shadow-none" placeholder="Cari..." />
+                        <InputSearch value={filter.search} onChange={(value) => onSetFilter('search', value)} className="shadow-none" placeholder="Cari..." />
                     </div>
                     <div className="overflow-y-auto h-[25vh] flex flex-col gap-1 py-2 my-2">
                         <div className="p-2 border rounded-lg cursor-pointer hover:bg-slate-100" onClick={() => onChange(-1)}>
@@ -69,7 +75,7 @@ const ChoosePersonilModal = (props) => {
                                             </tr>
                                             <tr>
                                                 <td>NRP </td>
-                                                <td>: {item.nama}</td>
+                                                <td>: {item.nrp}</td>
                                             </tr>
                                         </tbody>
                                     </table>

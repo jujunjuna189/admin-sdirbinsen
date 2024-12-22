@@ -7,10 +7,10 @@ export const getPersonilRequest = async ({ search = null, sumber_pa = null, satu
 
         var filter = '';
 
-        sumber_pa && (filter += `?sumber_pa=${sumber_pa}`);
-        satuan_id && (filter += `&satuan_id=${satuan_id}`);
-        search && (filter += `&search=${search}`);
-        page && (filter += `&page=${page}`);
+        filter += `?sumber_pa=${sumber_pa ?? ''}`;
+        filter += `&satuan_id=${satuan_id ?? ''}`;
+        filter += `&search=${search ?? ''}`;
+        filter += `&page=${page ?? ''}`;
 
         const response = await axios.get(`${API_PERSONIL_GET}${filter}`, {
             headers: {

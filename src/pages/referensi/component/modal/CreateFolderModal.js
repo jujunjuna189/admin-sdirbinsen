@@ -44,19 +44,19 @@ const CreateFolderModal = (props) => {
             <Button className="text-sm border" onClick={() => toogleModal()}>
                 <div className="flex gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 19h-7a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v3.5" /><path d="M16 19h6" /><path d="M19 16v6" /></svg>
-                    <span>Folder Baru</span>
+                    <span>Referensi Baru</span>
                 </div>
             </Button>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && 'hidden'}`}>
                 <div className="absolute h-full w-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
                 <div className="p-3 border rounded-lg bg-white w-96 z-10 pb-5">
                     <div className="leading-3">
-                        <span className="text-base font-medium">Folder Baru</span><br />
+                        <span className="text-base font-medium">Referensi Baru</span><br />
                     </div>
                     <hr className="my-3" />
                     <div className="">
                         <div>
-                            <span className="font-medium">Nama Folder *</span>
+                            <span className="font-medium">Nama Referensi *</span>
                             <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
                         </div>
                         <div>

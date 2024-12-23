@@ -8,11 +8,16 @@ const UserContext = createContext();
 export const UserContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const [element, setElement] = useState(false);
+    const [filter, setFilter] = useState({});
     const [user, setUser] = useState({});
+
+    const onFilter = (field, value) => {
+        setFilter({ ...filter, [field]: value });
+    }
 
     const onGetUser = async ({ page = 1 }) => {
         setUser({});
-        await getUserRequest({}).then((res) => {
+        await getUserRequest({ filter: `?role_id=${filter.role_id ?? ''}` }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setUser(res);
@@ -33,10 +38,10 @@ export const UserContextProvider = ({ children }) => {
     useEffect(() => {
         onGetUser({});
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [filter]);
 
     return (
-        <UserContext.Provider value={{ navigation, element, user, onShowConfirmDelete }}>
+        <UserContext.Provider value={{ navigation, element, user, onShowConfirmDelete, onFilter }}>
             {children}
         </UserContext.Provider>
     );

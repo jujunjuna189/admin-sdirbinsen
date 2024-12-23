@@ -10,10 +10,15 @@ const MaterialContext = createContext();
 export const MaterialContextProvider = ({ children }) => {
   const navigation = useNavigate();
   const location = useLocation();
+  const [filter, setFilter] = useState({});
   const [element, setElement] = useState(false);
   const [material, setMaterial] = useState({});
   const [categoryActive, setCategoryActive] = useState({});
   const [category, setCategory] = useState([]);
+
+  const onFilter = (field, value) => {
+    setFilter({ ...filter, [field]: value });
+  }
 
   const onGetMaterialKategori = async () => {
     const category = {
@@ -124,7 +129,7 @@ export const MaterialContextProvider = ({ children }) => {
 
   const onGetMaterial = async ({ jenis = null }) => {
     setMaterial({});
-    await getMaterialRequest({ kategori: location.state?.category?.key, jenis: ConverUrl(jenis), satuan_id: getLocalUser()?.auth?.user?.satuan_id }).then((res) => {
+    await getMaterialRequest({ kategori: location.state?.category?.key, jenis: ConverUrl(jenis), satuan_id: getLocalUser()?.auth?.user?.satuan_id, search: filter.search }).then((res) => {
       res === undefined && (res = {});
       res === null && (res = {});
       setMaterial(res);
@@ -145,9 +150,9 @@ export const MaterialContextProvider = ({ children }) => {
   useEffect(() => {
     onGetMaterialKategori();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.state]);
+  }, [location.state, filter]);
 
-  return <MaterialContext.Provider value={{ navigation, location, element, material, category, categoryActive, onTabSwitch, onShowConfirmDelete, setCategoryActive }}>{children}</MaterialContext.Provider>;
+  return <MaterialContext.Provider value={{ navigation, location, element, material, category, categoryActive, filter, onTabSwitch, onShowConfirmDelete, setCategoryActive, onFilter }}>{children}</MaterialContext.Provider>;
 };
 
 export const UseMaterialContext = () => {

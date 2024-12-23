@@ -4,6 +4,7 @@ import KeluargaPersonilDetail from "./keluarga"
 import KemampuanBahasaPersonilDetail from "./kemampuanBahasa"
 import KepangkatanPersonilDetail from "./kepangkatan"
 import AgamaModal from "./modal/AgamaModal"
+import FilterModal from "./modal/FilterModal"
 import GolDarahModal from "./modal/GolDarahModal"
 import GolJabatanModal from "./modal/GolJabatanModal"
 import JabatanModal from "./modal/JabatanModal"
@@ -38,4 +39,5 @@ export {
     SumberPAModal,
     AgamaModal,
     GolDarahModal,
+    FilterModal,
 }

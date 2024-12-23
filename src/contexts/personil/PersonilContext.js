@@ -9,6 +9,7 @@ const PersonilContext = createContext();
 
 export const PersonilContextProvider = ({ children }) => {
     const navigation = useNavigate();
+    const [filter, setFilter] = useState({});
     const [element, setElement] = useState(false);
     const [personil, setPersonil] = useState({});
     const [sumberPaActiveIndex, setSumberPaActiveIndex] = useState(0);
@@ -42,7 +43,7 @@ export const PersonilContextProvider = ({ children }) => {
 
         sumberPa[indexItem].isActive = true;
         onGetPersonil({ sumberPa: sumberPa[indexItem].title });
-        setSumberPaActiveIndex(indexItem);
+        setSumberPaActiveIndex(sumberPa[indexItem]);
         setSumperPa([...sumberPa]);
     }
 
@@ -50,8 +51,10 @@ export const PersonilContextProvider = ({ children }) => {
         onGetPersonil({ sumberPa: sumberPaActiveIndex.title, page: page });
     }
 
-    const onSearch = (value) => {
-        onGetPersonil({ sumberPa: sumberPaActiveIndex.title, search: value });
+    const onFilter = ({ field, value }) => {
+        setFilter({ ...filter, [field]: value });
+        console.log(sumberPaActiveIndex.title);
+        onGetPersonil({ sumberPa: sumberPaActiveIndex.title, [field]: value });
     }
 
     const onShowConfirmDelete = (personil_id) => {
@@ -71,7 +74,7 @@ export const PersonilContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <PersonilContext.Provider value={{ navigation, element, personil, sumberPa, onTabSwitch, onNextPage, onSearch, onShowConfirmDelete }}>
+        <PersonilContext.Provider value={{ navigation, element, personil, sumberPa, filter, onTabSwitch, onNextPage, onFilter, onShowConfirmDelete }}>
             {children}
         </PersonilContext.Provider>
     );

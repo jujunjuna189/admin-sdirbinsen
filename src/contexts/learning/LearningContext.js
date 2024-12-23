@@ -8,11 +8,16 @@ const LearningContext = createContext();
 export const LearningContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const location = useLocation();
+    const [filter, setFilter] = useState({});
     const [element, setElement] = useState(false);
     const [learning, setLearning] = useState({});
 
+    const onFilter = (field, value) => {
+        setFilter({ ...filter, [field]: value });
+    }
+
     const onGetLearning = async () => {
-        await getLearningRequest({ filter: `category=${location.state?.category ?? ''}` }).then((res) => {
+        await getLearningRequest({ filter: `category=${location.state?.category ?? ''}&search=${filter.search ?? ''}` }).then((res) => {
             setLearning(res);
         });
     };
@@ -31,10 +36,10 @@ export const LearningContextProvider = ({ children }) => {
     useEffect(() => {
         onGetLearning();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [location]);
+    }, [location, filter]);
 
     return (
-        <LearningContext.Provider value={{ navigation, location, element, setElement, learning, setLearning, onShowConfirmDelete }}>
+        <LearningContext.Provider value={{ navigation, location, element, filter, setElement, learning, setLearning, onShowConfirmDelete, onFilter }}>
             {children}
         </LearningContext.Provider>
     );

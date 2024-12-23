@@ -3,7 +3,7 @@ import { UseMaterialContext } from "../../contexts/material/MaterialContext";
 import { dateFormatterV4, getLocalUser } from "../../utils";
 
 const MaterialPage = () => {
-  const { navigation, location, element, material, category, categoryActive, onTabSwitch, onShowConfirmDelete } = UseMaterialContext();
+  const { navigation, location, element, material, category, categoryActive, filter, onTabSwitch, onShowConfirmDelete, onFilter } = UseMaterialContext();
 
   const renderTable = () => {
     return (
@@ -117,15 +117,8 @@ const MaterialPage = () => {
           <div className="mb-3 px-5">
             <div className="flex justify-between">
               <div className="inline-block">
-                <Button className="border-2 border-slate-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
-                  </svg>
-                  Filter
-                </Button>
               </div>
-              <InputSearch placeholder="Cari..." className="shadow-none" onChange={(value) => console.log(value)} />
+              <InputSearch value={filter.search ?? ''} placeholder="Cari..." className="shadow-none" onChange={(value) => onFilter('search', value)} />
             </div>
           </div>
           <div className="overflow-x-auto">{Object.keys(material).length === 0 ? <TableLoader /> : material.data.length === 0 ? <EmptyData /> : renderTable()}</div>

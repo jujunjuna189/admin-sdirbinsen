@@ -182,15 +182,23 @@ const renderTools = ({ controller, setController, selectedCells, mergedCells, ce
         if (selectedCells.length > 0) {
             await selectedCells.forEach((item, index) => {
                 var value = cellValues[`${item.row}-${item.col}`] || '';
-                value = value !== "" ? value : mergedCells.find((x) => x.row === item.row && x.col === item.col)?.content ?? '';
+                var mergedValue = mergedCells.find((x) => x.row === item.row && x.col === item.col);
+                var colSpan = value !== "" ? 1 : mergedValue.colSpan;
+                var rowSpan = value !== "" ? 1 : mergedValue.rowSpan;
+                var col = value !== "" ? item.col : mergedValue.col;
+                var row = value !== "" ? item.row : mergedValue.row;
+                value = value !== "" ? value : mergedValue?.content ?? '';
 
-                console.log(value, 'ok');
-                cellData = { ...cellData, [item.col]: { columnName: value } };
+                cellData = { ...cellData, [item.col]: { columnName: value, col: col, row: row, colSpan: colSpan, rowSpan: rowSpan } };
                 setCellPins((prevPins) => {
                     return {
                         ...prevPins,
                         [item.col]: {
                             columnName: value,
+                            col: col,
+                            row: row,
+                            colSpan: colSpan,
+                            rowSpan: rowSpan,
                         },
                     };
                 });

@@ -21,7 +21,7 @@ export const PetaJabatanContextProvider = ({ children }) => {
         setPetaJabatan({});
         // const satuan = (getLocalUser()?.auth?.user?.satuan_id === null && petaJabatan.length === 0) && await getSatuanRequest({ limit: 1 });
         // (getLocalUser()?.auth?.user?.satuan_id === null && petaJabatan.length === 0) && (filter.satuan_id = (satuan?.data?.[0]?.id ?? null));
-        await getPetaJabatanRequest({ satuan_id: getLocalUser()?.auth?.user?.satuan_id ?? filter.satuan_id }).then((res) => {
+        await getPetaJabatanRequest({ satuan_id: getLocalUser()?.auth?.user?.satuan_id ?? filter.satuan_id, search: filter.search }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPetaJabatan(res);
@@ -45,7 +45,7 @@ export const PetaJabatanContextProvider = ({ children }) => {
     }, [filter]);
 
     return (
-        <PetaJabatanContext.Provider value={{ navigation, user, element, petaJabatan, setElement, setPetaJabatan, onFilter, onShowConfirmDelete }}>
+        <PetaJabatanContext.Provider value={{ navigation, user, element, filter, petaJabatan, setElement, setPetaJabatan, onFilter, onShowConfirmDelete }}>
             {children}
         </PetaJabatanContext.Provider>
     );

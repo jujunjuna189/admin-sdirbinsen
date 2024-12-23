@@ -1,11 +1,12 @@
 import axios from "axios";
 import { API_PETA_JABATAN_GET } from "../config/api";
 
-export const getPetaJabatanRequest = async ({ satuan_id = null }) => {
+export const getPetaJabatanRequest = async ({ satuan_id, search }) => {
     // const user = getLocalUser();
     try {
         var filter = '';
-        satuan_id && (filter += `?satuan_id=${satuan_id}`);
+        filter += `?satuan_id=${satuan_id ?? ''}`;
+        filter += `&search=${search ?? ''}`;
 
         const response = await axios.get(`${API_PETA_JABATAN_GET}${filter}`, {
             headers: {

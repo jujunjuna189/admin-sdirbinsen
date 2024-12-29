@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createSatuanPrestasiRequest } from "../../../../api/SatuanPrestasiRequest";
-import { Button, InputFile, InputNumber, InputText } from "../../../../components";
+import { Button, InputArea, InputFile, InputNumber, InputSelectDropDown, InputText } from "../../../../components";
 
 const AddPrestasiSatuanModal = (props) => {
     const ref = useRef();
@@ -26,6 +26,8 @@ const AddPrestasiSatuanModal = (props) => {
         let dataBatch = { ...controller };
         dataBatch.satuan_id = props.satuan.id;
         dataBatch.gambar = dataBatch.picture?.file ?? null;
+        dataBatch.bidang = dataBatch.bidang?.key;
+        dataBatch.kategori = 'perorangan';
         await createSatuanPrestasiRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {
@@ -45,7 +47,10 @@ const AddPrestasiSatuanModal = (props) => {
         <div className="inline-block" ref={ref}>
             <div className="cursor-pointer" onClick={() => toogleModal()}>
                 <div className="flex gap-3 items-center text-slate-600">
-                    <Button className="bg-red-800 text-white flex justify-center py-[0.4rem]">Tambah</Button>
+                    <Button className="bg-red-800 text-white flex justify-center py-[0.4rem] pl-3">
+                        <svg  xmlns="http://www.w3.org/2000/svg" className="text-white"  width="16"  height="16"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"  strokeLinecap="round"  strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                        Perorangan
+                    </Button>
                 </div>
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && "hidden"}`}>
@@ -75,8 +80,15 @@ const AddPrestasiSatuanModal = (props) => {
                             <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
                         </div>
                         <div>
+                            <div className="flex flex-col">
+                                <span className="font-medium">Bidang</span>
+                                <small>Bidang wajib diisi</small>
+                            </div>
+                            <InputSelectDropDown className="mt-1" data={[{ title: 'Tugas Operasi', key: 'Tugas Operasi' }, { title: 'Olahraga', key: 'Olahraga' }]} value={controller.bidang?.title} error={errors.bidang} onChange={(value) => onSetController("bidang", value)} placeholder="Pilih bidang" />
+                        </div>
+                        <div>
                             <span className="font-medium">Deskripsi</span>
-                            <InputText className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
+                            <InputArea className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
                         </div>
                         <div>
                             <span className="font-medium">Tahun</span>

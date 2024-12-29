@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getSatuanPrestasiDetailRequest, updateSatuanPrestasiRequest } from "../../../../api/SatuanPrestasiRequest";
-import { Button, InputFile, InputNumber, InputText } from "../../../../components";
+import { Button, InputArea, InputFile, InputNumber, InputSelectDropDown, InputText } from "../../../../components";
 
 const UpdatePrestasiSatuanModal = (props) => {
     const ref = useRef();
@@ -31,6 +31,8 @@ const UpdatePrestasiSatuanModal = (props) => {
                 tahun: res.tahun,
                 nama: res.nama,
                 pangkat: res.pangkat,
+                bidang: {title: res.bidang, key: res.bidang},
+                kategori: res.kategori,
             });
         });
     }
@@ -39,6 +41,7 @@ const UpdatePrestasiSatuanModal = (props) => {
         let dataBatch = { ...controller };
         dataBatch.satuan_id = props.satuan.id;
         dataBatch.gambar = dataBatch.picture?.file ?? null;
+        dataBatch.bidang = dataBatch.bidang?.key;
         await updateSatuanPrestasiRequest({ id: props.item.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {
@@ -91,8 +94,15 @@ const UpdatePrestasiSatuanModal = (props) => {
                             <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
                         </div>
                         <div>
+                            <div className="flex flex-col">
+                                <span className="font-medium">Bidang</span>
+                                <small>Bidang wajib diisi</small>
+                            </div>
+                            <InputSelectDropDown className="mt-1" data={[{ title: 'Tugas Operasi', key: 'Tugas Operasi' }, { title: 'Olahraga', key: 'Olahraga' }]} value={controller.bidang?.title} error={errors.bidang} onChange={(value) => onSetController("bidang", value)} placeholder="Pilih Bidang" />
+                        </div>
+                        <div>
                             <span className="font-medium">Deskripsi</span>
-                            <InputText className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
+                            <InputArea className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
                         </div>
                         <div>
                             <span className="font-medium">Tahun</span>

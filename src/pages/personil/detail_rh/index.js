@@ -27,51 +27,51 @@ const PersonilDetailRhPage = () => {
                             <tbody>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Nama :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.nama}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.nama}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Agama :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.agama}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.agama}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Pangkat :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.pangkat}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.pangkat}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Gol Darah :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.golongan_darah}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.golongan_darah}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">NRP :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.nrp}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.nrp}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Sumber Pa :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.sumber_pa}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.sumber_pa}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Tempat/Tgl.Lahir :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.tempat_lahir}, {personil?.tanggal_lahir}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.tempat_lahir}, {personil?.tanggal_lahir}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">TMT :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{dateFormatterV4(personil?.tmt_1)}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{dateFormatterV4(personil?.tmt_1)}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">TMT TNI :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.tmt_tni}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.tmt_tni}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Jabatan :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.jabatan}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.jabatan}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Kategori :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.status}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.status}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">TMT Jab :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.tmt_jab}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.tmt_jab}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">TMT Pangkat :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.pangkats?.[(personil?.pangkats.length - 1)]?.tmt ?? '-'}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.pangkats?.[(personil?.pangkats.length - 1)]?.tmt ?? '-'}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Satuan :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.satuan?.nama}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.satuan?.nama}</td>
                                 </tr>
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Suku Bangsa :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.suku_bangsa}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.suku_bangsa}</td>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Psi :</td>
-                                    <td className="border border-stone-400 text-start px-2 py-0">{personil?.psi}</td>
+                                    <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.psi}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -96,11 +96,11 @@ const PersonilDetailRhPage = () => {
                                 for (let i = 0; i < 5; i++) {
                                     components.push(
                                         <tr key={i}>
-                                            <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                            <td className="border border-stone-400 px-2">{personil?.pendidikan_umum?.[i]?.jenis_pendidikan}</td>
-                                            <td className="border border-stone-400 px-2 text-center">{personil?.pendidikan_umum?.[i]?.tahun}</td>
-                                            <td className="border border-stone-400 px-2">{personil?.pendidikan_umum?.[i]?.nama_pendidikan}</td>
-                                            <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.pendidikan_umum?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.pendidikan_umum?.[i]?.prestasi : ''}</td>
+                                            <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                            <td className="border border-stone-400 px-2 uppercase">{personil?.pendidikan_umum?.[i]?.jenis_pendidikan}</td>
+                                            <td className="border border-stone-400 px-2 text-center uppercase">{personil?.pendidikan_umum?.[i]?.tahun}</td>
+                                            <td className="border border-stone-400 px-2 uppercase">{personil?.pendidikan_umum?.[i]?.nama_pendidikan}</td>
+                                            <td className="border border-stone-400 px-2 text-center text-[9px] uppercase">{personil?.pendidikan_umum?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.pendidikan_umum?.[i]?.prestasi : ''}</td>
                                         </tr>
                                     );
                                 }
@@ -130,14 +130,14 @@ const PersonilDetailRhPage = () => {
                                 for (let i = 0; i < 10; i++) {
                                     components.push(
                                         <tr key={i}>
-                                            <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                            <td className="border border-stone-400 px-2">{personil?.pendidikan_militer?.[i]?.dikma_diktuk_dibangun}</td>
-                                            <td className="border border-stone-400 px-2 text-center">{personil?.pendidikan_militer?.[i]?.tahun}</td>
-                                            <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.pendidikan_militer?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.pendidikan_militer?.[i]?.prestasi : ''}</td>
-                                            <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                            <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                            <td className="border border-stone-400 px-2 font-semibold text-center"></td>
-                                            <td className="border border-stone-400 px-2 font-semibold text-center"></td>
+                                            <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                            <td className="border border-stone-400 px-2 uppercase">{personil?.pendidikan_militer?.[i]?.dikma_diktuk_dibangun}</td>
+                                            <td className="border border-stone-400 px-2 text-center uppercase">{personil?.pendidikan_militer?.[i]?.tahun}</td>
+                                            <td className="border border-stone-400 px-2 text-center text-[9px] uppercase">{personil?.pendidikan_militer?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.pendidikan_militer?.[i]?.prestasi : ''}</td>
+                                            <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                            <td className="border border-stone-400 px-2 font-semibold text-center uppercase"></td>
+                                            <td className="border border-stone-400 px-2 font-semibold text-center uppercase"></td>
+                                            <td className="border border-stone-400 px-2 font-semibold text-center uppercase"></td>
                                         </tr>
                                     );
                                 }
@@ -177,15 +177,15 @@ const PersonilDetailRhPage = () => {
                                         for (let i = 0; i < 10; i++) {
                                             components.push(
                                                 <tr key={i}>
-                                                    <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                                    <td className="border border-stone-400 px-2">{personil?.penugasan_operasi?.[i]?.nama_operasi}</td>
-                                                    <td className="border border-stone-400 px-2 text-center">{personil?.penugasan_operasi?.[i]?.tahun}</td>
-                                                    <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.penugasan_operasi?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.penugasan_operasi?.[i]?.prestasi : ''}</td>
-                                                    <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                                    <td className="border border-stone-400 px-2">{personil?.tanda_jasa?.[i]?.tanda_kehormatan}</td>
-                                                    {i !== 5 ? <td className="border border-stone-400 px-2 font-semibold text-center">{(i + 1) > 5 ? (i - 5) : (i + 1)}</td> : <td className="border border-stone-400 px-2 font-semibold text-center">No</td>}
-                                                    {i !== 5 ? <td className="border border-stone-400 px-2 text-center">{(i + 1) > 5 ? personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Asing")?.[(i - 6)]?.nama : personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Daerah")?.[i]?.nama}</td> : <td className="border border-stone-400 px-2 font-semibold text-center" colSpan={2}>Asing</td>}
-                                                    {i !== 5 && <td className="border border-stone-400 px-2 text-center">{(i + 1) > 5 ? personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Asing")?.[(i - 6)]?.status : personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Daerah")?.[i]?.status}</td>}
+                                                    <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                                    <td className="border border-stone-400 px-2 uppercase">{personil?.penugasan_operasi?.[i]?.nama_operasi}</td>
+                                                    <td className="border border-stone-400 px-2 text-center uppercase">{personil?.penugasan_operasi?.[i]?.tahun}</td>
+                                                    <td className="border border-stone-400 px-2 text-center text-[9px] uppercase">{personil?.penugasan_operasi?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.penugasan_operasi?.[i]?.prestasi : ''}</td>
+                                                    <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                                    <td className="border border-stone-400 px-2 uppercase">{personil?.tanda_jasa?.[i]?.tanda_kehormatan}</td>
+                                                    {i !== 5 ? <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{(i + 1) > 5 ? (i - 5) : (i + 1)}</td> : <td className="border border-stone-400 px-2 font-semibold text-center">No</td>}
+                                                    {i !== 5 ? <td className="border border-stone-400 px-2 text-center uppercase">{(i + 1) > 5 ? personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Asing")?.[(i - 6)]?.nama : personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Daerah")?.[i]?.nama}</td> : <td className="border border-stone-400 px-2 font-semibold text-center" colSpan={2}>Asing</td>}
+                                                    {i !== 5 && <td className="border border-stone-400 px-2 text-center uppercase">{(i + 1) > 5 ? personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Asing")?.[(i - 6)]?.status : personil?.kemampuan_bahasa?.filter(item => item.jenis_bahasa === "Daerah")?.[i]?.status}</td>}
                                                 </tr>
                                             );
                                         }
@@ -225,15 +225,15 @@ const PersonilDetailRhPage = () => {
                                         for (let i = 0; i < 10; i++) {
                                             components.push(
                                                 <tr key={i}>
-                                                    <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                                    <td className="border border-stone-400 px-2">{personil?.pangkats?.[i]?.pangkat}</td>
-                                                    <td className="border border-stone-400 px-2 text-center text-[10px]">{personil?.pangkats?.[i]?.tmt}</td>
-                                                    <td className="border border-stone-400 px-2">{personil?.pangkats?.[i]?.nomor_kep_skep}</td>
-                                                    <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                                    <td className="border border-stone-400 px-2">{personil?.penugasan_luar_negeri?.[i]?.macam_tugas}</td>
-                                                    <td className="border border-stone-400 px-2 text-center">{personil?.penugasan_luar_negeri?.[i]?.tahun}</td>
-                                                    <td className="border border-stone-400 px-2 text-center">{personil?.penugasan_luar_negeri?.[i]?.negara}</td>
-                                                    <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.penugasan_luar_negeri?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.penugasan_luar_negeri?.[i]?.prestasi : ''}</td>
+                                                    <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                                    <td className="border border-stone-400 px-2 uppercase">{personil?.pangkats?.[i]?.pangkat}</td>
+                                                    <td className="border border-stone-400 px-2 text-center text-[10px] uppercase">{personil?.pangkats?.[i]?.tmt}</td>
+                                                    <td className="border border-stone-400 px-2 uppercase">{personil?.pangkats?.[i]?.nomor_kep_skep}</td>
+                                                    <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                                    <td className="border border-stone-400 px-2 uppercase">{personil?.penugasan_luar_negeri?.[i]?.macam_tugas}</td>
+                                                    <td className="border border-stone-400 px-2 text-center uppercase">{personil?.penugasan_luar_negeri?.[i]?.tahun}</td>
+                                                    <td className="border border-stone-400 px-2 text-center uppercase">{personil?.penugasan_luar_negeri?.[i]?.negara}</td>
+                                                    <td className="border border-stone-400 px-2 text-center text-[9px] uppercase">{personil?.penugasan_luar_negeri?.[i]?.prestasi !== 'Ke-undefined Dari-undefined' ? personil?.penugasan_luar_negeri?.[i]?.prestasi : ''}</td>
                                                 </tr>
                                             );
                                         }
@@ -264,12 +264,12 @@ const PersonilDetailRhPage = () => {
                                     for (let i = 0; i < 10; i++) {
                                         components.push(
                                             <tr key={i}>
-                                                <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                                <td className="border border-stone-400 px-2">{personil?.jabatans?.[i]?.jabatan}</td>
-                                                <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.jabatans?.[i]?.tmt}</td>
-                                                <td className="border border-stone-400 px-2 font-semibold text-center">{i + 11}</td>
-                                                <td className="border border-stone-400 px-2">{personil?.jabatans?.[i + 10]?.jabatan}</td>
-                                                <td className="border border-stone-400 px-2 text-center text-[9px]">{personil?.jabatans?.[i + 10]?.tmt}</td>
+                                                <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                                <td className="border border-stone-400 px-2 uppercase">{personil?.jabatans?.[i]?.jabatan}</td>
+                                                <td className="border border-stone-400 px-2 text-center text-[9px] uppercase">{personil?.jabatans?.[i]?.tmt}</td>
+                                                <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 11}</td>
+                                                <td className="border border-stone-400 px-2 uppercase">{personil?.jabatans?.[i + 10]?.jabatan}</td>
+                                                <td className="border border-stone-400 px-2 text-center text-[9px] uppercase">{personil?.jabatans?.[i + 10]?.tmt}</td>
                                             </tr>
                                         );
                                     }
@@ -287,35 +287,35 @@ const PersonilDetailRhPage = () => {
                                 <tbody>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Status :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.status}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.status}</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Jml Anak :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.jumlah_anak}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.jumlah_anak}</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Alamat Tinggal :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.alamat_tinggal}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.alamat_tinggal}</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Nomor HP :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.nomor_hp}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.nomor_hp}</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Nama Ayah :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.nama_ayah}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.nama_ayah}</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Nama Ibu :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.nama_ibu}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.nama_ibu}</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Alamat Orang Tua :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.alamat_orang_tua}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.alamat_orang_tua}</td>
                                     </tr>
                                     <tr>
                                         <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre w-36">Nama Istri/Suami :</td>
-                                        <td className="border border-stone-400 text-start px-2 py-0">{personil?.keluarga?.nama_istri_atau_suami}</td>
+                                        <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.keluarga?.nama_istri_atau_suami}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -333,9 +333,9 @@ const PersonilDetailRhPage = () => {
                                         for (let i = 0; i < 8; i++) {
                                             components.push(
                                                 <tr key={i}>
-                                                    <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                                    <td className="border border-stone-400 px-2">{personil?.riwayat_keluarga_anak?.[i]?.nama}</td>
-                                                    <td className="border border-stone-400 px-2 text-center">{personil?.riwayat_keluarga_anak?.[i]?.tanggal_lahir}</td>
+                                                    <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                                    <td className="border border-stone-400 px-2 uppercase">{personil?.riwayat_keluarga_anak?.[i]?.nama}</td>
+                                                    <td className="border border-stone-400 px-2 text-center uppercase">{personil?.riwayat_keluarga_anak?.[i]?.tanggal_lahir}</td>
                                                 </tr>
                                             );
                                         }
@@ -366,12 +366,12 @@ const PersonilDetailRhPage = () => {
                                     for (let i = 0; i < 9; i++) {
                                         components.push(
                                             <tr key={i}>
-                                                <td className="border border-stone-400 px-2 font-semibold text-center">{i + 1}</td>
-                                                <td className="border border-stone-400 px-2">{personil?.prestasi?.[i]?.nama_kegiatan}</td>
-                                                <td className="border border-stone-400 px-2 text-center">{personil?.prestasi?.[i]?.tahun}</td>
-                                                <td className="border border-stone-400 px-2 text-center">{personil?.prestasi?.[i]?.tempat}</td>
-                                                <td className="border border-stone-400 px-2">{personil?.prestasi?.[i]?.deskripsi}</td>
-                                                <td className="border border-stone-400 px-2 text-center">{personil?.prestasi?.[i]?.kep_piagam}</td>
+                                                <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>
+                                                <td className="border border-stone-400 px-2 uppercase">{personil?.prestasi?.[i]?.nama_kegiatan}</td>
+                                                <td className="border border-stone-400 px-2 text-center uppercase">{personil?.prestasi?.[i]?.tahun}</td>
+                                                <td className="border border-stone-400 px-2 text-center uppercase">{personil?.prestasi?.[i]?.tempat}</td>
+                                                <td className="border border-stone-400 px-2 uppercase">{personil?.prestasi?.[i]?.deskripsi}</td>
+                                                <td className="border border-stone-400 px-2 text-center uppercase">{personil?.prestasi?.[i]?.kep_piagam}</td>
                                             </tr>
                                         );
                                     }

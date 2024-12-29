@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { getSatuanPejabatDansatDetailRequest, updateSatuanPejabatDansatRequest } from "../../../../api/SatuanPejabatDansatRequest";
-import { Button, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
+import { getSatuanPrestasiDetailRequest, updateSatuanPrestasiRequest } from "../../../../api/SatuanPrestasiRequest";
+import { Button, InputArea, InputFile, InputNumber, InputSelectDropDown, InputText } from "../../../../components";
 
-const UpdatePejabatDansatSatuanModal = (props) => {
+const UpdatePrestasiSatuanV2Modal = (props) => {
     const ref = useRef();
     const [isShow, setIsShow] = useState(false);
     const [controller, setController] = useState({});
@@ -22,15 +22,15 @@ const UpdatePejabatDansatSatuanModal = (props) => {
         setController({ ...controller, [field]: value });
     };
 
-    const onGetSatuanPejabatDansat = async () => {
-        await getSatuanPejabatDansatDetailRequest({ id: props.item.id }).then((res) => {
+    const onGetSatuanPrestasi = async () => {
+        await getSatuanPrestasiDetailRequest({ id: props.item.id }).then((res) => {
             setController({
                 picture: { preview: res.gambar },
-                nama: res.nama,
-                star: res.star,
-                date_from: res.date_from,
-                date_to: res.date_to,
+                title: res.title,
                 deskripsi: res.deskripsi,
+                tahun: res.tahun,
+                bidang: {title: res.bidang, key: res.bidang},
+                kategori: res.kategori,
             });
         });
     }
@@ -39,7 +39,8 @@ const UpdatePejabatDansatSatuanModal = (props) => {
         let dataBatch = { ...controller };
         dataBatch.satuan_id = props.satuan.id;
         dataBatch.gambar = dataBatch.picture?.file ?? null;
-        await updateSatuanPejabatDansatRequest({ id: props.item.id, body: dataBatch }).then((res) => {
+        dataBatch.bidang = dataBatch.bidang?.key;
+        await updateSatuanPrestasiRequest({ id: props.item.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {
                 setController({});
@@ -56,21 +57,18 @@ const UpdatePejabatDansatSatuanModal = (props) => {
 
     return (
         <div className="inline-block" ref={ref}>
-            <div className="cursor-pointer" onClick={() => {
-                toogleModal();
-                onGetSatuanPejabatDansat();
-            }}>
+            <div className="cursor-pointer" onClick={() => {toogleModal(); onGetSatuanPrestasi();}}>
                 <div className="flex gap-3 items-center text-slate-600">
-                    <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center py-[0.35rem]">Ubah</Button>
-                </div>
+                        <Button className="border border-yellow-700 bg-yellow-50 text-yellow-700 flex justify-center py-[0.35rem]">Ubah</Button>
+                    </div>
             </div>
             <div className={`fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center z-10 ${!isShow && "hidden"}`}>
                 <div className="absolute w-full h-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
-                <div className="p-3 border rounded-lg bg-white w-96 z-10">
+                <div className="p-3 border rounded-lg bg-white w-96 max-h-screen overflow-y-auto z-10">
                     <div className="leading-3">
-                        <span className="text-base font-medium">Ubah Data Pejabat Dansat</span>
+                        <span className="text-base font-medium">Tambah Data Prestasi</span>
                         <br />
-                        <small>Formulir perbaruan data pejabat dansat</small>
+                        <small>Silahkan isi form data prestasi</small>
                     </div>
                     <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
                         <div className="flex justify-center">
@@ -87,29 +85,23 @@ const UpdatePejabatDansatSatuanModal = (props) => {
                             <InputFile error={errors.picture} onChange={(value) => onSetController('picture', value)} />
                         </div>
                         <div>
-                            <span className="font-medium">Nama Pejabat</span>
-                            <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
+                            <span className="font-medium">Nama</span>
+                            <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
                         </div>
                         <div>
-                            <span className="font-medium">Bintang</span>
-                            <InputNumber className="mt-1" value={controller.star} error={errors.star} onChange={(value) => onSetController("star", value)} placeholder="..." />
-                        </div>
-                        <div className="flex flex-col leading-3 mt-2">
-                            <span className="font-medium">Masa Jabatan</span>
-                            <hr className="my-1" />
-                            <div className="flex items-center gap-2">
-                                <div>
-                                    <InputDate className="mt-1" value={controller.date_from} error={errors.date_from} onChange={(value) => onSetController("date_from", value)} placeholder="..." />
-                                </div>
-                                <small>s/d</small>
-                                <div>
-                                    <InputDate className="mt-1" value={controller.date_to} error={errors.date_to} onChange={(value) => onSetController("date_to", value)} placeholder="..." />
-                                </div>
+                            <div className="flex flex-col">
+                                <span className="font-medium">Bidang</span>
+                                <small>Bidang wajib diisi</small>
                             </div>
+                            <InputSelectDropDown className="mt-1" data={[{ title: 'Tugas Operasi', key: 'Tugas Operasi' }, { title: 'Olahraga', key: 'Olahraga' }]} value={controller.bidang?.title} error={errors.bidang} onChange={(value) => onSetController("bidang", value)} placeholder="Pilih Bidang" />
                         </div>
                         <div>
-                            <span className="font-medium">Deskripsi</span>
-                            <InputText className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
+                            <span className="font-medium">Prestasi</span>
+                            <InputArea className="mt-1" value={controller.deskripsi} error={errors.deskripsi} onChange={(value) => onSetController("deskripsi", value)} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Tahun</span>
+                            <InputNumber className="mt-1" value={controller.tahun} error={errors.tahun} onChange={(value) => onSetController("tahun", value)} placeholder="..." />
                         </div>
                         <div className="flex-grow" />
                         <div className="flex justify-end mt-3">
@@ -124,4 +116,4 @@ const UpdatePejabatDansatSatuanModal = (props) => {
     );
 };
 
-export default UpdatePejabatDansatSatuanModal;
+export default UpdatePrestasiSatuanV2Modal;

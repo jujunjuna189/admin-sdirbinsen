@@ -1,6 +1,6 @@
 import { Button, Card, Content, EmptyData, InputSearch, SimplePagination, TableLoader } from "../../components";
 import { UsePersonilContext } from "../../contexts/personil/PersonilContext";
-import { getLocalUser } from "../../utils";
+import { dateYear, getLocalUser } from "../../utils";
 
 const PersonilPage = () => {
     const { navigation, element, personil, sumberPa, filter, onTabSwitch, onNextPage, onFilter, onShowConfirmDelete } = UsePersonilContext();
@@ -19,6 +19,7 @@ const PersonilPage = () => {
                             </th>
                             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Nama Lengkap</th>
                             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Sumber PA</th>
+                            <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Letting</th>
                             <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
                         </tr>
                     </thead>
@@ -37,6 +38,9 @@ const PersonilPage = () => {
                                     </td>
                                     <td className="border-b-[1.5px] border-slate-200 px-3 py-2">
                                         {item.sumber_pa}
+                                    </td>
+                                    <td className="border-b-[1.5px] border-slate-200 px-3 py-2">
+                                        {dateYear(item.tmt_tni)}
                                     </td>
                                     <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                         <div className="flex gap-3 justify-end">

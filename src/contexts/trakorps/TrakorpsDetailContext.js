@@ -84,6 +84,10 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const getSatuan = async ({ satuan_id = null }) => {
     await getSatuanDetailRequest({ id: satuan_id }).then((res) => {
       setSatuan(res);
+      if(res.nama.toLowerCase() !== 'pussenarmed'){
+        var navs = navTrakorps.filter((x) => x.page !== 6);
+        setNavTrakorps([...navs]);
+      }
     });
   };
 

@@ -1,5 +1,10 @@
 const month = ['Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
+export const dateYear = (value) => {
+    value = value?.split("-");
+    return `${value?.[2] ?? '-'}`;
+}
+
 export const dateFormatter = (value) => {
     const date = new Date(value);
     return `${setZero(date.getDate())} ${month[date.getMonth()]} ${date.getFullYear()}`;

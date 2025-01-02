@@ -71,9 +71,9 @@ const UpdateHymneSatuanModal = (props) => {
                 <div className="p-3 border bg-white w-full h-full z-10 overflow-y-auto">
                     <div className="flex justify-between items-center">
                         <div className="leading-3">
-                            <span className="text-base font-medium">Ubah Lirik Himne</span>
+                            <span className="text-base font-medium">Ubah Lirik Hymne</span>
                             <br />
-                            <small>Buat atau lengkapi Lirik Himne satuan</small>
+                            <small>Buat atau lengkapi Lirik Hymne satuan</small>
                         </div>
                         <div className="flex justify-end gap-3 mt-3">
                             <Button className="border border-slate-700 text-slate-700" onClick={() => toogleModal()}>

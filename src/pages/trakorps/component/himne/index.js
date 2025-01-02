@@ -13,7 +13,7 @@ const HimneTrakorpsDetail = (props) => {
       </div>
       <Card className="px-4 mt-2">
         <div className="flex justify-between items-center pb-3">
-          <span className="font-bold text-base">Lirik himne</span>
+          <span className="font-bold text-base">Lirik hymne</span>
           <UpdateHymneSatuanModal onSave={() => props.onSave && props.onSave()} satuan={props.satuan} />
         </div>
         <hr />

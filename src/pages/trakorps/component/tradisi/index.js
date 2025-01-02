@@ -21,6 +21,13 @@ const TradisiTrakorpsDetail = (props) => {
                                             <source src={item.video + '?time=' + new Date().getTime()} />
                                         </video>
                                     )}
+                                    {item.file && (
+                                        <div className="flex">
+                                            <Button className="border py-[0.2rem] bg-green-50 border-green-800 text-green-800" onClick={() => window.open(`https://docs.google.com/gview?url=${item.file}`, '_self')}>
+                                                Lihat Tradisi
+                                            </Button>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="flex flex-col">
                                     <span className="font-semibold">Deskripsi</span>

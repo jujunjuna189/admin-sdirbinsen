@@ -17,7 +17,7 @@ const PrestasiTrakorpsDetail = (props) => {
       <hr />
       <div className="my-3">
         {props.satuanPrestasi?.data?.map((item, index) => {
-          if(item.kategori == 'perorangan'){
+          if (item.kategori === 'perorangan') {
             return (
               <div key={index} className="flex gap-3 border py-1 px-1 rounded-lg mb-2">
                 {item.gambar && (
@@ -26,7 +26,7 @@ const PrestasiTrakorpsDetail = (props) => {
                   </div>
                 )}
                 <div className="leading-5 mt-1 grow">
-                <table className="leading-4">
+                  <table className="leading-4">
                     <tbody>
                       <tr>
                         <td>
@@ -46,10 +46,10 @@ const PrestasiTrakorpsDetail = (props) => {
                       </tr>
                     </tbody>
                   </table>
-                  <hr className="my-2"/>
+                  <hr className="my-2" />
                   <span className="font-semibold text-[14px]">{item.title}</span>
                   <p className="mt-3" style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: item.deskripsi }} />
-                  <hr className="my-2"/>
+                  <hr className="my-2" />
                   <div className="leading-4">
                     <p>
                       <small>Tahun:</small>
@@ -75,7 +75,7 @@ const PrestasiTrakorpsDetail = (props) => {
                 </div>
               </div>
             );
-          }else{
+          } else {
             return (
               <div key={index} className="flex gap-3 border py-1 px-1 rounded-lg mb-2">
                 {item.gambar && (
@@ -86,7 +86,7 @@ const PrestasiTrakorpsDetail = (props) => {
                 <div className="leading-5 mt-1 grow">
                   <span className="font-semibold text-[14px]">{item.title}</span>
                   <p className="mt-3" style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: item.deskripsi }} />
-                  <hr className="my-2"/>
+                  <hr className="my-2" />
                   <div className="leading-4">
                     <p>
                       <small>Tahun:</small>

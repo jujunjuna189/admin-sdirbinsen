@@ -28,7 +28,7 @@ const SiapsatSatgasRotasiPage = () => {
                 </div>
             </div>
             <div className="mt-5">
-                {siapsat?.[menu.title]?.description ?? 'Tidak ada data rotasi satgas'}
+                <div className="mt-3" style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: siapsat?.[menu.title]?.description ?? 'Tidak ada data rotasi satgas' }} />
             </div>
         </Card>
     );

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createSatuanTradisiRequest } from "../../../../api/SatuanTradisiRequest";
-import { Button, InputArea, InputFileVideo } from "../../../../components";
+import { Button, InputArea, InputFileAll } from "../../../../components";
 
 const CreateTradisiSatuanModal = (props) => {
     const ref = useRef();
@@ -66,8 +66,8 @@ const CreateTradisiSatuanModal = (props) => {
                         <small>Silahkan isi form tradisi satuan</small>
                     </div>
                     <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
-                        <div className="flex justify-center">
-                            {/* <div className="aspect-video h-36 relative">
+                        {/* <div className="flex justify-center">
+                            <div className="aspect-video h-36 relative">
                                 {controller?.video && (<div className="w-full h-full absolute bg-slate-100">
                                     <video width="400" controls>
                                         <source src={URL.createObjectURL(controller?.video)} />
@@ -76,13 +76,20 @@ const CreateTradisiSatuanModal = (props) => {
                                 <div className="flex justify-center items-center h-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-slate-300" width="100" height="100" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 8h.01" /><path d="M6 13l2.644 -2.644a1.21 1.21 0 0 1 1.712 0l3.644 3.644" /><path d="M13 13l1.644 -1.644a1.21 1.21 0 0 1 1.712 0l1.644 1.644" /><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /><path d="M4 16v2a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v2" /><path d="M16 20h2a2 2 0 0 0 2 -2v-2" /></svg>
                                 </div>
-                            </div> */}
+                            </div>
                             <div className="relative">
                                 {controller?.video ? (<span className="font-medium">{controller?.video?.name}</span>) : <span className="font-medium">Tidak ada video yang diunggah</span>}
                             </div>
                         </div>
                         <div className="flex justify-center my-4">
                             <InputFileVideo error={errors.video} onChange={(value) => onSetController('video', value)} />
+                        </div> */}
+                        <div>
+                            <span className="font-medium">Unggah File</span>
+                            <div className="flex gap-2 items-center border rounded-lg pl-2 mt-2">
+                                <div className="grow">{controller.file?.name ? <span className="">{controller.file?.name}</span> : <span className="text-slate-400">Nama File...</span>}</div>
+                                <InputFileAll error={errors.file} onChange={(value) => onSetController('file', value)} />
+                            </div>
                         </div>
                         <div>
                             <span className="font-medium">Deskripsi Tradisi Satuan</span>

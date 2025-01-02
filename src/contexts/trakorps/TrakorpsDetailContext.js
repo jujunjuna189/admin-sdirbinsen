@@ -68,7 +68,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
       isActive: false,
     },
     {
-      title: "Lagu Himne",
+      title: "Lagu Hymne",
       page: 8,
       onClick: () => { },
       isActive: false,
@@ -84,7 +84,7 @@ export const TrakorpsDetailContextProvider = ({ children }) => {
   const getSatuan = async ({ satuan_id = null }) => {
     await getSatuanDetailRequest({ id: satuan_id }).then((res) => {
       setSatuan(res);
-      if(res.nama.toLowerCase() !== 'pussenarmed'){
+      if (res.nama.toLowerCase() !== 'pussenarmed') {
         var navs = navTrakorps.filter((x) => x.page !== 6);
         setNavTrakorps([...navs]);
       }

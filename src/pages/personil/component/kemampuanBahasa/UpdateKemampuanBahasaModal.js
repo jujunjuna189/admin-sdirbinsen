@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { getPendidikanMiliterByPersonilDetailRequest, updatePendidikanMiliterRequest } from "../../../../api/PendidikanMiliterRequest";
-import { Button, InputNumber, InputText } from "../../../../components";
+import { getKemampuanBahasaByPersonilDetailRequest, updateKemampuanBahasaRequest } from "../../../../api/KemampuanBahasaRequest";
+import { Button, InputSelectDropDown, InputText } from "../../../../components";
 
-const UpdatePendidikanMiliterModal = (props) => {
+const UpdateKemampuanBahasaModal = (props) => {
   const ref = useRef();
   const [isShow, setIsShow] = useState(false);
   const [controller, setController] = useState({});
@@ -22,13 +22,12 @@ const UpdatePendidikanMiliterModal = (props) => {
     setController({ ...controller, [field]: value });
   };
 
-  const getPendidikanMiliterRequest = async () => {
-    await getPendidikanMiliterByPersonilDetailRequest({ personil_id: props.personil_id, pendidikan_militer_id: props.item.id }).then((res) => {
+  const getKemampuanBahasaRequest = async () => {
+    await getKemampuanBahasaByPersonilDetailRequest({ personil_id: props.personil_id, kemampuan_bahasa_id: props.item.id }).then((res) => {
       setController({
-        dikma_diktuk_dibangun: res.dikma_diktuk_dibangun,
-        tahun: res.tahun,
-        prestasi_to: res.prestasi?.split(' ')?.[0]?.split('-')?.[1],
-        prestasi_from: res.prestasi?.split(' ')?.[1]?.split('-')?.[1],
+        nama: res.nama,
+        jenis_bahasa: { title: res.jenis_bahasa, key: res.jenis_bahasa },
+        status: { title: res.status, key: res.status },
       });
     });
   }
@@ -36,8 +35,9 @@ const UpdatePendidikanMiliterModal = (props) => {
   const onSave = async () => {
     let dataBatch = { ...controller };
     dataBatch.personil_id = props.personil_id;
-    dataBatch.prestasi = `Ke-${controller.prestasi_to} Dari-${controller.prestasi_from}`;
-    await updatePendidikanMiliterRequest({ personil_id: props.personil_id, pendidikan_militer_id: props.item.id, body: dataBatch }).then((res) => {
+    dataBatch.jenis_bahasa = dataBatch.jenis_bahasa?.key;
+    dataBatch.status = dataBatch.status?.key;
+    await updateKemampuanBahasaRequest({ personil_id: props.personil_id, kemampuan_bahasa_id: props.item.id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
       if (!res?.errors) {
         setController({});
@@ -56,7 +56,7 @@ const UpdatePendidikanMiliterModal = (props) => {
     <div className="inline-block" ref={ref}>
       <div className="cursor-pointer" onClick={() => {
         toogleModal();
-        getPendidikanMiliterRequest();
+        getKemampuanBahasaRequest();
       }}>
         <div className="border p-1 rounded-md cursor-pointer bg-yellow-50 border-yellow-700 text-yellow-700">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -70,32 +70,22 @@ const UpdatePendidikanMiliterModal = (props) => {
         <div className="absolute w-full h-full bg-black opacity-30 z-10" onClick={() => toogleModal()}></div>
         <div className="p-3 border rounded-lg bg-white w-96 z-10">
           <div className="leading-3">
-            <span className="text-base font-medium">Ubah Pendidikan Militer</span>
+            <span className="text-base font-medium">Ubah Kemampuan Bahasa</span>
             <br />
-            <small>Silahkan isi form pendidikan militer</small>
+            <small>Silahkan isi form kemampuan bahasa</small>
           </div>
           <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
             <div>
-              <span className="font-medium">Dikma/Diktuk/Dibangum</span>
-              <InputText className="mt-1" value={controller.dikma_diktuk_dibangun} error={errors.dikma_diktuk_dibangun} onChange={(value) => onSetController("dikma_diktuk_dibangun", value)} placeholder="..." />
+              <span className="font-medium">Nama Bahasa</span>
+              <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
             </div>
             <div>
-              <span className="font-medium">Tahun</span>
-              <InputNumber className="mt-1" value={controller.tahun} error={errors.tahun} onChange={(value) => onSetController("tahun", value)} placeholder="..." />
+              <span className="font-medium">Jenis Bahasa</span>
+              <InputSelectDropDown className="mt-1" data={[{ title: 'Daerah', key: 'Daerah' }, { title: 'Asing', key: 'Asing' }]} value={controller.jenis_bahasa?.title} error={errors.jenis_bahasa} onChange={(value) => onSetController("jenis_bahasa", value)} placeholder="..." />
             </div>
-            <div className="flex flex-col leading-3 mt-2">
-              <span className="font-medium">Prestasi</span>
-              <hr className="my-1" />
-              <div className="flex gap-2">
-                <div>
-                  <small>Ke</small>
-                  <InputNumber className="mt-1" value={controller.prestasi_to} error={errors.prestasi} onChange={(value) => onSetController("prestasi_to", value)} placeholder="..." />
-                </div>
-                <div>
-                  <small>Dari</small>
-                  <InputNumber className="mt-1" value={controller.prestasi_from} error={errors.prestasi} onChange={(value) => onSetController("prestasi_from", value)} placeholder="..." />
-                </div>
-              </div>
+            <div>
+              <span className="font-medium">Status</span>
+              <InputSelectDropDown className="mt-1" data={[{ title: 'Aktif', key: 'Aktif' }, { title: 'Pasif', key: 'Pasif' }]} value={controller.status?.title} error={errors.status} onChange={(value) => onSetController("status", value)} placeholder="..." />
             </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">
@@ -110,4 +100,4 @@ const UpdatePendidikanMiliterModal = (props) => {
   );
 };
 
-export default UpdatePendidikanMiliterModal;
+export default UpdateKemampuanBahasaModal;

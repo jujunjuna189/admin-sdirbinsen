@@ -9,6 +9,7 @@ import GolDarahModal from "./modal/GolDarahModal"
 import GolJabatanModal from "./modal/GolJabatanModal"
 import JabatanModal from "./modal/JabatanModal"
 import KorpsModal from "./modal/KorpsModal"
+import LettingModal from "./modal/LettingModal"
 import PangkatModal from "./modal/PangkatModal"
 import SatuanModal from "./modal/SatuanModal"
 import SumberPAModal from "./modal/SumberPAModal"
@@ -40,4 +41,5 @@ export {
     AgamaModal,
     GolDarahModal,
     FilterModal,
+    LettingModal,
 }

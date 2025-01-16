@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_PERSONIL_GET } from "../config/api";
 
-export const getPersonilRequest = async ({ search = null, sumber_pa = null, satuan_id = null, page = null }) => {
+export const getPersonilRequest = async ({ search = null, sumber_pa = null, satuan_id = null, letting = null, page = null }) => {
     // const user = getLocalUser();
     try {
 
@@ -9,6 +9,7 @@ export const getPersonilRequest = async ({ search = null, sumber_pa = null, satu
 
         filter += `?sumber_pa=${sumber_pa ?? ''}`;
         filter += `&satuan_id=${satuan_id ?? ''}`;
+        filter += `&tmt_tni=${letting ?? ''}`;
         filter += `&search=${search ?? ''}`;
         filter += `&page=${page ?? ''}`;
 

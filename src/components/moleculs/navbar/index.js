@@ -21,11 +21,11 @@ const Navbar = (props) => {
     const renderAvatar = () => {
         var role = getLocalUser()?.auth?.user?.role_id;
 
-        if(Number(role) === 1){
+        if (Number(role) === 1) {
             return avatarAdmin;
-        }else if(Number(role) === 2){
+        } else if (Number(role) === 2) {
             return avatarUser;
-        } else if(Number(role) === 3){
+        } else if (Number(role) === 3) {
             return avatarSuperAdmin;
         }
     }
@@ -41,7 +41,7 @@ const Navbar = (props) => {
             <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigation('/profile')} onMouseOver={() => onSetElement()} onMouseLeave={() => onEmptyElement()}>
                 <span className="font-semibold">{(user?.auth?.user?.name && user?.auth?.user?.name.split(' ')[0]) ?? 'Anonim'}</span>
                 <div className="w-8 h-8 rounded-full bg-slate-200">
-                    <img src={renderAvatar()} alt="Profile"/>
+                    <img src={renderAvatar()} alt="Profile" />
                 </div>
             </div>
             {element}

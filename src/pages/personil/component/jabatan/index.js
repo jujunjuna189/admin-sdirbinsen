@@ -1,4 +1,5 @@
 import AddJabatanModal from "./AddJabatanModal";
+import UpdateJabatanModal from "./UpdateJabatanModal";
 
 const JabatanPersonilDetail = (props) => {
     return (
@@ -39,13 +40,7 @@ const JabatanPersonilDetail = (props) => {
                                         </div>
                                     </div>
                                     <div className="mx-3 flex gap-2">
-                                        <div className="border p-1 rounded-md cursor-pointer bg-yellow-50 border-yellow-700 text-yellow-700">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"></path>
-                                                <path d="M13.5 6.5l4 4"></path>
-                                            </svg>
-                                        </div>
+                                        <UpdateJabatanModal personil_id={props.personil?.id} item={item} onSave={() => props.onAdd && props.onAdd()} />
                                         <div className="border p-1 rounded-md cursor-pointer bg-red-50 border-red-700 text-red-700" onClick={() => props.onShowConfirmDelete && props.onShowConfirmDelete(item.id)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

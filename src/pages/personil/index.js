@@ -1,6 +1,7 @@
 import { Button, Card, Content, EmptyData, InputSearch, SimplePagination, TableLoader } from "../../components";
 import { UsePersonilContext } from "../../contexts/personil/PersonilContext";
 import { dateYear, getLocalUser } from "../../utils";
+import { LettingModal } from "./component";
 
 const PersonilPage = () => {
     const { navigation, element, personil, sumberPa, filter, onTabSwitch, onNextPage, onFilter, onShowConfirmDelete } = UsePersonilContext();
@@ -20,6 +21,7 @@ const PersonilPage = () => {
                             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Nama Lengkap</th>
                             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Sumber PA</th>
                             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Letting</th>
+                            <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Jab</th>
                             <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
                         </tr>
                     </thead>
@@ -41,6 +43,9 @@ const PersonilPage = () => {
                                     </td>
                                     <td className="border-b-[1.5px] border-slate-200 px-3 py-2">
                                         {dateYear(item.tmt_tni)}
+                                    </td>
+                                    <td className="border-b-[1.5px] border-slate-200 px-3 py-2">
+                                        {item.jabatan}
                                     </td>
                                     <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                                         <div className="flex gap-3 justify-end">
@@ -90,6 +95,13 @@ const PersonilPage = () => {
                     <div className="mb-3 px-5">
                         <div className="flex justify-between">
                             <div className="inline-block">
+                                <LettingModal onLoad={(value) => onFilter({ field: 'letting', value: value })} onFilter={(value) => onFilter({ field: 'letting', value: value })} btn={<Button className="border-2 border-slate-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
+                                    </svg>
+                                    Filter
+                                </Button>} />
                             </div>
                             <InputSearch value={filter.search ?? ''} placeholder="Cari..." className="shadow-none" onChange={(value) => onFilter({ field: 'search', value: value })} />
                         </div>

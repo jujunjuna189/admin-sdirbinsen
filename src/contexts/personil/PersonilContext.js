@@ -27,9 +27,9 @@ export const PersonilContextProvider = ({ children }) => {
         });
     }
 
-    const onGetPersonil = async ({ sumberPa, search, page }) => {
+    const onGetPersonil = async ({ sumberPa, search, letting, page }) => {
         setPersonil({});
-        await getPersonilRequest({ sumber_pa: sumberPa, satuan_id: getLocalUser()?.auth?.user?.satuan_id, search: search, page: page }).then((res) => {
+        await getPersonilRequest({ sumber_pa: sumberPa, satuan_id: getLocalUser()?.auth?.user?.satuan_id, letting: letting, search: search, page: page }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPersonil(res);
@@ -53,7 +53,6 @@ export const PersonilContextProvider = ({ children }) => {
 
     const onFilter = ({ field, value }) => {
         setFilter({ ...filter, [field]: value });
-        console.log(sumberPaActiveIndex.title);
         onGetPersonil({ sumberPa: sumberPaActiveIndex.title, [field]: value });
     }
 

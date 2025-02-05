@@ -287,7 +287,7 @@ const renderCells = ({ inputRefs, tools, controller, selectedCells, mergedCells,
     // Function to handle cell selection
     const handleCellClick = (row, col, event) => {
         if (tools === false) return;
-        if (event.ctrlKey) {
+        if (event.ctrlKey || event.metaKey) {
             setSelectedCells((prevSelectedCells) => [
                 ...prevSelectedCells,
                 { row, col },

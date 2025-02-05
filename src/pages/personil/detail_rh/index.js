@@ -93,7 +93,7 @@ const PersonilDetailRhPage = () => {
                         <tbody>
                             {(() => {
                                 let components = [];
-                                for (let i = 0; i < 5; i++) {
+                                for (let i = 0; i < (personil?.pendidikan_umum?.length < 5 ? 5 : personil?.pendidikan_umum?.length); i++) {
                                     components.push(
                                         <tr key={i}>
                                             <td className="border border-stone-400 px-2 font-semibold text-center uppercase">{i + 1}</td>

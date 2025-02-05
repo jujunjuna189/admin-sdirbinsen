@@ -1,5 +1,6 @@
-import { Card } from "../../../../components";
+import { Button, Card } from "../../../../components";
 import AddLainLainSatuanModal from "./AddLainLainSatuanModal";
+import UpdateLainLainSatuanModal from "./UpdateLainLainSatuanModal";
 
 const LainLainTrakorpsDetail = (props) => {
     return (
@@ -18,9 +19,17 @@ const LainLainTrakorpsDetail = (props) => {
                                     <img src={item.gambar} alt="ImagePrestasi" className="object-cover w-full h-full" />
                                 </div>
                             )}
-                            <div className="leading-5 mt-1">
+                            <div className="leading-5 mt-1 grow">
                                 <span className="font-semibold text-[14px]">{item.nama}</span>
                                 <p>{item.deskripsi}</p>
+                            </div>
+                            <div className="flex items-start py-2 px-2">
+                                <div className="flex gap-2">
+                                    <UpdateLainLainSatuanModal item={item} onSave={() => props.onSave && props.onSave()} satuan={props.satuan} />
+                                    <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => props.onDelete && props.onDelete(item.id)}>
+                                        Hapus
+                                    </Button>
+                                </div>
                             </div>
                         </div>
                     );

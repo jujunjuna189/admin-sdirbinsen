@@ -1,9 +1,13 @@
 import { icSoldier } from "../../../../assets";
-import { Button, Card } from "../../../../components";
+import { Button, Card, SimplePagination } from "../../../../components";
 import AddPurnawirawanSatuanModal from "./AddPurnawirawanSatuanModal";
 import UpdatePurnawirawanSatuanModal from "./UpdatePurnawirawanSatuanModal";
 
 const PejabatPurnawirawanDetail = (props) => {
+    const onNextPage = ({ page }) => {
+        props.onNextPage && props.onNextPage(page);
+    }
+
     return (
         <Card className="px-4">
             <div className="flex justify-between items-center pb-3">
@@ -15,13 +19,20 @@ const PejabatPurnawirawanDetail = (props) => {
                 {props.satuanPurnawirawan?.data?.map((item, index) => {
                     return (
                         <div key={index} className="flex gap-3 border py-1 px-1 rounded-lg mb-2">
-                            <div className="h-16 w-16 relative border rounded-lg overflow-hidden mt-1">
-                                {!item.gambar && (
-                                    <img src={icSoldier} alt="ImagePrestasi" className="object-cover w-full h-full" />
-                                )}
-                                {item.gambar && (
-                                    <img src={item.gambar} alt="ImagePrestasi" className="object-cover w-full h-full" />
-                                )}
+                            <div className="flex gap-2">
+                                <div>
+                                    <div className="px-2 py-1 font-semibold mt-1 border rounded-md">
+                                        {(parseInt(props.satuanPurnawirawan?.from ?? 0)) + index}
+                                    </div>
+                                </div>
+                                <div className="h-16 w-16 relative border rounded-lg overflow-hidden mt-1">
+                                    {!item.gambar && (
+                                        <img src={icSoldier} alt="ImagePrestasi" className="object-cover w-full h-full" />
+                                    )}
+                                    {item.gambar && (
+                                        <img src={item.gambar} alt="ImagePrestasi" className="object-cover w-full h-full" />
+                                    )}
+                                </div>
                             </div>
                             <div className="leading-5 grow">
                                 <table>
@@ -147,6 +158,9 @@ const PejabatPurnawirawanDetail = (props) => {
                         </div>
                     );
                 })}
+            </div>
+            <div className="flex justify-end px-5 py-3">
+                {Object.keys(props.satuanPurnawirawan).length !== 0 && props.satuanPurnawirawan?.data?.length !== 0 && <SimplePagination pages={props.satuanPurnawirawan?.links ?? []} currentPage={props.satuanPurnawirawan?.current_page} onCallback={((page) => onNextPage({ page: page }))} />}
             </div>
         </Card>
     );

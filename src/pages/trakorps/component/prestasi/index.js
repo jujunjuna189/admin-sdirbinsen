@@ -1,10 +1,15 @@
-import { Button, Card } from "../../../../components";
+import { Button, Card, SimplePagination } from "../../../../components";
 import AddPrestasiSatuanModal from "./AddPrestasiSatuanModal";
 import AddPrestasiSatuanV2Modal from "./AddPrestasiSatuanV2Modal";
 import UpdatePrestasiSatuanModal from "./UpdatePrestasiSatuanModal";
 import UpdatePrestasiSatuanV2Modal from "./UpdatePrestasiSatuanV2Modal";
 
 const PrestasiTrakorpsDetail = (props) => {
+
+  const onNextPage = ({ page }) => {
+    props.onNextPage && props.onNextPage(page);
+  }
+
   return (
     <Card className="px-4">
       <div className="flex justify-between items-center pb-3">
@@ -20,11 +25,18 @@ const PrestasiTrakorpsDetail = (props) => {
           if (item.kategori === 'perorangan') {
             return (
               <div key={index} className="flex gap-3 border py-1 px-1 rounded-lg mb-2">
-                {item.gambar && (
-                  <div className="h-16 min-h-16 w-20 min-w-20 relative border rounded-lg overflow-hidden">
-                    <img src={item.gambar} alt="ImagePrestasi" className="object-cover w-full h-full" />
+                <div className="flex gap-2">
+                  <div>
+                    <div className="px-2 py-1 font-semibold mt-1 border rounded-md">
+                      {(parseInt(props.satuanPrestasi?.from ?? 0)) + index}
+                    </div>
                   </div>
-                )}
+                  {item.gambar && (
+                    <div className="h-16 min-h-16 w-20 min-w-20 relative border rounded-lg overflow-hidden">
+                      <img src={item.gambar} alt="ImagePrestasi" className="object-cover w-full h-full" />
+                    </div>
+                  )}
+                </div>
                 <div className="leading-5 mt-1 grow">
                   <table className="leading-4">
                     <tbody>
@@ -114,6 +126,9 @@ const PrestasiTrakorpsDetail = (props) => {
             );
           }
         })}
+      </div>
+      <div className="flex justify-end px-5 py-3">
+        {Object.keys(props.satuanPrestasi).length !== 0 && props.satuanPrestasi?.data?.length !== 0 && <SimplePagination pages={props.satuanPrestasi?.links ?? []} currentPage={props.satuanPrestasi?.current_page} onCallback={((page) => onNextPage({ page: page }))} />}
       </div>
     </Card>
   );

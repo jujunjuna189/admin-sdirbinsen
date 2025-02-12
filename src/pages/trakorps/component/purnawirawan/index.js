@@ -1,11 +1,23 @@
+import { useState } from "react";
 import { icSoldier } from "../../../../assets";
-import { Button, Card, SimplePagination } from "../../../../components";
+import { Button, Card, EmptyData, InputSearch, SimplePagination } from "../../../../components";
 import AddPurnawirawanSatuanModal from "./AddPurnawirawanSatuanModal";
 import UpdatePurnawirawanSatuanModal from "./UpdatePurnawirawanSatuanModal";
 
 const PejabatPurnawirawanDetail = (props) => {
+    const [controller, setController] = useState({});
+
     const onNextPage = ({ page }) => {
         props.onNextPage && props.onNextPage(page);
+    }
+
+    const onSetController = ({ field, value }) => {
+        onSearch({ value });
+        setController({ ...controller, [field]: value });
+    }
+
+    const onSearch = ({ value }) => {
+        props.onSearch && props.onSearch(value);
     }
 
     return (
@@ -15,7 +27,11 @@ const PejabatPurnawirawanDetail = (props) => {
                 <AddPurnawirawanSatuanModal satuan={props.satuan} onSave={() => props.onSave && props.onSave()} />
             </div>
             <hr />
+            <div className="flex justify-end mt-3">
+                <InputSearch value={controller.search} placeholder="Cari..." className="shadow-none" onChange={(value) => onSetController({ field: 'search', value: value })} />
+            </div>
             <div className="my-3">
+                {(props.satuanPurnawirawan.data?.length === 0) && <EmptyData />}
                 {props.satuanPurnawirawan?.data?.map((item, index) => {
                     return (
                         <div key={index} className="flex gap-3 border py-1 px-1 rounded-lg mb-2">

@@ -134,7 +134,7 @@ const BiodataPersonilDetail = (props) => {
               </tr>
               <tr className="border-t">
                 <td className="py-[7px] w-44">
-                  <span className="font-medium">TMT</span>
+                  <span className="font-medium">TMT Sumber</span>
                 </td>
                 <td className="py-[7px]">
                   <span className="px-4">: {dateFormatterV4(props.personil?.tmt_1)}</span>

@@ -46,7 +46,7 @@ const PersonilDetailRhPage = () => {
                                 <tr>
                                     <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">Tempat/Tgl.Lahir :</td>
                                     <td className="border border-stone-400 text-start px-2 py-0 uppercase">{personil?.tempat_lahir}, {personil?.tanggal_lahir}</td>
-                                    <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">TMT :</td>
+                                    <td className="border border-stone-400 text-end px-2 py-0 font-semibold whitespace-pre">TMT Sumber :</td>
                                     <td className="border border-stone-400 text-start px-2 py-0 uppercase">{dateFormatterV4(personil?.tmt_1)}</td>
                                 </tr>
                                 <tr>

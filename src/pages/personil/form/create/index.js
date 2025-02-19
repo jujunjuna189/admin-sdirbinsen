@@ -95,7 +95,7 @@ const PersonilCreatePage = () => {
                     </div>
                     <div className="flex gap-2">
                         <div className="flex-grow">
-                            <span className="font-medium">Tmt</span>
+                            <span className="font-medium">Tmt Sumber</span>
                             <InputDate className="mt-1" value={controller.tmt_1} error={errors.tmt_1} onChange={(value) => onSetController('tmt_1', value)} placeholder={dateFormatterV2(new Date())} />
                         </div>
                         <div className="flex-grow">

@@ -16,12 +16,13 @@ export const getSatuanPersonilRequest = async () => {
   }
 };
 
-export const getSatuanRequest = async ({ satuan_id = null, limit = null }) => {
+export const getSatuanRequest = async ({ satuan_id = null, visibility = null, limit = null }) => {
   // const user = getLocalUser();
   try {
     var filter = '';
 
     filter += `?id=${satuan_id ?? ''}`;
+    filter += `&visibility=${visibility ?? ''}`;
     filter += `&per_page=${limit ?? 100}`;
 
     const response = await axios.get(`${API_SATUAN_GET}${filter}`, {

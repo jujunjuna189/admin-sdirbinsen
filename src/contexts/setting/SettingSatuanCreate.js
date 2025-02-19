@@ -27,6 +27,7 @@ export const SettingSatuanCreateContextProvider = ({ children }) => {
         dataBatch.latitude = '0.9';
         dataBatch.longitude = '0.9';
         dataBatch.status = 'Aktif';
+        dataBatch.visibility = 'all';
         await createSatuanRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);
@@ -47,6 +48,7 @@ export const SettingSatuanCreateContextProvider = ({ children }) => {
         dataBatch.latitude = '0.9';
         dataBatch.longitude = '0.9';
         dataBatch.status = 'Aktif';
+        dataBatch.visibility = 'all';
         await createSatuanRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             res?.errors && setElement(<ErrorPopup />);

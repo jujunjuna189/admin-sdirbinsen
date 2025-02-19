@@ -12,7 +12,7 @@ export const TrakorpsContextProvider = ({ children }) => {
   const [satuan, setSatuan] = useState({});
 
   const getSatuan = async () => {
-    await getSatuanRequest({ satuan_id: getLocalUser()?.auth?.user?.satuan_id }).then((res) => {
+    await getSatuanRequest({ satuan_id: getLocalUser()?.auth?.user?.satuan_id, visibility: 'trakorps' }).then((res) => {
       setSatuan(res);
     });
   };

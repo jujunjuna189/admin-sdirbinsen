@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { getSatuanLainLainDetailRequest, updateSatuanLainLainRequest } from "../../../../api/SatuanLainLainRequest";
-import { Button, InputFile, InputText } from "../../../../components";
+import { Button, InputFile, InputFileAll, InputText } from "../../../../components";
 
 const UpdateLainLainSatuanModal = (props) => {
     const ref = useRef();
@@ -35,7 +35,7 @@ const UpdateLainLainSatuanModal = (props) => {
     const onSave = async () => {
         let dataBatch = { ...controller };
         dataBatch.satuan_id = props.satuan.id;
-        dataBatch.gambar = dataBatch.picture?.file ?? null;
+        dataBatch.gambar = null;
         await updateSatuanLainLainRequest({ id: props.item.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);
             if (!res?.errors) {
@@ -86,6 +86,13 @@ const UpdateLainLainSatuanModal = (props) => {
                         <div>
                             <span className="font-medium">Nama Foto</span>
                             <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
+                        </div>
+                        <div>
+                            <span className="font-medium">Unggah File</span>
+                            <div className="flex gap-2 items-center border rounded-lg pl-2 mt-2">
+                                <div className="grow">{controller.file?.name ? <span className="">{controller.file?.name}</span> : <span className="text-slate-400">Nama File...</span>}</div>
+                                <InputFileAll error={errors.file} onChange={(value) => onSetController('file', value)} />
+                            </div>
                         </div>
                         <div>
                             <span className="font-medium">Deskripsi</span>

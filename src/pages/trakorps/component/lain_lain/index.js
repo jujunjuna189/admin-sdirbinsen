@@ -20,8 +20,18 @@ const LainLainTrakorpsDetail = (props) => {
                                 </div>
                             )}
                             <div className="leading-5 mt-1 grow">
-                                <span className="font-semibold text-[14px]">{item.nama}</span>
-                                <p>{item.deskripsi}</p>
+                                <span className="font-semibold text-[16px]">{item.nama}</span>
+                                {item.file && (
+                                    <div className="flex mt-1">
+                                        <span style={{ textDecoration: 'underline', color: 'blue' }} onClick={() => window.open(`https://docs.google.com/gview?url=${item.file}`, '_self')}>
+                                            Lihat File
+                                        </span>
+                                    </div>
+                                )}
+                                <div className="border-t py-2 px-2">
+                                    <span className="font-semibold text-[12px]">Deskripsi</span>
+                                    <p>{item.deskripsi}</p>
+                                </div>
                             </div>
                             <div className="flex items-start py-2 px-2">
                                 <div className="flex gap-2">

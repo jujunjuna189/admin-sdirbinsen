@@ -33,7 +33,15 @@ const JabatanPersonilDetail = (props) => {
                                 <div className="relative flex items-center">
                                     <div className="border-solid border-r-8 border-y-transparent border-y-8 border-l-0 absolute -left-2"></div>
                                     <div className="border rounded-lg p-3 bg-white pr-10 flex-grow flex justify-between items-center gap-3 w-96">
-                                        <span className="font-medium">{item.jabatan}</span>
+                                        <div>
+                                            <span className="font-medium">{item.jabatan}</span>
+                                            {item.nomor_kep_skep && (
+                                                <div className="leading-3 mt-1">
+                                                    <small className="font-medium">Nomor Kep/Skep</small><br />
+                                                    <small>{item.nomor_kep_skep ?? '-'}</small>
+                                                </div>
+                                            )}
+                                        </div>
                                         <div className="leading-3 mt-1">
                                             <small className="font-medium">Masa Jabatan</small><br />
                                             <small>{item.tmt}</small>

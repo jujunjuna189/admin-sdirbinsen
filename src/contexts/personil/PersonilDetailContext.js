@@ -28,7 +28,8 @@ export const PersonilDetailContextProvider = ({ children }) => {
     const [tandaJasa, setTandaJasa] = useState({});
     const [keluarga, setKeluarga] = useState({});
     const [pendidikanUmum, setPendidikanUmum] = useState({});
-    const [pendidikanMiliter, setPendidikanMiliter] = useState({});
+    const [pendidikanMiliter1, setPendidikanMiliter1] = useState({});
+    const [pendidikanMiliter2, setPendidikanMiliter2] = useState({});
     const [kemampuanBahasa, setKemampuanBahasa] = useState({});
     const [prestasi, setPrestasi] = useState({});
     const [navProfileActive, setNavProfileActive] = useState({});
@@ -112,6 +113,18 @@ export const PersonilDetailContextProvider = ({ children }) => {
             res === undefined && (res = {});
             res === null && (res = {});
             setPersonil(res);
+
+            // for rh
+            var militer1 = [];
+            var militer2 = [];
+
+            res.pendidikan_militer.forEach((item, index) => {
+                if (item.type === '1') militer1.push(item);
+                if (item.type === '2') militer2.push(item);
+            });
+
+            setPendidikanMiliter1({ data: militer1 });
+            setPendidikanMiliter2({ data: militer2 });
         });
     }
 
@@ -179,7 +192,16 @@ export const PersonilDetailContextProvider = ({ children }) => {
         await getPendidikanMiliterByPersonilRequest({ personil_id: id }).then((res) => {
             res === undefined && (res = {});
             res === null && (res = {});
-            setPendidikanMiliter(res);
+            var militer1 = [];
+            var militer2 = [];
+
+            res.data.forEach((item, index) => {
+                if (item.type === '1') militer1.push(item);
+                if (item.type === '2') militer2.push(item);
+            });
+
+            setPendidikanMiliter1({ ...res, data: militer1 });
+            setPendidikanMiliter2({ ...res, data: militer2 });
         });
     }
 
@@ -301,7 +323,7 @@ export const PersonilDetailContextProvider = ({ children }) => {
             7: <KeluargaPersonilDetail personil={personil} keluarga={keluarga} onAdd={() => onGetKeluarga({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteKeluarga({ keluarga_id: itemId })} />)} />,
             // 8: <BiodataPersonilDetail />,
             9: <PendidikanUmumPersonilDetail personil={personil} pendidikan={pendidikanUmum} onAdd={() => onGetPendidikanUmum({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePendidikanUmum({ pendidikan_umum_id: itemId })} />)} />,
-            10: <PendidikanMiliterPersonilDetail personil={personil} pendidikan={pendidikanMiliter} onAdd={() => onGetPendidikanMiliter({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePendidikanMiliter({ pendidikan_militer_id: itemId })} />)} />,
+            10: <PendidikanMiliterPersonilDetail personil={personil} pendidikan1={pendidikanMiliter1} pendidikan2={pendidikanMiliter2} onAdd={() => onGetPendidikanMiliter({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePendidikanMiliter({ pendidikan_militer_id: itemId })} />)} />,
             11: <KemampuanBahasaPersonilDetail personil={personil} kemampuan_bahasa={kemampuanBahasa} onAdd={() => onGetKemampuanBahasa({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeleteKemampuanBahasa({ kemampuan_bahasa_id: itemId })} />)} />,
             12: <PrestasiPersonilDetail personil={personil} prestasi={prestasi} onAdd={() => onGetPrestasi({ id: param.id })} onShowConfirmDelete={(itemId) => setElement(<ConfirmDeleteModal onClickOutside={() => setElement(false)} onCancel={() => setElement(false)} onSave={() => onDeletePrestasi({ prestasi_id: itemId })} />)} />,
         };
@@ -326,7 +348,7 @@ export const PersonilDetailContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <PersonilDetailContext.Provider value={{ navigation, element, personil, navProfile, navProfileActive, onChangeNavProfile, onGetContent }}>
+        <PersonilDetailContext.Provider value={{ navigation, element, personil, pendidikanMiliter1, pendidikanMiliter2, navProfile, navProfileActive, onChangeNavProfile, onGetContent }}>
             {children}
         </PersonilDetailContext.Provider>
     );

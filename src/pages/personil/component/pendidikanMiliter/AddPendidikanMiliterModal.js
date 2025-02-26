@@ -25,6 +25,7 @@ const AddPendidikanMiliterModal = (props) => {
   const onSave = async () => {
     let dataBatch = { ...controller };
     dataBatch.personil_id = props.personil_id;
+    dataBatch.type = props.type;
     dataBatch.prestasi = `Ke-${controller.prestasi_to} Dari-${controller.prestasi_from}`;
     await createPendidikanMiliterByPersonilRequest({ personil_id: props.personil_id, body: dataBatch }).then((res) => {
       res?.errors && setErrors(res?.errors);
@@ -63,8 +64,8 @@ const AddPendidikanMiliterModal = (props) => {
           </div>
           <div className="min-h-[25vh] flex flex-col gap-1 py-2 my-2">
             <div>
-              <span className="font-medium">Dikma/Diktuk/Dibangum</span>
-              <InputText className="mt-1" value={controller.dikma_diktuk_dibangun} error={errors.dikma_diktuk_dibangun} onChange={(value) => onSetController("dikma_diktuk_dibangun", value)} placeholder="..." />
+              <span className="font-medium">{props.type === 1 ? 'Dikma/Diktuk/Dibangum' : 'Dikbangspes/Dikjab/Dik Ilpengtek'}</span>
+              <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController("title", value)} placeholder="..." />
             </div>
             <div>
               <span className="font-medium">Tahun</span>

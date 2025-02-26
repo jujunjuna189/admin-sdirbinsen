@@ -71,6 +71,10 @@ const AddJabatanModal = (props) => {
               <span className="font-medium">Tmt</span>
               <InputDate className="mt-1" value={controller.tmt} error={errors.tmt} onChange={(value) => onSetController("tmt", value)} placeholder={dateFormatterV2(new Date())} />
             </div>
+            <div>
+              <span className="font-medium">Nomor Kep/Skep</span>
+              <InputText className="mt-1" value={controller.nomor_kep_skep} error={errors.nomor_kep_skep} onChange={(value) => onSetController("nomor_kep_skep", value)} placeholder="..." />
+            </div>
             <div className="flex-grow" />
             <div className="flex justify-end mt-3">
               <Button className="bg-slate-700 text-white" onClick={() => onSave()}>

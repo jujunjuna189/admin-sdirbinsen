@@ -13,6 +13,7 @@ import LettingModal from "./modal/LettingModal"
 import PangkatModal from "./modal/PangkatModal"
 import SatuanModal from "./modal/SatuanModal"
 import SumberPAModal from "./modal/SumberPAModal"
+import PetaJabatanModal from "./modal/PetaJabatanModal"
 import PendidikanMiliterPersonilDetail from "./pendidikanMiliter"
 import PendidikanUmumPersonilDetail from "./pendidikanUmum"
 import PenugasanLuarNegeriPersonilDetail from "./penugasanLuarNegeri"
@@ -42,4 +43,5 @@ export {
     GolDarahModal,
     FilterModal,
     LettingModal,
+    PetaJabatanModal,
 }

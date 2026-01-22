@@ -1,5 +1,6 @@
 import { Button, Card, Content, } from "../../components";
 import { UseSiapsatContext } from "../../contexts/siapsat/SiapsatContext";
+import { dateFormatterV4 } from "../../utils";
 
 const SiapsatPage = () => {
   const { navigation, element, location, satuan, satuanData, siapsat, onChangeTab, onChangeTabSiapsat, onShowConfirmDelete } = UseSiapsatContext();
@@ -67,6 +68,7 @@ const SiapsatPage = () => {
                       {item.description && (
                         <div className="border-t mt-3 py-3" style={{ display: 'flex', whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: item.description }} />
                       )}
+                      <div className="text-end">Diperbarui: {dateFormatterV4(item.updated_at)}</div>
                       <div className="flex justify-end border-t mt-5 py-3">
                         <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/siapsat/update/${item.id}`, { state: { ...location.state, satuan_id: satuanData?.id } })}>
                           Ubah

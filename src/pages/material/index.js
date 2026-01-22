@@ -33,6 +33,7 @@ const MaterialPage = () => {
               <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Lokasi</th>
             )}
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
+            <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Diperbarui</th>
             <th className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2"></th>
           </tr>
         </thead>
@@ -63,7 +64,8 @@ const MaterialPage = () => {
                 {["munisi-bp"].includes(categoryActive?.key) === true && (
                   <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.lokasi ?? ""}</td>
                 )}
-                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{dateFormatterV4(item.created_at)}</td>
+                <td className="border-b-[1.5px] border-slate-200 px-3 py-2 whitespace-pre">{dateFormatterV4(item.created_at)}</td>
+                <td className="border-b-[1.5px] border-slate-200 px-3 py-2 whitespace-pre">{dateFormatterV4(item.updated_at)}</td>
                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
                   <div className="flex gap-3 justify-end">
                     {getLocalUser()?.auth?.permission["binmat.update"] && (

@@ -1,6 +1,7 @@
 import { Button, Card, Content, EmptyData, InputSearch, TableLoader } from "../../components";
 import { UseMaterialContext } from "../../contexts/material/MaterialContext";
 import { dateFormatterV4, getLocalUser } from "../../utils";
+import { SatuanModal } from "../personil/component";
 
 const MaterialPage = () => {
   const { navigation, location, element, material, category, categoryActive, filter, onTabSwitch, onShowConfirmDelete, onFilter } = UseMaterialContext();
@@ -28,6 +29,11 @@ const MaterialPage = () => {
               </>
             )}
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
+            {
+              ["taktik", "pengamanan"].includes(categoryActive?.key) !== true && (
+                <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">No Reg</th>
+              )
+            }
             <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Keterangan</th>
             {["munisi-bp"].includes(categoryActive?.key) === true && (
               <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Lokasi</th>
@@ -60,6 +66,11 @@ const MaterialPage = () => {
                   </>
                 )}
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan?.nama ?? ""}</td>
+                {
+                  ["taktik", "pengamanan"].includes(categoryActive?.key) !== true && (
+                    <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.no_reg ?? "-"}</td>
+                  )
+                }
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.keterangan ?? ""}</td>
                 {["munisi-bp"].includes(categoryActive?.key) === true && (
                   <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.lokasi ?? ""}</td>
@@ -119,6 +130,13 @@ const MaterialPage = () => {
           <div className="mb-3 px-5">
             <div className="flex justify-between">
               <div className="inline-block">
+                <SatuanModal onLoad={(value) => onFilter("satuan_id", value.id)} onChange={(value) => onFilter("satuan_id", value.id)} btn={<Button className="border-2 border-slate-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
+                  </svg>
+                  Filter
+                </Button>} />
               </div>
               <InputSearch value={filter.search ?? ''} placeholder="Cari..." className="shadow-none" onChange={(value) => onFilter('search', value)} />
             </div>

@@ -35,6 +35,16 @@ const MaterialUpdatePage = () => {
               </span>
               <InputText className="mt-1" value={controller.nama} error={errors.nama} onChange={(value) => onSetController("nama", value)} placeholder="..." />
             </div>
+            {
+              ["taktik", "pengamanan"].includes(location.state?.type?.key) !== true && (
+                <>
+                  <div>
+                    <span className="font-medium">No Reg</span>
+                    <InputText className="mt-1" value={controller.no_reg} error={errors.no_reg} onChange={(value) => onSetController("no_reg", value)} placeholder="..." />
+                  </div>
+                </>
+              )
+            }
             {["taktik", "pengamanan"].includes(location.state?.type?.key) !== true && (
               <>
                 <div>

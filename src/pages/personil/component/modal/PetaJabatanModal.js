@@ -45,18 +45,18 @@ const PetaJabatanModal = (props) => {
 
     /** 🔍 filter data */
     const filteredData = data
-    .map(item => {
-        const filteredItems = item.items.filter(child =>
-            child?.jabatan?.toLowerCase().includes(keyword.toLowerCase()) ||
-            child?.personil?.nama?.toLowerCase().includes(keyword.toLowerCase())
-        );
+        .map(item => {
+            const filteredItems = item.items.filter(child =>
+                child?.jabatan?.toLowerCase().includes(keyword.toLowerCase()) ||
+                child?.personil?.nama?.toLowerCase().includes(keyword.toLowerCase())
+            );
 
-        return {
-            ...item,
-            items: filteredItems,
-        };
-    })
-    .filter(item => item.items.length > 0);
+            return {
+                ...item,
+                items: filteredItems,
+            };
+        })
+        .filter(item => item.items.length > 0);
 
     return (
         <div className="inline-block" ref={ref}>
@@ -102,7 +102,7 @@ const PetaJabatanModal = (props) => {
                                             onClick={() => onChange(index, indexChild)}
                                         >
                                             {itemChild.jabatan}
-                                            <hr className="border-slate-300"/>
+                                            <hr className="border-slate-300" />
                                             <table className="text-[12px]">
                                                 <tbody>
                                                     <tr>

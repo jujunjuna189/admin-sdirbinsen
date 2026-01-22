@@ -129,7 +129,7 @@ export const MaterialContextProvider = ({ children }) => {
 
   const onGetMaterial = async ({ jenis = null }) => {
     setMaterial({});
-    await getMaterialRequest({ kategori: location.state?.category?.key, jenis: ConverUrl(jenis), satuan_id: getLocalUser()?.auth?.user?.satuan_id, search: filter.search }).then((res) => {
+    await getMaterialRequest({ kategori: location.state?.category?.key, jenis: ConverUrl(jenis), satuan_id: getLocalUser()?.auth?.user?.satuan_id ?? filter.satuan_id, search: filter.search }).then((res) => {
       res === undefined && (res = {});
       res === null && (res = {});
       setMaterial(res);

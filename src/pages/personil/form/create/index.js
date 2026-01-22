@@ -1,7 +1,7 @@
 import { Button, Content, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { UsePersonilCreateContext } from "../../../../contexts/personil/PersonilCreateContext";
 import { dateFormatterV2, getLocalUser } from "../../../../utils";
-import { AgamaModal, GolDarahModal, KorpsModal, PangkatModal, SatuanModal, SumberPAModal } from "../../component";
+import { AgamaModal, GolDarahModal, KorpsModal, PangkatModal, PetaJabatanModal, SatuanModal, SumberPAModal } from "../../component";
 
 const PersonilCreatePage = () => {
     const { navigation, element, formContent, controller, errors, onSetController, onSave, onSaveAndAdd } = UsePersonilCreateContext();
@@ -77,7 +77,10 @@ const PersonilCreatePage = () => {
                     <SumberPAModal value={controller.sumber_pa} error={errors.sumber_pa} onChange={(value) => onSetController('sumber_pa', value)} />
                     <div className="flex gap-2">
                         <div className="flex-grow">
-                            <span className="font-medium">Jabatan</span>
+                            <div className="flex gap-3">
+                                <span className="font-medium">Jabatan</span>
+                                <PetaJabatanModal onChange={(value) => onSetController('jabatan', value.jabatan)} />
+                            </div>
                             <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController('jabatan', value)} placeholder="..." />
                         </div>
                         <div className="flex-grow">

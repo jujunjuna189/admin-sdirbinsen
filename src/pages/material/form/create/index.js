@@ -1,4 +1,4 @@
-import { Button, Content, InputArea, InputFile, InputNumber, InputText } from "../../../../components";
+import { Button, Content, InputArea, InputFile, InputFileAll, InputNumber, InputText } from "../../../../components";
 import { UseMaterialCreateContext } from "../../../../contexts/material/MaterialCreateContext";
 import { getLocalUser } from "../../../../utils";
 import { SatuanModal } from "../../../personil/component";
@@ -98,6 +98,42 @@ const MaterialCreatePage = () => {
               </div>
               <InputArea className="mt-1" value={controller.keterangan} error={errors.keterangan} onChange={(value) => onSetController("keterangan", value)} placeholder="..." />
             </div>
+            <div>
+              <span className="font-medium">Tipe Dokumen</span>
+              <div className="flex gap-4 mt-1">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="doc_input_type" checked={controller.doc_input_type === "upload"} onChange={() => { onSetController("doc_input_type", "upload"); onSetController("document_file", null); }} />
+                  <span>Unggah File</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="radio" name="doc_input_type" checked={controller.doc_input_type === "link"} onChange={() => { onSetController("doc_input_type", "link"); onSetController("document_file", ""); }} />
+                  <span>Link Google Drive</span>
+                </label>
+              </div>
+            </div>
+            {controller.doc_input_type === "upload" ? (
+              <div className="flex gap-5 items-center">
+                <div className="grow">
+                  <div className="mb-2 leading-4">
+                    <span className="font-medium">Lampiran File</span><br />
+                    <small>Tambahkan lampiran file pendukung (PDF)...</small>
+                  </div>
+                  <div className="flex">
+                    <InputFileAll error={errors.document_file} onChange={(value) => onSetController('document_file', value)} />
+                  </div>
+                  {controller.document_file && typeof controller.document_file !== 'string' && (
+                    <div className="mt-2 p-2 bg-slate-50 rounded border border-dashed border-slate-300">
+                      <span className="text-xs font-medium text-slate-600">File terpilih: {controller.document_file.name}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div>
+                <span className="font-medium">Link Google Drive</span>
+                <InputText className="mt-1" value={typeof controller.document_file === 'string' ? controller.document_file : ''} error={errors.document_file} onChange={(value) => onSetController("document_file", value)} placeholder="https://drive.google.com/..." />
+              </div>
+            )}
           </div>
           <div className="flex justify-end mt-8 mb-3 gap-2">
             <Button className="border" onClick={() => onSaveAndAdd()}>{`Simpan & Tambah Lagi`}</Button>

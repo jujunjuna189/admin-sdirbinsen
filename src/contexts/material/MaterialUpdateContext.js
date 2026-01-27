@@ -34,6 +34,8 @@ export const MaterialUpdateContextProvider = ({ children }) => {
       picture: {
         preview: res.file,
       },
+      document_file: res.document_file || null,
+      doc_input_type: (typeof res.document_file === 'string' && res.document_file.startsWith('http')) ? "link" : "upload",
       status: res.status,
       keterangan: res.keterangan,
     };
@@ -42,7 +44,7 @@ export const MaterialUpdateContextProvider = ({ children }) => {
   };
 
   const onSetController = (field, value) => {
-    setController({ ...controller, [field]: value });
+    setController((prev) => ({ ...prev, [field]: value }));
   };
 
   const onSave = async () => {
@@ -51,6 +53,7 @@ export const MaterialUpdateContextProvider = ({ children }) => {
     !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
     getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
     dataBatch.file = dataBatch.picture?.file ?? null;
+    dataBatch.document_file = dataBatch.document_file?.file || dataBatch.document_file || null;
     dataBatch.kategori = location.state?.category?.key;
     dataBatch.jenis = location.state?.type?.key;
     dataBatch.status = 1;

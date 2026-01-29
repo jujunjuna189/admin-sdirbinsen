@@ -113,7 +113,7 @@ const MaterialUpdatePage = () => {
                 <div className="grow">
                   <div className="mb-2 leading-4">
                     <span className="font-medium">Lampiran File</span><br />
-                    <small>Tambahkan lampiran file pendukung (PDF)...</small>
+                    <small>Tambahkan lampiran file pendukung (PDF, max: 5Mb)...</small>
                   </div>
                   <div className="flex">
                     <InputFileAll error={errors.document_file} onChange={(value) => onSetController('document_file', value)} />

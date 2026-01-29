@@ -1,6 +1,6 @@
 import { Button, Content, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { UsePersonilCreateContext } from "../../../../contexts/personil/PersonilCreateContext";
-import { dateFormatterV2, getLocalUser } from "../../../../utils";
+import { getLocalUser } from "../../../../utils";
 import { AgamaModal, GolDarahModal, KorpsModal, PangkatModal, PetaJabatanModal, SatuanModal, SumberPAModal } from "../../component";
 
 const PersonilCreatePage = () => {
@@ -55,7 +55,7 @@ const PersonilCreatePage = () => {
                     <div className="flex gap-2">
                         <div className="flex-grow">
                             <span className="font-medium">Tanggal Lahir</span>
-                            <InputDate className="mt-1" value={controller.tanggal_lahir} error={errors.tanggal_lahir} onChange={(value) => onSetController('tanggal_lahir', value)} placeholder={dateFormatterV2(new Date())} />
+                            <InputDate className="mt-1" value={controller.tanggal_lahir} error={errors.tanggal_lahir} onChange={(value) => onSetController('tanggal_lahir', value)} placeholder="tanggal/bulan/tahun" />
                         </div>
                         <div className="flex-grow">
                             <span className="font-medium">Tempat Lahir</span>
@@ -99,21 +99,21 @@ const PersonilCreatePage = () => {
                     <div className="flex gap-2">
                         <div className="flex-grow">
                             <span className="font-medium">Tmt Sumber</span>
-                            <InputDate className="mt-1" value={controller.tmt_1} error={errors.tmt_1} onChange={(value) => onSetController('tmt_1', value)} placeholder={dateFormatterV2(new Date())} />
+                            <InputDate className="mt-1" value={controller.tmt_1} error={errors.tmt_1} onChange={(value) => onSetController('tmt_1', value)} placeholder="tanggal/bulan/tahun" />
                         </div>
                         <div className="flex-grow">
                             <span className="font-medium">Tmt Pangkat</span>
-                            <InputDate className="mt-1" value={controller.tmt_2} error={errors.tmt_2} onChange={(value) => onSetController('tmt_2', value)} placeholder={dateFormatterV2(new Date())} />
+                            <InputDate className="mt-1" value={controller.tmt_2} error={errors.tmt_2} onChange={(value) => onSetController('tmt_2', value)} placeholder="tanggal/bulan/tahun" />
                         </div>
                     </div>
                     <div className="flex gap-2">
                         <div className="flex-grow">
                             <span className="font-medium">Tmt TNI</span>
-                            <InputDate className="mt-1" value={controller.tmt_tni} error={errors.tmt_tni} onChange={(value) => onSetController('tmt_tni', value)} placeholder={dateFormatterV2(new Date())} />
+                            <InputDate className="mt-1" value={controller.tmt_tni} error={errors.tmt_tni} onChange={(value) => onSetController('tmt_tni', value)} placeholder="tanggal/bulan/tahun" />
                         </div>
                         <div className="flex-grow">
                             <span className="font-medium">Tmt JAB</span>
-                            <InputDate className="mt-1" value={controller.tmt_jab} error={errors.tmt_jab} onChange={(value) => onSetController('tmt_jab', value)} placeholder={dateFormatterV2(new Date())} />
+                            <InputDate className="mt-1" value={controller.tmt_jab} error={errors.tmt_jab} onChange={(value) => onSetController('tmt_jab', value)} placeholder="tanggal/bulan/tahun" />
                         </div>
                     </div>
                 </div>

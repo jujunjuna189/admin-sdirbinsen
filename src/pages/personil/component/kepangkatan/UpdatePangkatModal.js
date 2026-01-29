@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, InputDate, InputText } from "../../../../components";
-import { dateFormatterV2, dateFormatterV6 } from "../../../../utils";
+import { dateFormatterV6 } from "../../../../utils";
 import PangkatModal from "../modal/PangkatModal";
 import { getRiwayatPangkatByPersonilDetailRequest, updateRiwayatPangkatByPersonilRequest } from "../../../../api/RiwayatPangkatRequest";
 
@@ -80,7 +80,7 @@ const UpdatePangkatModal = (props) => {
             </div>
             <div>
               <span className="font-medium">Tmt</span>
-              <InputDate className="mt-1" value={controller.tmt} error={errors.tmt} onChange={(value) => onSetController("tmt", value)} placeholder={dateFormatterV2(new Date())} />
+              <InputDate className="mt-1" value={controller.tmt} error={errors.tmt} onChange={(value) => onSetController("tmt", value)} placeholder="tanggal/bulan/tahun" />
             </div>
             <div>
               <span className="font-medium">Nomor Kep/Skep</span>

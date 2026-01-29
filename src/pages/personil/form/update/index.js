@@ -1,6 +1,6 @@
 import { Button, Content, InputDate, InputFile, InputNumber, InputText } from "../../../../components";
 import { UsePersonilUpdateContext } from "../../../../contexts/personil/PersonilUpdateContext";
-import { dateFormatterV2, getLocalUser } from "../../../../utils";
+import { getLocalUser } from "../../../../utils";
 import { AgamaModal, GolDarahModal, KorpsModal, PangkatModal, PetaJabatanModal, SatuanModal, SumberPAModal } from "../../component";
 
 const PersonilUpdatePage = () => {
@@ -58,7 +58,7 @@ const PersonilUpdatePage = () => {
                         <div className="flex gap-2">
                             <div className="flex-grow">
                                 <span className="font-medium">Tanggal Lahir</span>
-                                <InputDate className="mt-1" value={controller.tanggal_lahir} error={errors.tanggal_lahir} onChange={(value) => onSetController('tanggal_lahir', value)} placeholder={dateFormatterV2(new Date())} />
+                                <InputDate className="mt-1" value={controller.tanggal_lahir} error={errors.tanggal_lahir} onChange={(value) => onSetController('tanggal_lahir', value)} placeholder="tanggal/bulan/tahun" />
                             </div>
                             <div className="flex-grow">
                                 <span className="font-medium">Tempat Lahir</span>

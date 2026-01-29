@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createRiwayatPangkatByPersonilRequest } from "../../../../api/RiwayatPangkatRequest";
 import { Button, InputDate, InputText } from "../../../../components";
-import { dateFormatterV2 } from "../../../../utils";
 import PangkatModal from "../modal/PangkatModal";
 
 const AddPangkatModal = (props) => {
@@ -68,7 +67,7 @@ const AddPangkatModal = (props) => {
             </div>
             <div>
               <span className="font-medium">Tmt</span>
-              <InputDate className="mt-1" value={controller.tmt} error={errors.tmt} onChange={(value) => onSetController("tmt", value)} placeholder={dateFormatterV2(new Date())} />
+              <InputDate className="mt-1" value={controller.tmt} error={errors.tmt} onChange={(value) => onSetController("tmt", value)} placeholder="tanggal/bulan/tahun" />
             </div>
             <div>
               <span className="font-medium">Nomor Kep/Skep</span>

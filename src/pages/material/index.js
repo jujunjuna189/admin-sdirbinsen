@@ -1,10 +1,34 @@
+import { useState } from "react";
 import { Button, Card, Content, EmptyData, InputSearch, TableLoader } from "../../components";
 import { UseMaterialContext } from "../../contexts/material/MaterialContext";
 import { dateFormatterV4, getLocalUser } from "../../utils";
 import { SatuanModal } from "../personil/component";
+import { DetailModal, ActionMenu } from "./component";
 
 const MaterialPage = () => {
   const { navigation, location, element, material, category, categoryActive, filter, onTabSwitch, onShowConfirmDelete, onFilter } = UseMaterialContext();
+
+  // State for detail modal
+  const [detailItem, setDetailItem] = useState(null);
+  const [showDetailModal, setShowDetailModal] = useState(false);
+
+  const onShowDetail = (item) => {
+    setDetailItem(item);
+    setShowDetailModal(true);
+  };
+
+  const onCloseDetail = () => {
+    setDetailItem(null);
+    setShowDetailModal(false);
+  };
+
+  const onEdit = (item) => {
+    navigation(`/material/update/${item.id}`, { state: { ...location.state, type: { ...categoryActive } } });
+  };
+
+  const onViewDocument = (file) => {
+    window.open(file, "_blank");
+  };
 
   const renderTable = () => {
     return (
@@ -78,17 +102,16 @@ const MaterialPage = () => {
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2 whitespace-pre">{dateFormatterV4(item.created_at)}</td>
                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2 whitespace-pre">{dateFormatterV4(item.updated_at)}</td>
                 <td className="border-b-[1.5px] border-slate-200 pl-3 pr-5 py-2">
-                  <div className="flex gap-3 justify-end">
-                    {getLocalUser()?.auth?.permission["binmat.update"] && (
-                      <Button className="border py-[0.2rem] bg-yellow-50 border-yellow-800 text-yellow-800" onClick={() => navigation(`/material/update/${item.id}`, { state: { ...location.state, type: { ...categoryActive } } })}>
-                        Ubah
-                      </Button>
-                    )}
-                    {getLocalUser()?.auth?.permission["binmat.delete"] && (
-                      <Button className="border py-[0.2rem] bg-red-50 border-red-800 text-red-800" onClick={() => onShowConfirmDelete(item.id)}>
-                        Hapus
-                      </Button>
-                    )}
+                  <div className="flex justify-end">
+                    <ActionMenu
+                      item={item}
+                      onShowDetail={onShowDetail}
+                      onEdit={onEdit}
+                      onDelete={onShowConfirmDelete}
+                      onViewDocument={onViewDocument}
+                      canUpdate={getLocalUser()?.auth?.permission["binmat.update"]}
+                      canDelete={getLocalUser()?.auth?.permission["binmat.delete"]}
+                    />
                   </div>
                 </td>
               </tr>
@@ -100,54 +123,66 @@ const MaterialPage = () => {
   };
 
   return (
-    <Content element={element}>
-      <div className="flex flex-wrap justify-between items-center">
-        <span className="font-bold text-xl text-slate-800">Daftar Materiel</span>
-        {getLocalUser()?.auth?.permission["binmat.create"] && (
-          <div>
-            <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/material/create`, { state: { ...location.state, type: { ...categoryActive } } })}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M12 5l0 14"></path>
-                <path d="M5 12l14 0"></path>
-              </svg>
-              Tambah
-            </Button>
-          </div>
-        )}
-      </div>
-      <div className="my-3 flex flex-wrap gap-2">
-        {category.map((item, index) => {
-          return (
-            <Button key={index} className={`${item.isActive ? "bg-slate-600 text-white" : "bg-white text-slate-900"} border`} onClick={() => onTabSwitch(index)}>
-              {item.title}
-            </Button>
-          );
-        })}
-      </div>
-      <div className="mt-4">
-        <Card>
-          <div className="mb-3 px-5">
-            <div className="flex justify-between">
-              <div className="inline-block">
-                <SatuanModal onLoad={(value) => onFilter("satuan_id", value.id)} onChange={(value) => onFilter("satuan_id", value.id)} btn={<Button className="border-2 border-slate-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
-                  </svg>
-                  Filter
-                </Button>} />
-              </div>
-              <InputSearch value={filter.search ?? ''} placeholder="Cari..." className="shadow-none" onChange={(value) => onFilter('search', value)} />
+    <>
+      <Content element={element}>
+        <div className="flex flex-wrap justify-between items-center">
+          <span className="font-bold text-xl text-slate-800">Daftar Materiel</span>
+          {getLocalUser()?.auth?.permission["binmat.create"] && (
+            <div>
+              <Button className="bg-red-800 text-white cursor-pointer" onClick={() => navigation(`/material/create`, { state: { ...location.state, type: { ...categoryActive } } })}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M12 5l0 14"></path>
+                  <path d="M5 12l14 0"></path>
+                </svg>
+                Tambah
+              </Button>
             </div>
-          </div>
-          <div className="overflow-x-auto">{Object.keys(material).length === 0 ? <TableLoader /> : material.data.length === 0 ? <EmptyData /> : renderTable()}</div>
-          <div className="flex justify-end px-5 py-3">
-            <span className="font-semibold text-sm">Rows per page: 10</span>
-          </div>
-        </Card>
-      </div>
-    </Content>
+          )}
+        </div>
+        <div className="my-3 flex flex-wrap gap-2">
+          {category.map((item, index) => {
+            return (
+              <Button key={index} className={`${item.isActive ? "bg-slate-600 text-white" : "bg-white text-slate-900"} border`} onClick={() => onTabSwitch(index)}>
+                {item.title}
+              </Button>
+            );
+          })}
+        </div>
+        <div className="mt-4">
+          <Card>
+            <div className="mb-3 px-5">
+              <div className="flex justify-between">
+                <div className="inline-block">
+                  <SatuanModal onLoad={(value) => onFilter("satuan_id", value.id)} onChange={(value) => onFilter("satuan_id", value.id)} btn={<Button className="border-2 border-slate-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
+                    </svg>
+                    Filter
+                  </Button>} />
+                </div>
+                <InputSearch value={filter.search ?? ''} placeholder="Cari..." className="shadow-none" onChange={(value) => onFilter('search', value)} />
+              </div>
+            </div>
+            <div className="overflow-x-auto">{Object.keys(material).length === 0 ? <TableLoader /> : material.data.length === 0 ? <EmptyData /> : renderTable()}</div>
+            <div className="flex justify-end px-5 py-3">
+              <span className="font-semibold text-sm">Rows per page: 10</span>
+            </div>
+          </Card>
+        </div>
+      </Content>
+
+      {/* Detail Modal */}
+      {showDetailModal && (
+        <DetailModal
+          item={detailItem}
+          categoryActive={categoryActive}
+          onViewDocument={onViewDocument}
+          onClose={onCloseDetail}
+        />
+      )}
+    </>
   );
 };
 export default MaterialPage;

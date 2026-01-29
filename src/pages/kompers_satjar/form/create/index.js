@@ -1,6 +1,8 @@
 import { Button, Content, InputSelectDropDown, InputText } from "../../../../components";
 import { UseKompersSatjarCreateContext } from "../../../../contexts/kompers_satjat/KompersSatjarCreateContext";
 import TableGenerator from "../../../kompers_satjar_category/component/TableGenerator";
+import { getLocalUser } from "../../../../utils";
+import { SatuanModal } from "../../../personil/component";
 
 const KompersSatjarCreatePage = () => {
     const { element, controller, errors, onSetController, onSave } = UseKompersSatjarCreateContext();
@@ -17,10 +19,21 @@ const KompersSatjarCreatePage = () => {
             </div>
             <div className="flex flex-col gap-3 mt-3">
                 <div className="flex gap-2">
-                    <div className="w-72">
+                    <div className="">
                         <span className="font-medium">Judul</span>
                         <InputText className="mt-1" value={controller.title} error={errors.title} onChange={(value) => onSetController('title', value)} placeholder="..." />
                     </div>
+                    {!getLocalUser()?.auth?.user?.satuan_id && (
+                        <div className="">
+                            <SatuanModal
+                                value={controller.satuan_id?.nama}
+                                error={errors.satuan_id}
+                                onChange={(value) => {
+                                    onSetController("satuan_id", value);
+                                }}
+                            />
+                        </div>
+                    )}
                     <div className="w-24">
                         <span className="font-medium">Pilih...</span>
                         <InputSelectDropDown className="mt-1" data={[{ title: 'Pa', key: 'Pa' }, { title: 'Ba', key: 'Ba' }, { title: 'Ta', key: 'Ta' }]} value={controller.part?.title} error={errors.part} onChange={(value) => onSetController("part", value)} placeholder="..." />

@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getKompersSatjarRequest, updateKompersSatjarRequest } from "../../api/KompersSatjarRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const KompersSatjarUpdateContext = createContext();
 
@@ -19,15 +20,17 @@ export const KompersSatjarUpdateContextProvider = ({ children }) => {
     }
 
     const settingController = (item) => {
-        setController({
-            ...controller,
+        let dataBatch = {
             kompers_satjar_categorys_id: item.kompers_satjar_categorys_id,
             title: item.title,
+            satuan_id: { ...item.satuan },
             category: item.category,
             sub_category: item.sub_category,
             part: { title: item.part, key: item.part },
             form: typeof item.form === 'string' ? JSON.parse(item.form) : item.form,
-        });
+        };
+
+        setController(dataBatch);
     }
 
     const onSetController = (field, value) => {
@@ -37,6 +40,8 @@ export const KompersSatjarUpdateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
+        !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
+        getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
         dataBatch.part = dataBatch.part?.key;
         await updateKompersSatjarRequest({ id: params.id, body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);

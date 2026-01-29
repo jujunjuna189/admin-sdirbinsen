@@ -41,7 +41,7 @@ export const KompersSatjarContextProvider = ({ children }) => {
     };
 
     const getKompersSatjar = async ({ category = '', sub_category = '' }) => {
-        await getKompersSatjarRequest({ filter: `part=${filter.part ?? ''}&category=${category}&sub_category=${sub_category}` }).then((res) => {
+        await getKompersSatjarRequest({ filter: `part=${filter.part?.key ?? ''}&satuan_id=${filter.satuan_id?.id ?? ''}&category=${category}&sub_category=${sub_category}` }).then((res) => {
             setKompersSatjar(res);
         });
     }
@@ -73,7 +73,7 @@ export const KompersSatjarContextProvider = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter]);
 
-    return <KompersSatjarContext.Provider value={{ navigation, element, kompersSatjar, kompersSatjarCategory, kompersSatjarCategoryActive, onTabSwitch, onFilter, onShowConfirmDelete }}>{children}</KompersSatjarContext.Provider>;
+    return <KompersSatjarContext.Provider value={{ navigation, element, filter, kompersSatjar, kompersSatjarCategory, kompersSatjarCategoryActive, onTabSwitch, onFilter, onShowConfirmDelete }}>{children}</KompersSatjarContext.Provider>;
 };
 
 export const UseKompersSatjarContext = () => {

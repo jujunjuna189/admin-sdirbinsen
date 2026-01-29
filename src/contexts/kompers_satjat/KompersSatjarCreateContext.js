@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getKompersSatjarCategoryRequest } from "../../api/KompersSatjarCategoryRequest";
 import { createKompersSatjarRequest } from "../../api/KompersSatjarRequest";
 import { ErrorPopup, LoaderPopup, SuccessPopup } from "../../components";
+import { getLocalUser } from "../../utils";
 
 const KompersSatjarCreateContext = createContext();
 
@@ -36,6 +37,8 @@ export const KompersSatjarCreateContextProvider = ({ children }) => {
     const onSave = async () => {
         setElement(<LoaderPopup />);
         let dataBatch = { ...controller };
+        !getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = dataBatch.satuan_id?.id ?? null);
+        getLocalUser()?.auth?.user?.satuan_id && (dataBatch.satuan_id = getLocalUser()?.auth?.user?.satuan_id ?? null);
         dataBatch.part = dataBatch.part?.key;
         await createKompersSatjarRequest({ body: dataBatch }).then((res) => {
             res?.errors && setErrors(res?.errors);

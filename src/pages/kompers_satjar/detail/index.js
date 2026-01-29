@@ -14,8 +14,9 @@ const KompersSatjarDetailPage = () => {
                 </svg>
                 <span className="font-semibold text-base text-slate-800">Detail</span>
             </div>
-            <div className="flex flex-col gap-3 mt-3 text-center px-20">
+            <div className="flex flex-col gap-1 mt-3 text-center px-20 leading-4">
                 <span className="text-base font-semibold">{kompersSatjar.title}</span>
+                <span className="text-sm font-medium text-slate-600">{kompersSatjar.satuan_id?.nama || kompersSatjar.satuan_id}</span>
             </div>
             <div className="mt-3 grow flex flex-col">
                 {console.log(kompersSatjar.form)}

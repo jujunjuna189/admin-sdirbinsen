@@ -20,6 +20,7 @@ export const KompersSatjarDetailContextProvider = ({ children }) => {
         setKompersSatjar({
             ...kompersSatjar,
             title: item.title,
+            satuan_id: item.satuan,
             category: item.category,
             sub_category: item.sub_category,
             form: typeof item.form === 'string' ? JSON.parse(item.form) : item.form,

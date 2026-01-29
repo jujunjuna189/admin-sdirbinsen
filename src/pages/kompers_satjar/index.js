@@ -1,10 +1,10 @@
 import { Button, Card, Content, EmptyData, TableLoader } from "../../components";
 import { UseKompersSatjarContext } from "../../contexts/kompers_satjat/KompersSatjarContext";
 import { dateFormatterV4 } from "../../utils";
-import { FilterPartModal } from "./component";
+import { FilterPartModal, FilterSatuanModal } from "./component";
 
 const KompersSatjarPage = () => {
-    const { navigation, element, kompersSatjarCategory, kompersSatjarCategoryActive, kompersSatjar, onTabSwitch, onFilter, onShowConfirmDelete } = UseKompersSatjarContext();
+    const { navigation, element, filter, kompersSatjarCategory, kompersSatjarCategoryActive, kompersSatjar, onTabSwitch, onFilter, onShowConfirmDelete } = UseKompersSatjarContext();
 
     const renderTable = () => {
         return (
@@ -13,6 +13,7 @@ const KompersSatjarPage = () => {
                     <tr>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start w-[1rem] min-w-[1rem] max-w-[1rem]">No.</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Judul</th>
+                        <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Satuan</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Bagian</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Kategori</th>
                         <th className="border-b-[1.5px] border-slate-200 px-3 py-2 text-start">Dibuat</th>
@@ -25,6 +26,7 @@ const KompersSatjarPage = () => {
                             <tr key={index}>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{index + 1}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.title}</td>
+                                <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.satuan?.nama ?? '-'}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">{item.part}</td>
                                 <td className="border-b-[1.5px] border-slate-200 px-3 py-2">
                                     <div className="leading-3 flex flex-col">
@@ -91,16 +93,29 @@ const KompersSatjarPage = () => {
             <div className="mt-2">
                 <Card>
                     <div className="mb-3 px-5">
-                        <div className="inline-block">
-                            <FilterPartModal btn={
-                                <Button className="border-2 border-slate-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                        <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
-                                    </svg>
-                                    Filter
-                                </Button>
-                            } onChange={(value) => onFilter("part", value.key)} />
+                        <div className="flex gap-2">
+                            <div className="inline-block">
+                                <FilterPartModal btn={
+                                    <Button className="border-2 border-slate-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
+                                        </svg>
+                                        {filter.part?.key ? filter.part?.title : "Filter Part"}
+                                    </Button>
+                                } onChange={(value) => onFilter("part", value)} />
+                            </div>
+                            <div className="inline-block">
+                                <FilterSatuanModal btn={
+                                    <Button className="border-2 border-slate-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"></path>
+                                        </svg>
+                                        {filter.satuan_id?.id ? filter.satuan_id?.nama : "Filter Satuan"}
+                                    </Button>
+                                } onChange={(value) => onFilter("satuan_id", value)} />
+                            </div>
                         </div>
                     </div>
                     <div className="overflow-x-auto">{Object.keys(kompersSatjar).length === 0 ? <TableLoader /> : kompersSatjar.data.length === 0 ? <EmptyData /> : renderTable()}</div>

@@ -75,6 +75,17 @@ const SatuanModal = (props) => {
                     />
 
                     <div className="overflow-y-auto h-[25vh] flex flex-col gap-1">
+                        {props.withAll && (
+                            <div
+                                className="p-2 border rounded-lg cursor-pointer hover:bg-slate-100"
+                                onClick={() => {
+                                    props.onChange && props.onChange({ id: '', nama: 'Semua' });
+                                    setIsShow(false);
+                                }}
+                            >
+                                Semua
+                            </div>
+                        )}
                         {filteredData.map((item, index) => (
                             <div
                                 key={index}

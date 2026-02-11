@@ -45,6 +45,9 @@ const LettingModal = (props) => {
                         <small>Klik item jika akan memilih</small>
                     </div>
                     <div className="overflow-y-auto h-[25vh] flex flex-col gap-1 py-2 my-2">
+                         <div className="py-2 border-y font-black cursor-pointer" onClick={() => onFilter('')}>
+                            Semua
+                        </div>
                         {years.map((item, index) => {
                             return (
                                 <div key={index} className="py-2 border-y font-black cursor-pointer" onClick={() => onFilter(item)}>

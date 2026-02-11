@@ -19,6 +19,11 @@ export const SiapsatContextProvider = ({ children }) => {
     const savedState = getPageState('siapsat');
     await getSatuanRequest({}).then((res) => {
       let activeIdx = 0;
+      res.data.unshift({
+          id: '',
+          nama: 'Semua',
+          isActive: false
+      });
       if (savedState?.satuanData?.id) {
         activeIdx = res.data.findIndex((x) => x.id === savedState.satuanData.id);
         if (activeIdx < 0) activeIdx = 0;

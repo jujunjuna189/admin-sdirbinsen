@@ -78,7 +78,7 @@ export const PersonilContextProvider = ({ children }) => {
         const newFilter = { ...filter, [field]: value };
         setFilter(newFilter);
         setCurrentPage(1);
-        onGetPersonil({ sumberPa: sumberPa[sumberPaActiveIndex]?.title, [field]: value, page: 1, ...filter });
+        onGetPersonil({ sumberPa: sumberPa[sumberPaActiveIndex]?.title, page: 1, ...newFilter });
     };
 
     const onShowConfirmDelete = (personil_id) => {

@@ -2,17 +2,20 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { deleteAnnouncementRequest, getAnnouncementRequest } from "../../api/AnnouncementRequest";
 import { ConfirmDeleteModal } from "../../components";
+import { getPageState, setPageState } from "../../utils";
 
 const AnnouncementContext = createContext();
 
 export const AnnouncementContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const location = useLocation();
+    const savedState = getPageState('announcement');
     const [element, setElement] = useState(false);
     const [announcement, setAnnouncement] = useState({});
 
     const onGetAnnouncement = async () => {
-        await getAnnouncementRequest({ filter: `category=${location.state?.category ?? ''}` }).then((res) => {
+        const category = location.state?.category ?? savedState?.category ?? '';
+        await getAnnouncementRequest({ filter: `category=${category}` }).then((res) => {
             setAnnouncement(res);
         });
     };
@@ -30,6 +33,9 @@ export const AnnouncementContextProvider = ({ children }) => {
 
     useEffect(() => {
         onGetAnnouncement();
+        if (location.state?.category) {
+            setPageState('announcement', { category: location.state.category });
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 

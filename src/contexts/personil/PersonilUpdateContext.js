@@ -38,6 +38,7 @@ export const PersonilUpdateContextProvider = ({ children }) => {
             sumber_pa: res.sumber_pa,
             jabatan: res.jabatan,
             pangkat: res.pangkat,
+            nomor_kep_skep: res.nomor_kep_skep,
             korps: res.korps,
             psi: res.psi,
             tmt_1: res.tmt_1,

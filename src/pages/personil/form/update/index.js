@@ -86,8 +86,14 @@ const PersonilUpdatePage = () => {
                                 </div>
                                 <InputText className="mt-1" value={controller.jabatan} error={errors.jabatan} onChange={(value) => onSetController('jabatan', value)} placeholder="..." />
                             </div>
+                        </div>
+                        <div className="flex gap-2">
                             <div className="flex-grow">
                                 <PangkatModal value={controller.pangkat} error={errors.pangkat} onChange={(value) => onSetController('pangkat', value.nama)} />
+                            </div>
+                            <div>
+                                <span className="font-medium">Nomor Kep/Skep</span>
+                                <InputText className="mt-1" value={controller.nomor_kep_skep} error={errors.nomor_kep_skep} onChange={(value) => onSetController("nomor_kep_skep", value)} placeholder="..." />
                             </div>
                         </div>
                         <div className="flex gap-2">

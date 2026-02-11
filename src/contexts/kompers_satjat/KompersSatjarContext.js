@@ -3,15 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { getKompersSatjarCategoryRequest } from "../../api/KompersSatjarCategoryRequest";
 import { deleteKompersSatjarRequest, getKompersSatjarRequest } from "../../api/KompersSatjarRequest";
 import { ConfirmDeleteModal } from "../../components";
+import { getPageState, setPageState } from "../../utils";
 
 const KompersSatjarContext = createContext();
 
 export const KompersSatjarContextProvider = ({ children }) => {
     const navigation = useNavigate();
+    const savedState = getPageState('kompers_satjar');
     const [element, setElement] = useState(false);
-    const [filter, setFilter] = useState({});
+    const [filter, setFilter] = useState(savedState?.filter ?? {});
     const [kompersSatjarCategory, setKompersSatjarCategory] = useState([]);
-    const [kompersSatjarCategoryActive, setKompersSatjarCategoryActive] = useState([]);
+    const [kompersSatjarCategoryActive, setKompersSatjarCategoryActive] = useState(savedState?.kompersSatjarCategoryActive ?? []);
     const [kompersSatjar, setKompersSatjar] = useState({});
 
     const onFilter = (field, value) => {
@@ -26,18 +28,23 @@ export const KompersSatjarContextProvider = ({ children }) => {
 
     const settingKompersSatjarCategory = (res) => {
         var datas = [];
+        let activeIdx = 0;
+        if (savedState?.kompersSatjarCategoryActive?.id) {
+            activeIdx = res.findIndex((x) => x.id === savedState.kompersSatjarCategoryActive.id);
+            if (activeIdx < 0) activeIdx = 0;
+        }
         res.forEach((item, index) => {
             datas.push({
                 id: item.id,
                 kompers_satjar_categorys_id: item.kompers_satjar_categorys_id,
                 category: item.category,
                 sub_category: item.sub_category,
-                isActive: index === 0 ? true : false,
+                isActive: index === activeIdx ? true : false,
             });
         });
         setKompersSatjarCategory([...datas]);
-        setKompersSatjarCategoryActive({ ...datas[0] });
-        getKompersSatjar({ kompers_satjar_categorys_id: datas?.[0]?.kompers_satjar_categorys_id });
+        setKompersSatjarCategoryActive({ ...datas[activeIdx] });
+        getKompersSatjar({ category: datas?.[activeIdx]?.category, sub_category: datas?.[activeIdx]?.sub_category });
     };
 
     const getKompersSatjar = async ({ category = '', sub_category = '' }) => {
@@ -54,7 +61,7 @@ export const KompersSatjarContextProvider = ({ children }) => {
         kompersSatjarCategory[indexItem].isActive = true;
         setKompersSatjarCategory([...kompersSatjarCategory]);
         setKompersSatjarCategoryActive({ ...kompersSatjarCategory[indexItem] });
-        getKompersSatjar({ kompers_satjar_categorys_id: kompersSatjarCategory[indexItem].kompers_satjar_categorys_id });
+        getKompersSatjar({ category: kompersSatjarCategory[indexItem].category, sub_category: kompersSatjarCategory[indexItem].sub_category });
     };
 
     const onShowConfirmDelete = (kompers_satjar_id) => {
@@ -72,6 +79,10 @@ export const KompersSatjarContextProvider = ({ children }) => {
         getKompersSatjarCategory();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter]);
+
+    useEffect(() => {
+        setPageState('kompers_satjar', { filter, kompersSatjarCategoryActive });
+    }, [filter, kompersSatjarCategoryActive]);
 
     return <KompersSatjarContext.Provider value={{ navigation, element, filter, kompersSatjar, kompersSatjarCategory, kompersSatjarCategoryActive, onTabSwitch, onFilter, onShowConfirmDelete }}>{children}</KompersSatjarContext.Provider>;
 };

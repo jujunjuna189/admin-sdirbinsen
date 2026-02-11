@@ -2,13 +2,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { deleteLearningRequest, getLearningRequest } from "../../api/LearningRequest";
 import { ConfirmDeleteModal } from "../../components";
+import { getPageState, setPageState } from "../../utils";
 
 const LearningContext = createContext();
 
 export const LearningContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const location = useLocation();
-    const [filter, setFilter] = useState({});
+    const savedState = getPageState('learning');
+    const [filter, setFilter] = useState(savedState?.filter ?? {});
     const [element, setElement] = useState(false);
     const [learning, setLearning] = useState({});
 
@@ -35,6 +37,7 @@ export const LearningContextProvider = ({ children }) => {
 
     useEffect(() => {
         onGetLearning();
+        setPageState('learning', { filter });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location, filter]);
 

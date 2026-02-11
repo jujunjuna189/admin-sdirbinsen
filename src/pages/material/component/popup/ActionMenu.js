@@ -1,7 +1,53 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const ActionMenu = ({ item, onShowDetail, onEdit, onDelete, onViewDocument, canUpdate, canDelete }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [menuStyle, setMenuStyle] = useState({});
+    const buttonRef = useRef(null);
+
+    const toggleMenu = () => {
+        if (!isOpen) {
+            // Opening the menu - calculate position
+            if (buttonRef.current) {
+                const rect = buttonRef.current.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const windowWidth = window.innerWidth;
+                const spaceBelow = windowHeight - rect.bottom;
+                const spaceAbove = rect.top;
+                const menuHeightEstimate = 200; // Approximate max height
+
+                let style = {
+                    position: 'fixed',
+                    zIndex: 50,
+                    minWidth: '160px'
+                };
+
+                // Horizontal positioning (align right)
+                style.right = `${windowWidth - rect.right}px`;
+
+                // Vertical positioning
+                if (spaceBelow < menuHeightEstimate && spaceAbove > spaceBelow) {
+                    // Open UP
+                    style.bottom = `${windowHeight - rect.top + 4}px`; // +4 for margin
+                } else {
+                    // Open DOWN
+                    style.top = `${rect.bottom + 4}px`; // +4 for margin
+                }
+
+                setMenuStyle(style);
+            }
+        }
+        setIsOpen(!isOpen);
+    };
+
+    // Close on scroll to prevent detached menu
+    useEffect(() => {
+        const handleScroll = () => {
+             if (isOpen) setIsOpen(false);
+        };
+        window.addEventListener('scroll', handleScroll, true);
+        return () => window.removeEventListener('scroll', handleScroll, true);
+    }, [isOpen]);
 
     const handleAction = (action) => {
         setIsOpen(false);
@@ -11,8 +57,9 @@ const ActionMenu = ({ item, onShowDetail, onEdit, onDelete, onViewDocument, canU
     return (
         <div className="relative">
             <button
+                ref={buttonRef}
                 className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={toggleMenu}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -26,12 +73,15 @@ const ActionMenu = ({ item, onShowDetail, onEdit, onDelete, onViewDocument, canU
                 <>
                     {/* Backdrop to close menu */}
                     <div
-                        className="fixed inset-0 z-10"
+                        className="fixed inset-0 z-40"
                         onClick={() => setIsOpen(false)}
                     />
 
                     {/* Dropdown Menu */}
-                    <div className="absolute right-0 top-full mt-1 bg-white border border-slate-200 rounded-lg shadow-lg z-20 min-w-[160px] py-1">
+                    <div 
+                        className="bg-white border border-slate-200 rounded-lg shadow-lg py-1"
+                        style={menuStyle}
+                    >
                         {/* Detail */}
                         <button
                             className="w-full px-4 py-2 text-left text-sm hover:bg-slate-50 flex items-center gap-2 text-slate-700"

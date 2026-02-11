@@ -94,6 +94,14 @@ const BiodataPersonilDetail = (props) => {
               </tr>
               <tr>
                 <td className="py-[7px] w-44">
+                  <span className="font-medium">Nomor Kep Skep</span>
+                </td>
+                <td className="py-[7px]">
+                  <span className="px-4">: {props.personil?.nomor_kep_skep}</span>
+                </td>
+              </tr>
+              <tr>
+                <td className="py-[7px] w-44">
                   <span className="font-medium">Korps</span>
                 </td>
                 <td className="py-[7px]">

@@ -2,14 +2,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deletePetaJabatanRequest, getPetaJabatanRequest } from "../../api/PetaJabatanRequest";
 import { ConfirmDeleteModal } from "../../components";
-import { getLocalUser } from "../../utils";
+import { getLocalUser, getPageState, setPageState } from "../../utils";
 
-const PetaJabatanContext = createContext();
+const PetaJabatanContext = createContext({});
 
 export const PetaJabatanContextProvider = ({ children }) => {
     const navigation = useNavigate();
     const user = getLocalUser();
-    const [filter, setFilter] = useState({});
+    const savedState = getPageState('peta_jabatan');
+    const [filter, setFilter] = useState(savedState?.filter ?? {});
     const [element, setElement] = useState(false);
     const [petaJabatan, setPetaJabatan] = useState([]);
 
@@ -44,6 +45,10 @@ export const PetaJabatanContextProvider = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter]);
 
+    useEffect(() => {
+        setPageState('peta_jabatan', { filter });
+    }, [filter]);
+
     return (
         <PetaJabatanContext.Provider value={{ navigation, user, element, filter, petaJabatan, setElement, setPetaJabatan, onFilter, onShowConfirmDelete }}>
             {children}
@@ -52,5 +57,9 @@ export const PetaJabatanContextProvider = ({ children }) => {
 }
 
 export const UsePetaJabatanContext = () => {
-    return useContext(PetaJabatanContext);
+    const context = useContext(PetaJabatanContext);
+    if (!context) {
+        return {};
+    }
+    return context;
 }

@@ -3,17 +3,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { deleteMaterialRequest, getMaterialRequest } from "../../api/MaterialRequest";
 import { ConfirmDeleteModal } from "../../components";
 import { ConverUrl } from "../../utils/convert/UrlConvert";
-import { getLocalUser } from "../../utils";
+import { getLocalUser, getPageState, setPageState } from "../../utils";
 
 const MaterialContext = createContext();
 
 export const MaterialContextProvider = ({ children }) => {
   const navigation = useNavigate();
   const location = useLocation();
-  const [filter, setFilter] = useState({});
+  const savedState = getPageState('material');
+  const [filter, setFilter] = useState(savedState?.filter ?? {});
   const [element, setElement] = useState(false);
   const [material, setMaterial] = useState({});
-  const [categoryActive, setCategoryActive] = useState({});
+  const [categoryActive, setCategoryActive] = useState(savedState?.categoryActive ?? {});
   const [category, setCategory] = useState([]);
 
   const onFilter = (field, value) => {
@@ -105,7 +106,8 @@ export const MaterialContextProvider = ({ children }) => {
 
   const settingMaterialCategory = (res) => {
     var datas = [];
-    var indexData = res.findIndex((x) => x.key === (location?.state?.type?.key));
+    var initialKey = savedState?.categoryActive?.key ?? location?.state?.type?.key;
+    var indexData = res.findIndex((x) => x.key === initialKey);
     if (indexData < 0) (indexData = 0);
     res.forEach((item, index) => {
       item.isActive = index === indexData ? true : false;
@@ -151,6 +153,10 @@ export const MaterialContextProvider = ({ children }) => {
     onGetMaterialKategori();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state, filter]);
+
+  useEffect(() => {
+    setPageState('material', { filter, categoryActive });
+  }, [filter, categoryActive]);
 
   return <MaterialContext.Provider value={{ navigation, location, element, material, category, categoryActive, filter, onTabSwitch, onShowConfirmDelete, setCategoryActive, onFilter }}>{children}</MaterialContext.Provider>;
 };

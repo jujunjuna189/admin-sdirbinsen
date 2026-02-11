@@ -5,7 +5,15 @@ import { calculateDifferenceDate, ValidDateConvert } from "../../utils";
 import { SatuanModal } from "../personil/component";
 
 const PetaJabatanPage = () => {
-    const { navigation, element, filter, petaJabatan, onFilter, onShowConfirmDelete } = UsePetaJabatanContext();
+    const context = UsePetaJabatanContext();
+    const { 
+        navigation = () => {}, 
+        element = null, 
+        filter = {}, 
+        petaJabatan = {}, 
+        onFilter = () => {}, 
+        onShowConfirmDelete = () => {} 
+    } = context || {};
     var number = 0;
     const renderTable = () => {
         return (

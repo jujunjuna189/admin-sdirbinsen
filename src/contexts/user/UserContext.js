@@ -2,13 +2,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteUserRequest, getUserRequest } from "../../api/UserRequest";
 import { ConfirmDeleteModal } from "../../components";
+import { getPageState, setPageState } from "../../utils";
 
 const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
     const navigation = useNavigate();
+    const savedState = getPageState('user');
     const [element, setElement] = useState(false);
-    const [filter, setFilter] = useState({});
+    const [filter, setFilter] = useState(savedState?.filter ?? {});
     const [user, setUser] = useState({});
 
     const onFilter = (field, value) => {
@@ -37,6 +39,7 @@ export const UserContextProvider = ({ children }) => {
 
     useEffect(() => {
         onGetUser({});
+        setPageState('user', { filter });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter]);
 

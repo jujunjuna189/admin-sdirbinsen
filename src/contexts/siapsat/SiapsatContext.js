@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getSatuanRequest } from "../../api/SatuanRequest";
 import { deleteSiapsatRequest, getSiapsatRequest } from "../../api/SiapsatRequest";
 import { ConfirmDeleteModal } from "../../components";
+import { getPageState, setPageState } from "../../utils";
 
 const SiapsatContext = createContext();
 
@@ -15,10 +16,16 @@ export const SiapsatContextProvider = ({ children }) => {
   const [siapsat, setSiapsat] = useState({});
 
   const getSatuan = async () => {
+    const savedState = getPageState('siapsat');
     await getSatuanRequest({}).then((res) => {
-      res?.data?.length > 0 && (res.data[0].isActive = true);
-      res?.data?.length > 0 && (setSatuanData(res.data[0]));
-      res?.data?.length > 0 && (onGetSiapsat({ satuan_id: res.data[0].id }));
+      let activeIdx = 0;
+      if (savedState?.satuanData?.id) {
+        activeIdx = res.data.findIndex((x) => x.id === savedState.satuanData.id);
+        if (activeIdx < 0) activeIdx = 0;
+      }
+      res?.data?.length > 0 && (res.data[activeIdx].isActive = true);
+      res?.data?.length > 0 && (setSatuanData(res.data[activeIdx]));
+      res?.data?.length > 0 && (onGetSiapsat({ satuan_id: res.data[activeIdx].id }));
       setSatuan(res);
     });
   };
@@ -62,6 +69,12 @@ export const SiapsatContextProvider = ({ children }) => {
     getSatuan();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state]);
+
+  useEffect(() => {
+    if (satuanData?.id) {
+        setPageState('siapsat', { satuanData });
+    }
+  }, [satuanData]);
 
   return <SiapsatContext.Provider value={{ navigation, location, element, satuan, satuanData, siapsat, setSiapsat, onChangeTab, onChangeTabSiapsat, onShowConfirmDelete }}>{children}</SiapsatContext.Provider>;
 };

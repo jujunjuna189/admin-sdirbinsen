@@ -22,3 +22,13 @@ export const setLocalMessagePending = (value) => {
 export const getLocalMessagePending = () => {
     return JSON.parse(localStorage.getItem('sdirbinsen.message_pending')) ?? [];
 }
+
+// Global Page State Persistence
+export const setPageState = (key, value) => {
+    localStorage.setItem(`sdirbinsen.page_state.${key}`, JSON.stringify(value));
+}
+
+export const getPageState = (key) => {
+    const data = localStorage.getItem(`sdirbinsen.page_state.${key}`);
+    return data ? JSON.parse(data) : null;
+}

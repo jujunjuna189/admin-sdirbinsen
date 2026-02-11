@@ -111,6 +111,7 @@ const MaterialPage = () => {
                       onViewDocument={onViewDocument}
                       canUpdate={getLocalUser()?.auth?.permission["binmat.update"]}
                       canDelete={getLocalUser()?.auth?.permission["binmat.delete"]}
+                      direction={index >= material.data.length - 2 ? 'up' : 'down'}
                     />
                   </div>
                 </td>

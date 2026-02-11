@@ -4,7 +4,18 @@ import { dateYear, getLocalUser } from "../../utils";
 import { LettingModal } from "./component";
 
 const PersonilPage = () => {
-    const { navigation, element, personil, sumberPa, filter, onTabSwitch, onNextPage, onFilter, onShowConfirmDelete } = UsePersonilContext();
+    const context = UsePersonilContext();
+    const { 
+        navigation = () => {}, 
+        element = null, 
+        personil = {}, 
+        sumberPa = [], 
+        filter = {}, 
+        onTabSwitch = () => {}, 
+        onNextPage = () => {}, 
+        onFilter = () => {}, 
+        onShowConfirmDelete = () => {} 
+    } = context || {};
 
     const renderTable = () => {
         return (

@@ -9,7 +9,8 @@ const PetaJabatanModal = (props) => {
     const [keyword, setKeyword] = useState("");
 
     const getSatuan = async () => {
-        const res = await getPetaJabatanRequest({});
+        const satuan_id = getLocalUser()?.auth?.user?.satuan_id;
+        const res = await getPetaJabatanRequest(satuan_id ? {satuan_id} : {});
         let value = [];
         Object.keys(res?.data)?.forEach(item => {
             value.push({

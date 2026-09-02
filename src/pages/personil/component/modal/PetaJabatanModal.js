@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { getPetaJabatanRequest } from "../../../../api/PetaJabatanRequest";
 import { getLocalUser } from "../../../../utils/storage/LocalStorage";
 import { EmptyData } from "../../../../components";
+import { getLocalUser } from "../../../../utils";
 
 const PetaJabatanModal = (props) => {
     const ref = useRef();
@@ -9,11 +10,14 @@ const PetaJabatanModal = (props) => {
     const [data, setData] = useState([]);
     const [keyword, setKeyword] = useState("");
 
-    const getSatuan = async () => {
+    const getSatuan = async (search = "") => {
         const satuan_id = getLocalUser()?.auth?.user?.satuan_id;
-        const res = await getPetaJabatanRequest(satuan_id ? {satuan_id} : {});
+        const res = await getPetaJabatanRequest({
+            satuan_id: satuan_id,
+            search: search
+        });
         let value = [];
-        Object.keys(res?.data)?.forEach(item => {
+        Object.keys(res?.data ?? {})?.forEach(item => {
             value.push({
                 nama: item,
                 items: Array.isArray(res?.data?.[item]) ? res.data[item] : [],
@@ -23,7 +27,6 @@ const PetaJabatanModal = (props) => {
     };
 
     const toogleModal = () => {
-        getSatuan();
         setKeyword("");
         setIsShow(!isShow);
     };
@@ -44,6 +47,16 @@ const PetaJabatanModal = (props) => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    useEffect(() => {
+        if (isShow) {
+            const delayDebounceFn = setTimeout(() => {
+                getSatuan(keyword);
+            }, 500);
+
+            return () => clearTimeout(delayDebounceFn);
+        }
+    }, [keyword, isShow]);
 
     /** 🔍 filter data */
     const filteredData = data
@@ -111,7 +124,6 @@ const PetaJabatanModal = (props) => {
                                                         <td><span className="text-gray-400">Nama Lengkap </span></td>
                                                         <td><span className="">: {itemChild?.personil?.nama ?? '-'}</span></td>
                                                     </tr>
-                                                    {console.log(itemChild)}
                                                     <tr>
                                                         <td><span className="text-gray-400">Satuan Personel </span></td>
                                                         <td><span className="">: {itemChild?.personil?.satuan?.nama ?? '-'}</span></td>
